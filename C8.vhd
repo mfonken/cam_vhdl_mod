@@ -86,6 +86,9 @@ architecture gbehaviour of cam_controller is
           y := y + 1;
         end loop;
 
+  ----------------------------------------------
+  -- Math
+  ----------------------------------------------
         -- Process frame
         d_map <= density_mapper( frame );
 
@@ -98,9 +101,7 @@ architecture gbehaviour of cam_controller is
 
       end if;
     end capture_frame;
-    ----------------------------------------------
-    -- Math
-    ----------------------------------------------
+
 
     ----------------------------------------------
     -- Packet composition

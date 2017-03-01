@@ -7,7 +7,6 @@ package C8_math is
 -- Density mapper descriptor
   function density_mapper( F : frame_t );
             return M : density_map_t;
-
 -- Convolution descriptor
   function convolve(
               X_l : unsigned;
@@ -16,11 +15,9 @@ package C8_math is
               H   : std_logic_vector( 0 to KERNEL_LENGTH )
             );
             return Y : std_logic_vector( 0 to X_l );
-
 -- Maxima detection descriptor
   function maxima( M : density_map_t );
             return P : peaks_t ;
-
 end C8_math;
 
 package C8_math is
@@ -55,7 +52,6 @@ package C8_math is
     end loop;
     return Y;
   end convolution;
-
 -- Maxima detection body
   function maxima( M : density_map_t );
             return P : peaks_t is
@@ -64,6 +60,7 @@ package C8_math is
     variable x_index : unsigned := '0';
     variable y_index : unsigned := '0';
   begin
+-- Find X peaks
     prev := M.x_map(0);
     for i in 1 to FRAME_WIDTH loop
       diff := M.x_map(i) - prev;
@@ -73,7 +70,7 @@ package C8_math is
       end if;
     end loop;
     M.x_length <= x_index - 1;
-
+-- Find Y peaks
     prev := M.y_map(0);
     for j in 0 to FRAME_HEIGHT loop
       diff := M.y_map(i) - prev;
@@ -83,7 +80,6 @@ package C8_math is
       end if;
     end loop;
     M.y_length <= y_index - 1;
-    
     return M;
   end maxima;
 end C8_math;
