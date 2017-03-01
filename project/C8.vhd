@@ -97,7 +97,7 @@ architecture gbehaviour of C8_Project is
 		y_convolve <= convolve( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
 
 		-- Calculate peaks in convolved map
---		peaks <= maxima( c_map );
+		peaks <= maxima( x_convolve, y_convolve );
 
 	end if;
 end process;

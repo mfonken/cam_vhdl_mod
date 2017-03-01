@@ -5,6 +5,7 @@ package C8_constants is
   -- Camera frame dimensions
     constant FRAME_WIDTH   : integer := 1280;
     constant FRAME_HEIGHT  : integer := 800;
+    constant MAX_ARRAY_L   : integer := FRAME_WIDTH;
 
   -- Number of convolutions
     constant N_CONVOLVE    : integer := 4;

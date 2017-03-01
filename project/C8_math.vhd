@@ -10,13 +10,16 @@ package C8_math is
 -- Convolution descriptor
   function convolve(
               X_l : integer;
-              X   : std_logic_vector( 0 to FRAME_WIDTH );
+              X   : x_array;
               H_l : integer;
-              H   : std_logic_vector( 0 to KERNEL_LENGTH )
+              H   : k_array;
             )
             return convolve_result_t;
 -- Maxima detection descriptor
-  function maxima( M : convolve_result_t )
+  function maxima(
+              X : convolve_result_t;
+              Y : convolve_result_t
+            )
             return peaks_t;
 end C8_math;
 
@@ -40,12 +43,12 @@ package body C8_math is
 -- Convolution body
   function convolve(
               X_l : integer;
-              X   : std_logic_vector( 0 to FRAME_WIDTH );
+              X   : x_array;
               H_l : integer;
-              H   : std_logic_vector( 0 to KERNEL_LENGTH )
+              H   : k_array;
             )
             return convolve_result_t is
-	
+
 	variable Y : convolve_result_t;
   begin
     Y := (others => 0);
@@ -59,34 +62,37 @@ package body C8_math is
     return Y;
   end convolve;
 -- Maxima detection body
-  function maxima( M : convolve_result_t )
+  function maxima(
+              X : convolve_result_t;
+              Y : convolve_result_t
+            )
             return peaks_t is
 		variable P : peaks_t;
 		variable prev    : integer;
 		variable diff    : integer;
 		variable x_index : integer := 0;
 		variable y_index : integer := 0;
-	begin	
+	begin
 -- Find X peaks
-    prev := M(0);
+    prev := X(0);
     for i in 1 to FRAME_WIDTH loop
-      diff := M(i) - prev;
+      diff := X(i) - prev;
       if( diff < 0 ) then
         P.x_peaks(x_index) := i;
         x_index := x_index + 1;
       end if;
     end loop;
---    M.x_length <= x_index - 1;
----- Find Y peaks
---    prev := M.y_map(0);
---    for j in 0 to FRAME_HEIGHT loop
---      diff := M.y_map(i) - prev;
---      if( diff < 0 ) then
---        P.y_peaks(y_index) <= i;
---        y_index := y_index + 1;
---      end if;
---    end loop;
---    M.y_length <= y_index - 1;
-    return P;
+   P.x_length <= x_index - 1;
+-- Find Y peaks
+   prev := Y(0);
+   for j in 0 to FRAME_HEIGHT loop
+     diff := Y(i) - prev;
+     if( diff < 0 ) then
+       P.y_peaks(y_index) <= i;
+       y_index := y_index + 1;
+     end if;
+   end loop;
+   P.y_length <= y_index - 1;
+   return P;
   end maxima;
 end C8_math;
