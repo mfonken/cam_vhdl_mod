@@ -1,0 +1,320 @@
+I/O Assignment Analysis report for C8_Project
+Tue Feb 28 21:22:08 2017
+Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. I/O Assignment Analysis Summary
+  3. Parallel Compilation
+  4. Fitter Messages
+  5. Ignored Assignments
+  6. Pin-Out File
+  7. All Package Pins
+  8. I/O Bank Usage
+  9. I/O Assignment Analysis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2016  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++------------------------------------------------------------------------------+
+; I/O Assignment Analysis Summary                                              ;
++--------------------------------+---------------------------------------------+
+; I/O Assignment Analysis Status ; Successful - Tue Feb 28 21:22:08 2017       ;
+; Quartus Prime Version          ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
+; Revision Name                  ; C8_Project                                  ;
+; Top-level Entity Name          ; C8_Project                                  ;
+; Family                         ; MAX 10                                      ;
+; Device                         ; 10M02DCV36C7G                               ;
+; Timing Models                  ; Final                                       ;
+; Total pins                     ; 0 / 27 ( 0 % )                              ;
+; Total virtual pins             ; 0                                           ;
+; Total PLLs                     ; 0 / 1 ( 0 % )                               ;
+; UFM blocks                     ; 0 / 1 ( 0 % )                               ;
+; ADC blocks                     ; 0                                           ;
++--------------------------------+---------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-----------------+
+; Fitter Messages ;
++-----------------+
+Warning (11747): Analysis and Synthesis (quartus_map) with top-level entity name "C8_Project" was not run before running I/O Assignment Analysis -- I/O Assignment Analysis will check only I/O assignments on the reserved pins
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (119006): Selected device 10M02DCV36C7G for design "C8_Project"
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Warning (292013): Feature LogicLock is only available with a valid subscription license. You can purchase a software subscription to gain full access to this feature.
+Info (176444): Device migration not selected. If you intend to use device migration later, you may need to change the pin assignments as they may be incompatible with other devices
+    Info (176445): Device 10M02DCV36I7G is compatible
+Info (169124): Fitter converted 8 user pins into dedicated programming pins
+    Info (169125): Pin ~ALTERA_TMS~ is reserved at location C3
+    Info (169125): Pin ~ALTERA_TCK~ is reserved at location D3
+    Info (169125): Pin ~ALTERA_TDI~ is reserved at location C1
+    Info (169125): Pin ~ALTERA_TDO~ is reserved at location D2
+    Info (169125): Pin ~ALTERA_CONFIG_SEL~ is reserved at location B4
+    Info (169125): Pin ~ALTERA_nCONFIG~ is reserved at location A4
+    Info (169125): Pin ~ALTERA_nSTATUS~ is reserved at location B2
+    Info (169125): Pin ~ALTERA_CONF_DONE~ is reserved at location A2
+Info (12825): DCLK dual-purpose pin not reserved
+Warning (15705): Ignored locations or region assignments to the following nodes
+    Warning (15706): Node "CLK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI2" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI3" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI4" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI5" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI6" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI7" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ2" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ3" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ4" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ5" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ6" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ7" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "HREF" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "MCLK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "PCLK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "PWDN" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "QRWDS" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "Q_CK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "Q_NCK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "Q_NCS" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "Q_NRESET" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "RX" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SIOC" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SIOD" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "TX" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "VSYNC" is assigned to location or region, but does not exist in design
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
+Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
+Info: Quartus Prime I/O Assignment Analysis was successful. 0 errors, 32 warnings
+    Info: Peak virtual memory: 796 megabytes
+    Info: Processing ended: Tue Feb 28 21:22:08 2017
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:03
+
+
++----------------------------------------------------------------------------------------------------+
+; Ignored Assignments                                                                                ;
++--------------+----------------+--------------+------------+-----------------------+----------------+
+; Name         ; Ignored Entity ; Ignored From ; Ignored To ; Ignored Value         ; Ignored Source ;
++--------------+----------------+--------------+------------+-----------------------+----------------+
+; Location     ;                ;              ; CLK        ; PIN_E2                ; QSF Assignment ;
+; Location     ;                ;              ; CPI2       ; PIN_F2                ; QSF Assignment ;
+; Location     ;                ;              ; CPI3       ; PIN_F3                ; QSF Assignment ;
+; Location     ;                ;              ; CPI4       ; PIN_E3                ; QSF Assignment ;
+; Location     ;                ;              ; CPI5       ; PIN_F4                ; QSF Assignment ;
+; Location     ;                ;              ; CPI6       ; PIN_E4                ; QSF Assignment ;
+; Location     ;                ;              ; CPI7       ; PIN_E5                ; QSF Assignment ;
+; Location     ;                ;              ; DQ2        ; PIN_D6                ; QSF Assignment ;
+; Location     ;                ;              ; DQ3        ; PIN_E6                ; QSF Assignment ;
+; Location     ;                ;              ; DQ4        ; PIN_D5                ; QSF Assignment ;
+; Location     ;                ;              ; DQ5        ; PIN_C6                ; QSF Assignment ;
+; Location     ;                ;              ; DQ6        ; PIN_C5                ; QSF Assignment ;
+; Location     ;                ;              ; DQ7        ; PIN_B6                ; QSF Assignment ;
+; Location     ;                ;              ; HREF       ; PIN_D2                ; QSF Assignment ;
+; Location     ;                ;              ; MCLK       ; PIN_D3                ; QSF Assignment ;
+; Location     ;                ;              ; PCLK       ; PIN_C2                ; QSF Assignment ;
+; Location     ;                ;              ; PWDN       ; PIN_C3                ; QSF Assignment ;
+; Location     ;                ;              ; QRWDS      ; PIN_A4                ; QSF Assignment ;
+; Location     ;                ;              ; Q_CK       ; PIN_B5                ; QSF Assignment ;
+; Location     ;                ;              ; Q_NCK      ; PIN_B4                ; QSF Assignment ;
+; Location     ;                ;              ; Q_NCS      ; PIN_A5                ; QSF Assignment ;
+; Location     ;                ;              ; Q_NRESET   ; PIN_A3                ; QSF Assignment ;
+; Location     ;                ;              ; RX         ; PIN_A2                ; QSF Assignment ;
+; Location     ;                ;              ; SIOC       ; PIN_E1                ; QSF Assignment ;
+; Location     ;                ;              ; SIOD       ; PIN_D1                ; QSF Assignment ;
+; Location     ;                ;              ; TX         ; PIN_B2                ; QSF Assignment ;
+; Location     ;                ;              ; VSYNC      ; PIN_C1                ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; CLK        ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; CPI2       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; CPI3       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; CPI4       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; CPI5       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; CPI6       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; CPI7       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; DQ2        ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; DQ3        ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; DQ4        ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; DQ5        ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; DQ6        ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; DQ7        ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; HREF       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; MCLK       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; PCLK       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; PWDN       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; QRWDS      ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; Q_CK       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; Q_NCK      ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; Q_NCS      ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; Q_NRESET   ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; RX         ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; SIOC       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; SIOD       ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; TX         ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
+; I/O Standard ; C8_Project     ;              ; VSYNC      ; 3.3 V SCHMITT TRIGGER ; QSF Assignment ;
++--------------+----------------+--------------+------------+-----------------------+----------------+
+
+
++--------------+
+; Pin-Out File ;
++--------------+
+The pin-out file can be found in C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/output_files/C8_Project.pin.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; All Package Pins                                                                                                                                                                          ;
++----------+------------+--------------+------------------------------------------------+--------+-----------------------+---------+------------+-----------------+----------+--------------+
+; Location ; Pad Number ; I/O Bank     ; Pin Name/Usage                                 ; Dir.   ; I/O Standard          ; Voltage ; I/O Type   ; User Assignment ; Bus Hold ; Weak Pull Up ;
++----------+------------+--------------+------------------------------------------------+--------+-----------------------+---------+------------+-----------------+----------+--------------+
+; A1       ;            ; --           ; VCCA3                                          ; power  ;                       ; 2.5V    ; --         ;                 ; --       ; --           ;
+; A2       ; 156        ; 8            ; ~ALTERA_CONF_DONE~ / RESERVED_INPUT            ; input  ; 2.5 V Schmitt Trigger ;         ; Column I/O ; N               ; no       ; Off          ;
+; A3       ; 152        ; 8            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; A4       ; 144        ; 8            ; ~ALTERA_nCONFIG~ / RESERVED_INPUT              ; input  ; 2.5 V Schmitt Trigger ;         ; Column I/O ; N               ; no       ; Off          ;
+; A5       ; 136        ; 8            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; A6       ;            ; --           ; VCCA2                                          ; power  ;                       ; 2.5V    ; --         ;                 ; --       ; --           ;
+; B1       ;            ; --           ; VCC                                            ; power  ;                       ; 1.2V    ; --         ;                 ; --       ; --           ;
+; B2       ; 154        ; 8            ; ~ALTERA_nSTATUS~ / RESERVED_INPUT              ; input  ; 2.5 V Schmitt Trigger ;         ; Column I/O ; N               ; no       ; Off          ;
+; B3       ;            ;              ; GND                                            ; gnd    ;                       ;         ; --         ;                 ; --       ; --           ;
+; B4       ; 142        ; 8            ; ~ALTERA_CONFIG_SEL~ / RESERVED_INPUT           ; input  ; 2.5 V                 ;         ; Column I/O ; N               ; no       ; Off          ;
+; B5       ; 138        ; 8            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; B6       ; 128        ; 6            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
+; C1       ; 16         ; 1B           ; ~ALTERA_TDI~ / RESERVED_INPUT_WITH_WEAK_PULLUP ; input  ; 2.5 V Schmitt Trigger ;         ; Row I/O    ; N               ; no       ; On           ;
+; C2       ; 10         ; 1B           ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
+; C3       ; 12         ; 1B           ; ~ALTERA_TMS~ / RESERVED_INPUT_WITH_WEAK_PULLUP ; input  ; 2.5 V Schmitt Trigger ;         ; Row I/O    ; N               ; no       ; On           ;
+; C4       ;            ; 1A, 1B, 2, 8 ; VCCIO1_2_8                                     ; power  ;                       ; 2.5V    ; --         ;                 ; --       ; --           ;
+; C5       ; 126        ; 6            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
+; C6       ; 104        ; 6            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
+; D1       ; 28         ; 2            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
+; D2       ; 18         ; 1B           ; ~ALTERA_TDO~                                   ; output ; 2.5 V                 ;         ; Row I/O    ; N               ; no       ; Off          ;
+; D3       ; 14         ; 1B           ; ~ALTERA_TCK~ / RESERVED_INPUT                  ; input  ; 2.5 V Schmitt Trigger ;         ; Row I/O    ; N               ; no       ; Off          ;
+; D4       ;            ; 3, 5, 6      ; VCCIO3_5_6                                     ; power  ;                       ; 2.5V    ; --         ;                 ; --       ; --           ;
+; D5       ; 102        ; 6            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
+; D6       ; 98         ; 6            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
+; E1       ; 30         ; 2            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
+; E2       ; 22         ; 1B           ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
+; E3       ; 56         ; 3            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; E4       ; 74         ; 3            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; E5       ; 76         ; 3            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; E6       ; 100        ; 6            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Row I/O    ;                 ; no       ; On           ;
+; F1       ;            ;              ; GND                                            ; gnd    ;                       ;         ; --         ;                 ; --       ; --           ;
+; F2       ; 44         ; 3            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; F3       ; 46         ; 3            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; F4       ; 58         ; 3            ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;         ; Column I/O ;                 ; no       ; On           ;
+; F5       ;            ; --           ; VCC                                            ; power  ;                       ; 1.2V    ; --         ;                 ; --       ; --           ;
+; F6       ;            ;              ; GND                                            ; gnd    ;                       ;         ; --         ;                 ; --       ; --           ;
++----------+------------+--------------+------------------------------------------------+--------+-----------------------+---------+------------+-----------------+----------+--------------+
+Note: Pin directions (input, output or bidir) are based on device operating in user mode.
+
+
++----------------------------------------------------------+
+; I/O Bank Usage                                           ;
++----------+----------------+---------------+--------------+
+; I/O Bank ; Usage          ; VCCIO Voltage ; VREF Voltage ;
++----------+----------------+---------------+--------------+
+; 1A       ; 0 / 0 ( -- )   ; 2.5V          ; --           ;
+; 1B       ; 4 / 6 ( 67 % ) ; 2.5V          ; --           ;
+; 2        ; 0 / 2 ( 0 % )  ; 2.5V          ; --           ;
+; 3        ; 0 / 6 ( 0 % )  ; 2.5V          ; --           ;
+; 5        ; 0 / 0 ( -- )   ; 2.5V          ; --           ;
+; 6        ; 0 / 6 ( 0 % )  ; 2.5V          ; --           ;
+; 8        ; 4 / 7 ( 57 % ) ; 2.5V          ; --           ;
++----------+----------------+---------------+--------------+
+
+
++----------------------------------+
+; I/O Assignment Analysis Messages ;
++----------------------------------+
+Warning (11747): Analysis and Synthesis (quartus_map) with top-level entity name "C8_Project" was not run before running I/O Assignment Analysis -- I/O Assignment Analysis will check only I/O assignments on the reserved pins
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (119006): Selected device 10M02DCV36C7G for design "C8_Project"
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Warning (292013): Feature LogicLock is only available with a valid subscription license. You can purchase a software subscription to gain full access to this feature.
+Info (176444): Device migration not selected. If you intend to use device migration later, you may need to change the pin assignments as they may be incompatible with other devices
+    Info (176445): Device 10M02DCV36I7G is compatible
+Info (169124): Fitter converted 8 user pins into dedicated programming pins
+    Info (169125): Pin ~ALTERA_TMS~ is reserved at location C3
+    Info (169125): Pin ~ALTERA_TCK~ is reserved at location D3
+    Info (169125): Pin ~ALTERA_TDI~ is reserved at location C1
+    Info (169125): Pin ~ALTERA_TDO~ is reserved at location D2
+    Info (169125): Pin ~ALTERA_CONFIG_SEL~ is reserved at location B4
+    Info (169125): Pin ~ALTERA_nCONFIG~ is reserved at location A4
+    Info (169125): Pin ~ALTERA_nSTATUS~ is reserved at location B2
+    Info (169125): Pin ~ALTERA_CONF_DONE~ is reserved at location A2
+Info (12825): DCLK dual-purpose pin not reserved
+Warning (15705): Ignored locations or region assignments to the following nodes
+    Warning (15706): Node "CLK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI2" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI3" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI4" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI5" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI6" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "CPI7" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ2" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ3" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ4" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ5" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ6" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "DQ7" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "HREF" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "MCLK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "PCLK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "PWDN" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "QRWDS" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "Q_CK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "Q_NCK" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "Q_NCS" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "Q_NRESET" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "RX" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SIOC" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "SIOD" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "TX" is assigned to location or region, but does not exist in design
+    Warning (15706): Node "VSYNC" is assigned to location or region, but does not exist in design
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
+Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
+Info: Quartus Prime I/O Assignment Analysis was successful. 0 errors, 32 warnings
+    Info: Peak virtual memory: 796 megabytes
+    Info: Processing ended: Tue Feb 28 21:22:08 2017
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:03
+
+
