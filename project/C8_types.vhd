@@ -4,13 +4,13 @@ use work.C8_constants.all;
 
 package C8_types is
 
--- Camera frame type
-	subtype line_t is std_logic_vector( 0 to ( FRAME_WIDTH - 1 ) );
-	type frame_t is array( 0 to ( FRAME_HEIGHT - 1 ) ) of line_t;
+-- General array types
+	type x_array is std_logic_vector( FRAME_WIDTH   downto 0 );
+	type y_array is std_logic_vector( FRAME_HEIGHT  downto 0 );
+	type k_array is std_logic_vector( KERNEL_LENGTH downto 0 );
 
-	type x_array is std_logic_vector( 0 to ( FRAME_WIDTH   - 1 ) );
-	type y_array is std_logic_vector( 0 to ( FRAME_HEIGHT  - 1 ) );
-	type k_array is std_logic_vector( 0 to ( KERNEL_LENGTH - 1 ) );
+-- Camera frame type
+	type frame_t is array( FRAME_HEIGHT downto 0 ) of x_array;
 
 -- Density map tyoe
 	type density_map_t is record
@@ -19,18 +19,18 @@ package C8_types is
 	end record density_map_t;
 
 -- Convolution output array type
-	type convolve_result_t is array ( 0 to ( MAX_ARRAY_L - 1 ) ) of integer;
+	type convolve_result_t is array ( MAX_ARRAY_L downto 0) of unsigned( MAX_VALUE downto 0 );
 
 -- Peaks array type
-	type x_peaks_t is array( 0 to ( MAX_PEAKS_X - 1 ) ) of integer range 0 to FRAME_WIDTH;
-	type y_peaks_t is array( 0 to ( MAX_PEAKS_Y - 1 ) ) of integer range 0 to FRAME_HEIGHT;
+	type x_peaks_t is array( MAX_PEAKS_X downto 0 ) of unsigned( FRAME_WIDTH  downto 0 );
+	type y_peaks_t is array( MAX_PEAKS_Y downto 0 ) of unsigned( FRAME_HEIGHT downto 0 );
 
 -- Peaks type
 	type peaks_t is record
 		x_peaks  : x_peaks_t;
-		x_length : integer;
+		x_length : unsigned( MAX_PEAKS_X downto 0 );
 		y_peaks  : y_peaks_t;
-		y_length : integer;
+		y_length : unsigned( MAX_PEAKS_Y downto 0 );
 	end record peaks_t;
 
 

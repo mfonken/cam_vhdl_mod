@@ -9,9 +9,9 @@ package C8_math is
             return density_map_t;
 -- Convolution descriptor
   function convolve(
-              X_l : integer;
+              X_l : unsigned( FRAME_WIDTH   downto 0 );
               X   : x_array;
-              H_l : integer;
+              H_l : unsigned( KERNEL_LENGTH downto 0 );
               H   : k_array;
             )
             return convolve_result_t;
@@ -42,9 +42,9 @@ package body C8_math is
 
 -- Convolution body
   function convolve(
-              X_l : integer;
+              X_l : unsigned( FRAME_WIDTH   downto 0 );
               X   : x_array;
-              H_l : integer;
+              H_l : unsigned( KERNEL_LENGTH downto 0 );
               H   : k_array;
             )
             return convolve_result_t is
@@ -68,10 +68,10 @@ package body C8_math is
             )
             return peaks_t is
 		variable P : peaks_t;
-		variable prev    : integer;
-		variable diff    : integer;
-		variable x_index : integer := 0;
-		variable y_index : integer := 0;
+		variable prev    : unsigned( MAX_CONV_V downto 0 );
+		variable diff    : unsigned( MAX_DIFF_V downto 0 );
+		variable x_index : unsigned( convolve_result_t'length downto 0 ) := 0;
+		variable y_index : unsigned( convolve_result_t'length downto 0 ) := 0;
 	begin
 -- Find X peaks
     prev := X(0);

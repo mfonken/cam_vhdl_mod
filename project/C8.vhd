@@ -40,7 +40,7 @@ end C8_Project;
 --------------------------------------------------------------------------------
 architecture gbehaviour of C8_Project is
 
-	signal pixel : integer range 7 downto 0;
+	signal pixel : unsigned( 255 downto 0);
 	signal frame : frame_t;
 	signal d_map : density_map_t;
 	signal x_convolve : convolve_result_t;
@@ -52,7 +52,7 @@ architecture gbehaviour of C8_Project is
     -- Clock divider & MCLK driver
     ----------------------------------------------
  MCLK_generator : process( GCLK, MCLK )
-	variable counter : integer := ( MCLK_DIVIDER / 2 );
+	variable counter : unsigned( MCLK_DIV_HALF downto 0 ) := MCLK_DIV_HALF;
 	begin
 		counter := counter - 1;
 		if( counter = 0 ) then
@@ -64,8 +64,8 @@ architecture gbehaviour of C8_Project is
     -- CPI driver
     ----------------------------------------------
 	capture_frame : process( VSYNC, HREF, PCLK )
-	variable x : integer range 0 to FRAME_WIDTH;
-	variable y : integer range 0 to FRAME_HEIGHT;
+	variable x : unsigned( FRAME_WIDTH  downto 0 );
+	variable y : unsigned( FRAME_HEIGHT downto 0 );
 	begin
 --	frame <= ( others => '0' );
 	if( VSYNC'event and VSYNC = '1' ) then
