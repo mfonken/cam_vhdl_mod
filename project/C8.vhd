@@ -40,72 +40,85 @@ end C8_Project;
 --------------------------------------------------------------------------------
 architecture gbehaviour of C8_Project is
 
-	signal pixel : unsigned( 255 downto 0);
-	signal frame : frame_t;
-	signal d_map : density_map_t;
-	signal x_convolve : convolve_result_t;
-	signal y_convolve : convolve_result_t;
-	signal peaks : peaks_t;
+  signal pixel : unsigned( 255 downto 0);
+  signal frame : frame_t;
+  signal d_map : density_map_t;
+  signal x_convolve : convolve_result_t;
+  signal y_convolve : convolve_result_t;
+  signal peaks : peaks_t;
+
+  signal x : unsigned( FRAME_WIDTH  downto 0 );
+  signal y : unsigned( FRAME_HEIGHT downto 0 );
 
   begin
-    ----------------------------------------------
+    ----------------------------------------------------------------------------
     -- Clock divider & MCLK driver
-    ----------------------------------------------
- MCLK_generator : process( GCLK, MCLK )
-	variable counter : unsigned( MCLK_DIV_HALF downto 0 ) := MCLK_DIV_HALF;
-	begin
-		counter := counter - 1;
-		if( counter = 0 ) then
-			MCLK <= not MCLK;
-			counter := ( MCLK_DIVIDER / 2 );
-		end if;
-	end process;
+    --   Note: MCLK toggles twice every period, thus MCLK_DIV_HALF = MCLK / 2
+    ----------------------------------------------------------------------------
+    mclk_generator : process( GCLK )
+    variable counter : unsigned( MCLK_DIV_HALF downto 0 ) := MCLK_DIV_HALF;
+    begin
+      counter := counter - 1;
+      if( counter = 0 ) then
+        MCLK <= not MCLK;
+        counter := MCLK_DIV_HALF;
+      end if;
+    end process mclk_generator;
+
     ----------------------------------------------
     -- CPI driver
     ----------------------------------------------
-	capture_frame : process( VSYNC, HREF, PCLK )
-	variable x : unsigned( FRAME_WIDTH  downto 0 );
-	variable y : unsigned( FRAME_HEIGHT downto 0 );
-	begin
---	frame <= ( others => '0' );
-	if( VSYNC'event and VSYNC = '1' ) then
 
-		-- Capture new frame
-		y := 0;
-		while( HREF = '1' ) loop
-			x := 0;
-			if( PCLK'event and PCLK = '1' ) then
-				pixel <= to_integer(unsigned(CPI));
-				if( pixel > PIXEL_THRESH ) then
-					frame(y)(x) <= '1';
-				else
-					frame(y)(x) <= '0';
-				end if;
-				x := x + 1;
-			end if;
-			y := y + 1;
-		end loop;
+    -- Collect on PCLK
+    pclk_event : process( PCLK )
+    begin
+      if rising_edge( PCLK ) then
+        pixel <= to_integer(unsigned(CPI));
+        if( pixel > PIXEL_THRESH ) then
+          frame(y)(x) <= '1';
+        else
+          frame(y)(x) <= '0';
+        end if;
+        if VSYNC = '0' then
+          x <= x + 1;
+        else
+          x <= 0;
+        end if;
+      end if;
+    end process pclk_event;
 
-		----------------------------------------------
-		-- Math
-		----------------------------------------------
-		-- Process frame
-		d_map <= density_mapper( frame );
+    -- Increment line on HREF
+    href_event : process( HREF )
+    begin
+      if falling_edge( HREF ) then
+        if VSYNC = '0' then
+          y <= y + 1;
+        else
+          y <= 0;
+        end if;
+      end if;
+    end process href_event;
 
-		-- Convolve maps with a kernel
-		x_convolve <= convolve( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, PULSE_KERNEL );
-		y_convolve <= convolve( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
+    -- Reset and process on VSYNC
+    vsync_event : process( VSYNC )
+    begin
+      if rising_edge( VSYNC ) then
+        -- Process frame
+        d_map <= density_mapper( frame );
 
-		-- Calculate peaks in convolved map
-		peaks <= maxima( x_convolve, y_convolve );
+        -- Convolve maps with a kernel
+        x_convolve <= convolve( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, PULSE_KERNEL );
+        y_convolve <= convolve( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
 
-	end if;
-end process;
+        -- Calculate peaks in convolved map
+        peaks <= maxima( x_convolve, y_convolve );
+      end if;
+    end process vsync_event;
 
     ----------------------------------------------
     -- Packet composition
     ----------------------------------------------
---    packet_composer : process()
---	 begin
---	 end process;
+      --  packet_composer : process()
+    	--  begin
+    	--  end process packet_composer;
   end gbehaviour;
