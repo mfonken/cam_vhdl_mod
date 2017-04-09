@@ -20,18 +20,18 @@ package C8_types is
 	end record density_map_t;
 
 -- Convolution output array type
-	type convolve_result_t is array ( MAX_ARRAY_L downto 0) of unsigned( MAX_VALUE downto 0 );
+	type convolve_result_t is array ( 31 downto 0) of unsigned( 31 downto 0 );
 
 -- Peaks array type
-	type x_peaks_t is array( MAX_PEAKS_X downto 0 ) of unsigned( FRAME_WIDTH  downto 0 );
-	type y_peaks_t is array( MAX_PEAKS_Y downto 0 ) of unsigned( FRAME_HEIGHT downto 0 );
+	type x_peaks_t is array( 31 downto 0 ) of unsigned( 31 downto 0 );
+	type y_peaks_t is array( 31 downto 0 ) of unsigned( 31 downto 0 );
 
 -- Peaks type
 	type peaks_t is record
 		x_peaks  : x_peaks_t;
-		x_length : unsigned( MAX_PEAKS_X downto 0 );
+		x_length : unsigned( 31 downto 0 );
 		y_peaks  : y_peaks_t;
-		y_length : unsigned( MAX_PEAKS_Y downto 0 );
+		y_length : unsigned( 31 downto 0 );
 	end record peaks_t;
 
 

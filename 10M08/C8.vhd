@@ -40,73 +40,105 @@ end C8_Project;
 --------------------------------------------------------------------------------
 architecture gbehaviour of C8_Project is
 
-  signal pixel : unsigned( 7 downto 0 );
-  signal frame : frame_t;
-  signal d_map : density_map_t;
+
+  signal frame : frame_t                := ( others => ( others => '0' ) );
+  signal d_map : density_map_t          := ( others => '0' ), ( others => '0');
   signal x_convolve : convolve_result_t;
   signal y_convolve : convolve_result_t;
   signal peaks : peaks_t;
 
   signal x : integer range FRAME_WIDTH  downto 0 := 0;
   signal y : integer range FRAME_HEIGHT downto 0 := 0;
+  signal x_i : integer range FRAME_WIDTH  downto 0 := 0;
+  signal y_i : integer range FRAME_HEIGHT downto 0 := 0;
+  signal x_r : std_logic := '0';
+  signal y_r : std_logic := '0';
+  signal pixel   : unsigned( 7 downto 0 );
+
   begin
+
+    pixel := unsigned( CPI );
+
     sync_main : process( GCLK )
     variable counter : integer := MCLK_DIV_HALF;
     begin
       if rising_edge( GCLK ) then
+        if x_r = '1' then
+          x <= 0;
+        else
+          x <= x_i;
+        end if;
 
--- Clock divider & MCLK driver
+        if y_r = '1' then
+          y <= 0;
+        else
+          y <= y_i;
+        end if;
+
+        -- Clock divider & MCLK driver
         if counter = 0 then
           MCLK <= not MCLK;
           counter := MCLK_DIV_HALF;
         else
           counter := counter - 1;
         end if;
-
--- Collect on PCLK
-        if rising_edge( PCLK ) then
-          pixel <= unsigned( CPI );
-          if( pixel > PIXEL_THRESH ) then
-            frame(y)(x) <= '1';
-          else
-            frame(y)(x) <= '0';
-          end if;
-
-          if x < FRAME_WIDTH then
-            x <= x + 1;
-          end if;
-        end if;
-
--- Increment line on HREF
-        elsif falling_edge( HREF ) then
-          x <= 0;
-          
-          if y < FRAME_HEIGHT then
-            y <= y + 1;
-          end if;
-
-        end if;
-
--- Reset and process on VSYNC
-        elsif rising_edge( VSYNC ) then
-          y <= 0;
-
-          -- Process frame
-          d_map <= density_mapper( frame );
-
-          -- Convolve maps with a kernel
-          x_convolve <= convolve( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, PULSE_KERNEL );
-          y_convolve <= convolve( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
-
-          -- Calculate peaks in convolved map
-          peaks <= maxima( x_convolve, y_convolve );
-        end if;
+      else
+        x <= x_i;
+        y <= y_i;
       end if;
-    end process sync_main;
-    ----------------------------------------------
-    -- Packet composition
-    ----------------------------------------------
-      --  packet_composer : process()
-    	--  begin
-    	--  end process packet_composer;
-  end gbehaviour;
+
+      -- Collect on PCLK
+      if rising_edge( PCLK ) then
+        if( pixel > PIXEL_THRESH ) then
+          frame(y)(x) <= '1';
+        else
+          frame(y)(x) <= '0';
+        end if;
+
+        if x < FRAME_WIDTH then
+          x_i <= x + 1;
+        else
+          x_i <= x;
+        end if;
+      else
+        x_i <= x;
+      end if;
+
+      -- Increment line on HREF
+      if falling_edge( HREF ) then
+        x_r <= '1';
+
+        if y < FRAME_HEIGHT then
+          y_i <= y + 1;
+        else
+          y_i <= y;
+        end if;
+      else
+        y_i <= y;
+        x_r <= '0';
+      end if;
+
+      -- Reset and process on VSYNC
+    elsif rising_edge( VSYNC ) then
+      y_r <= '1';
+      -- Process frame
+      d_map <= density_mapper( frame );
+
+      -- Convolve maps with a kernel
+      x_convolve <= convolve( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, PULSE_KERNEL );
+      y_convolve <= convolve( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
+
+      -- Calculate peaks in convolved map
+      peaks <= maxima( x_convolve, y_convolve );
+    else
+      y_r <= '0';
+    end if;
+  end if;
+end process sync_main;
+----------------------------------------------
+-- Packet composition
+----------------------------------------------
+--  packet_composer : process()
+--  begin
+--  end process packet_composer;
+end gbehaviour;
