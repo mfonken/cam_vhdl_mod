@@ -49,72 +49,60 @@ architecture gbehaviour of C8_Project is
 
   signal x : integer range FRAME_WIDTH  downto 0 := 0;
   signal y : integer range FRAME_HEIGHT downto 0 := 0;
-
   begin
-    ----------------------------------------------------------------------------
-    -- Clock divider & MCLK driver
-    --   Note: MCLK toggles twice every period, thus MCLK_DIV_HALF = MCLK / 2
-    ----------------------------------------------------------------------------
-    mclk_generator : process( GCLK )
+    sync_main : process( GCLK )
     variable counter : integer := MCLK_DIV_HALF;
     begin
-      counter := counter - 1;
-      if( counter = 0 ) then
-        MCLK <= not MCLK;
-        counter := MCLK_DIV_HALF;
-      end if;
-    end process mclk_generator;
+      if rising_edge( GCLK ) then
 
-    ----------------------------------------------
-    -- CPI driver
-    ----------------------------------------------
-
-    -- Collect on PCLK
-    pclk_event : process( PCLK )
-    begin
-      if rising_edge( PCLK ) then
-        pixel <= unsigned( CPI );
-        if( pixel > PIXEL_THRESH ) then
-          frame(y)(x) <= '1';
+-- Clock divider & MCLK driver
+        if counter = 0 then
+          MCLK <= not MCLK;
+          counter := MCLK_DIV_HALF;
         else
-          frame(y)(x) <= '0';
+          counter := counter - 1;
         end if;
-        if VSYNC = '0' then
-          x <= x + 1;
-        else
+
+-- Collect on PCLK
+        if rising_edge( PCLK ) then
+          pixel <= unsigned( CPI );
+          if( pixel > PIXEL_THRESH ) then
+            frame(y)(x) <= '1';
+          else
+            frame(y)(x) <= '0';
+          end if;
+
+          if x < FRAME_WIDTH then
+            x <= x + 1;
+          end if;
+        end if;
+
+-- Increment line on HREF
+        elsif falling_edge( HREF ) then
           x <= 0;
-        end if;
-      end if;
-    end process pclk_event;
+          
+          if y < FRAME_HEIGHT then
+            y <= y + 1;
+          end if;
 
-    -- Increment line on HREF
-    href_event : process( HREF )
-    begin
-      if falling_edge( HREF ) then
-        if VSYNC = '0' then
-          y <= y + 1;
-        else
+        end if;
+
+-- Reset and process on VSYNC
+        elsif rising_edge( VSYNC ) then
           y <= 0;
+
+          -- Process frame
+          d_map <= density_mapper( frame );
+
+          -- Convolve maps with a kernel
+          x_convolve <= convolve( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, PULSE_KERNEL );
+          y_convolve <= convolve( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
+
+          -- Calculate peaks in convolved map
+          peaks <= maxima( x_convolve, y_convolve );
         end if;
       end if;
-    end process href_event;
-
-    -- Reset and process on VSYNC
-    vsync_event : process( VSYNC )
-    begin
-      if rising_edge( VSYNC ) then
-        -- Process frame
-        d_map <= density_mapper( frame );
-
-        -- Convolve maps with a kernel
-        x_convolve <= convolve( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, PULSE_KERNEL );
-        y_convolve <= convolve( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
-
-        -- Calculate peaks in convolved map
-        peaks <= maxima( x_convolve, y_convolve );
-      end if;
-    end process vsync_event;
-
+    end process sync_main;
     ----------------------------------------------
     -- Packet composition
     ----------------------------------------------

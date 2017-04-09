@@ -31,7 +31,8 @@ package C8_constants is
 
   -- Pixel threshold
     constant PIXEL_THRESH  : integer := 200;
-	 
-	 constant MAX_VALUE		: integer := 1000;
+
+  -- Max integer value
+	  constant MAX_VALUE		: integer := 1000;
 
 end C8_constants;

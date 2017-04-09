@@ -10,9 +10,9 @@ package C8_math is
             return density_map_t;
 -- Convolution descriptor
   function convolve(
-              X_l : integer := FRAME_WIDTH;
+              X_l : integer;
               X   : x_array;
-              H_l : integer := KERNEL_LENGTH;
+              H_l : integer;
               H   : k_array
             )
             return convolve_result_t;
@@ -43,13 +43,12 @@ package body C8_math is
 
 -- Convolution body
   function convolve(
-              X_l : integer := FRAME_WIDTH;
+              X_l : integer;
               X   : x_array;
-              H_l : integer := KERNEL_LENGTH;
+              H_l : integer;
               H   : k_array
             )
             return convolve_result_t is
-
 		variable Y : convolve_result_t;
 		variable t : integer := 0;
   begin
@@ -64,6 +63,7 @@ package body C8_math is
     end loop;
     return Y;
   end convolve;
+
 -- Maxima detection body
   function maxima(
               X : convolve_result_t;
@@ -76,9 +76,10 @@ package body C8_math is
 		variable x_index : integer range convolve_result_t'length downto 0 := 0;
 		variable y_index : integer range convolve_result_t'length downto 0 := 0;
 	begin
+
 -- Find X peaks
     prev := X(0);
-    for i in 1 to ( FRAME_WIDTH - 1 ) loop
+    for i in 0 to FRAME_WIDTH - 1 loop
       diff := X(i) - prev;
       if( diff < 0 ) then
         P.x_peaks(x_index) := to_unsigned(i, convolve_result_t'length);
@@ -86,9 +87,10 @@ package body C8_math is
       end if;
     end loop;
    P.x_length := to_unsigned(x_index, MAX_PEAKS_X);
--- Find Y peaks 
+
+-- Find Y peaks
    prev := Y(0);
-   for j in 0 to ( FRAME_HEIGHT - 1 ) loop
+   for j in 0 to FRAME_HEIGHT - 1 loop
      diff := Y(j) - prev;
      if( diff < 0 ) then
        P.y_peaks(y_index) := to_unsigned(j, convolve_result_t'length);
