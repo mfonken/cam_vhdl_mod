@@ -60,7 +60,8 @@ architecture gbehaviour of C8_Project is
     pixel := unsigned( CPI );
 
     sync_main : process( GCLK )
-    variable counter : integer := MCLK_DIV_HALF;
+    variable c : integer := MCLK_DIV_HALF;
+    variable c_p : integer := 0;
     begin
       if rising_edge( GCLK ) then
         if x_r = '1' then
@@ -76,13 +77,14 @@ architecture gbehaviour of C8_Project is
         end if;
 
         -- Clock divider & MCLK driver
-        if counter = 0 then
+        if c = 0 then
           MCLK <= not MCLK;
-          counter := MCLK_DIV_HALF;
+          c_i := MCLK_DIV_HALF;
         else
-          counter := counter - 1;
+          c_i := c - 1;
         end if;
       else
+        c := c_i;
         x <= x_i;
         y <= y_i;
       end if;
@@ -114,8 +116,8 @@ architecture gbehaviour of C8_Project is
           y_i <= y;
         end if;
       else
-        y_i <= y;
         x_r <= '0';
+        y_i <= y;
       end if;
 
       -- Reset and process on VSYNC
