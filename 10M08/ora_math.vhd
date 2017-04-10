@@ -1,10 +1,10 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.C8_constants.all;
-use work.C8_types.all;
+use work.ora_constants.all;
+use work.ora_types.all;
 
-package C8_math is
+package ora_math is
 -- Density mapper descriptor
   function density_mapper( F : frame_t )
             return density_map_t;
@@ -30,9 +30,9 @@ package C8_math is
               Y : convolve_result_t
             )
             return peaks_t;
-end C8_math;
+end ora_math;
 
-package body C8_math is
+package body ora_math is
 -- Density mapper body
   function density_mapper( F : frame_t )
             return density_map_t is
@@ -130,4 +130,4 @@ package body C8_math is
    P.y_length := y_index;
    return P;
   end maxima;
-end C8_math;
+end ora_math;

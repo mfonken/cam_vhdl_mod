@@ -1,9 +1,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.C8_constants.all;
+use work.ora.all;
 
-package C8_types is
+package ora_types is
 
 -- General array types
 	subtype x_array is std_logic_vector( FRAME_WIDTH 				downto 0 );
@@ -35,4 +35,4 @@ package C8_types is
 	end record peaks_t;
 
 
-end C8_types;
+end ora_types;

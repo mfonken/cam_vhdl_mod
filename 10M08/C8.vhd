@@ -7,10 +7,13 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 --use ieee.std_logic_integer.all;
 
--- Project constants
-use work.C8_constants.all;
-use work.C8_types.all;
-use work.C8_math.all;
+-- Global constants
+use work.global_constants.all;
+
+-- Ora files
+use work.ora_constants.all;
+use work.ora_types.all;
+use work.ora_math.all;
 
 ----------------------------------------------
 -- Main camera controller entity
@@ -18,20 +21,22 @@ use work.C8_math.all;
 entity C8_Project is
   port (
   -- Global clock
-  GCLK  : in    std_logic;
+  clock  	: in    		std_logic;
 
   -- Camera interface
-  MCLK  : inout std_logic;
-  VSYNC : in    std_logic;
-  HREF  : in    std_logic;
-  PCLK  : in    std_logic;
-  CPI   : in    std_logic_vector( 7 downto 0 );
-  SIOD  : inout std_logic;
-  SIOC  : out   std_logic;
+  cpi_mclk  : inout 	std_logic;
+  cpi_vsync : in    	std_logic;
+  cpi_href  : in    	std_logic;
+  cpi_pclk  : in    	std_logic;
+  cpi_data  : in    	std_logic_vector( 7 downto 0 );
+  siod  		: inout 	std_logic;
+  sioc  		: inout  std_logic;
 
   -- Serial interface
-  RX    : in    std_logic;
-  TX    : out   std_logic
+  rx    		: in    	std_logic;
+  tx    		: out  	std_logic;
+  
+  reset		: in		std_logic
   );
 end C8_Project;
 
@@ -40,97 +45,63 @@ end C8_Project;
 --------------------------------------------------------------------------------
 architecture gbehaviour of C8_Project is
 
+-- Uart signals
+signal 	rx_data     :  std_logic_vector(7 downto 0);
+signal	rx_stb  		:  std_logic;
+signal	rx_ack  		:  std_logic;
+signal	tx_data     :  std_logic_vector(7 downto 0);
+signal	tx_stb 		:  std_logic;
 
-  signal frame : frame_t;--                := ( others => ( others => '0' ) );
-  signal d_map : density_map_t;--          := ( others => '0' ), ( others => '0');
-  signal x_convolve : convolve_result_t;
-  signal y_convolve : convolve_result_t;
-  signal peaks : peaks_t;
+-- Sio signals
+signal 	sio_ena		: 	std_logic;
+signal 	sio_rw		:	std_logic;
+signal 	sio_wr		:	std_logic_vector( 7 downto 0 );
+signal 	sio_rd		: 	std_logic_vector( 7 downto 0 );
+signal	sio_bsy		: 	std_logic;
+signal	sio_ack_err	:	std_logic;
 
-  signal x : integer range FRAME_WIDTH  downto 0 := 0;
-  signal y : integer range FRAME_HEIGHT downto 0 := 0;
-  signal x_i : integer range FRAME_WIDTH  downto 0 := 0;
-  signal y_i : integer range FRAME_HEIGHT downto 0 := 0;
-  signal x_r : std_logic := '0';
-  signal y_r : std_logic := '0';
-  signal pixel   : unsigned( 7 downto 0 );
+begin
+	com : entity work.uart
+	generic map(
+		115_200,
+		100_000_000
+	)
+	port map(
+		clock,
+		reset,
+		rx_data,
+		rx_stb,
+		rx_ack,
+		tx_data,
+		tx_stb,
+		tx,
+		rx
+	);
 
-  begin
+	sio : entity work.i2c_master
+	port map(
+		clock,
+		reset,
+		sio_ena,
+		OV9712_ADDR,
+		sio_rw,
+		sio_wr,
+		sio_bsy,
+		sio_rd,
+		sio_ack_err,
+		siod,
+		sioc
+	);
 
-    pixel <= unsigned( CPI );
-
-    sync_main : process( GCLK, PCLK, HREF, VSYNC, x, y, x_i, y_i )
-    variable c : integer := MCLK_DIV_HALF;
-    begin
-      if rising_edge( GCLK ) then
-        if x_r = '1' then
-          x <= 0;
-        else
-          x <= x_i;
-        end if;
-
-        if y_r = '1' then
-          y <= 0;
-        else
-          y <= y_i;
-        end if;
-
-        -- Clock divider & MCLK driver
-        if c = 0 then
-          MCLK <= not MCLK;
-          c := MCLK_DIV_HALF;
-        else
-          c := c - 1;
-        end if;
-      end if;
-
-      -- Collect on PCLK
-      if rising_edge( PCLK ) then
-        if( pixel > PIXEL_THRESH ) then
-          frame(y)(x) <= '1';
-        else
-          frame(y)(x) <= '0';
-        end if;
-
-        if x < FRAME_WIDTH then
-          x_i <= x + 1;
-        else
-          x_i <= x;
-        end if;
-      end if;
-
-      -- Increment line on HREF
-      if falling_edge( HREF ) then
-        x_r <= '1';
-        if y < FRAME_HEIGHT then
-          y_i <= y + 1;
-        else
-          y_i <= y;
-        end if;
-      else
-        x_r <= '0';
-      end if;
-
-      -- Reset and process on VSYNC
-    if rising_edge( VSYNC ) then
-      y_r <= '1';
-      -- Process frame
-      d_map <= density_mapper( frame );
-
-      -- Convolve maps with a kernel
-      x_convolve <= convolveX( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, PULSE_KERNEL );
-      y_convolve <= convolveY( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
-
-      -- Calculate peaks in convolved map
-      peaks <= maxima( x_convolve, y_convolve );
-    else
-      y_r <= '0';
-    end if;
-end process sync_main;
-----------------------------------------------
--- Packet composition
-----------------------------------------------
---  packet_composer : process()
---  begin
---  end process packet_composer;
+	cpi : entity work.ora 
+	port map(
+		clock,
+		cpi_mclk,
+		cpi_vsync,
+		cpi_href,
+		cpi_pclk,
+		cpi_data
+	);
+	
+	
 end gbehaviour;

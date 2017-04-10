@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 10M08
-Sun Apr 09 18:56:29 2017
+Mon Apr 10 00:18:18 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -13,11 +13,21 @@ Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Inverted Register Statistics
- 10. Post-Synthesis Netlist Statistics for Top Partition
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
+  8. State Machine - |C8_Project|i2c_master:sio|state
+  9. State Machine - |C8_Project|uart:com|uart_tx_state
+ 10. State Machine - |C8_Project|uart:com|uart_rx_state
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Parameter Settings for User Entity Instance: uart:com
+ 17. Parameter Settings for User Entity Instance: i2c_master:sio
+ 18. Port Connectivity Checks: "i2c_master:sio"
+ 19. Port Connectivity Checks: "uart:com"
+ 20. Post-Synthesis Netlist Statistics for Top Partition
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
 
 
 
@@ -44,16 +54,16 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Apr 09 18:56:29 2017       ;
+; Analysis & Synthesis Status        ; Successful - Mon Apr 10 00:18:18 2017       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; 10M08                                       ;
 ; Top-level Entity Name              ; C8_Project                                  ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 76                                          ;
-;     Total combinational functions  ; 76                                          ;
-;     Dedicated logic registers      ; 33                                          ;
-; Total registers                    ; 33                                          ;
-; Total pins                         ; 17                                          ;
+; Total logic elements               ; 104                                         ;
+;     Total combinational functions  ; 104                                         ;
+;     Dedicated logic registers      ; 51                                          ;
+; Total registers                    ; 51                                          ;
+; Total pins                         ; 18                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -162,62 +172,182 @@ agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                               ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                        ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
-; C8_constants.vhd                 ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_constants.vhd ;         ;
-; C8_math.vhd                      ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd      ;         ;
-; C8_types.vhd                     ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_types.vhd     ;         ;
-; C8.vhd                           ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd           ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                   ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                            ; Library ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------+---------+
+; ora_constants.vhd                ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora_constants.vhd    ;         ;
+; ora_math.vhd                     ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora_math.vhd         ;         ;
+; ora_types.vhd                    ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora_types.vhd        ;         ;
+; ora.vhd                          ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd              ;         ;
+; uart.vhd                         ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/uart.vhd             ;         ;
+; i2c_master.vhd                   ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/i2c_master.vhd       ;         ;
+; C8.vhd                           ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd               ;         ;
+; global_constants.vhd             ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/global_constants.vhd ;         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------+---------+
 
 
-+----------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary              ;
-+---------------------------------------------+------------+
-; Resource                                    ; Usage      ;
-+---------------------------------------------+------------+
-; Estimated Total logic elements              ; 76         ;
-;                                             ;            ;
-; Total combinational functions               ; 76         ;
-; Logic element usage by number of LUT inputs ;            ;
-;     -- 4 input functions                    ; 10         ;
-;     -- 3 input functions                    ; 0          ;
-;     -- <=2 input functions                  ; 66         ;
-;                                             ;            ;
-; Logic elements by mode                      ;            ;
-;     -- normal mode                          ; 45         ;
-;     -- arithmetic mode                      ; 31         ;
-;                                             ;            ;
-; Total registers                             ; 33         ;
-;     -- Dedicated logic registers            ; 33         ;
-;     -- I/O registers                        ; 0          ;
-;                                             ;            ;
-; I/O pins                                    ; 17         ;
-;                                             ;            ;
-; Embedded Multiplier 9-bit elements          ; 0          ;
-;                                             ;            ;
-; Maximum fan-out node                        ; GCLK~input ;
-; Maximum fan-out                             ; 33         ;
-; Total fan-out                               ; 256        ;
-; Average fan-out                             ; 1.77       ;
-+---------------------------------------------+------------+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 104         ;
+;                                             ;             ;
+; Total combinational functions               ; 104         ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 19          ;
+;     -- 3 input functions                    ; 6           ;
+;     -- <=2 input functions                  ; 79          ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 63          ;
+;     -- arithmetic mode                      ; 41          ;
+;                                             ;             ;
+; Total registers                             ; 51          ;
+;     -- Dedicated logic registers            ; 51          ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 18          ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; clock~input ;
+; Maximum fan-out                             ; 51          ;
+; Total fan-out                               ; 388         ;
+; Average fan-out                             ; 2.00        ;
++---------------------------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
-; |C8_Project                ; 76 (76)             ; 33 (33)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 17   ; 0            ; 0          ; |C8_Project         ; C8_Project  ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                 ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name  ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------+-------------+--------------+
+; |C8_Project                ; 104 (0)             ; 51 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 18   ; 0            ; 0          ; |C8_Project          ; C8_Project  ; work         ;
+;    |ora:cpi|               ; 76 (76)             ; 33 (33)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |C8_Project|ora:cpi  ; ora         ; work         ;
+;    |uart:com|              ; 28 (28)             ; 18 (18)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |C8_Project|uart:com ; uart        ; work         ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |C8_Project|i2c_master:sio|state                                                                                                 ;
++----------------+------------+----------------+----------------+----------+----------+----------------+---------------+-------------+-------------+
+; Name           ; state.stop ; state.mstr_ack ; state.slv_ack2 ; state.rd ; state.wr ; state.slv_ack1 ; state.command ; state.start ; state.ready ;
++----------------+------------+----------------+----------------+----------+----------+----------------+---------------+-------------+-------------+
+; state.ready    ; 0          ; 0              ; 0              ; 0        ; 0        ; 0              ; 0             ; 0           ; 0           ;
+; state.start    ; 0          ; 0              ; 0              ; 0        ; 0        ; 0              ; 0             ; 1           ; 1           ;
+; state.command  ; 0          ; 0              ; 0              ; 0        ; 0        ; 0              ; 1             ; 0           ; 1           ;
+; state.slv_ack1 ; 0          ; 0              ; 0              ; 0        ; 0        ; 1              ; 0             ; 0           ; 1           ;
+; state.wr       ; 0          ; 0              ; 0              ; 0        ; 1        ; 0              ; 0             ; 0           ; 1           ;
+; state.rd       ; 0          ; 0              ; 0              ; 1        ; 0        ; 0              ; 0             ; 0           ; 1           ;
+; state.slv_ack2 ; 0          ; 0              ; 1              ; 0        ; 0        ; 0              ; 0             ; 0           ; 1           ;
+; state.mstr_ack ; 0          ; 1              ; 0              ; 0        ; 0        ; 0              ; 0             ; 0           ; 1           ;
+; state.stop     ; 1          ; 0              ; 0              ; 0        ; 0        ; 0              ; 0             ; 0           ; 1           ;
++----------------+------------+----------------+----------------+----------+----------+----------------+---------------+-------------+-------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |C8_Project|uart:com|uart_tx_state                                                                              ;
++---------------------------------+--------------------------------+----------------------------+---------------------------------+
+; Name                            ; uart_tx_state.tx_send_stop_bit ; uart_tx_state.tx_send_data ; uart_tx_state.tx_send_start_bit ;
++---------------------------------+--------------------------------+----------------------------+---------------------------------+
+; uart_tx_state.tx_send_start_bit ; 0                              ; 0                          ; 0                               ;
+; uart_tx_state.tx_send_data      ; 0                              ; 1                          ; 1                               ;
+; uart_tx_state.tx_send_stop_bit  ; 1                              ; 0                          ; 1                               ;
++---------------------------------+--------------------------------+----------------------------+---------------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |C8_Project|uart:com|uart_rx_state                                                                          ;
++--------------------------------+-------------------------------+---------------------------+--------------------------------+
+; Name                           ; uart_rx_state.rx_get_stop_bit ; uart_rx_state.rx_get_data ; uart_rx_state.rx_get_start_bit ;
++--------------------------------+-------------------------------+---------------------------+--------------------------------+
+; uart_rx_state.rx_get_start_bit ; 0                             ; 0                         ; 0                              ;
+; uart_rx_state.rx_get_data      ; 0                             ; 1                         ; 1                              ;
+; uart_rx_state.rx_get_stop_bit  ; 1                             ; 0                         ; 1                              ;
++--------------------------------+-------------------------------+---------------------------+--------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                     ;
++------------------------------------------+---------------------------------------------+
+; Register name                            ; Reason for Removal                          ;
++------------------------------------------+---------------------------------------------+
+; uart:com|uart_tx_data_vec[0..7]          ; Stuck at GND due to stuck port data_in      ;
+; i2c_master:sio|addr_rw[0..7]             ; Stuck at GND due to stuck port data_in      ;
+; i2c_master:sio|data_tx[0..7]             ; Stuck at GND due to stuck port data_in      ;
+; uart:com|uart_rx_bit                     ; Lost fanout                                 ;
+; uart:com|uart_rx_bit_tick                ; Lost fanout                                 ;
+; uart:com|uart_rx_count[0..2]             ; Lost fanout                                 ;
+; uart:com|rx_baud_tick                    ; Lost fanout                                 ;
+; uart:com|uart_rx_filter[0,1]             ; Lost fanout                                 ;
+; uart:com|uart_rx_bit_spacing[0..3]       ; Lost fanout                                 ;
+; uart:com|rx_baud_counter[0..6]           ; Lost fanout                                 ;
+; uart:com|uart_rx_data_sr[0,1]            ; Lost fanout                                 ;
+; uart:com|uart_rx_state.rx_get_start_bit  ; Lost fanout                                 ;
+; uart:com|uart_rx_state.rx_get_data       ; Lost fanout                                 ;
+; uart:com|uart_rx_state.rx_get_stop_bit   ; Lost fanout                                 ;
+; i2c_master:sio|state.stop                ; Merged with i2c_master:sio|state.start      ;
+; i2c_master:sio|state.start               ; Stuck at GND due to stuck port data_in      ;
+; i2c_master:sio|state.rd                  ; Stuck at GND due to stuck port data_in      ;
+; i2c_master:sio|scl_ena                   ; Stuck at GND due to stuck port data_in      ;
+; i2c_master:sio|state.command             ; Stuck at GND due to stuck port data_in      ;
+; i2c_master:sio|state.mstr_ack            ; Stuck at GND due to stuck port data_in      ;
+; i2c_master:sio|state.slv_ack1            ; Stuck at GND due to stuck port data_in      ;
+; i2c_master:sio|state.wr                  ; Stuck at GND due to stuck port data_in      ;
+; i2c_master:sio|bit_cnt[0..2]             ; Stuck at VCC due to stuck port clock_enable ;
+; i2c_master:sio|state.slv_ack2            ; Stuck at GND due to stuck port data_in      ;
+; i2c_master:sio|sda_int                   ; Stuck at VCC due to stuck port data_in      ;
+; uart:com|uart_tx_state.tx_send_start_bit ; Lost fanout                                 ;
+; i2c_master:sio|data_clk_prev             ; Lost fanout                                 ;
+; i2c_master:sio|data_clk                  ; Lost fanout                                 ;
+; i2c_master:sio|state.ready               ; Lost fanout                                 ;
+; i2c_master:sio|count[0..6]               ; Lost fanout                                 ;
+; i2c_master:sio|stretch                   ; Lost fanout                                 ;
+; Total Number of Removed Registers = 73   ;                                             ;
++------------------------------------------+---------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                     ;
++------------------------------+---------------------------+--------------------------------------------------------------------------------------+
+; Register name                ; Reason for Removal        ; Registers Removed due to This Register                                               ;
++------------------------------+---------------------------+--------------------------------------------------------------------------------------+
+; uart:com|uart_rx_bit         ; Lost Fanouts              ; uart:com|rx_baud_tick, uart:com|uart_rx_filter[0], uart:com|uart_rx_filter[1],       ;
+;                              ;                           ; uart:com|rx_baud_counter[0], uart:com|rx_baud_counter[1],                            ;
+;                              ;                           ; uart:com|rx_baud_counter[2], uart:com|rx_baud_counter[3],                            ;
+;                              ;                           ; uart:com|rx_baud_counter[4], uart:com|rx_baud_counter[5],                            ;
+;                              ;                           ; uart:com|rx_baud_counter[6], uart:com|uart_rx_data_sr[1],                            ;
+;                              ;                           ; uart:com|uart_rx_data_sr[0]                                                          ;
+; i2c_master:sio|addr_rw[7]    ; Stuck at GND              ; i2c_master:sio|sda_int, i2c_master:sio|data_clk_prev, i2c_master:sio|data_clk,       ;
+;                              ; due to stuck port data_in ; i2c_master:sio|count[6], i2c_master:sio|count[5], i2c_master:sio|count[4],           ;
+;                              ;                           ; i2c_master:sio|count[3], i2c_master:sio|count[2], i2c_master:sio|count[1],           ;
+;                              ;                           ; i2c_master:sio|count[0]                                                              ;
+; uart:com|uart_tx_data_vec[7] ; Stuck at GND              ; uart:com|uart_tx_data_vec[6], uart:com|uart_tx_data_vec[5],                          ;
+;                              ; due to stuck port data_in ; uart:com|uart_tx_data_vec[4], uart:com|uart_tx_data_vec[3],                          ;
+;                              ;                           ; uart:com|uart_tx_data_vec[2], uart:com|uart_tx_data_vec[1],                          ;
+;                              ;                           ; uart:com|uart_tx_data_vec[0]                                                         ;
+; uart:com|uart_rx_bit_tick    ; Lost Fanouts              ; uart:com|uart_rx_bit_spacing[0], uart:com|uart_rx_bit_spacing[1],                    ;
+;                              ;                           ; uart:com|uart_rx_bit_spacing[2], uart:com|uart_rx_bit_spacing[3],                    ;
+;                              ;                           ; uart:com|uart_rx_state.rx_get_start_bit                                              ;
+; i2c_master:sio|state.start   ; Stuck at GND              ; i2c_master:sio|scl_ena, i2c_master:sio|state.command, i2c_master:sio|state.slv_ack1, ;
+;                              ; due to stuck port data_in ; i2c_master:sio|state.wr, i2c_master:sio|state.slv_ack2                               ;
+; uart:com|uart_rx_count[2]    ; Lost Fanouts              ; uart:com|uart_rx_count[0], uart:com|uart_rx_count[1],                                ;
+;                              ;                           ; uart:com|uart_rx_state.rx_get_data                                                   ;
+; i2c_master:sio|state.rd      ; Stuck at GND              ; i2c_master:sio|state.mstr_ack, i2c_master:sio|state.ready                            ;
+;                              ; due to stuck port data_in ;                                                                                      ;
++------------------------------+---------------------------+--------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -225,12 +355,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 33    ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 51    ;
+; Number of registers using Synchronous Clear  ; 11    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 3     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -240,9 +370,72 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; \sync_main:c[1]                        ; 2       ;
-; Total number of inverted registers = 1 ;         ;
+; uart:com|uart_tx_data                  ; 2       ;
+; ora:cpi|\sync_main:c[1]                ; 2       ;
+; Total number of inverted registers = 2 ;         ;
 +----------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |C8_Project|uart:com|tx_baud_counter[6]     ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |C8_Project|uart:com|rx_baud_counter[4]     ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |C8_Project|uart:com|uart_rx_bit_spacing[2] ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |C8_Project|uart:com|uart_rx_count[0]       ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |C8_Project|uart:com|uart_tx_count[0]       ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |C8_Project|i2c_master:sio|bit_cnt[1]       ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |C8_Project|uart:com|uart_rx_data_sr[1]     ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |C8_Project|uart:com|uart_tx_state          ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |C8_Project|uart:com|uart_rx_state          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+
+
++-------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart:com ;
++-----------------+-----------+-------------------------+
+; Parameter Name  ; Value     ; Type                    ;
++-----------------+-----------+-------------------------+
+; baud            ; 115200    ; Signed Integer          ;
+; clock_frequency ; 100000000 ; Signed Integer          ;
++-----------------+-----------+-------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i2c_master:sio ;
++----------------+----------+---------------------------------+
+; Parameter Name ; Value    ; Type                            ;
++----------------+----------+---------------------------------+
+; input_clk      ; 50000000 ; Signed Integer                  ;
+; bus_clk        ; 400000   ; Signed Integer                  ;
++----------------+----------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "i2c_master:sio"                                                                          ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; addr      ; Input  ; Info     ; Stuck at GND                                                                        ;
+; busy      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; data_rd   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ack_error ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uart:com"                                                                                          ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                ; Type   ; Severity ; Details                                                                             ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; data_stream_in_ack  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; data_stream_out     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; data_stream_out_stb ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -250,21 +443,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 17                          ;
-; cycloneiii_ff         ; 33                          ;
-;     plain             ; 33                          ;
-; cycloneiii_io_obuf    ; 2                           ;
-; cycloneiii_lcell_comb ; 77                          ;
-;     arith             ; 31                          ;
-;         2 data inputs ; 31                          ;
-;     normal            ; 46                          ;
-;         0 data inputs ; 1                           ;
-;         1 data inputs ; 2                           ;
-;         2 data inputs ; 33                          ;
-;         4 data inputs ; 10                          ;
+; boundary_port         ; 18                          ;
+; cycloneiii_ff         ; 51                          ;
+;     ENA               ; 3                           ;
+;     SCLR              ; 11                          ;
+;     plain             ; 37                          ;
+; cycloneiii_io_obuf    ; 3                           ;
+; cycloneiii_lcell_comb ; 105                         ;
+;     arith             ; 41                          ;
+;         2 data inputs ; 41                          ;
+;     normal            ; 64                          ;
+;         1 data inputs ; 4                           ;
+;         2 data inputs ; 35                          ;
+;         3 data inputs ; 6                           ;
+;         4 data inputs ; 19                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 5.10                        ;
-; Average LUT depth     ; 4.07                        ;
+; Average LUT depth     ; 3.49                        ;
 +-----------------------+-----------------------------+
 
 
@@ -283,62 +478,81 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Sun Apr 09 18:41:10 2017
+    Info: Processing started: Mon Apr 10 00:02:35 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 10M08 -c 10M08
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
-Info (12021): Found 1 design units, including 0 entities, in source file c8_constants.vhd
-    Info (12022): Found design unit 1: C8_constants File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_constants.vhd Line: 5
-Info (12021): Found 2 design units, including 0 entities, in source file c8_math.vhd
-    Info (12022): Found design unit 1: C8_math File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd Line: 7
-    Info (12022): Found design unit 2: C8_math-body File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd Line: 35
-Info (12021): Found 1 design units, including 0 entities, in source file c8_types.vhd
-    Info (12022): Found design unit 1: C8_types File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_types.vhd Line: 6
+Info (12021): Found 1 design units, including 0 entities, in source file ora_constants.vhd
+    Info (12022): Found design unit 1: ora_constants File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora_constants.vhd Line: 5
+Info (12021): Found 2 design units, including 0 entities, in source file ora_math.vhd
+    Info (12022): Found design unit 1: ora_math File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora_math.vhd Line: 7
+    Info (12022): Found design unit 2: ora_math-body File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora_math.vhd Line: 35
+Info (12021): Found 1 design units, including 0 entities, in source file ora_types.vhd
+    Info (12022): Found design unit 1: ora_types File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora_types.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file ora.vhd
+    Info (12022): Found design unit 1: ora-gbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 35
+    Info (12023): Found entity 1: ora File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 18
+Info (12021): Found 2 design units, including 1 entities, in source file uart.vhd
+    Info (12022): Found design unit 1: uart-rtl File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/uart.vhd Line: 52
+    Info (12023): Found entity 1: uart File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/uart.vhd Line: 34
+Info (12021): Found 2 design units, including 1 entities, in source file i2c_master.vhd
+    Info (12022): Found design unit 1: i2c_master-logic File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/i2c_master.vhd Line: 56
+    Info (12023): Found entity 1: i2c_master File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/i2c_master.vhd Line: 38
 Info (12021): Found 2 design units, including 1 entities, in source file c8.vhd
-    Info (12022): Found design unit 1: C8_Project-gbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 41
-    Info (12023): Found entity 1: C8_Project File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 18
+    Info (12022): Found design unit 1: C8_Project-gbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 46
+    Info (12023): Found entity 1: C8_Project File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 21
+Info (12021): Found 1 design units, including 0 entities, in source file global_constants.vhd
+    Info (12022): Found design unit 1: global_constants File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/global_constants.vhd Line: 5
 Info (12127): Elaborating entity "C8_Project" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at C8.vhd(30): used implicit default value for signal "SIOC" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 30
-Warning (10541): VHDL Signal Declaration warning at C8.vhd(34): used implicit default value for signal "TX" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 34
-Warning (10036): Verilog HDL or VHDL warning at C8.vhd(48): object "peaks" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 48
-Warning (10027): Verilog HDL or VHDL warning at the C8_math.vhd(115): index expression is not wide enough to address all of the elements in the array File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd Line: 115
-Warning (10027): Verilog HDL or VHDL warning at the C8_math.vhd(126): index expression is not wide enough to address all of the elements in the array File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd Line: 126
+Warning (10541): VHDL Signal Declaration warning at C8.vhd(49): used implicit default value for signal "rx_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 49
+Warning (10541): VHDL Signal Declaration warning at C8.vhd(50): used implicit default value for signal "rx_stb" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 50
+Warning (10036): Verilog HDL or VHDL warning at C8.vhd(51): object "rx_ack" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 51
+Warning (10036): Verilog HDL or VHDL warning at C8.vhd(52): object "tx_data" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 52
+Warning (10036): Verilog HDL or VHDL warning at C8.vhd(53): object "tx_stb" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 53
+Warning (10541): VHDL Signal Declaration warning at C8.vhd(56): used implicit default value for signal "sio_ena" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 56
+Warning (10541): VHDL Signal Declaration warning at C8.vhd(57): used implicit default value for signal "sio_rw" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 57
+Warning (10541): VHDL Signal Declaration warning at C8.vhd(58): used implicit default value for signal "sio_wr" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 58
+Warning (10036): Verilog HDL or VHDL warning at C8.vhd(59): object "sio_rd" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 59
+Warning (10036): Verilog HDL or VHDL warning at C8.vhd(60): object "sio_bsy" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 60
+Warning (10036): Verilog HDL or VHDL warning at C8.vhd(61): object "sio_ack_err" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 61
+Info (12128): Elaborating entity "uart" for hierarchy "uart:com" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 64
+Info (12128): Elaborating entity "i2c_master" for hierarchy "i2c_master:sio" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 81
+Info (12128): Elaborating entity "ora" for hierarchy "ora:cpi" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 96
+Warning (10036): Verilog HDL or VHDL warning at ora.vhd(42): object "peaks" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 42
+Warning (10027): Verilog HDL or VHDL warning at the ora_math.vhd(115): index expression is not wide enough to address all of the elements in the array File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora_math.vhd Line: 115
+Warning (10027): Verilog HDL or VHDL warning at the ora_math.vhd(126): index expression is not wide enough to address all of the elements in the array File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora_math.vhd Line: 126
 Warning (13034): The following nodes have both tri-state and non-tri-state drivers
-    Warning (13035): Inserted always-enabled tri-state buffer between "MCLK" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 24
-Warning (13039): The following bidirectional pins have no drivers
-    Warning (13040): bidirectional pin "SIOD" has no driver File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 29
+    Warning (13035): Inserted always-enabled tri-state buffer between "cpi_mclk" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 27
 Info (13060): One or more bidirectional pins are fed by always enabled tri-state buffers
-    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "MCLK" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 24
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "cpi_mclk" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 27
 Warning (13009): TRI or OPNDRN buffers permanently enabled
-    Warning (13010): Node "MCLK~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 24
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "SIOC" is stuck at GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 30
-    Warning (13410): Pin "TX" is stuck at GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 34
+    Warning (13010): Node "cpi_mclk~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 27
 Info (286030): Timing-Driven Synthesis is running
+Info (17049): 36 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 12 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "VSYNC" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 25
-    Warning (15610): No output dependent on input pin "HREF" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 26
-    Warning (15610): No output dependent on input pin "PCLK" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 27
-    Warning (15610): No output dependent on input pin "CPI[0]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
-    Warning (15610): No output dependent on input pin "CPI[1]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
-    Warning (15610): No output dependent on input pin "CPI[2]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
-    Warning (15610): No output dependent on input pin "CPI[3]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
-    Warning (15610): No output dependent on input pin "CPI[4]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
-    Warning (15610): No output dependent on input pin "CPI[5]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
-    Warning (15610): No output dependent on input pin "CPI[6]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
-    Warning (15610): No output dependent on input pin "CPI[7]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
-    Warning (15610): No output dependent on input pin "RX" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 33
-Info (21057): Implemented 93 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 13 input pins
-    Info (21059): Implemented 2 output pins
-    Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 76 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 28 warnings
-    Info: Peak virtual memory: 2018 megabytes
-    Info: Processing ended: Sun Apr 09 18:56:29 2017
-    Info: Elapsed time: 00:15:19
-    Info: Total CPU time (on all processors): 00:15:29
+    Warning (15610): No output dependent on input pin "cpi_vsync" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
+    Warning (15610): No output dependent on input pin "cpi_href" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 29
+    Warning (15610): No output dependent on input pin "cpi_pclk" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 30
+    Warning (15610): No output dependent on input pin "cpi_data[0]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 31
+    Warning (15610): No output dependent on input pin "cpi_data[1]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 31
+    Warning (15610): No output dependent on input pin "cpi_data[2]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 31
+    Warning (15610): No output dependent on input pin "cpi_data[3]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 31
+    Warning (15610): No output dependent on input pin "cpi_data[4]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 31
+    Warning (15610): No output dependent on input pin "cpi_data[5]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 31
+    Warning (15610): No output dependent on input pin "cpi_data[6]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 31
+    Warning (15610): No output dependent on input pin "cpi_data[7]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 31
+    Warning (15610): No output dependent on input pin "rx" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 36
+Info (21057): Implemented 122 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 14 input pins
+    Info (21059): Implemented 1 output pins
+    Info (21060): Implemented 3 bidirectional pins
+    Info (21061): Implemented 104 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 32 warnings
+    Info: Peak virtual memory: 2021 megabytes
+    Info: Processing ended: Mon Apr 10 00:18:18 2017
+    Info: Elapsed time: 00:15:43
+    Info: Total CPU time (on all processors): 00:15:51
 
 

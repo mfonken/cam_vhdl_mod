@@ -4,11 +4,19 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "MCLK",
+					"name" : "tx",
 					"strict" : false
 				},
 				{
-					"name" : "GCLK",
+					"name" : "cpi_mclk",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "clock",
 					"strict" : false
 				}
 			]
