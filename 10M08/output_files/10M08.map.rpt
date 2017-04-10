@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 10M08
-Sat Apr 08 21:08:30 2017
+Sun Apr 09 18:56:29 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -10,7 +10,14 @@ Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Inverted Register Statistics
+ 10. Post-Synthesis Netlist Statistics for Top Partition
+ 11. Elapsed Time Per Partition
+ 12. Analysis & Synthesis Messages
 
 
 
@@ -37,22 +44,22 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sat Apr 08 21:08:30 2017           ;
+; Analysis & Synthesis Status        ; Successful - Sun Apr 09 18:56:29 2017       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; 10M08                                       ;
 ; Top-level Entity Name              ; C8_Project                                  ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; N/A until Partition Merge                   ;
-;     Total combinational functions  ; N/A until Partition Merge                   ;
-;     Dedicated logic registers      ; N/A until Partition Merge                   ;
-; Total registers                    ; N/A until Partition Merge                   ;
-; Total pins                         ; N/A until Partition Merge                   ;
-; Total virtual pins                 ; N/A until Partition Merge                   ;
-; Total memory bits                  ; N/A until Partition Merge                   ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
-; Total PLLs                         ; N/A until Partition Merge                   ;
-; UFM blocks                         ; N/A until Partition Merge                   ;
-; ADC blocks                         ; N/A until Partition Merge                   ;
+; Total logic elements               ; 76                                          ;
+;     Total combinational functions  ; 76                                          ;
+;     Dedicated logic registers      ; 33                                          ;
+; Total registers                    ; 33                                          ;
+; Total pins                         ; 17                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
+; UFM blocks                         ; 0                                           ;
+; ADC blocks                         ; 0                                           ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -151,11 +158,123 @@ agreement for further details.
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
 +----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                               ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                        ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
+; C8_constants.vhd                 ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_constants.vhd ;         ;
+; C8_math.vhd                      ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd      ;         ;
+; C8_types.vhd                     ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_types.vhd     ;         ;
+; C8.vhd                           ; yes             ; User VHDL File  ; C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd           ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
+
+
++----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary              ;
++---------------------------------------------+------------+
+; Resource                                    ; Usage      ;
++---------------------------------------------+------------+
+; Estimated Total logic elements              ; 76         ;
+;                                             ;            ;
+; Total combinational functions               ; 76         ;
+; Logic element usage by number of LUT inputs ;            ;
+;     -- 4 input functions                    ; 10         ;
+;     -- 3 input functions                    ; 0          ;
+;     -- <=2 input functions                  ; 66         ;
+;                                             ;            ;
+; Logic elements by mode                      ;            ;
+;     -- normal mode                          ; 45         ;
+;     -- arithmetic mode                      ; 31         ;
+;                                             ;            ;
+; Total registers                             ; 33         ;
+;     -- Dedicated logic registers            ; 33         ;
+;     -- I/O registers                        ; 0          ;
+;                                             ;            ;
+; I/O pins                                    ; 17         ;
+;                                             ;            ;
+; Embedded Multiplier 9-bit elements          ; 0          ;
+;                                             ;            ;
+; Maximum fan-out node                        ; GCLK~input ;
+; Maximum fan-out                             ; 33         ;
+; Total fan-out                               ; 256        ;
+; Average fan-out                             ; 1.77       ;
++---------------------------------------------+------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+; |C8_Project                ; 76 (76)             ; 33 (33)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 17   ; 0            ; 0          ; |C8_Project         ; C8_Project  ; work         ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 33    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; \sync_main:c[1]                        ; 2       ;
+; Total number of inverted registers = 1 ;         ;
++----------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 17                          ;
+; cycloneiii_ff         ; 33                          ;
+;     plain             ; 33                          ;
+; cycloneiii_io_obuf    ; 2                           ;
+; cycloneiii_lcell_comb ; 77                          ;
+;     arith             ; 31                          ;
+;         2 data inputs ; 31                          ;
+;     normal            ; 46                          ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 33                          ;
+;         4 data inputs ; 10                          ;
+;                       ;                             ;
+; Max LUT depth         ; 5.10                        ;
+; Average LUT depth     ; 4.07                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -164,7 +283,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Sat Apr 08 20:04:44 2017
+    Info: Processing started: Sun Apr 09 18:41:10 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 10M08 -c 10M08
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -172,7 +291,7 @@ Info (12021): Found 1 design units, including 0 entities, in source file c8_cons
     Info (12022): Found design unit 1: C8_constants File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_constants.vhd Line: 5
 Info (12021): Found 2 design units, including 0 entities, in source file c8_math.vhd
     Info (12022): Found design unit 1: C8_math File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd Line: 7
-    Info (12022): Found design unit 2: C8_math-body File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd Line: 27
+    Info (12022): Found design unit 2: C8_math-body File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd Line: 35
 Info (12021): Found 1 design units, including 0 entities, in source file c8_types.vhd
     Info (12022): Found design unit 1: C8_types File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_types.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file c8.vhd
@@ -182,16 +301,44 @@ Info (12127): Elaborating entity "C8_Project" for the top level hierarchy
 Warning (10541): VHDL Signal Declaration warning at C8.vhd(30): used implicit default value for signal "SIOC" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 30
 Warning (10541): VHDL Signal Declaration warning at C8.vhd(34): used implicit default value for signal "TX" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 34
 Warning (10036): Verilog HDL or VHDL warning at C8.vhd(48): object "peaks" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 48
-Warning (10492): VHDL Process Statement warning at C8.vhd(63): signal "MCLK" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 63
-Warning (10631): VHDL Process Statement warning at C8.vhd(58): inferring latch(es) for signal or variable "MCLK", which holds its previous value in one or more paths through the process File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 58
-Error (10344): VHDL expression error at C8.vhd(111): expression has 801 elements, but must have 1281 elements File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 111
-Error (10346): VHDL error at C8_math.vhd(47): formal port or parameter "X" must have actual or default value File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd Line: 47
-Error (10657): VHDL Subprogram error at C8.vhd(111):  failed to elaborate call to subprogram "convolve" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 111
-Error (12153): Can't elaborate top-level user hierarchy
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 4 errors, 6 warnings
-    Error: Peak virtual memory: 2095 megabytes
-    Error: Processing ended: Sat Apr 08 21:08:30 2017
-    Error: Elapsed time: 01:03:46
-    Error: Total CPU time (on all processors): 01:03:53
+Warning (10027): Verilog HDL or VHDL warning at the C8_math.vhd(115): index expression is not wide enough to address all of the elements in the array File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd Line: 115
+Warning (10027): Verilog HDL or VHDL warning at the C8_math.vhd(126): index expression is not wide enough to address all of the elements in the array File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8_math.vhd Line: 126
+Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "MCLK" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 24
+Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "SIOD" has no driver File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 29
+Info (13060): One or more bidirectional pins are fed by always enabled tri-state buffers
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "MCLK" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 24
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "MCLK~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 24
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "SIOC" is stuck at GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 30
+    Warning (13410): Pin "TX" is stuck at GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 34
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 12 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "VSYNC" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 25
+    Warning (15610): No output dependent on input pin "HREF" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 26
+    Warning (15610): No output dependent on input pin "PCLK" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 27
+    Warning (15610): No output dependent on input pin "CPI[0]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
+    Warning (15610): No output dependent on input pin "CPI[1]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
+    Warning (15610): No output dependent on input pin "CPI[2]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
+    Warning (15610): No output dependent on input pin "CPI[3]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
+    Warning (15610): No output dependent on input pin "CPI[4]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
+    Warning (15610): No output dependent on input pin "CPI[5]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
+    Warning (15610): No output dependent on input pin "CPI[6]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
+    Warning (15610): No output dependent on input pin "CPI[7]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 28
+    Warning (15610): No output dependent on input pin "RX" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/C8.vhd Line: 33
+Info (21057): Implemented 93 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 13 input pins
+    Info (21059): Implemented 2 output pins
+    Info (21060): Implemented 2 bidirectional pins
+    Info (21061): Implemented 76 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 28 warnings
+    Info: Peak virtual memory: 2018 megabytes
+    Info: Processing ended: Sun Apr 09 18:56:29 2017
+    Info: Elapsed time: 00:15:19
+    Info: Total CPU time (on all processors): 00:15:29
 
 

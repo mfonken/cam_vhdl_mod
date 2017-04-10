@@ -1,0 +1,12 @@
+PowerPlay Power Analyzer Status : Successful - Sun Apr 09 18:58:36 2017
+Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+Revision Name : 10M08
+Top-level Entity Name : C8_Project
+Family : MAX 10
+Device : 10M08SAE144C8GES
+Power Models : Final
+Total Thermal Power Dissipation : 116.34 mW
+Core Dynamic Thermal Power Dissipation : 0.00 mW
+Core Static Thermal Power Dissipation : 110.61 mW
+I/O Thermal Power Dissipation : 5.73 mW
+Power Estimation Confidence : Low: user provided insufficient toggle rate data
