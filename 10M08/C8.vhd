@@ -41,8 +41,8 @@ end C8_Project;
 architecture gbehaviour of C8_Project is
 
 
-  signal frame : frame_t                := ( others => ( others => '0' ) );
-  signal d_map : density_map_t          := ( others => '0' ), ( others => '0');
+  signal frame : frame_t;--                := ( others => ( others => '0' ) );
+  signal d_map : density_map_t;--          := ( others => '0' ), ( others => '0');
   signal x_convolve : convolve_result_t;
   signal y_convolve : convolve_result_t;
   signal peaks : peaks_t;
@@ -57,11 +57,10 @@ architecture gbehaviour of C8_Project is
 
   begin
 
-    pixel := unsigned( CPI );
+    pixel <= unsigned( CPI );
 
-    sync_main : process( GCLK )
+    sync_main : process( GCLK, PCLK, HREF, VSYNC, x, y, x_i, y_i )
     variable c : integer := MCLK_DIV_HALF;
-    variable c_p : integer := 0;
     begin
       if rising_edge( GCLK ) then
         if x_r = '1' then
@@ -79,14 +78,10 @@ architecture gbehaviour of C8_Project is
         -- Clock divider & MCLK driver
         if c = 0 then
           MCLK <= not MCLK;
-          c_i := MCLK_DIV_HALF;
+          c := MCLK_DIV_HALF;
         else
-          c_i := c - 1;
+          c := c - 1;
         end if;
-      else
-        c := c_i;
-        x <= x_i;
-        y <= y_i;
       end if;
 
       -- Collect on PCLK
@@ -102,14 +97,11 @@ architecture gbehaviour of C8_Project is
         else
           x_i <= x;
         end if;
-      else
-        x_i <= x;
       end if;
 
       -- Increment line on HREF
       if falling_edge( HREF ) then
         x_r <= '1';
-
         if y < FRAME_HEIGHT then
           y_i <= y + 1;
         else
@@ -117,25 +109,23 @@ architecture gbehaviour of C8_Project is
         end if;
       else
         x_r <= '0';
-        y_i <= y;
       end if;
 
       -- Reset and process on VSYNC
-    elsif rising_edge( VSYNC ) then
+    if rising_edge( VSYNC ) then
       y_r <= '1';
       -- Process frame
       d_map <= density_mapper( frame );
 
       -- Convolve maps with a kernel
-      x_convolve <= convolve( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, PULSE_KERNEL );
-      y_convolve <= convolve( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
+      x_convolve <= convolveX( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, PULSE_KERNEL );
+      y_convolve <= convolveY( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
 
       -- Calculate peaks in convolved map
       peaks <= maxima( x_convolve, y_convolve );
     else
       y_r <= '0';
     end if;
-  end if;
 end process sync_main;
 ----------------------------------------------
 -- Packet composition
