@@ -16,16 +16,21 @@ use work.ora_math.all;
 -- Object Recognition Architecture
 ----------------------------------------------
 entity ora is
+  generic (
+    thresh    : positive;
+    kernel    : positive
+  )
   port (
+  hasData     : out std_logic;
   -- Global clock
-  GCLK  : in    std_logic;
+  GCLK        : in    std_logic;
 
   -- Camera interface
-  MCLK  : inout std_logic;
-  VSYNC : in    std_logic;
-  HREF  : in    std_logic;
-  PCLK  : in    std_logic;
-  CPI   : in    std_logic_vector( 7 downto 0 )
+  MCLK        : inout std_logic;
+  VSYNC       : in    std_logic;
+  HREF        : in    std_logic;
+  PCLK        : in    std_logic;
+  CPI         : in    std_logic_vector( 7 downto 0 )
   );
 end ora;
 
@@ -33,7 +38,7 @@ end ora;
 -- Main camera controller behaviour
 --------------------------------------------------------------------------------
 architecture gbehaviour of ora is
-
+  signal kernels : is array( NUM_KERNELS-1 downto 0 ) of kernel_t;
 
   signal frame : frame_t;--                := ( others => ( others => '0' ) );
   signal d_map : density_map_t;--          := ( others => '0' ), ( others => '0');
@@ -50,7 +55,7 @@ architecture gbehaviour of ora is
   signal pixel   : unsigned( 7 downto 0 );
 
   begin
-
+    kernels <= ( 0 => PULSE_KERNEL, others => ( others => '0' ) );
     pixel <= unsigned( CPI );
 
     sync_main : process( GCLK, PCLK, HREF, VSYNC, x, y, x_i, y_i )
@@ -112,13 +117,16 @@ architecture gbehaviour of ora is
       d_map <= density_mapper( frame );
 
       -- Convolve maps with a kernel
-      x_convolve <= convolveX( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, PULSE_KERNEL );
-      y_convolve <= convolveY( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, PULSE_KERNEL );
+      x_convolve <= convolveX( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, kernels(kernel) );
+      y_convolve <= convolveY( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, kernels(kernel) );
 
       -- Calculate peaks in convolved map
       peaks <= maxima( x_convolve, y_convolve );
+
+      hasData <= '1';
     else
       y_r <= '0';
+      hasData <= '0';
     end if;
 end process sync_main;
 ----------------------------------------------

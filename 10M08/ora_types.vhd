@@ -26,6 +26,9 @@ package ora_types is
 	type x_peaks_t is array( MAX_PEAKS_X downto 0 ) of integer;
 	type y_peaks_t is array( MAX_PEAKS_Y downto 0 ) of integer;
 
+-- Kernel type
+	subtype kernel_t is std_logic_vector( KERNEL_LENGTH-1 downto 0 );
+
 -- Peaks type
 	type peaks_t is record
 		x_peaks  : x_peaks_t;

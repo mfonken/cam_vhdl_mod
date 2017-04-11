@@ -23,7 +23,7 @@ package ora_constants is
 
 	-- Kernel
 	constant KERNEL_LENGTH : integer := 4;
-	constant PULSE_KERNEL  : std_logic_vector( 3 downto 0 )  := "1111";
+	constant PULSE_KERNEL  : kernel_t  := "1111";
 
 	-- MCLK divider
 	constant MCLK_DIV      : integer := 4;

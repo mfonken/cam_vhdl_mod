@@ -4,9 +4,9 @@ use ieee.numeric_std.all;
 
 package global_constants is
 
--- Camera info
-	constant OV9712_ADDR : std_logic_vector( 6 downto 0 ) := b"0000000"; -- TODO: get actual address
-	
+-- Ora defaults
+	constant DEFAULT_THRESH : integer 	:= 200;
+	constant DEFAULT_KERNEL : integer 	:= 0;
 
 
 end global_constants;
