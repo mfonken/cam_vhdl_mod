@@ -1,0 +1,75 @@
+|C8_Project
+LED1 <= <GND>
+LED2 <= <VCC>
+LED3 <= <VCC>
+LED4 <= <VCC>
+LED5 <= <VCC>
+clock => ora:ora.GCLK
+mclk <> ora:ora.MCLK
+vsync => ora:ora.VSYNC
+href => ora:ora.HREF
+pclk => ora:ora.PCLK
+cpi[0] => ora:ora.CPI[0]
+cpi[1] => ora:ora.CPI[1]
+cpi[2] => ora:ora.CPI[2]
+cpi[3] => ora:ora.CPI[3]
+cpi[4] => ora:ora.CPI[4]
+cpi[5] => ora:ora.CPI[5]
+cpi[6] => ora:ora.CPI[6]
+cpi[7] => ora:ora.CPI[7]
+siod <> <UNC>
+sioc <> <UNC>
+rx => ~NO_FANOUT~
+tx <= comb.DB_MAX_OUTPUT_PORT_TYPE
+reset => ~NO_FANOUT~
+
+
+|C8_Project|ora:ora
+hasData <= comb.DB_MAX_OUTPUT_PORT_TYPE
+GCLK => MCLK~reg0.CLK
+GCLK => \sync_main:c[0].CLK
+GCLK => \sync_main:c[1].CLK
+GCLK => \sync_main:c[2].CLK
+GCLK => \sync_main:c[3].CLK
+GCLK => \sync_main:c[4].CLK
+GCLK => \sync_main:c[5].CLK
+GCLK => \sync_main:c[6].CLK
+GCLK => \sync_main:c[7].CLK
+GCLK => \sync_main:c[8].CLK
+GCLK => \sync_main:c[9].CLK
+GCLK => \sync_main:c[10].CLK
+GCLK => \sync_main:c[11].CLK
+GCLK => \sync_main:c[12].CLK
+GCLK => \sync_main:c[13].CLK
+GCLK => \sync_main:c[14].CLK
+GCLK => \sync_main:c[15].CLK
+GCLK => \sync_main:c[16].CLK
+GCLK => \sync_main:c[17].CLK
+GCLK => \sync_main:c[18].CLK
+GCLK => \sync_main:c[19].CLK
+GCLK => \sync_main:c[20].CLK
+GCLK => \sync_main:c[21].CLK
+GCLK => \sync_main:c[22].CLK
+GCLK => \sync_main:c[23].CLK
+GCLK => \sync_main:c[24].CLK
+GCLK => \sync_main:c[25].CLK
+GCLK => \sync_main:c[26].CLK
+GCLK => \sync_main:c[27].CLK
+GCLK => \sync_main:c[28].CLK
+GCLK => \sync_main:c[29].CLK
+GCLK => \sync_main:c[30].CLK
+GCLK => \sync_main:c[31].CLK
+MCLK <> MCLK~reg0
+VSYNC => ~NO_FANOUT~
+HREF => ~NO_FANOUT~
+PCLK => ~NO_FANOUT~
+CPI[0] => ~NO_FANOUT~
+CPI[1] => ~NO_FANOUT~
+CPI[2] => ~NO_FANOUT~
+CPI[3] => ~NO_FANOUT~
+CPI[4] => ~NO_FANOUT~
+CPI[5] => ~NO_FANOUT~
+CPI[6] => ~NO_FANOUT~
+CPI[7] => ~NO_FANOUT~
+
+
