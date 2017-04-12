@@ -3,6 +3,11 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 package ora_constants is
+	-- Ora defaults
+	constant DEFAULT_THRESH 				: integer 				:= 200;
+	constant DEFAULT_KERNEL 				: kernel_l 			 	:= pulse_kernel;
+	constant DEFAULT_AUTO_CORRECT 	: auto_correct_l 	:= auto_cor_high;
+
 	-- Camera frame dimensions
 	constant FRAME_WIDTH   : integer := 1280;
 	constant FRAME_HEIGHT  : integer := 800;
@@ -20,10 +25,12 @@ package ora_constants is
 
 	-- System/Controller communication
 	constant PACKET_HEADER : std_logic_vector( 7 downto 0 ) := x"EE";
+	constant MAX_PACKETS	 : integer := 8;
 
 	-- Kernel
 	constant KERNEL_LENGTH : integer := 4;
 	constant PULSE_KERNEL  : kernel_t  := "1111";
+	constant NUM_KERNELS	 : integer := 1;
 
 	-- MCLK divider
 	constant MCLK_DIV      : integer := 4;

@@ -17,11 +17,15 @@ use work.ora_math.all;
 ----------------------------------------------
 entity ora is
   generic (
-    thresh    : positive;
-    kernel    : positive
+    thresh    : integer;
+    kernel    : kernel_t;
+    auto_c    : auto_cor_t;
+    buffer_c  : natural;
+    pbuffer   : packet_buffer_t;
+    hasPacket : out std_logic
   )
   port (
-  hasData     : out std_logic;
+
   -- Global clock
   GCLK        : in    std_logic;
 
@@ -117,16 +121,19 @@ architecture gbehaviour of ora is
       d_map <= density_mapper( frame );
 
       -- Convolve maps with a kernel
-      x_convolve <= convolveX( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, kernels(kernel) );
-      y_convolve <= convolveY( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, kernels(kernel) );
+      x_convolve <= convolveX( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, kernel );
+      y_convolve <= convolveY( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, kernel );
 
       -- Calculate peaks in convolved map
       peaks <= maxima( x_convolve, y_convolve );
 
-      hasData <= '1';
+      buffer_c <= 4;
+
+      -- Only set after packet is fully in buffer
+      hasPacket <= '1';
     else
       y_r <= '0';
-      hasData <= '0';
+      hasPacket <= '0';
     end if;
 end process sync_main;
 ----------------------------------------------

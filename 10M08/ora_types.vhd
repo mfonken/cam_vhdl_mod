@@ -10,6 +10,9 @@ package ora_types is
 	subtype y_array is std_logic_vector( FRAME_HEIGHT 				downto 0 );
 	subtype k_array is std_logic_vector( ( KERNEL_LENGTH - 1 ) 	downto 0 );
 
+-- Packet types
+	type packet_buffer_t is array( MAX_PACKETS-1 downto 0 ) of std_logic_vector( 7 downto 0 );
+
 -- Camera frame type
 	type frame_t is array( FRAME_HEIGHT downto 0 ) of x_array;
 
@@ -28,6 +31,30 @@ package ora_types is
 
 -- Kernel type
 	subtype kernel_t is std_logic_vector( KERNEL_LENGTH-1 downto 0 );
+  type kernel_l is record
+		pulse_kernel : kernel_t;
+		gaus_kernel  : kernel_t
+	end record kernel_l;
+	constant kernel : kernel_l :=
+	(
+		pulse_kernel => "1111",
+		gaus_kernel  => "0110"
+	);
+
+	subtype auto_correct_t is std_logic( 1 downto 0 );
+	type auto_correct_l is record
+		auto_cor_none : auto_correct_t;
+		auto_cor_low  : auto_correct_t;
+		auto_cor_med  : auto_correct_t;
+		auto_cor_high : auto_correct_t;
+	end record auto_correct_t;
+	constant auto_correct : auto_correct_l :=
+  (
+    auto_cor_none  => "00",
+    auto_cor_low   => "01",
+    auto_cor_med   => "10",
+		auto_cor_heigh => "11"
+  );
 
 -- Peaks type
 	type peaks_t is record
