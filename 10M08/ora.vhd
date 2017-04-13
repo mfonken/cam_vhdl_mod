@@ -16,50 +16,48 @@ use work.ora_math.all;
 -- Object Recognition Architecture
 ----------------------------------------------
 entity ora is
-  generic (
-    thresh    : integer;
-    kernel    : kernel_t;
-    auto_c    : auto_cor_t;
-    buffer_c  : natural;
-    pbuffer   : packet_buffer_t;
-    hasPacket : out std_logic
-  )
-  port (
+	generic 
+	(
+		thresh    	: integer;
+		kernel    	: kernel_t;
+		auto_c    	: auto_correct_t
+	);
+	port 
+	(
+		-- Global clock
+		GCLK        : in    	std_logic;
 
-  -- Global clock
-  GCLK        : in    std_logic;
-
-  -- Camera interface
-  MCLK        : inout std_logic;
-  VSYNC       : in    std_logic;
-  HREF        : in    std_logic;
-  PCLK        : in    std_logic;
-  CPI         : in    std_logic_vector( 7 downto 0 )
-  );
+		-- Camera interface
+		MCLK        : inout 	std_logic;
+		VSYNC       : in    	std_logic;
+		HREF        : in    	std_logic;
+		PCLK        : in    	std_logic;
+		CPI         : in    	std_logic_vector( 7 downto 0 );
+		buffer_c  	: out		integer;
+		pbuffer   	: out		packet_buffer_t;
+		hasPacket 	: out		std_logic
+	);
 end ora;
 
 --------------------------------------------------------------------------------
 -- Main camera controller behaviour
 --------------------------------------------------------------------------------
 architecture gbehaviour of ora is
-  signal kernels : is array( NUM_KERNELS-1 downto 0 ) of kernel_t;
+  signal frame 		: frame_t;--                := ( others => ( others => '0' ) );
+  signal d_map 		: density_map_t;--          := ( others => '0' ), ( others => '0');
+  signal x_convolve 	: convolve_result_t;
+  signal y_convolve 	: convolve_result_t;
+  signal peaks 		: peaks_t;
 
-  signal frame : frame_t;--                := ( others => ( others => '0' ) );
-  signal d_map : density_map_t;--          := ( others => '0' ), ( others => '0');
-  signal x_convolve : convolve_result_t;
-  signal y_convolve : convolve_result_t;
-  signal peaks : peaks_t;
-
-  signal x : integer range FRAME_WIDTH  downto 0 := 0;
-  signal y : integer range FRAME_HEIGHT downto 0 := 0;
-  signal x_i : integer range FRAME_WIDTH  downto 0 := 0;
-  signal y_i : integer range FRAME_HEIGHT downto 0 := 0;
-  signal x_r : std_logic := '0';
-  signal y_r : std_logic := '0';
-  signal pixel   : unsigned( 7 downto 0 );
+  signal x 				: integer range FRAME_WIDTH  downto 0 := 0;
+  signal y 				: integer range FRAME_HEIGHT downto 0 := 0;
+  signal x_i 			: integer range FRAME_WIDTH  downto 0 := 0;
+  signal y_i 			: integer range FRAME_HEIGHT downto 0 := 0;
+  signal x_r 			: std_logic := '0';
+  signal y_r 			: std_logic := '0';
+  signal pixel			: unsigned( 7 downto 0 );
 
   begin
-    kernels <= ( 0 => PULSE_KERNEL, others => ( others => '0' ) );
     pixel <= unsigned( CPI );
 
     sync_main : process( GCLK, PCLK, HREF, VSYNC, x, y, x_i, y_i )
@@ -110,8 +108,8 @@ architecture gbehaviour of ora is
         else
           y_i <= y;
         end if;
-      else
-        x_r <= '0';
+--      else
+--        x_r <= '0';
       end if;
 
       -- Reset and process on VSYNC
@@ -131,9 +129,9 @@ architecture gbehaviour of ora is
 
       -- Only set after packet is fully in buffer
       hasPacket <= '1';
-    else
-      y_r <= '0';
-      hasPacket <= '0';
+--    else
+--      y_r <= '0';
+--      hasPacket <= '0';
     end if;
 end process sync_main;
 ----------------------------------------------

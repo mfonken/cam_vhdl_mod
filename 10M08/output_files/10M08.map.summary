@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Mon Apr 10 00:18:18 2017
+Analysis & Synthesis Status : Successful - Wed Apr 12 22:41:38 2017
 Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 Revision Name : 10M08
 Top-level Entity Name : C8_Project
 Family : MAX 10
-Total logic elements : 104
-    Total combinational functions : 104
-    Dedicated logic registers : 51
-Total registers : 51
+Total logic elements : 252
+    Total combinational functions : 251
+    Dedicated logic registers : 142
+Total registers : 142
 Total pins : 18
 Total virtual pins : 0
 Total memory bits : 0

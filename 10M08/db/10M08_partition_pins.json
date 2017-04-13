@@ -4,11 +4,15 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "tx",
+					"name" : "mclk",
 					"strict" : false
 				},
 				{
-					"name" : "cpi_mclk",
+					"name" : "siod",
+					"strict" : false
+				},
+				{
+					"name" : "sioc",
 					"strict" : false
 				},
 				{
@@ -17,6 +21,10 @@
 				},
 				{
 					"name" : "clock",
+					"strict" : false
+				},
+				{
+					"name" : "umd_tx",
 					"strict" : false
 				}
 			]

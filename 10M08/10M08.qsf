@@ -109,7 +109,7 @@ set_location_assignment PIN_141 -to LED5 -tag platform
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
-set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
+set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE 12.5%
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top -tag platform
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top -tag platform
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top -tag platform
@@ -204,12 +204,15 @@ set_location_assignment PIN_13 -to "CPI(6)" -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to "CPI(6)" -tag platform
 set_location_assignment PIN_14 -to "CPI(7)" -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to "CPI(7)" -tag platform
-set_global_assignment -name VHDL_FILE ora_constants.vhd
-set_global_assignment -name VHDL_FILE ora_math.vhd
-set_global_assignment -name VHDL_FILE ora_types.vhd
+set_global_assignment -name VHDL_FILE C8.vhd
 set_global_assignment -name VHDL_FILE ora.vhd
+set_global_assignment -name VHDL_FILE OV9712.vhd
+set_global_assignment -name VHDL_FILE ucp.vhd
 set_global_assignment -name VHDL_FILE uart.vhd
 set_global_assignment -name VHDL_FILE i2c_master.vhd
-set_global_assignment -name VHDL_FILE C8.vhd
+set_global_assignment -name VHDL_FILE ora_math.vhd
+set_global_assignment -name VHDL_FILE ora_constants.vhd
+set_global_assignment -name VHDL_FILE ora_types.vhd
+set_global_assignment -name VHDL_FILE global_types.vhd
 set_global_assignment -name VHDL_FILE global_constants.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
