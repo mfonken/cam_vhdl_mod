@@ -5,20 +5,20 @@
 -- Implements a universal asynchronous receiver transmitter
 --------------------------------------------------------------------------------
 -- clock
---      Input clock, must match frequency value given on clock_frequency
+--      Input clock, must match frequency value given on clk_frq
 --      generic input.
 -- reset
 --      Synchronous reset.
--- d_str_in
+-- uart_tx
 --      Input data bus for bytes to transmit.
--- d_str_in_stb
+-- uart_tx_stb
 --      Input strobe to qualify the input data bus.
--- d_str_in_ack
+-- uart_tx_ack
 --      Output acknowledge to indicate the UART has begun sending the byte
---      provided on the d_str_in port.
--- d_str_out
+--      provided on the uart_tx port.
+-- uart_rx
 --      Data output port for received bytes.
--- d_str_out_stb
+-- uart_rx_stb
 --      Output strobe to qualify the received byte. Will be valid for one clock
 --      cycle only.
 -- tx
@@ -32,29 +32,31 @@ use ieee.numeric_std.all;
 use ieee.math_real.all;
 
 entity uart is
-    generic (
-        baud                : positive;
-        clock_frequency     : positive
-    );
-    port (
-        clock               :   in  std_logic;
-        reset_n             :   in  std_logic;
-        d_str_in      :   in  std_logic_vector(7 downto 0);
-        d_str_in_stb  :   in  std_logic;
-        d_str_in_ack  :   out std_logic;
-        d_str_out     :   out std_logic_vector(7 downto 0);
-        d_str_out_stb :   out std_logic;
-        tx                  :   out std_logic;
-        rx                  :   in  std_logic
-    );
+  generic
+		(
+			baud        :   positive;
+			clk_frq   	:   positive
+		);
+	port
+		(
+			clock       :   in  std_logic;
+			reset_n     :   in  std_logic;
+			uart_tx     :   in  std_logic_vector(7 downto 0);
+			uart_tx_stb	:   in  std_logic;
+			uart_tx_ack :   out std_logic;
+			uart_rx     :   out std_logic_vector(7 downto 0);
+			uart_rx_stb :   out std_logic;
+			tx          :   out std_logic;
+			rx          :   in  std_logic
+		);
 end uart;
 
 architecture rtl of uart is
     ---------------------------------------------------------------------------
     -- Baud generation constants
     ---------------------------------------------------------------------------
-    constant c_tx_div       : integer := clock_frequency / baud;
-    constant c_rx_div       : integer := clock_frequency / (baud * 16);
+    constant c_tx_div       : integer := clk_frq / baud;
+    constant c_rx_div       : integer := clk_frq / (baud * 16);
     constant c_tx_div_width : integer
         := integer(log2(real(c_tx_div))) + 1;
     constant c_rx_div_width : integer
@@ -100,9 +102,9 @@ architecture rtl of uart is
     signal uart_rx_bit_tick : std_logic := '0';
 begin
     -- Connect IO
-    d_str_in_ack  <= uart_rx_data_in_ack;
-    d_str_out     <= uart_rx_data_vec;
-    d_str_out_stb <= uart_rx_data_out_stb;
+    uart_tx_ack  <= uart_rx_data_in_ack;
+    uart_rx     <= uart_rx_data_vec;
+    uart_rx_stb <= uart_rx_data_out_stb;
     tx                  <= uart_tx_data;
     ---------------------------------------------------------------------------
     -- OVERSAMPLE_CLOCK_DIVIDER
@@ -261,7 +263,7 @@ begin
     end process tx_clock_divider;
     ---------------------------------------------------------------------------
     -- UART_SEND_DATA
-    -- Get data from d_str_in and send it one bit at a time upon each
+    -- Get data from uart_tx and send it one bit at a time upon each
     -- baud tick. Send data lsb first.
     -- wait 1 tick, send start bit (0), send data 0-7, send stop bit (1)
     ---------------------------------------------------------------------------
@@ -278,12 +280,12 @@ begin
                 uart_rx_data_in_ack <= '0';
                 case uart_tx_state is
                     when tx_send_start_bit =>
-                        if tx_baud_tick = '1' and d_str_in_stb = '1' then
+                        if tx_baud_tick = '1' and uart_tx_stb = '1' then
                             uart_tx_data  <= '0';
                             uart_tx_state <= tx_send_data;
                             uart_tx_count <= (others => '0');
                             uart_rx_data_in_ack <= '1';
-                            uart_tx_data_vec <= d_str_in;
+                            uart_tx_data_vec <= uart_tx;
                         end if;
                     when tx_send_data =>
                         if tx_baud_tick = '1' then

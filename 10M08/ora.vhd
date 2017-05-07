@@ -31,13 +31,16 @@ entity ora is
 		gclk        : in    	std_logic;
 
 		-- Camera interface
-		cam_ena			: inout		std_logic	:= '1';
+		ena					: inout		std_logic	:= '1';
 		pwdn				: out			std_logic	:= '1';
 		mclk        : inout 	std_logic;
 		vsync       : in    	std_logic;
 		href        : in    	std_logic;
 		pclk        : in    	std_logic;
-		cpi         : in    	std_logic_vector( 7 downto 0 )
+		cpi         : in    	std_logic_vector( 7 downto 0 );
+
+		ora_pkt_ct	: out			integer 	:= 0;
+		ora_data		: out			std_logic_vector( 7 downto 0 )
 	);
 end ora;
 
@@ -125,24 +128,24 @@ architecture gbehaviour of ora is
 
 		-- Reset and process on VSYNC
 		if rising_edge( vsync ) then
---			y_r <= '1';
---			-- Process frame
---			d_map <= density_mapper( frame );
---
---			-- Convolve maps with a kernel
---			x_convolve <= convolveX( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, kernel );
---			y_convolve <= convolveY( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, kernel );
---
---			-- Calculate peaks in convolved map
---			peaks <= maxima( x_convolve, y_convolve );
+			y_r <= '1';
+			-- Process frame
+			d_map <= density_mapper( frame );
 
-			--		buffer_c := 4;
+			-- Convolve maps with a kernel
+			x_convolve <= convolveX( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, kernel );
+			y_convolve <= convolveY( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, kernel );
 
-			-- Only set after packet is fully in buffer
-			--		hasPacket := '1';
-			--    else
-			--      y_r <= '0';
-			--      hasPacket <= '0';
+			-- Calculate peaks in convolved map
+			peaks <= maxima( x_convolve, y_convolve );
+
+					buffer_c := 4;
+
+			Only set after packet is fully in buffer
+					hasPacket := '1';
+			   else
+			     y_r <= '0';
+			     hasPacket <= '0';
 		end if;
 	end process sync_main;
 ----------------------------------------------

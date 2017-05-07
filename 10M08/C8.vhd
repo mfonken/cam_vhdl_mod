@@ -39,19 +39,19 @@ entity C8_Project is
 		clock  		: in    	std_logic;
 
 		-- Camera interface
-		cam_ena    	: inout 	std_logic;
+		cam_ena 	: inout 	std_logic;
 		mclk     	: inout 	std_logic;
 		pwdn			: out		std_logic;
-		vsync     	: in    	std_logic;
-		href      	: in    	std_logic;
-		pclk      	: in    	std_logic;
-		cpi       	: in    	std_logic_vector( 7 downto 0 );
-		sda  		: inout 	std_logic;
-		scl  		: inout  std_logic;
+		vsync     : in    	std_logic;
+		href      : in    	std_logic;
+		pclk      : in    	std_logic;
+		cpi       : in    	std_logic_vector( 7 downto 0 );
+		sda  			: inout 	std_logic;
+		scl  			: inout  std_logic;
 
 		-- Serial interface
-		umd_tx    	: in    	std_logic;
-		umd_rx    	: out  	std_logic;
+		umd_tx    : in    	std_logic;
+		umd_rx    : out  	std_logic;
 
 		reset_n		: in		std_logic
 	);
@@ -61,40 +61,39 @@ end C8_Project;
 -- Main camera controller behaviour
 --------------------------------------------------------------------------------
 architecture gbehaviour of C8_Project is
+-- signal		reset_n						: std_logic;
 
-signal	reset  			: std_logic;
-
-constant clock_r				: integer 				:= 50_000_000;
+constant 	clock_r						: integer 					:= 50_000_000;
 -- Module clocks
-signal  	umd_clock         : std_logic          := '0';
-signal  	i2c_clock         : std_logic          := '0';
-signal  	ora_clock         : std_logic          := '0';
+signal  	umd_clock         : std_logic         := '0';
+signal  	i2c_clock         : std_logic         := '0';
+signal  	ora_clock         : std_logic         := '0';
 
 -- System states
-signal  	state             : system_states_t    := startup;
-signal  	next_state        : system_states_t    := activate;
+signal  	state             : system_states_t   := startup;
+signal  	next_state        : system_states_t   := activate;
 
 -- System flags
-signal  	shdn              : std_logic          := '0';
-signal  	reset_sft         : std_logic          := '0';
-signal  	reset_hrd         : std_logic          := '0';
-signal  	auto_wake         : std_logic          := '0';
+signal  	shdn              : std_logic         := '0';
+signal  	reset_sft         : std_logic         := '0';
+signal  	reset_hrd         : std_logic         := '0';
+signal  	auto_wake         : std_logic         := '0';
 
 --signal	cam_ena				: std_logic				:= '0';
-signal  	cam_ready         : std_logic          := '0';
+signal  	cam_ready         : std_logic         := '0';
 signal  	has_umd_tx        : std_logic        	:= '0';
-signal  	has_umd_rx        : std_logic          := '0';
+signal  	has_umd_rx        : std_logic         := '0';
 
 -- Ora tuning
-constant	ora_clk_r			: integer				:= 10_000_000;
-signal  	ora_thresh        : integer            := DEFAULT_THRESH;
-signal  	ora_kernel        : kernel_t           := DEFAULT_KERNEL;
-signal  	ora_auto_cor      : auto_correct_t     := DEFAULT_AUTO_CORRECT;
+constant	ora_clk_r					: integer						:= 10_000_000;
+signal  	ora_thresh        : integer           := DEFAULT_THRESH;
+signal  	ora_kernel        : kernel_t          := DEFAULT_KERNEL;
+signal  	ora_auto_cor      : auto_correct_t    := DEFAULT_AUTO_CORRECT;
 
-signal  	packet_tx_i   		: integer            := 0;
-signal  	ora_bytes_to_tx  	: integer            := 0;
+signal  	packet_tx_i   		: integer           := 0;
+signal  	ora_bytes_to_tx  	: integer           := 0;
 signal  	ora_packet_buffer : packet_buffer_t;
-signal		ora_has_packet		: std_logic				:= '0';
+signal		ora_has_packet		: std_logic					:= '0';
 
 -- Uart signals
 signal		umd_rx_data       : std_logic_vector(7 downto 0);
@@ -105,15 +104,15 @@ signal		umd_tx_stb 	      : std_logic;
 
 -- UCP flags/inputs
 signal  	prev_umd_rx       : std_logic_vector( 7 downto 0 );
-signal  	hasAck            : std_logic          := '0';
-signal  	hasNack           : std_logic          := '0';
-signal  	ora_thresh_new    : integer            :=  0;
-signal  	ora_kernel_new    : kernel_t				:= kernel.pulse_kernel;
+signal  	hasAck            : std_logic         := '0';
+signal  	hasNack           : std_logic         := '0';
+signal  	ora_thresh_new    : integer           :=  0;
+signal  	ora_kernel_new    : kernel_t					:= kernel.pulse_kernel;
 signal  	ora_auto_cor_new  : auto_correct_t 		:= auto_correct.auto_cor_none;
 
 -- i2c signals
-signal 		i2c_ena		      	: std_logic				:= '0';
-signal 		i2c_rw		     		: std_logic          := '0';
+signal 		i2c_ena		      	: std_logic					:= '0';
+signal 		i2c_rw		     		: std_logic       	:= '0';
 signal 		i2c_wr		      	: std_logic_vector( 7 downto 0 );
 signal 		i2c_rd		      	: std_logic_vector( 7 downto 0 );
 signal		i2c_bsy		      	: std_logic;
@@ -144,20 +143,22 @@ signal		i2c_ack_err       : std_logic;
 	end component i2c_master;
 
 component uart is
-		generic (
-			baud                : positive;
-			clock_frequency     : positive
+	generic
+		(
+			baud              :   positive;
+			clock_frequency   :   positive
 		);
-		port (
-			clock         :   in  std_logic;
-			reset         :   in  std_logic;
-			d_str_in      :   in  std_logic_vector( 7 downto 0 );
-			d_str_in_stb  :   in  std_logic;
-			d_str_in_ack  :   out std_logic;
-			d_str_out     :   out std_logic_vector( 7 downto 0 );
-			d_str_out_stb :   out std_logic;
-			tx            :   out std_logic;
-			rx            :   in  std_logic
+	port
+		(
+			clock             :   in  std_logic;
+			reset_n           :   in  std_logic;
+			d_str_in          :   in  std_logic_vector(7 downto 0);
+			d_str_in_stb      :   in  std_logic;
+			d_str_in_ack      :   out std_logic;
+			d_str_out         :   out std_logic_vector(7 downto 0);
+			d_str_out_stb     :   out std_logic;
+			tx                :   out std_logic;
+			rx                :   in  std_logic
 		);
 	end component uart;
 
@@ -175,16 +176,16 @@ component uart is
 		port
 		(
 			-- Global clock
-			GCLK        : in    	std_logic;
+			gclk        : in    	std_logic;
 
 			-- Camera interface
-			CAM_EN		: inout	std_logic	:= '1';
-			PWDN			: out		std_logic	:= '1';
-			MCLK        : inout 	std_logic;
-			VSYNC       : in    	std_logic;
-			HREF        : in    	std_logic;
-			PCLK        : in    	std_logic;
-			CPI         : in    	std_logic_vector( 7 downto 0 )
+			ena					: inout		std_logic	:= '1';
+			pwdn				: out			std_logic	:= '1';
+			mclk        : inout 	std_logic;
+			vsync       : in    	std_logic;
+			href        : in    	std_logic;
+			pclk        : in    	std_logic;
+			cpi         : in    	std_logic_vector( 7 downto 0 )
 		);
 	end component ora;
 
@@ -218,44 +219,44 @@ begin
 	i2c_master_0 : i2c_master
 	generic map
 	(
-		input_clk => sys_clk,
-		bus_clk		=> i2c_scl_frq
+		input_clk 		=> sys_clk,
+		bus_clk				=> i2c_scl_frq
 	)
 	port map
 	(
-		clk 			=> 	i2c_clock,
-		reset_n 	=>	reset,
-		ena				=> 	i2c_ena,
-		addr			=> 	OV9712_ADDR,
-		rw				=> 	i2c_rw,
-		data_wr 	=> 	i2c_wr,
-		busy  		=> 	i2c_bsy,
-		data_rd		=>	i2c_rd,
-		ack_error	=> 	i2c_ack_err,
-		sda 			=>	sda,
-		scl				=> 	scl
+		clk 					=> 	i2c_clock,
+		reset_n 			=>	reset,
+		ena						=> 	i2c_ena,
+		addr					=> 	OV9712_ADDR,
+		rw						=> 	i2c_rw,
+		data_wr 			=> 	i2c_wr,
+		busy  				=> 	i2c_bsy,
+		data_rd				=>	i2c_rd,
+		ack_error			=> 	i2c_ack_err,
+		sda 					=>	sda,
+		scl						=> 	scl
 	);
 
 	-- ORA/Camera Module entity map
 	ora : ora
 	generic map
 	(
-		g_clk_r		=> 	sys_clk,
-		m_clk_r		=> 	ora_clk_frq,
-		thresh 		=> 	DEFAULT_THRESH,
-		kernel 		=>	DEFAULT_KERNEL,
-		buffer_c	=>	DEFAULT_AUTO_CORRECT
+		g_clk_r				=> 	sys_clk,
+		m_clk_r				=> 	ora_clk_frq,
+		thresh 				=> 	DEFAULT_THRESH,
+		kernel 				=>	DEFAULT_KERNEL,
+		buffer_c			=>	DEFAULT_AUTO_CORRECT
 	)
 	port map
 	(
-		gclk		=>	ora_clock,
-		cam_ena	=>	cam_ena,
-		pwdn		=>	pwdn,
-		mclk		=>	mclk,
-		vsync		=>	vsync,
-		href		=>	href,
-		pclk 		=>	pclk,
-		cpi			=>	cpi
+		gclk					=>	ora_clock,
+		ena						=>	cam_ena,
+		pwdn					=>	pwdn,
+		mclk					=>	mclk,
+		vsync					=>	vsync,
+		href					=>	href,
+		pclk 					=>	pclk,
+		cpi						=>	cpi
 --		ora_bytes_to_tx,
 --		ora_packet_buffer,
 --		ora_has_packet
@@ -266,7 +267,6 @@ begin
 	--------------------------------------------------------------------------------
 	umd_clock <= clock;
 	i2c_clock <= clock and i2c_ena;
-
 	ora_clock <= clock and cam_ena;
 	--------------------------------------------------------------------------------
 
