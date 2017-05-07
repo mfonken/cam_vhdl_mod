@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 package OV9712 is
 
 	-- Camera info
-	constant OV9712_ADDR : std_logic_vector( 6 downto 0 ) := b"0000000"; -- TODO: get actual address
+	constant OV9712_ADDR : std_logic_vector( 6 downto 0 ) := b"1010101"; -- TODO: get actual address
 
 	constant DVP_CTRL_00 : std_logic_vector( 7 downto 0 ) := x"80";
 

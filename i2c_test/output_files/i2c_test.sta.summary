@@ -1,0 +1,77 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clock'
+Slack : -7.935
+TNS   : -198.982
+
+Type  : Slow 1200mV 85C Model Setup 'i2c_master:i2c_master_0|data_clk'
+Slack : -2.337
+TNS   : -17.809
+
+Type  : Slow 1200mV 85C Model Hold 'i2c_master:i2c_master_0|data_clk'
+Slack : 0.231
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clock'
+Slack : 0.340
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clock'
+Slack : -3.000
+TNS   : -74.376
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'i2c_master:i2c_master_0|data_clk'
+Slack : -1.487
+TNS   : -20.818
+
+Type  : Slow 1200mV 0C Model Setup 'clock'
+Slack : -7.365
+TNS   : -182.051
+
+Type  : Slow 1200mV 0C Model Setup 'i2c_master:i2c_master_0|data_clk'
+Slack : -2.182
+TNS   : -16.266
+
+Type  : Slow 1200mV 0C Model Hold 'i2c_master:i2c_master_0|data_clk'
+Slack : 0.109
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clock'
+Slack : 0.304
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clock'
+Slack : -3.000
+TNS   : -74.376
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'i2c_master:i2c_master_0|data_clk'
+Slack : -1.487
+TNS   : -21.288
+
+Type  : Fast 1200mV 0C Model Setup 'clock'
+Slack : -2.349
+TNS   : -47.117
+
+Type  : Fast 1200mV 0C Model Setup 'i2c_master:i2c_master_0|data_clk'
+Slack : -0.324
+TNS   : -0.912
+
+Type  : Fast 1200mV 0C Model Hold 'i2c_master:i2c_master_0|data_clk'
+Slack : 0.039
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clock'
+Slack : 0.143
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clock'
+Slack : -3.000
+TNS   : -52.570
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'i2c_master:i2c_master_0|data_clk'
+Slack : -1.000
+TNS   : -14.000
+
+------------------------------------------------------------

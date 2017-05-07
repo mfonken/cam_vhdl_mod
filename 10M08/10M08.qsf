@@ -69,12 +69,12 @@ set_location_assignment PIN_57 -to DIFFIO_B14N -tag platform
 set_location_assignment PIN_58 -to DIFFIO_B14P -tag platform
 set_location_assignment PIN_59 -to DIFFIO_B16N -tag platform
 set_location_assignment PIN_60 -to DIFFIO_B16P -tag platform
-set_location_assignment PIN_62 -to Arduino_IO8 -tag platform
-set_location_assignment PIN_64 -to Arduino_IO9 -tag platform
-set_location_assignment PIN_65 -to Arduino_IO10 -tag platform
-set_location_assignment PIN_66 -to Arduino_IO11 -tag platform
-set_location_assignment PIN_69 -to Arduino_IO12 -tag platform
-set_location_assignment PIN_70 -to Arduino_IO13 -tag platform
+set_location_assignment PIN_17 -to Arduino_IO8
+set_location_assignment PIN_18 -to Arduino_IO9
+set_location_assignment PIN_19 -to Arduino_IO10
+set_location_assignment PIN_20 -to Arduino_IO11
+set_location_assignment PIN_21 -to Arduino_IO12
+set_location_assignment PIN_22 -to Arduino_IO13
 set_location_assignment PIN_88 -to DIFFIO_R14P_CLK2P -tag platform
 set_location_assignment PIN_89 -to DIFFIO_R14N_CLK2N -tag platform
 set_location_assignment PIN_90 -to DIFFIO_R16P_CLK3P -tag platform
@@ -96,7 +96,6 @@ set_location_assignment PIN_114 -to DIFFIO_T6P -tag platform
 set_location_assignment PIN_118 -to DIFFIO_T10P -tag platform
 set_location_assignment PIN_119 -to DIFFIO_T10N -tag platform
 set_location_assignment PIN_120 -to SWITCH1 -tag platform
-set_location_assignment PIN_121 -to RESET_N -tag platform
 set_location_assignment PIN_124 -to SWITCH2 -tag platform
 set_location_assignment PIN_127 -to SWITCH3 -tag platform
 set_location_assignment PIN_130 -to SWITCH4 -tag platform
@@ -109,7 +108,7 @@ set_location_assignment PIN_141 -to LED5 -tag platform
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
-set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE 12.5%
+set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top -tag platform
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top -tag platform
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top -tag platform
@@ -161,7 +160,6 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T6P -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T10P -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T10N -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH1 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to RESET_N -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH2 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH3 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH4 -tag platform
@@ -171,39 +169,6 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to LED2 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to LED3 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to LED4 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to LED5 -tag platform
-set_location_assignment PIN_27 -to GCLK -tag platform
-set_location_assignment PIN_75 -to MCLK -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to MCLK -tag platform
-set_location_assignment PIN_74 -to VSYNC -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to VSYNC -tag platform
-set_location_assignment PIN_77 -to HREF -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to HREF -tag platform
-set_location_assignment PIN_76 -to PCLK -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to PCLK -tag platform
-set_location_assignment PIN_79 -to SIOD -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to SIOD -tag platform
-set_location_assignment PIN_81 -to SIOC -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to SIOC -tag platform
-set_location_assignment PIN_86 -to TX -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to TX -tag platform
-set_location_assignment PIN_84 -to RX -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to RX -tag platform
-set_location_assignment PIN_6 -to "CPI(0)" -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to "CPI(0)" -tag platform
-set_location_assignment PIN_7 -to "CPI(1)" -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to "CPI(1)" -tag platform
-set_location_assignment PIN_10 -to "CPI(3)" -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to "CPI(3)" -tag platform
-set_location_assignment PIN_8 -to "CPI(2)" -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to "CPI(2)" -tag platform
-set_location_assignment PIN_11 -to "CPI(4)" -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to "CPI(4)" -tag platform
-set_location_assignment PIN_12 -to "CPI(5)" -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to "CPI(5)" -tag platform
-set_location_assignment PIN_13 -to "CPI(6)" -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to "CPI(6)" -tag platform
-set_location_assignment PIN_14 -to "CPI(7)" -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to "CPI(7)" -tag platform
 set_global_assignment -name VHDL_FILE C8.vhd
 set_global_assignment -name VHDL_FILE ora.vhd
 set_global_assignment -name VHDL_FILE OV9712.vhd
@@ -215,4 +180,21 @@ set_global_assignment -name VHDL_FILE ora_constants.vhd
 set_global_assignment -name VHDL_FILE ora_types.vhd
 set_global_assignment -name VHDL_FILE global_types.vhd
 set_global_assignment -name VHDL_FILE global_constants.vhd
+set_global_assignment -name CDF_FILE output_files/Chain1.cdf
+set_location_assignment PIN_27 -to clock
+set_location_assignment PIN_70 -to cpi[7]
+set_location_assignment PIN_69 -to cpi[6]
+set_location_assignment PIN_66 -to cpi[5]
+set_location_assignment PIN_65 -to cpi[4]
+set_location_assignment PIN_64 -to cpi[3]
+set_location_assignment PIN_62 -to cpi[2]
+set_location_assignment PIN_76 -to href
+set_location_assignment PIN_74 -to mclk
+set_location_assignment PIN_75 -to pclk
+set_location_assignment PIN_79 -to pwdn
+set_location_assignment PIN_86 -to sioc
+set_location_assignment PIN_84 -to siod
+set_location_assignment PIN_77 -to vsync
+set_location_assignment PIN_81 -to cam_ena
+set_location_assignment PIN_121 -to reset_n
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

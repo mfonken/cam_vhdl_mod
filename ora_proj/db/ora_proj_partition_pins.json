@@ -1,0 +1,29 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "LED1",
+					"strict" : false
+				},
+				{
+					"name" : "PWDN",
+					"strict" : false
+				},
+				{
+					"name" : "MCLK",
+					"strict" : false
+				},
+				{
+					"name" : "VSYNC",
+					"strict" : false
+				},
+				{
+					"name" : "GCLK",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

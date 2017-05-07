@@ -1,0 +1,77 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'GCLK'
+Slack : -0.784
+TNS   : -3.560
+
+Type  : Slow 1200mV 85C Model Setup 'VSYNC'
+Slack : 0.166
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'GCLK'
+Slack : 0.361
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'VSYNC'
+Slack : 0.412
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'GCLK'
+Slack : -3.000
+TNS   : -11.922
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'VSYNC'
+Slack : -3.000
+TNS   : -5.974
+
+Type  : Slow 1200mV 0C Model Setup 'GCLK'
+Slack : -0.650
+TNS   : -2.943
+
+Type  : Slow 1200mV 0C Model Setup 'VSYNC'
+Slack : 0.242
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'GCLK'
+Slack : 0.324
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'VSYNC'
+Slack : 0.368
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'GCLK'
+Slack : -3.000
+TNS   : -11.922
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'VSYNC'
+Slack : -3.000
+TNS   : -5.974
+
+Type  : Fast 1200mV 0C Model Setup 'GCLK'
+Slack : 0.291
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'VSYNC'
+Slack : 0.671
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'GCLK'
+Slack : 0.152
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'VSYNC'
+Slack : 0.170
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'GCLK'
+Slack : -3.000
+TNS   : -9.216
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'VSYNC'
+Slack : -3.000
+TNS   : -5.112
+
+------------------------------------------------------------

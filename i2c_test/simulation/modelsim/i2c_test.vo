@@ -1,0 +1,3791 @@
+// Copyright (C) 2016  Intel Corporation. All rights reserved.
+// Your use of Intel Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Intel Program License 
+// Subscription Agreement, the Intel Quartus Prime License Agreement,
+// the Intel MegaCore Function License Agreement, or other 
+// applicable license agreement, including, without limitation, 
+// that your use is for the sole purpose of programming logic 
+// devices manufactured by Intel and sold by Intel or its 
+// authorized distributors.  Please refer to the applicable 
+// agreement for further details.
+
+// VENDOR "Altera"
+// PROGRAM "Quartus Prime"
+// VERSION "Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition"
+
+// DATE "05/06/2017 18:48:07"
+
+// 
+// Device: Altera 10M08SAE144C8GES Package EQFP144
+// 
+
+// 
+// This Verilog file should be used for ModelSim-Altera (Verilog) only
+// 
+
+`timescale 1 ps/ 1 ps
+
+module i2c_bridge (
+	A,
+	B,
+	LED1,
+	LED2,
+	LED5,
+	clock,
+	reset_n,
+	sioc,
+	siod);
+input 	[1:0] A;
+input 	[1:0] B;
+inout 	LED1;
+inout 	LED2;
+inout 	LED5;
+input 	clock;
+input 	reset_n;
+inout 	sioc;
+inout 	siod;
+
+// Design Ports Information
+// A[0]	=>  Location: PIN_74,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// A[1]	=>  Location: PIN_75,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// B[0]	=>  Location: PIN_76,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// B[1]	=>  Location: PIN_77,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// LED1	=>  Location: PIN_132,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// LED2	=>  Location: PIN_134,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// LED5	=>  Location: PIN_141,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// sioc	=>  Location: PIN_86,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// siod	=>  Location: PIN_84,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// reset_n	=>  Location: PIN_121,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// clock	=>  Location: PIN_27,	 I/O Standard: 2.5 V,	 Current Strength: Default
+
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+tri1 devclrn;
+tri1 devpor;
+tri1 devoe;
+wire \A[0]~input_o ;
+wire \A[1]~input_o ;
+wire \B[0]~input_o ;
+wire \B[1]~input_o ;
+wire \LED1~input_o ;
+wire \LED2~input_o ;
+wire \LED5~input_o ;
+wire \siod~input_o ;
+wire \~QUARTUS_CREATED_GND~I_combout ;
+wire \~QUARTUS_CREATED_UNVM~~busy ;
+wire \~QUARTUS_CREATED_ADC1~~eoc ;
+wire \LED1~output_o ;
+wire \LED2~output_o ;
+wire \LED5~output_o ;
+wire \sioc~output_o ;
+wire \siod~output_o ;
+wire \clock~input_o ;
+wire \clock~inputclkctrl_outclk ;
+wire \sioc~input_o ;
+wire \i2c_master_0|Equal0~2_combout ;
+wire \i2c_master_0|Add0~8_combout ;
+wire \i2c_master_0|process_0~0_combout ;
+wire \i2c_master_0|process_0~7_combout ;
+wire \i2c_master_0|Add0~0_combout ;
+wire \i2c_master_0|process_0~5_combout ;
+wire \i2c_master_0|process_0~6_combout ;
+wire \i2c_master_0|process_0~8_combout ;
+wire \i2c_master_0|stretch~0_combout ;
+wire \reset_n~input_o ;
+wire \i2c_master_0|stretch~q ;
+wire \i2c_master_0|Add0~1 ;
+wire \i2c_master_0|Add0~2_combout ;
+wire \i2c_master_0|count~3_combout ;
+wire \i2c_master_0|Add0~3 ;
+wire \i2c_master_0|Add0~4_combout ;
+wire \i2c_master_0|count~0_combout ;
+wire \i2c_master_0|Add0~5 ;
+wire \i2c_master_0|Add0~6_combout ;
+wire \i2c_master_0|count~2_combout ;
+wire \i2c_master_0|Add0~7 ;
+wire \i2c_master_0|Add0~9 ;
+wire \i2c_master_0|Add0~10_combout ;
+wire \i2c_master_0|count~6_combout ;
+wire \i2c_master_0|Add0~11 ;
+wire \i2c_master_0|Add0~12_combout ;
+wire \i2c_master_0|count~5_combout ;
+wire \i2c_master_0|Add0~13 ;
+wire \i2c_master_0|Add0~15 ;
+wire \i2c_master_0|Add0~16_combout ;
+wire \i2c_master_0|count~1_combout ;
+wire \i2c_master_0|Equal0~0_combout ;
+wire \i2c_master_0|count~7_combout ;
+wire \i2c_master_0|Equal0~1_combout ;
+wire \i2c_master_0|count~8_combout ;
+wire \i2c_master_0|count~4_combout ;
+wire \i2c_master_0|Add0~14_combout ;
+wire \i2c_master_0|process_0~3_combout ;
+wire \i2c_master_0|process_0~2_combout ;
+wire \i2c_master_0|process_0~1_combout ;
+wire \i2c_master_0|process_0~4_combout ;
+wire \i2c_master_0|LessThan1~0_combout ;
+wire \i2c_master_0|data_clk~0_combout ;
+wire \i2c_master_0|data_clk~q ;
+wire \i2c_master_0|data_clk~clkctrl_outclk ;
+wire \i2c_master_0|bit_cnt[0]~0_combout ;
+wire \i2c_master_0|Selector19~0_combout ;
+wire \i2c_master_0|state.command~q ;
+wire \i2c_master_0|WideOr8~0_combout ;
+wire \i2c_master_0|Selector26~0_combout ;
+wire \i2c_master_0|Add1~0_combout ;
+wire \i2c_master_0|Equal1~0_combout ;
+wire \i2c_master_0|state~14_combout ;
+wire \i2c_master_0|state.slv_ack1~q ;
+wire \i2c_master_0|state~13_combout ;
+wire \i2c_master_0|state.slv_ack2~q ;
+wire \i2c_master_0|Selector20~0_combout ;
+wire \i2c_master_0|Selector20~1_combout ;
+wire \i2c_master_0|state.wr~q ;
+wire \i2c_master_0|Selector22~0_combout ;
+wire \i2c_master_0|Selector0~0_combout ;
+wire \i2c_master_0|Selector0~1_combout ;
+wire \i2c_master_0|busy~reg0_q ;
+wire \spi_to_i2c_0|Add0~1 ;
+wire \spi_to_i2c_0|Add0~3 ;
+wire \spi_to_i2c_0|Add0~4_combout ;
+wire \spi_to_i2c_0|Add0~5 ;
+wire \spi_to_i2c_0|Add0~6_combout ;
+wire \spi_to_i2c_0|Add0~7 ;
+wire \spi_to_i2c_0|Add0~8_combout ;
+wire \spi_to_i2c_0|Add0~9 ;
+wire \spi_to_i2c_0|Add0~10_combout ;
+wire \spi_to_i2c_0|Add0~11 ;
+wire \spi_to_i2c_0|Add0~12_combout ;
+wire \spi_to_i2c_0|Add0~13 ;
+wire \spi_to_i2c_0|Add0~14_combout ;
+wire \spi_to_i2c_0|Add0~15 ;
+wire \spi_to_i2c_0|Add0~16_combout ;
+wire \spi_to_i2c_0|Add0~17 ;
+wire \spi_to_i2c_0|Add0~18_combout ;
+wire \spi_to_i2c_0|Add0~19 ;
+wire \spi_to_i2c_0|Add0~20_combout ;
+wire \spi_to_i2c_0|Add0~21 ;
+wire \spi_to_i2c_0|Add0~22_combout ;
+wire \spi_to_i2c_0|Add0~23 ;
+wire \spi_to_i2c_0|Add0~24_combout ;
+wire \spi_to_i2c_0|Add0~25 ;
+wire \spi_to_i2c_0|Add0~26_combout ;
+wire \spi_to_i2c_0|Add0~27 ;
+wire \spi_to_i2c_0|Add0~28_combout ;
+wire \spi_to_i2c_0|Add0~29 ;
+wire \spi_to_i2c_0|Add0~30_combout ;
+wire \spi_to_i2c_0|Add0~31 ;
+wire \spi_to_i2c_0|Add0~32_combout ;
+wire \spi_to_i2c_0|Add0~33 ;
+wire \spi_to_i2c_0|Add0~34_combout ;
+wire \spi_to_i2c_0|Add0~35 ;
+wire \spi_to_i2c_0|Add0~36_combout ;
+wire \spi_to_i2c_0|Add0~37 ;
+wire \spi_to_i2c_0|Add0~38_combout ;
+wire \spi_to_i2c_0|Add0~39 ;
+wire \spi_to_i2c_0|Add0~40_combout ;
+wire \spi_to_i2c_0|Add0~41 ;
+wire \spi_to_i2c_0|Add0~42_combout ;
+wire \spi_to_i2c_0|Add0~43 ;
+wire \spi_to_i2c_0|Add0~44_combout ;
+wire \spi_to_i2c_0|Add0~45 ;
+wire \spi_to_i2c_0|Add0~46_combout ;
+wire \spi_to_i2c_0|Add0~47 ;
+wire \spi_to_i2c_0|Add0~48_combout ;
+wire \spi_to_i2c_0|Add0~49 ;
+wire \spi_to_i2c_0|Add0~50_combout ;
+wire \spi_to_i2c_0|Equal0~6_combout ;
+wire \spi_to_i2c_0|Equal0~7_combout ;
+wire \spi_to_i2c_0|Equal0~8_combout ;
+wire \spi_to_i2c_0|Equal0~1_combout ;
+wire \spi_to_i2c_0|Equal0~2_combout ;
+wire \spi_to_i2c_0|Equal0~3_combout ;
+wire \spi_to_i2c_0|Equal0~4_combout ;
+wire \spi_to_i2c_0|Equal0~5_combout ;
+wire \spi_to_i2c_0|Add0~51 ;
+wire \spi_to_i2c_0|Add0~52_combout ;
+wire \spi_to_i2c_0|Add0~53 ;
+wire \spi_to_i2c_0|Add0~54_combout ;
+wire \spi_to_i2c_0|Add0~55 ;
+wire \spi_to_i2c_0|Add0~56_combout ;
+wire \spi_to_i2c_0|Add0~57 ;
+wire \spi_to_i2c_0|Add0~58_combout ;
+wire \spi_to_i2c_0|Add0~59 ;
+wire \spi_to_i2c_0|Add0~60_combout ;
+wire \spi_to_i2c_0|Add0~61 ;
+wire \spi_to_i2c_0|Add0~62_combout ;
+wire \spi_to_i2c_0|Equal0~0_combout ;
+wire \spi_to_i2c_0|Equal0~11_combout ;
+wire \spi_to_i2c_0|Equal0~12_combout ;
+wire \spi_to_i2c_0|run_once~0_combout ;
+wire \spi_to_i2c_0|run_once~q ;
+wire \spi_to_i2c_0|i2c_busy_prev~0_combout ;
+wire \spi_to_i2c_0|i2c_busy_prev~q ;
+wire \spi_to_i2c_0|process_0~0_combout ;
+wire \spi_to_i2c_0|Add0~0_combout ;
+wire \spi_to_i2c_0|Equal0~9_combout ;
+wire \spi_to_i2c_0|Equal0~10_combout ;
+wire \spi_to_i2c_0|i2c_busy_cnt~0_combout ;
+wire \spi_to_i2c_0|Add0~2_combout ;
+wire \spi_to_i2c_0|Selector0~0_combout ;
+wire \spi_to_i2c_0|i2c_ena~q ;
+wire \i2c_master_0|state.stop~q ;
+wire \i2c_master_0|Selector17~0_combout ;
+wire \i2c_master_0|state.ready~q ;
+wire \i2c_master_0|Selector18~0_combout ;
+wire \i2c_master_0|state.start~q ;
+wire \i2c_master_0|Selector23~0_combout ;
+wire \i2c_master_0|scl_ena~q ;
+wire \i2c_master_0|scl_clk~1_combout ;
+wire \i2c_master_0|scl_clk~en_q ;
+wire \i2c_master_0|scl~1_combout ;
+wire \i2c_master_0|Selector24~2_combout ;
+wire \i2c_master_0|Selector24~3_combout ;
+wire \spi_to_i2c_0|Selector2~0_combout ;
+wire \i2c_master_0|addr_rw[5]~0_combout ;
+wire \i2c_master_0|data_tx[4]~0_combout ;
+wire \i2c_master_0|Selector24~0_combout ;
+wire \i2c_master_0|Selector24~1_combout ;
+wire \i2c_master_0|Selector24~4_combout ;
+wire \i2c_master_0|Selector24~6_combout ;
+wire \i2c_master_0|Selector24~7_combout ;
+wire \i2c_master_0|Selector24~5_combout ;
+wire \i2c_master_0|Selector24~8_combout ;
+wire \i2c_master_0|sda_int~q ;
+wire \i2c_master_0|Selector29~0_combout ;
+wire [8:0] \i2c_master_0|count ;
+wire [2:0] \i2c_master_0|bit_cnt ;
+wire [7:0] \i2c_master_0|data_tx ;
+wire [7:0] \spi_to_i2c_0|i2c_data_wr ;
+wire [31:0] \spi_to_i2c_0|i2c_busy_cnt ;
+
+
+hard_block auto_generated_inst(
+	.devpor(devpor),
+	.devclrn(devclrn),
+	.devoe(devoe));
+
+// Location: LCCOMB_X11_Y13_N16
+fiftyfivenm_lcell_comb \~QUARTUS_CREATED_GND~I (
+// Equation(s):
+// \~QUARTUS_CREATED_GND~I_combout  = GND
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(gnd),
+	.cin(gnd),
+	.combout(\~QUARTUS_CREATED_GND~I_combout ),
+	.cout());
+// synopsys translate_off
+defparam \~QUARTUS_CREATED_GND~I .lut_mask = 16'h0000;
+defparam \~QUARTUS_CREATED_GND~I .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: IOOBUF_X6_Y10_N23
+fiftyfivenm_io_obuf \LED1~output (
+	.i(vcc),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\LED1~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \LED1~output .bus_hold = "false";
+defparam \LED1~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X6_Y10_N30
+fiftyfivenm_io_obuf \LED2~output (
+	.i(vcc),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\LED2~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \LED2~output .bus_hold = "false";
+defparam \LED2~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X1_Y10_N16
+fiftyfivenm_io_obuf \LED5~output (
+	.i(vcc),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\LED5~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \LED5~output .bus_hold = "false";
+defparam \LED5~output .open_drain_output = "false";
+// synopsys translate_on
+
+// Location: IOOBUF_X31_Y6_N2
+fiftyfivenm_io_obuf \sioc~output (
+	.i(\i2c_master_0|scl~1_combout ),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\sioc~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \sioc~output .bus_hold = "false";
+defparam \sioc~output .open_drain_output = "true";
+// synopsys translate_on
+
+// Location: IOOBUF_X31_Y6_N9
+fiftyfivenm_io_obuf \siod~output (
+	.i(\i2c_master_0|Selector29~0_combout ),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\siod~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \siod~output .bus_hold = "false";
+defparam \siod~output .open_drain_output = "true";
+// synopsys translate_on
+
+// Location: IOIBUF_X0_Y7_N22
+fiftyfivenm_io_ibuf \clock~input (
+	.i(clock),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\clock~input_o ));
+// synopsys translate_off
+defparam \clock~input .bus_hold = "false";
+defparam \clock~input .listen_to_nsleep_signal = "false";
+defparam \clock~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: CLKCTRL_G4
+fiftyfivenm_clkctrl \clock~inputclkctrl (
+	.ena(vcc),
+	.inclk({vcc,vcc,vcc,\clock~input_o }),
+	.clkselect(2'b00),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.outclk(\clock~inputclkctrl_outclk ));
+// synopsys translate_off
+defparam \clock~inputclkctrl .clock_type = "global clock";
+defparam \clock~inputclkctrl .ena_register_mode = "none";
+// synopsys translate_on
+
+// Location: IOIBUF_X31_Y6_N1
+fiftyfivenm_io_ibuf \sioc~input (
+	.i(sioc),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\sioc~input_o ));
+// synopsys translate_off
+defparam \sioc~input .bus_hold = "false";
+defparam \sioc~input .listen_to_nsleep_signal = "false";
+defparam \sioc~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N24
+fiftyfivenm_lcell_comb \i2c_master_0|Equal0~2 (
+// Equation(s):
+// \i2c_master_0|Equal0~2_combout  = (\i2c_master_0|Equal0~1_combout  & (\i2c_master_0|count [0] & \i2c_master_0|Equal0~0_combout ))
+
+	.dataa(\i2c_master_0|Equal0~1_combout ),
+	.datab(\i2c_master_0|count [0]),
+	.datac(gnd),
+	.datad(\i2c_master_0|Equal0~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Equal0~2_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Equal0~2 .lut_mask = 16'h8800;
+defparam \i2c_master_0|Equal0~2 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N20
+fiftyfivenm_lcell_comb \i2c_master_0|Add0~8 (
+// Equation(s):
+// \i2c_master_0|Add0~8_combout  = (\i2c_master_0|count [4] & (\i2c_master_0|Add0~7  $ (GND))) # (!\i2c_master_0|count [4] & (!\i2c_master_0|Add0~7  & VCC))
+// \i2c_master_0|Add0~9  = CARRY((\i2c_master_0|count [4] & !\i2c_master_0|Add0~7 ))
+
+	.dataa(\i2c_master_0|count [4]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\i2c_master_0|Add0~7 ),
+	.combout(\i2c_master_0|Add0~8_combout ),
+	.cout(\i2c_master_0|Add0~9 ));
+// synopsys translate_off
+defparam \i2c_master_0|Add0~8 .lut_mask = 16'hA50A;
+defparam \i2c_master_0|Add0~8 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N10
+fiftyfivenm_lcell_comb \i2c_master_0|process_0~0 (
+// Equation(s):
+// \i2c_master_0|process_0~0_combout  = (\i2c_master_0|Add0~6_combout  & (\i2c_master_0|Add0~8_combout  & (\i2c_master_0|Add0~10_combout  & \i2c_master_0|Add0~12_combout )))
+
+	.dataa(\i2c_master_0|Add0~6_combout ),
+	.datab(\i2c_master_0|Add0~8_combout ),
+	.datac(\i2c_master_0|Add0~10_combout ),
+	.datad(\i2c_master_0|Add0~12_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|process_0~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|process_0~0 .lut_mask = 16'h8000;
+defparam \i2c_master_0|process_0~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N22
+fiftyfivenm_lcell_comb \i2c_master_0|process_0~7 (
+// Equation(s):
+// \i2c_master_0|process_0~7_combout  = (!\i2c_master_0|Equal0~2_combout  & (\i2c_master_0|process_0~0_combout  & ((\i2c_master_0|Add0~2_combout ) # (\i2c_master_0|Add0~4_combout ))))
+
+	.dataa(\i2c_master_0|Add0~2_combout ),
+	.datab(\i2c_master_0|Equal0~2_combout ),
+	.datac(\i2c_master_0|Add0~4_combout ),
+	.datad(\i2c_master_0|process_0~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|process_0~7_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|process_0~7 .lut_mask = 16'h3200;
+defparam \i2c_master_0|process_0~7 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N12
+fiftyfivenm_lcell_comb \i2c_master_0|Add0~0 (
+// Equation(s):
+// \i2c_master_0|Add0~0_combout  = (\i2c_master_0|count [0] & (\i2c_master_0|stretch~q  $ (GND))) # (!\i2c_master_0|count [0] & (!\i2c_master_0|stretch~q  & VCC))
+// \i2c_master_0|Add0~1  = CARRY((\i2c_master_0|count [0] & !\i2c_master_0|stretch~q ))
+
+	.dataa(\i2c_master_0|count [0]),
+	.datab(\i2c_master_0|stretch~q ),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(gnd),
+	.combout(\i2c_master_0|Add0~0_combout ),
+	.cout(\i2c_master_0|Add0~1 ));
+// synopsys translate_off
+defparam \i2c_master_0|Add0~0 .lut_mask = 16'h9922;
+defparam \i2c_master_0|Add0~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N12
+fiftyfivenm_lcell_comb \i2c_master_0|process_0~5 (
+// Equation(s):
+// \i2c_master_0|process_0~5_combout  = (\i2c_master_0|count~2_combout ) # ((\i2c_master_0|Add0~0_combout  & (\i2c_master_0|count~0_combout  & \i2c_master_0|count~3_combout )))
+
+	.dataa(\i2c_master_0|Add0~0_combout ),
+	.datab(\i2c_master_0|count~2_combout ),
+	.datac(\i2c_master_0|count~0_combout ),
+	.datad(\i2c_master_0|count~3_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|process_0~5_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|process_0~5 .lut_mask = 16'hECCC;
+defparam \i2c_master_0|process_0~5 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N2
+fiftyfivenm_lcell_comb \i2c_master_0|process_0~6 (
+// Equation(s):
+// \i2c_master_0|process_0~6_combout  = (\i2c_master_0|Add0~12_combout  & (\i2c_master_0|Add0~10_combout  & (\i2c_master_0|Add0~8_combout  & \i2c_master_0|process_0~5_combout )))
+
+	.dataa(\i2c_master_0|Add0~12_combout ),
+	.datab(\i2c_master_0|Add0~10_combout ),
+	.datac(\i2c_master_0|Add0~8_combout ),
+	.datad(\i2c_master_0|process_0~5_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|process_0~6_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|process_0~6 .lut_mask = 16'h8000;
+defparam \i2c_master_0|process_0~6 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N6
+fiftyfivenm_lcell_comb \i2c_master_0|process_0~8 (
+// Equation(s):
+// \i2c_master_0|process_0~8_combout  = (\i2c_master_0|Add0~14_combout  & ((\i2c_master_0|count~1_combout ) # ((!\i2c_master_0|process_0~7_combout )))) # (!\i2c_master_0|Add0~14_combout  & (((\i2c_master_0|process_0~6_combout )) # 
+// (!\i2c_master_0|count~1_combout )))
+
+	.dataa(\i2c_master_0|Add0~14_combout ),
+	.datab(\i2c_master_0|count~1_combout ),
+	.datac(\i2c_master_0|process_0~7_combout ),
+	.datad(\i2c_master_0|process_0~6_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|process_0~8_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|process_0~8 .lut_mask = 16'hDF9B;
+defparam \i2c_master_0|process_0~8 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N18
+fiftyfivenm_lcell_comb \i2c_master_0|stretch~0 (
+// Equation(s):
+// \i2c_master_0|stretch~0_combout  = (\i2c_master_0|process_0~8_combout  & ((\i2c_master_0|stretch~q ))) # (!\i2c_master_0|process_0~8_combout  & (!\sioc~input_o ))
+
+	.dataa(\sioc~input_o ),
+	.datab(gnd),
+	.datac(\i2c_master_0|stretch~q ),
+	.datad(\i2c_master_0|process_0~8_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|stretch~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|stretch~0 .lut_mask = 16'hF055;
+defparam \i2c_master_0|stretch~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: IOIBUF_X15_Y25_N22
+fiftyfivenm_io_ibuf \reset_n~input (
+	.i(reset_n),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\reset_n~input_o ));
+// synopsys translate_off
+defparam \reset_n~input .bus_hold = "false";
+defparam \reset_n~input .listen_to_nsleep_signal = "false";
+defparam \reset_n~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: FF_X24_Y23_N19
+dffeas \i2c_master_0|stretch (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|stretch~0_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|stretch~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|stretch .is_wysiwyg = "true";
+defparam \i2c_master_0|stretch .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N14
+fiftyfivenm_lcell_comb \i2c_master_0|Add0~2 (
+// Equation(s):
+// \i2c_master_0|Add0~2_combout  = (\i2c_master_0|count [1] & (!\i2c_master_0|Add0~1 )) # (!\i2c_master_0|count [1] & ((\i2c_master_0|Add0~1 ) # (GND)))
+// \i2c_master_0|Add0~3  = CARRY((!\i2c_master_0|Add0~1 ) # (!\i2c_master_0|count [1]))
+
+	.dataa(gnd),
+	.datab(\i2c_master_0|count [1]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\i2c_master_0|Add0~1 ),
+	.combout(\i2c_master_0|Add0~2_combout ),
+	.cout(\i2c_master_0|Add0~3 ));
+// synopsys translate_off
+defparam \i2c_master_0|Add0~2 .lut_mask = 16'h3C3F;
+defparam \i2c_master_0|Add0~2 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N8
+fiftyfivenm_lcell_comb \i2c_master_0|count~3 (
+// Equation(s):
+// \i2c_master_0|count~3_combout  = (\i2c_master_0|Add0~2_combout  & (((!\i2c_master_0|Equal0~1_combout ) # (!\i2c_master_0|Equal0~0_combout )) # (!\i2c_master_0|count [0])))
+
+	.dataa(\i2c_master_0|count [0]),
+	.datab(\i2c_master_0|Equal0~0_combout ),
+	.datac(\i2c_master_0|Add0~2_combout ),
+	.datad(\i2c_master_0|Equal0~1_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|count~3_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|count~3 .lut_mask = 16'h70F0;
+defparam \i2c_master_0|count~3 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X23_Y23_N9
+dffeas \i2c_master_0|count[1] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|count~3_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|count [1]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|count[1] .is_wysiwyg = "true";
+defparam \i2c_master_0|count[1] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N16
+fiftyfivenm_lcell_comb \i2c_master_0|Add0~4 (
+// Equation(s):
+// \i2c_master_0|Add0~4_combout  = (\i2c_master_0|count [2] & (\i2c_master_0|Add0~3  $ (GND))) # (!\i2c_master_0|count [2] & (!\i2c_master_0|Add0~3  & VCC))
+// \i2c_master_0|Add0~5  = CARRY((\i2c_master_0|count [2] & !\i2c_master_0|Add0~3 ))
+
+	.dataa(\i2c_master_0|count [2]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\i2c_master_0|Add0~3 ),
+	.combout(\i2c_master_0|Add0~4_combout ),
+	.cout(\i2c_master_0|Add0~5 ));
+// synopsys translate_off
+defparam \i2c_master_0|Add0~4 .lut_mask = 16'hA50A;
+defparam \i2c_master_0|Add0~4 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N6
+fiftyfivenm_lcell_comb \i2c_master_0|count~0 (
+// Equation(s):
+// \i2c_master_0|count~0_combout  = (\i2c_master_0|Add0~4_combout  & (((!\i2c_master_0|Equal0~1_combout ) # (!\i2c_master_0|Equal0~0_combout )) # (!\i2c_master_0|count [0])))
+
+	.dataa(\i2c_master_0|count [0]),
+	.datab(\i2c_master_0|Equal0~0_combout ),
+	.datac(\i2c_master_0|Equal0~1_combout ),
+	.datad(\i2c_master_0|Add0~4_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|count~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|count~0 .lut_mask = 16'h7F00;
+defparam \i2c_master_0|count~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X23_Y23_N7
+dffeas \i2c_master_0|count[2] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|count~0_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|count [2]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|count[2] .is_wysiwyg = "true";
+defparam \i2c_master_0|count[2] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N18
+fiftyfivenm_lcell_comb \i2c_master_0|Add0~6 (
+// Equation(s):
+// \i2c_master_0|Add0~6_combout  = (\i2c_master_0|count [3] & (!\i2c_master_0|Add0~5 )) # (!\i2c_master_0|count [3] & ((\i2c_master_0|Add0~5 ) # (GND)))
+// \i2c_master_0|Add0~7  = CARRY((!\i2c_master_0|Add0~5 ) # (!\i2c_master_0|count [3]))
+
+	.dataa(gnd),
+	.datab(\i2c_master_0|count [3]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\i2c_master_0|Add0~5 ),
+	.combout(\i2c_master_0|Add0~6_combout ),
+	.cout(\i2c_master_0|Add0~7 ));
+// synopsys translate_off
+defparam \i2c_master_0|Add0~6 .lut_mask = 16'h3C3F;
+defparam \i2c_master_0|Add0~6 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N4
+fiftyfivenm_lcell_comb \i2c_master_0|count~2 (
+// Equation(s):
+// \i2c_master_0|count~2_combout  = (\i2c_master_0|Add0~6_combout  & (((!\i2c_master_0|Equal0~1_combout ) # (!\i2c_master_0|Equal0~0_combout )) # (!\i2c_master_0|count [0])))
+
+	.dataa(\i2c_master_0|count [0]),
+	.datab(\i2c_master_0|Equal0~0_combout ),
+	.datac(\i2c_master_0|Equal0~1_combout ),
+	.datad(\i2c_master_0|Add0~6_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|count~2_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|count~2 .lut_mask = 16'h7F00;
+defparam \i2c_master_0|count~2 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X23_Y23_N5
+dffeas \i2c_master_0|count[3] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|count~2_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|count [3]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|count[3] .is_wysiwyg = "true";
+defparam \i2c_master_0|count[3] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N22
+fiftyfivenm_lcell_comb \i2c_master_0|Add0~10 (
+// Equation(s):
+// \i2c_master_0|Add0~10_combout  = (\i2c_master_0|count [5] & (!\i2c_master_0|Add0~9 )) # (!\i2c_master_0|count [5] & ((\i2c_master_0|Add0~9 ) # (GND)))
+// \i2c_master_0|Add0~11  = CARRY((!\i2c_master_0|Add0~9 ) # (!\i2c_master_0|count [5]))
+
+	.dataa(gnd),
+	.datab(\i2c_master_0|count [5]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\i2c_master_0|Add0~9 ),
+	.combout(\i2c_master_0|Add0~10_combout ),
+	.cout(\i2c_master_0|Add0~11 ));
+// synopsys translate_off
+defparam \i2c_master_0|Add0~10 .lut_mask = 16'h3C3F;
+defparam \i2c_master_0|Add0~10 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N2
+fiftyfivenm_lcell_comb \i2c_master_0|count~6 (
+// Equation(s):
+// \i2c_master_0|count~6_combout  = (\i2c_master_0|Add0~10_combout  & (((!\i2c_master_0|Equal0~1_combout ) # (!\i2c_master_0|Equal0~0_combout )) # (!\i2c_master_0|count [0])))
+
+	.dataa(\i2c_master_0|count [0]),
+	.datab(\i2c_master_0|Add0~10_combout ),
+	.datac(\i2c_master_0|Equal0~0_combout ),
+	.datad(\i2c_master_0|Equal0~1_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|count~6_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|count~6 .lut_mask = 16'h4CCC;
+defparam \i2c_master_0|count~6 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X23_Y23_N3
+dffeas \i2c_master_0|count[5] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|count~6_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|count [5]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|count[5] .is_wysiwyg = "true";
+defparam \i2c_master_0|count[5] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N24
+fiftyfivenm_lcell_comb \i2c_master_0|Add0~12 (
+// Equation(s):
+// \i2c_master_0|Add0~12_combout  = (\i2c_master_0|count [6] & (\i2c_master_0|Add0~11  $ (GND))) # (!\i2c_master_0|count [6] & (!\i2c_master_0|Add0~11  & VCC))
+// \i2c_master_0|Add0~13  = CARRY((\i2c_master_0|count [6] & !\i2c_master_0|Add0~11 ))
+
+	.dataa(gnd),
+	.datab(\i2c_master_0|count [6]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\i2c_master_0|Add0~11 ),
+	.combout(\i2c_master_0|Add0~12_combout ),
+	.cout(\i2c_master_0|Add0~13 ));
+// synopsys translate_off
+defparam \i2c_master_0|Add0~12 .lut_mask = 16'hC30C;
+defparam \i2c_master_0|Add0~12 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N0
+fiftyfivenm_lcell_comb \i2c_master_0|count~5 (
+// Equation(s):
+// \i2c_master_0|count~5_combout  = (\i2c_master_0|Add0~12_combout  & (((!\i2c_master_0|Equal0~1_combout ) # (!\i2c_master_0|Equal0~0_combout )) # (!\i2c_master_0|count [0])))
+
+	.dataa(\i2c_master_0|Add0~12_combout ),
+	.datab(\i2c_master_0|count [0]),
+	.datac(\i2c_master_0|Equal0~0_combout ),
+	.datad(\i2c_master_0|Equal0~1_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|count~5_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|count~5 .lut_mask = 16'h2AAA;
+defparam \i2c_master_0|count~5 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X23_Y23_N1
+dffeas \i2c_master_0|count[6] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|count~5_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|count [6]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|count[6] .is_wysiwyg = "true";
+defparam \i2c_master_0|count[6] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N26
+fiftyfivenm_lcell_comb \i2c_master_0|Add0~14 (
+// Equation(s):
+// \i2c_master_0|Add0~14_combout  = (\i2c_master_0|count [7] & (!\i2c_master_0|Add0~13 )) # (!\i2c_master_0|count [7] & ((\i2c_master_0|Add0~13 ) # (GND)))
+// \i2c_master_0|Add0~15  = CARRY((!\i2c_master_0|Add0~13 ) # (!\i2c_master_0|count [7]))
+
+	.dataa(gnd),
+	.datab(\i2c_master_0|count [7]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\i2c_master_0|Add0~13 ),
+	.combout(\i2c_master_0|Add0~14_combout ),
+	.cout(\i2c_master_0|Add0~15 ));
+// synopsys translate_off
+defparam \i2c_master_0|Add0~14 .lut_mask = 16'h3C3F;
+defparam \i2c_master_0|Add0~14 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N28
+fiftyfivenm_lcell_comb \i2c_master_0|Add0~16 (
+// Equation(s):
+// \i2c_master_0|Add0~16_combout  = \i2c_master_0|Add0~15  $ (!\i2c_master_0|count [8])
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(\i2c_master_0|count [8]),
+	.cin(\i2c_master_0|Add0~15 ),
+	.combout(\i2c_master_0|Add0~16_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Add0~16 .lut_mask = 16'hF00F;
+defparam \i2c_master_0|Add0~16 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N20
+fiftyfivenm_lcell_comb \i2c_master_0|count~1 (
+// Equation(s):
+// \i2c_master_0|count~1_combout  = (\i2c_master_0|Add0~16_combout  & (((!\i2c_master_0|count [0]) # (!\i2c_master_0|Equal0~0_combout )) # (!\i2c_master_0|Equal0~1_combout )))
+
+	.dataa(\i2c_master_0|Equal0~1_combout ),
+	.datab(\i2c_master_0|Equal0~0_combout ),
+	.datac(\i2c_master_0|count [0]),
+	.datad(\i2c_master_0|Add0~16_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|count~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|count~1 .lut_mask = 16'h7F00;
+defparam \i2c_master_0|count~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X24_Y23_N21
+dffeas \i2c_master_0|count[8] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|count~1_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|count [8]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|count[8] .is_wysiwyg = "true";
+defparam \i2c_master_0|count[8] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N0
+fiftyfivenm_lcell_comb \i2c_master_0|Equal0~0 (
+// Equation(s):
+// \i2c_master_0|Equal0~0_combout  = (\i2c_master_0|count [7] & (\i2c_master_0|count [8] & (\i2c_master_0|count [6] & \i2c_master_0|count [5])))
+
+	.dataa(\i2c_master_0|count [7]),
+	.datab(\i2c_master_0|count [8]),
+	.datac(\i2c_master_0|count [6]),
+	.datad(\i2c_master_0|count [5]),
+	.cin(gnd),
+	.combout(\i2c_master_0|Equal0~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Equal0~0 .lut_mask = 16'h8000;
+defparam \i2c_master_0|Equal0~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N20
+fiftyfivenm_lcell_comb \i2c_master_0|count~7 (
+// Equation(s):
+// \i2c_master_0|count~7_combout  = (\i2c_master_0|Add0~8_combout  & (((!\i2c_master_0|Equal0~0_combout ) # (!\i2c_master_0|count [0])) # (!\i2c_master_0|Equal0~1_combout )))
+
+	.dataa(\i2c_master_0|Equal0~1_combout ),
+	.datab(\i2c_master_0|count [0]),
+	.datac(\i2c_master_0|Equal0~0_combout ),
+	.datad(\i2c_master_0|Add0~8_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|count~7_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|count~7 .lut_mask = 16'h7F00;
+defparam \i2c_master_0|count~7 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X20_Y23_N21
+dffeas \i2c_master_0|count[4] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|count~7_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|count [4]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|count[4] .is_wysiwyg = "true";
+defparam \i2c_master_0|count[4] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N6
+fiftyfivenm_lcell_comb \i2c_master_0|Equal0~1 (
+// Equation(s):
+// \i2c_master_0|Equal0~1_combout  = (\i2c_master_0|count [4] & (!\i2c_master_0|count [3] & (\i2c_master_0|count [1] & !\i2c_master_0|count [2])))
+
+	.dataa(\i2c_master_0|count [4]),
+	.datab(\i2c_master_0|count [3]),
+	.datac(\i2c_master_0|count [1]),
+	.datad(\i2c_master_0|count [2]),
+	.cin(gnd),
+	.combout(\i2c_master_0|Equal0~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Equal0~1 .lut_mask = 16'h0020;
+defparam \i2c_master_0|Equal0~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X23_Y23_N30
+fiftyfivenm_lcell_comb \i2c_master_0|count~8 (
+// Equation(s):
+// \i2c_master_0|count~8_combout  = (\i2c_master_0|Add0~0_combout  & (((!\i2c_master_0|count [0]) # (!\i2c_master_0|Equal0~0_combout )) # (!\i2c_master_0|Equal0~1_combout )))
+
+	.dataa(\i2c_master_0|Equal0~1_combout ),
+	.datab(\i2c_master_0|Equal0~0_combout ),
+	.datac(\i2c_master_0|count [0]),
+	.datad(\i2c_master_0|Add0~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|count~8_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|count~8 .lut_mask = 16'h7F00;
+defparam \i2c_master_0|count~8 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X23_Y23_N31
+dffeas \i2c_master_0|count[0] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|count~8_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|count [0]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|count[0] .is_wysiwyg = "true";
+defparam \i2c_master_0|count[0] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N26
+fiftyfivenm_lcell_comb \i2c_master_0|count~4 (
+// Equation(s):
+// \i2c_master_0|count~4_combout  = (\i2c_master_0|Add0~14_combout  & (((!\i2c_master_0|Equal0~1_combout ) # (!\i2c_master_0|Equal0~0_combout )) # (!\i2c_master_0|count [0])))
+
+	.dataa(\i2c_master_0|count [0]),
+	.datab(\i2c_master_0|Equal0~0_combout ),
+	.datac(\i2c_master_0|Add0~14_combout ),
+	.datad(\i2c_master_0|Equal0~1_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|count~4_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|count~4 .lut_mask = 16'h70F0;
+defparam \i2c_master_0|count~4 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X24_Y23_N27
+dffeas \i2c_master_0|count[7] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|count~4_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|count [7]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|count[7] .is_wysiwyg = "true";
+defparam \i2c_master_0|count[7] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N14
+fiftyfivenm_lcell_comb \i2c_master_0|process_0~3 (
+// Equation(s):
+// \i2c_master_0|process_0~3_combout  = (\i2c_master_0|Add0~16_combout ) # ((\i2c_master_0|Equal0~1_combout  & (\i2c_master_0|Equal0~0_combout  & \i2c_master_0|count [0])))
+
+	.dataa(\i2c_master_0|Equal0~1_combout ),
+	.datab(\i2c_master_0|Equal0~0_combout ),
+	.datac(\i2c_master_0|count [0]),
+	.datad(\i2c_master_0|Add0~16_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|process_0~3_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|process_0~3 .lut_mask = 16'hFF80;
+defparam \i2c_master_0|process_0~3 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N4
+fiftyfivenm_lcell_comb \i2c_master_0|process_0~2 (
+// Equation(s):
+// \i2c_master_0|process_0~2_combout  = (\i2c_master_0|process_0~0_combout  & ((\i2c_master_0|Add0~4_combout  & ((\i2c_master_0|Add0~14_combout ))) # (!\i2c_master_0|Add0~4_combout  & (\i2c_master_0|Add0~2_combout ))))
+
+	.dataa(\i2c_master_0|Add0~4_combout ),
+	.datab(\i2c_master_0|Add0~2_combout ),
+	.datac(\i2c_master_0|Add0~14_combout ),
+	.datad(\i2c_master_0|process_0~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|process_0~2_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|process_0~2 .lut_mask = 16'hE400;
+defparam \i2c_master_0|process_0~2 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N28
+fiftyfivenm_lcell_comb \i2c_master_0|process_0~1 (
+// Equation(s):
+// \i2c_master_0|process_0~1_combout  = (((!\i2c_master_0|Add0~0_combout  & !\i2c_master_0|Add0~2_combout )) # (!\i2c_master_0|process_0~0_combout )) # (!\i2c_master_0|count~0_combout )
+
+	.dataa(\i2c_master_0|Add0~0_combout ),
+	.datab(\i2c_master_0|Add0~2_combout ),
+	.datac(\i2c_master_0|count~0_combout ),
+	.datad(\i2c_master_0|process_0~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|process_0~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|process_0~1 .lut_mask = 16'h1FFF;
+defparam \i2c_master_0|process_0~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N16
+fiftyfivenm_lcell_comb \i2c_master_0|process_0~4 (
+// Equation(s):
+// \i2c_master_0|process_0~4_combout  = (\i2c_master_0|process_0~3_combout ) # ((\i2c_master_0|process_0~2_combout ) # ((!\i2c_master_0|Add0~14_combout  & \i2c_master_0|process_0~1_combout )))
+
+	.dataa(\i2c_master_0|Add0~14_combout ),
+	.datab(\i2c_master_0|process_0~3_combout ),
+	.datac(\i2c_master_0|process_0~2_combout ),
+	.datad(\i2c_master_0|process_0~1_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|process_0~4_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|process_0~4 .lut_mask = 16'hFDFC;
+defparam \i2c_master_0|process_0~4 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N8
+fiftyfivenm_lcell_comb \i2c_master_0|LessThan1~0 (
+// Equation(s):
+// \i2c_master_0|LessThan1~0_combout  = (!\i2c_master_0|Equal0~2_combout  & ((\i2c_master_0|Add0~16_combout ) # ((\i2c_master_0|Add0~14_combout ) # (!\i2c_master_0|process_0~1_combout ))))
+
+	.dataa(\i2c_master_0|Equal0~2_combout ),
+	.datab(\i2c_master_0|Add0~16_combout ),
+	.datac(\i2c_master_0|Add0~14_combout ),
+	.datad(\i2c_master_0|process_0~1_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|LessThan1~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|LessThan1~0 .lut_mask = 16'h5455;
+defparam \i2c_master_0|LessThan1~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N30
+fiftyfivenm_lcell_comb \i2c_master_0|data_clk~0 (
+// Equation(s):
+// \i2c_master_0|data_clk~0_combout  = (\i2c_master_0|LessThan1~0_combout  & ((!\i2c_master_0|process_0~8_combout ) # (!\i2c_master_0|process_0~4_combout )))
+
+	.dataa(gnd),
+	.datab(\i2c_master_0|process_0~4_combout ),
+	.datac(\i2c_master_0|LessThan1~0_combout ),
+	.datad(\i2c_master_0|process_0~8_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|data_clk~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|data_clk~0 .lut_mask = 16'h30F0;
+defparam \i2c_master_0|data_clk~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X24_Y23_N31
+dffeas \i2c_master_0|data_clk (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|data_clk~0_combout ),
+	.asdata(vcc),
+	.clrn(vcc),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\reset_n~input_o ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|data_clk~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|data_clk .is_wysiwyg = "true";
+defparam \i2c_master_0|data_clk .power_up = "low";
+// synopsys translate_on
+
+// Location: CLKCTRL_G6
+fiftyfivenm_clkctrl \i2c_master_0|data_clk~clkctrl (
+	.ena(vcc),
+	.inclk({vcc,vcc,vcc,\i2c_master_0|data_clk~q }),
+	.clkselect(2'b00),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.outclk(\i2c_master_0|data_clk~clkctrl_outclk ));
+// synopsys translate_off
+defparam \i2c_master_0|data_clk~clkctrl .clock_type = "global clock";
+defparam \i2c_master_0|data_clk~clkctrl .ena_register_mode = "none";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N16
+fiftyfivenm_lcell_comb \i2c_master_0|bit_cnt[0]~0 (
+// Equation(s):
+// \i2c_master_0|bit_cnt[0]~0_combout  = !\i2c_master_0|bit_cnt [0]
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(\i2c_master_0|bit_cnt [0]),
+	.datad(gnd),
+	.cin(gnd),
+	.combout(\i2c_master_0|bit_cnt[0]~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|bit_cnt[0]~0 .lut_mask = 16'h0F0F;
+defparam \i2c_master_0|bit_cnt[0]~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N26
+fiftyfivenm_lcell_comb \i2c_master_0|Selector19~0 (
+// Equation(s):
+// \i2c_master_0|Selector19~0_combout  = (\i2c_master_0|state.start~q ) # ((\i2c_master_0|state.command~q  & !\i2c_master_0|Equal1~0_combout ))
+
+	.dataa(\i2c_master_0|state.start~q ),
+	.datab(gnd),
+	.datac(\i2c_master_0|state.command~q ),
+	.datad(\i2c_master_0|Equal1~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector19~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector19~0 .lut_mask = 16'hAAFA;
+defparam \i2c_master_0|Selector19~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X22_Y23_N27
+dffeas \i2c_master_0|state.command (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|Selector19~0_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|state.command~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|state.command .is_wysiwyg = "true";
+defparam \i2c_master_0|state.command .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N4
+fiftyfivenm_lcell_comb \i2c_master_0|WideOr8~0 (
+// Equation(s):
+// \i2c_master_0|WideOr8~0_combout  = (\i2c_master_0|state.command~q ) # (\i2c_master_0|state.wr~q )
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(\i2c_master_0|state.command~q ),
+	.datad(\i2c_master_0|state.wr~q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|WideOr8~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|WideOr8~0 .lut_mask = 16'hFFF0;
+defparam \i2c_master_0|WideOr8~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X22_Y23_N17
+dffeas \i2c_master_0|bit_cnt[0] (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|bit_cnt[0]~0_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\i2c_master_0|WideOr8~0_combout ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|bit_cnt [0]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|bit_cnt[0] .is_wysiwyg = "true";
+defparam \i2c_master_0|bit_cnt[0] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N10
+fiftyfivenm_lcell_comb \i2c_master_0|Selector26~0 (
+// Equation(s):
+// \i2c_master_0|Selector26~0_combout  = \i2c_master_0|bit_cnt [1] $ (\i2c_master_0|bit_cnt [0])
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(\i2c_master_0|bit_cnt [1]),
+	.datad(\i2c_master_0|bit_cnt [0]),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector26~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector26~0 .lut_mask = 16'h0FF0;
+defparam \i2c_master_0|Selector26~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X22_Y23_N11
+dffeas \i2c_master_0|bit_cnt[1] (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|Selector26~0_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\i2c_master_0|WideOr8~0_combout ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|bit_cnt [1]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|bit_cnt[1] .is_wysiwyg = "true";
+defparam \i2c_master_0|bit_cnt[1] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N30
+fiftyfivenm_lcell_comb \i2c_master_0|Add1~0 (
+// Equation(s):
+// \i2c_master_0|Add1~0_combout  = \i2c_master_0|bit_cnt [2] $ (((\i2c_master_0|bit_cnt [1] & \i2c_master_0|bit_cnt [0])))
+
+	.dataa(\i2c_master_0|bit_cnt [1]),
+	.datab(gnd),
+	.datac(\i2c_master_0|bit_cnt [2]),
+	.datad(\i2c_master_0|bit_cnt [0]),
+	.cin(gnd),
+	.combout(\i2c_master_0|Add1~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Add1~0 .lut_mask = 16'h5AF0;
+defparam \i2c_master_0|Add1~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X22_Y23_N21
+dffeas \i2c_master_0|bit_cnt[2] (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(gnd),
+	.asdata(\i2c_master_0|Add1~0_combout ),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\i2c_master_0|WideOr8~0_combout ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|bit_cnt [2]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|bit_cnt[2] .is_wysiwyg = "true";
+defparam \i2c_master_0|bit_cnt[2] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N20
+fiftyfivenm_lcell_comb \i2c_master_0|Equal1~0 (
+// Equation(s):
+// \i2c_master_0|Equal1~0_combout  = (\i2c_master_0|bit_cnt [1] & (\i2c_master_0|bit_cnt [2] & \i2c_master_0|bit_cnt [0]))
+
+	.dataa(\i2c_master_0|bit_cnt [1]),
+	.datab(gnd),
+	.datac(\i2c_master_0|bit_cnt [2]),
+	.datad(\i2c_master_0|bit_cnt [0]),
+	.cin(gnd),
+	.combout(\i2c_master_0|Equal1~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Equal1~0 .lut_mask = 16'hA000;
+defparam \i2c_master_0|Equal1~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N8
+fiftyfivenm_lcell_comb \i2c_master_0|state~14 (
+// Equation(s):
+// \i2c_master_0|state~14_combout  = (\i2c_master_0|state.command~q  & (\i2c_master_0|bit_cnt [1] & (\i2c_master_0|bit_cnt [2] & \i2c_master_0|bit_cnt [0])))
+
+	.dataa(\i2c_master_0|state.command~q ),
+	.datab(\i2c_master_0|bit_cnt [1]),
+	.datac(\i2c_master_0|bit_cnt [2]),
+	.datad(\i2c_master_0|bit_cnt [0]),
+	.cin(gnd),
+	.combout(\i2c_master_0|state~14_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|state~14 .lut_mask = 16'h8000;
+defparam \i2c_master_0|state~14 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X20_Y23_N9
+dffeas \i2c_master_0|state.slv_ack1 (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|state~14_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|state.slv_ack1~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|state.slv_ack1 .is_wysiwyg = "true";
+defparam \i2c_master_0|state.slv_ack1 .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N2
+fiftyfivenm_lcell_comb \i2c_master_0|state~13 (
+// Equation(s):
+// \i2c_master_0|state~13_combout  = (\i2c_master_0|bit_cnt [2] & (\i2c_master_0|state.wr~q  & (\i2c_master_0|bit_cnt [1] & \i2c_master_0|bit_cnt [0])))
+
+	.dataa(\i2c_master_0|bit_cnt [2]),
+	.datab(\i2c_master_0|state.wr~q ),
+	.datac(\i2c_master_0|bit_cnt [1]),
+	.datad(\i2c_master_0|bit_cnt [0]),
+	.cin(gnd),
+	.combout(\i2c_master_0|state~13_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|state~13 .lut_mask = 16'h8000;
+defparam \i2c_master_0|state~13 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X20_Y23_N3
+dffeas \i2c_master_0|state.slv_ack2 (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|state~13_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|state.slv_ack2~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|state.slv_ack2 .is_wysiwyg = "true";
+defparam \i2c_master_0|state.slv_ack2 .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N14
+fiftyfivenm_lcell_comb \i2c_master_0|Selector20~0 (
+// Equation(s):
+// \i2c_master_0|Selector20~0_combout  = (\i2c_master_0|state.slv_ack2~q  & \spi_to_i2c_0|i2c_ena~q )
+
+	.dataa(gnd),
+	.datab(\i2c_master_0|state.slv_ack2~q ),
+	.datac(gnd),
+	.datad(\spi_to_i2c_0|i2c_ena~q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector20~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector20~0 .lut_mask = 16'hCC00;
+defparam \i2c_master_0|Selector20~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N24
+fiftyfivenm_lcell_comb \i2c_master_0|Selector20~1 (
+// Equation(s):
+// \i2c_master_0|Selector20~1_combout  = (\i2c_master_0|state.slv_ack1~q ) # ((\i2c_master_0|Selector20~0_combout ) # ((!\i2c_master_0|Equal1~0_combout  & \i2c_master_0|state.wr~q )))
+
+	.dataa(\i2c_master_0|Equal1~0_combout ),
+	.datab(\i2c_master_0|state.slv_ack1~q ),
+	.datac(\i2c_master_0|state.wr~q ),
+	.datad(\i2c_master_0|Selector20~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector20~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector20~1 .lut_mask = 16'hFFDC;
+defparam \i2c_master_0|Selector20~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X20_Y23_N25
+dffeas \i2c_master_0|state.wr (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|Selector20~1_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|state.wr~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|state.wr .is_wysiwyg = "true";
+defparam \i2c_master_0|state.wr .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N18
+fiftyfivenm_lcell_comb \i2c_master_0|Selector22~0 (
+// Equation(s):
+// \i2c_master_0|Selector22~0_combout  = (\i2c_master_0|state.slv_ack2~q  & !\spi_to_i2c_0|i2c_ena~q )
+
+	.dataa(gnd),
+	.datab(\i2c_master_0|state.slv_ack2~q ),
+	.datac(gnd),
+	.datad(\spi_to_i2c_0|i2c_ena~q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector22~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector22~0 .lut_mask = 16'h00CC;
+defparam \i2c_master_0|Selector22~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N16
+fiftyfivenm_lcell_comb \i2c_master_0|Selector0~0 (
+// Equation(s):
+// \i2c_master_0|Selector0~0_combout  = (\i2c_master_0|busy~reg0_q  & ((\i2c_master_0|state.slv_ack1~q ) # ((\i2c_master_0|state.command~q ) # (\i2c_master_0|Selector22~0_combout ))))
+
+	.dataa(\i2c_master_0|busy~reg0_q ),
+	.datab(\i2c_master_0|state.slv_ack1~q ),
+	.datac(\i2c_master_0|state.command~q ),
+	.datad(\i2c_master_0|Selector22~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector0~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector0~0 .lut_mask = 16'hAAA8;
+defparam \i2c_master_0|Selector0~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N30
+fiftyfivenm_lcell_comb \i2c_master_0|Selector0~1 (
+// Equation(s):
+// \i2c_master_0|Selector0~1_combout  = (\i2c_master_0|state.start~q ) # ((\i2c_master_0|Selector18~0_combout ) # ((\i2c_master_0|state.wr~q ) # (\i2c_master_0|Selector0~0_combout )))
+
+	.dataa(\i2c_master_0|state.start~q ),
+	.datab(\i2c_master_0|Selector18~0_combout ),
+	.datac(\i2c_master_0|state.wr~q ),
+	.datad(\i2c_master_0|Selector0~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector0~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector0~1 .lut_mask = 16'hFFFE;
+defparam \i2c_master_0|Selector0~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X20_Y23_N31
+dffeas \i2c_master_0|busy~reg0 (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|Selector0~1_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|busy~reg0_q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|busy~reg0 .is_wysiwyg = "true";
+defparam \i2c_master_0|busy~reg0 .power_up = "low";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N17
+dffeas \spi_to_i2c_0|i2c_busy_cnt[24] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~48_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [24]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[24] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[24] .power_up = "low";
+// synopsys translate_on
+
+// Location: FF_X19_Y23_N27
+dffeas \spi_to_i2c_0|i2c_busy_cnt[0] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(gnd),
+	.asdata(\spi_to_i2c_0|Add0~0_combout ),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [0]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[0] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[0] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N0
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~0 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~0_combout  = (\spi_to_i2c_0|process_0~0_combout  & (\spi_to_i2c_0|i2c_busy_cnt [0] $ (VCC))) # (!\spi_to_i2c_0|process_0~0_combout  & (\spi_to_i2c_0|i2c_busy_cnt [0] & VCC))
+// \spi_to_i2c_0|Add0~1  = CARRY((\spi_to_i2c_0|process_0~0_combout  & \spi_to_i2c_0|i2c_busy_cnt [0]))
+
+	.dataa(\spi_to_i2c_0|process_0~0_combout ),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [0]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Add0~0_combout ),
+	.cout(\spi_to_i2c_0|Add0~1 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~0 .lut_mask = 16'h6688;
+defparam \spi_to_i2c_0|Add0~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N2
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~2 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~2_combout  = (\spi_to_i2c_0|i2c_busy_cnt [1] & (!\spi_to_i2c_0|Add0~1 )) # (!\spi_to_i2c_0|i2c_busy_cnt [1] & ((\spi_to_i2c_0|Add0~1 ) # (GND)))
+// \spi_to_i2c_0|Add0~3  = CARRY((!\spi_to_i2c_0|Add0~1 ) # (!\spi_to_i2c_0|i2c_busy_cnt [1]))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [1]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~1 ),
+	.combout(\spi_to_i2c_0|Add0~2_combout ),
+	.cout(\spi_to_i2c_0|Add0~3 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~2 .lut_mask = 16'h3C3F;
+defparam \spi_to_i2c_0|Add0~2 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N4
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~4 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~4_combout  = (\spi_to_i2c_0|i2c_busy_cnt [2] & (\spi_to_i2c_0|Add0~3  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [2] & (!\spi_to_i2c_0|Add0~3  & VCC))
+// \spi_to_i2c_0|Add0~5  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [2] & !\spi_to_i2c_0|Add0~3 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [2]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~3 ),
+	.combout(\spi_to_i2c_0|Add0~4_combout ),
+	.cout(\spi_to_i2c_0|Add0~5 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~4 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~4 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N5
+dffeas \spi_to_i2c_0|i2c_busy_cnt[2] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~4_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [2]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[2] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[2] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N6
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~6 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~6_combout  = (\spi_to_i2c_0|i2c_busy_cnt [3] & (!\spi_to_i2c_0|Add0~5 )) # (!\spi_to_i2c_0|i2c_busy_cnt [3] & ((\spi_to_i2c_0|Add0~5 ) # (GND)))
+// \spi_to_i2c_0|Add0~7  = CARRY((!\spi_to_i2c_0|Add0~5 ) # (!\spi_to_i2c_0|i2c_busy_cnt [3]))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [3]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~5 ),
+	.combout(\spi_to_i2c_0|Add0~6_combout ),
+	.cout(\spi_to_i2c_0|Add0~7 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~6 .lut_mask = 16'h5A5F;
+defparam \spi_to_i2c_0|Add0~6 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N7
+dffeas \spi_to_i2c_0|i2c_busy_cnt[3] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~6_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [3]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[3] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[3] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N8
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~8 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~8_combout  = (\spi_to_i2c_0|i2c_busy_cnt [4] & (\spi_to_i2c_0|Add0~7  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [4] & (!\spi_to_i2c_0|Add0~7  & VCC))
+// \spi_to_i2c_0|Add0~9  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [4] & !\spi_to_i2c_0|Add0~7 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [4]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~7 ),
+	.combout(\spi_to_i2c_0|Add0~8_combout ),
+	.cout(\spi_to_i2c_0|Add0~9 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~8 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~8 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N9
+dffeas \spi_to_i2c_0|i2c_busy_cnt[4] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~8_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [4]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[4] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[4] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N10
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~10 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~10_combout  = (\spi_to_i2c_0|i2c_busy_cnt [5] & (!\spi_to_i2c_0|Add0~9 )) # (!\spi_to_i2c_0|i2c_busy_cnt [5] & ((\spi_to_i2c_0|Add0~9 ) # (GND)))
+// \spi_to_i2c_0|Add0~11  = CARRY((!\spi_to_i2c_0|Add0~9 ) # (!\spi_to_i2c_0|i2c_busy_cnt [5]))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [5]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~9 ),
+	.combout(\spi_to_i2c_0|Add0~10_combout ),
+	.cout(\spi_to_i2c_0|Add0~11 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~10 .lut_mask = 16'h5A5F;
+defparam \spi_to_i2c_0|Add0~10 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N11
+dffeas \spi_to_i2c_0|i2c_busy_cnt[5] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~10_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [5]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[5] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[5] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N12
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~12 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~12_combout  = (\spi_to_i2c_0|i2c_busy_cnt [6] & (\spi_to_i2c_0|Add0~11  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [6] & (!\spi_to_i2c_0|Add0~11  & VCC))
+// \spi_to_i2c_0|Add0~13  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [6] & !\spi_to_i2c_0|Add0~11 ))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [6]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~11 ),
+	.combout(\spi_to_i2c_0|Add0~12_combout ),
+	.cout(\spi_to_i2c_0|Add0~13 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~12 .lut_mask = 16'hA50A;
+defparam \spi_to_i2c_0|Add0~12 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N13
+dffeas \spi_to_i2c_0|i2c_busy_cnt[6] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~12_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [6]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[6] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[6] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N14
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~14 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~14_combout  = (\spi_to_i2c_0|i2c_busy_cnt [7] & (!\spi_to_i2c_0|Add0~13 )) # (!\spi_to_i2c_0|i2c_busy_cnt [7] & ((\spi_to_i2c_0|Add0~13 ) # (GND)))
+// \spi_to_i2c_0|Add0~15  = CARRY((!\spi_to_i2c_0|Add0~13 ) # (!\spi_to_i2c_0|i2c_busy_cnt [7]))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [7]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~13 ),
+	.combout(\spi_to_i2c_0|Add0~14_combout ),
+	.cout(\spi_to_i2c_0|Add0~15 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~14 .lut_mask = 16'h3C3F;
+defparam \spi_to_i2c_0|Add0~14 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N15
+dffeas \spi_to_i2c_0|i2c_busy_cnt[7] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~14_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [7]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[7] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[7] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N16
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~16 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~16_combout  = (\spi_to_i2c_0|i2c_busy_cnt [8] & (\spi_to_i2c_0|Add0~15  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [8] & (!\spi_to_i2c_0|Add0~15  & VCC))
+// \spi_to_i2c_0|Add0~17  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [8] & !\spi_to_i2c_0|Add0~15 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [8]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~15 ),
+	.combout(\spi_to_i2c_0|Add0~16_combout ),
+	.cout(\spi_to_i2c_0|Add0~17 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~16 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~16 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N17
+dffeas \spi_to_i2c_0|i2c_busy_cnt[8] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~16_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [8]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[8] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[8] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N18
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~18 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~18_combout  = (\spi_to_i2c_0|i2c_busy_cnt [9] & (!\spi_to_i2c_0|Add0~17 )) # (!\spi_to_i2c_0|i2c_busy_cnt [9] & ((\spi_to_i2c_0|Add0~17 ) # (GND)))
+// \spi_to_i2c_0|Add0~19  = CARRY((!\spi_to_i2c_0|Add0~17 ) # (!\spi_to_i2c_0|i2c_busy_cnt [9]))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [9]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~17 ),
+	.combout(\spi_to_i2c_0|Add0~18_combout ),
+	.cout(\spi_to_i2c_0|Add0~19 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~18 .lut_mask = 16'h3C3F;
+defparam \spi_to_i2c_0|Add0~18 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N19
+dffeas \spi_to_i2c_0|i2c_busy_cnt[9] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~18_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [9]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[9] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[9] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N20
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~20 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~20_combout  = (\spi_to_i2c_0|i2c_busy_cnt [10] & (\spi_to_i2c_0|Add0~19  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [10] & (!\spi_to_i2c_0|Add0~19  & VCC))
+// \spi_to_i2c_0|Add0~21  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [10] & !\spi_to_i2c_0|Add0~19 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [10]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~19 ),
+	.combout(\spi_to_i2c_0|Add0~20_combout ),
+	.cout(\spi_to_i2c_0|Add0~21 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~20 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~20 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N21
+dffeas \spi_to_i2c_0|i2c_busy_cnt[10] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~20_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [10]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[10] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[10] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N22
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~22 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~22_combout  = (\spi_to_i2c_0|i2c_busy_cnt [11] & (!\spi_to_i2c_0|Add0~21 )) # (!\spi_to_i2c_0|i2c_busy_cnt [11] & ((\spi_to_i2c_0|Add0~21 ) # (GND)))
+// \spi_to_i2c_0|Add0~23  = CARRY((!\spi_to_i2c_0|Add0~21 ) # (!\spi_to_i2c_0|i2c_busy_cnt [11]))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [11]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~21 ),
+	.combout(\spi_to_i2c_0|Add0~22_combout ),
+	.cout(\spi_to_i2c_0|Add0~23 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~22 .lut_mask = 16'h5A5F;
+defparam \spi_to_i2c_0|Add0~22 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N23
+dffeas \spi_to_i2c_0|i2c_busy_cnt[11] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~22_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [11]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[11] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[11] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N24
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~24 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~24_combout  = (\spi_to_i2c_0|i2c_busy_cnt [12] & (\spi_to_i2c_0|Add0~23  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [12] & (!\spi_to_i2c_0|Add0~23  & VCC))
+// \spi_to_i2c_0|Add0~25  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [12] & !\spi_to_i2c_0|Add0~23 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [12]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~23 ),
+	.combout(\spi_to_i2c_0|Add0~24_combout ),
+	.cout(\spi_to_i2c_0|Add0~25 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~24 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~24 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N25
+dffeas \spi_to_i2c_0|i2c_busy_cnt[12] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~24_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [12]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[12] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[12] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N26
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~26 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~26_combout  = (\spi_to_i2c_0|i2c_busy_cnt [13] & (!\spi_to_i2c_0|Add0~25 )) # (!\spi_to_i2c_0|i2c_busy_cnt [13] & ((\spi_to_i2c_0|Add0~25 ) # (GND)))
+// \spi_to_i2c_0|Add0~27  = CARRY((!\spi_to_i2c_0|Add0~25 ) # (!\spi_to_i2c_0|i2c_busy_cnt [13]))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [13]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~25 ),
+	.combout(\spi_to_i2c_0|Add0~26_combout ),
+	.cout(\spi_to_i2c_0|Add0~27 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~26 .lut_mask = 16'h5A5F;
+defparam \spi_to_i2c_0|Add0~26 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N27
+dffeas \spi_to_i2c_0|i2c_busy_cnt[13] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~26_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [13]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[13] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[13] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N28
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~28 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~28_combout  = (\spi_to_i2c_0|i2c_busy_cnt [14] & (\spi_to_i2c_0|Add0~27  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [14] & (!\spi_to_i2c_0|Add0~27  & VCC))
+// \spi_to_i2c_0|Add0~29  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [14] & !\spi_to_i2c_0|Add0~27 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [14]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~27 ),
+	.combout(\spi_to_i2c_0|Add0~28_combout ),
+	.cout(\spi_to_i2c_0|Add0~29 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~28 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~28 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N29
+dffeas \spi_to_i2c_0|i2c_busy_cnt[14] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~28_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [14]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[14] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[14] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y23_N30
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~30 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~30_combout  = (\spi_to_i2c_0|i2c_busy_cnt [15] & (!\spi_to_i2c_0|Add0~29 )) # (!\spi_to_i2c_0|i2c_busy_cnt [15] & ((\spi_to_i2c_0|Add0~29 ) # (GND)))
+// \spi_to_i2c_0|Add0~31  = CARRY((!\spi_to_i2c_0|Add0~29 ) # (!\spi_to_i2c_0|i2c_busy_cnt [15]))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [15]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~29 ),
+	.combout(\spi_to_i2c_0|Add0~30_combout ),
+	.cout(\spi_to_i2c_0|Add0~31 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~30 .lut_mask = 16'h5A5F;
+defparam \spi_to_i2c_0|Add0~30 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y23_N31
+dffeas \spi_to_i2c_0|i2c_busy_cnt[15] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~30_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [15]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[15] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[15] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N0
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~32 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~32_combout  = (\spi_to_i2c_0|i2c_busy_cnt [16] & (\spi_to_i2c_0|Add0~31  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [16] & (!\spi_to_i2c_0|Add0~31  & VCC))
+// \spi_to_i2c_0|Add0~33  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [16] & !\spi_to_i2c_0|Add0~31 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [16]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~31 ),
+	.combout(\spi_to_i2c_0|Add0~32_combout ),
+	.cout(\spi_to_i2c_0|Add0~33 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~32 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~32 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N1
+dffeas \spi_to_i2c_0|i2c_busy_cnt[16] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~32_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [16]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[16] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[16] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N2
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~34 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~34_combout  = (\spi_to_i2c_0|i2c_busy_cnt [17] & (!\spi_to_i2c_0|Add0~33 )) # (!\spi_to_i2c_0|i2c_busy_cnt [17] & ((\spi_to_i2c_0|Add0~33 ) # (GND)))
+// \spi_to_i2c_0|Add0~35  = CARRY((!\spi_to_i2c_0|Add0~33 ) # (!\spi_to_i2c_0|i2c_busy_cnt [17]))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [17]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~33 ),
+	.combout(\spi_to_i2c_0|Add0~34_combout ),
+	.cout(\spi_to_i2c_0|Add0~35 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~34 .lut_mask = 16'h3C3F;
+defparam \spi_to_i2c_0|Add0~34 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N3
+dffeas \spi_to_i2c_0|i2c_busy_cnt[17] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~34_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [17]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[17] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[17] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N4
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~36 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~36_combout  = (\spi_to_i2c_0|i2c_busy_cnt [18] & (\spi_to_i2c_0|Add0~35  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [18] & (!\spi_to_i2c_0|Add0~35  & VCC))
+// \spi_to_i2c_0|Add0~37  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [18] & !\spi_to_i2c_0|Add0~35 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [18]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~35 ),
+	.combout(\spi_to_i2c_0|Add0~36_combout ),
+	.cout(\spi_to_i2c_0|Add0~37 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~36 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~36 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N5
+dffeas \spi_to_i2c_0|i2c_busy_cnt[18] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~36_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [18]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[18] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[18] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N6
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~38 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~38_combout  = (\spi_to_i2c_0|i2c_busy_cnt [19] & (!\spi_to_i2c_0|Add0~37 )) # (!\spi_to_i2c_0|i2c_busy_cnt [19] & ((\spi_to_i2c_0|Add0~37 ) # (GND)))
+// \spi_to_i2c_0|Add0~39  = CARRY((!\spi_to_i2c_0|Add0~37 ) # (!\spi_to_i2c_0|i2c_busy_cnt [19]))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [19]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~37 ),
+	.combout(\spi_to_i2c_0|Add0~38_combout ),
+	.cout(\spi_to_i2c_0|Add0~39 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~38 .lut_mask = 16'h5A5F;
+defparam \spi_to_i2c_0|Add0~38 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N7
+dffeas \spi_to_i2c_0|i2c_busy_cnt[19] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~38_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [19]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[19] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[19] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N8
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~40 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~40_combout  = (\spi_to_i2c_0|i2c_busy_cnt [20] & (\spi_to_i2c_0|Add0~39  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [20] & (!\spi_to_i2c_0|Add0~39  & VCC))
+// \spi_to_i2c_0|Add0~41  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [20] & !\spi_to_i2c_0|Add0~39 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [20]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~39 ),
+	.combout(\spi_to_i2c_0|Add0~40_combout ),
+	.cout(\spi_to_i2c_0|Add0~41 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~40 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~40 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N9
+dffeas \spi_to_i2c_0|i2c_busy_cnt[20] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~40_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [20]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[20] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[20] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N10
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~42 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~42_combout  = (\spi_to_i2c_0|i2c_busy_cnt [21] & (!\spi_to_i2c_0|Add0~41 )) # (!\spi_to_i2c_0|i2c_busy_cnt [21] & ((\spi_to_i2c_0|Add0~41 ) # (GND)))
+// \spi_to_i2c_0|Add0~43  = CARRY((!\spi_to_i2c_0|Add0~41 ) # (!\spi_to_i2c_0|i2c_busy_cnt [21]))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [21]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~41 ),
+	.combout(\spi_to_i2c_0|Add0~42_combout ),
+	.cout(\spi_to_i2c_0|Add0~43 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~42 .lut_mask = 16'h5A5F;
+defparam \spi_to_i2c_0|Add0~42 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N11
+dffeas \spi_to_i2c_0|i2c_busy_cnt[21] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~42_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [21]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[21] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[21] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N12
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~44 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~44_combout  = (\spi_to_i2c_0|i2c_busy_cnt [22] & (\spi_to_i2c_0|Add0~43  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [22] & (!\spi_to_i2c_0|Add0~43  & VCC))
+// \spi_to_i2c_0|Add0~45  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [22] & !\spi_to_i2c_0|Add0~43 ))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [22]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~43 ),
+	.combout(\spi_to_i2c_0|Add0~44_combout ),
+	.cout(\spi_to_i2c_0|Add0~45 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~44 .lut_mask = 16'hA50A;
+defparam \spi_to_i2c_0|Add0~44 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N13
+dffeas \spi_to_i2c_0|i2c_busy_cnt[22] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~44_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [22]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[22] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[22] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N14
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~46 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~46_combout  = (\spi_to_i2c_0|i2c_busy_cnt [23] & (!\spi_to_i2c_0|Add0~45 )) # (!\spi_to_i2c_0|i2c_busy_cnt [23] & ((\spi_to_i2c_0|Add0~45 ) # (GND)))
+// \spi_to_i2c_0|Add0~47  = CARRY((!\spi_to_i2c_0|Add0~45 ) # (!\spi_to_i2c_0|i2c_busy_cnt [23]))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [23]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~45 ),
+	.combout(\spi_to_i2c_0|Add0~46_combout ),
+	.cout(\spi_to_i2c_0|Add0~47 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~46 .lut_mask = 16'h3C3F;
+defparam \spi_to_i2c_0|Add0~46 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N15
+dffeas \spi_to_i2c_0|i2c_busy_cnt[23] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~46_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [23]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[23] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[23] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N16
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~48 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~48_combout  = (\spi_to_i2c_0|i2c_busy_cnt [24] & (\spi_to_i2c_0|Add0~47  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [24] & (!\spi_to_i2c_0|Add0~47  & VCC))
+// \spi_to_i2c_0|Add0~49  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [24] & !\spi_to_i2c_0|Add0~47 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [24]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~47 ),
+	.combout(\spi_to_i2c_0|Add0~48_combout ),
+	.cout(\spi_to_i2c_0|Add0~49 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~48 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~48 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N19
+dffeas \spi_to_i2c_0|i2c_busy_cnt[25] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~50_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [25]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[25] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[25] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N18
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~50 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~50_combout  = (\spi_to_i2c_0|i2c_busy_cnt [25] & (!\spi_to_i2c_0|Add0~49 )) # (!\spi_to_i2c_0|i2c_busy_cnt [25] & ((\spi_to_i2c_0|Add0~49 ) # (GND)))
+// \spi_to_i2c_0|Add0~51  = CARRY((!\spi_to_i2c_0|Add0~49 ) # (!\spi_to_i2c_0|i2c_busy_cnt [25]))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [25]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~49 ),
+	.combout(\spi_to_i2c_0|Add0~50_combout ),
+	.cout(\spi_to_i2c_0|Add0~51 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~50 .lut_mask = 16'h3C3F;
+defparam \spi_to_i2c_0|Add0~50 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N8
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~6 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~6_combout  = (!\spi_to_i2c_0|Add0~42_combout  & (!\spi_to_i2c_0|Add0~36_combout  & (!\spi_to_i2c_0|Add0~38_combout  & !\spi_to_i2c_0|Add0~40_combout )))
+
+	.dataa(\spi_to_i2c_0|Add0~42_combout ),
+	.datab(\spi_to_i2c_0|Add0~36_combout ),
+	.datac(\spi_to_i2c_0|Add0~38_combout ),
+	.datad(\spi_to_i2c_0|Add0~40_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~6_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~6 .lut_mask = 16'h0001;
+defparam \spi_to_i2c_0|Equal0~6 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N2
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~7 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~7_combout  = (!\spi_to_i2c_0|Add0~46_combout  & !\spi_to_i2c_0|Add0~44_combout )
+
+	.dataa(\spi_to_i2c_0|Add0~46_combout ),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(\spi_to_i2c_0|Add0~44_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~7_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~7 .lut_mask = 16'h0055;
+defparam \spi_to_i2c_0|Equal0~7 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N12
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~8 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~8_combout  = (!\spi_to_i2c_0|Add0~48_combout  & (!\spi_to_i2c_0|Add0~50_combout  & (\spi_to_i2c_0|Equal0~6_combout  & \spi_to_i2c_0|Equal0~7_combout )))
+
+	.dataa(\spi_to_i2c_0|Add0~48_combout ),
+	.datab(\spi_to_i2c_0|Add0~50_combout ),
+	.datac(\spi_to_i2c_0|Equal0~6_combout ),
+	.datad(\spi_to_i2c_0|Equal0~7_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~8_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~8 .lut_mask = 16'h1000;
+defparam \spi_to_i2c_0|Equal0~8 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N10
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~1 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~1_combout  = (!\spi_to_i2c_0|Add0~8_combout  & (!\spi_to_i2c_0|Add0~6_combout  & (!\spi_to_i2c_0|Add0~4_combout  & !\spi_to_i2c_0|Add0~10_combout )))
+
+	.dataa(\spi_to_i2c_0|Add0~8_combout ),
+	.datab(\spi_to_i2c_0|Add0~6_combout ),
+	.datac(\spi_to_i2c_0|Add0~4_combout ),
+	.datad(\spi_to_i2c_0|Add0~10_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~1 .lut_mask = 16'h0001;
+defparam \spi_to_i2c_0|Equal0~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N4
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~2 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~2_combout  = (!\spi_to_i2c_0|Add0~16_combout  & (!\spi_to_i2c_0|Add0~12_combout  & (!\spi_to_i2c_0|Add0~14_combout  & !\spi_to_i2c_0|Add0~18_combout )))
+
+	.dataa(\spi_to_i2c_0|Add0~16_combout ),
+	.datab(\spi_to_i2c_0|Add0~12_combout ),
+	.datac(\spi_to_i2c_0|Add0~14_combout ),
+	.datad(\spi_to_i2c_0|Add0~18_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~2_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~2 .lut_mask = 16'h0001;
+defparam \spi_to_i2c_0|Equal0~2 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N14
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~3 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~3_combout  = (!\spi_to_i2c_0|Add0~20_combout  & (!\spi_to_i2c_0|Add0~24_combout  & (!\spi_to_i2c_0|Add0~22_combout  & !\spi_to_i2c_0|Add0~26_combout )))
+
+	.dataa(\spi_to_i2c_0|Add0~20_combout ),
+	.datab(\spi_to_i2c_0|Add0~24_combout ),
+	.datac(\spi_to_i2c_0|Add0~22_combout ),
+	.datad(\spi_to_i2c_0|Add0~26_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~3_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~3 .lut_mask = 16'h0001;
+defparam \spi_to_i2c_0|Equal0~3 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N24
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~4 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~4_combout  = (!\spi_to_i2c_0|Add0~34_combout  & (!\spi_to_i2c_0|Add0~28_combout  & (!\spi_to_i2c_0|Add0~32_combout  & !\spi_to_i2c_0|Add0~30_combout )))
+
+	.dataa(\spi_to_i2c_0|Add0~34_combout ),
+	.datab(\spi_to_i2c_0|Add0~28_combout ),
+	.datac(\spi_to_i2c_0|Add0~32_combout ),
+	.datad(\spi_to_i2c_0|Add0~30_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~4_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~4 .lut_mask = 16'h0001;
+defparam \spi_to_i2c_0|Equal0~4 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N22
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~5 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~5_combout  = (\spi_to_i2c_0|Equal0~1_combout  & (\spi_to_i2c_0|Equal0~2_combout  & (\spi_to_i2c_0|Equal0~3_combout  & \spi_to_i2c_0|Equal0~4_combout )))
+
+	.dataa(\spi_to_i2c_0|Equal0~1_combout ),
+	.datab(\spi_to_i2c_0|Equal0~2_combout ),
+	.datac(\spi_to_i2c_0|Equal0~3_combout ),
+	.datad(\spi_to_i2c_0|Equal0~4_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~5_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~5 .lut_mask = 16'h8000;
+defparam \spi_to_i2c_0|Equal0~5 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N31
+dffeas \spi_to_i2c_0|i2c_busy_cnt[31] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~62_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [31]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[31] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[31] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N20
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~52 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~52_combout  = (\spi_to_i2c_0|i2c_busy_cnt [26] & (\spi_to_i2c_0|Add0~51  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [26] & (!\spi_to_i2c_0|Add0~51  & VCC))
+// \spi_to_i2c_0|Add0~53  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [26] & !\spi_to_i2c_0|Add0~51 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [26]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~51 ),
+	.combout(\spi_to_i2c_0|Add0~52_combout ),
+	.cout(\spi_to_i2c_0|Add0~53 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~52 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~52 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N21
+dffeas \spi_to_i2c_0|i2c_busy_cnt[26] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~52_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [26]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[26] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[26] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N22
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~54 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~54_combout  = (\spi_to_i2c_0|i2c_busy_cnt [27] & (!\spi_to_i2c_0|Add0~53 )) # (!\spi_to_i2c_0|i2c_busy_cnt [27] & ((\spi_to_i2c_0|Add0~53 ) # (GND)))
+// \spi_to_i2c_0|Add0~55  = CARRY((!\spi_to_i2c_0|Add0~53 ) # (!\spi_to_i2c_0|i2c_busy_cnt [27]))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [27]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~53 ),
+	.combout(\spi_to_i2c_0|Add0~54_combout ),
+	.cout(\spi_to_i2c_0|Add0~55 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~54 .lut_mask = 16'h5A5F;
+defparam \spi_to_i2c_0|Add0~54 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N23
+dffeas \spi_to_i2c_0|i2c_busy_cnt[27] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~54_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [27]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[27] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[27] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N24
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~56 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~56_combout  = (\spi_to_i2c_0|i2c_busy_cnt [28] & (\spi_to_i2c_0|Add0~55  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [28] & (!\spi_to_i2c_0|Add0~55  & VCC))
+// \spi_to_i2c_0|Add0~57  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [28] & !\spi_to_i2c_0|Add0~55 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [28]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~55 ),
+	.combout(\spi_to_i2c_0|Add0~56_combout ),
+	.cout(\spi_to_i2c_0|Add0~57 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~56 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~56 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N25
+dffeas \spi_to_i2c_0|i2c_busy_cnt[28] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~56_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [28]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[28] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[28] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N26
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~58 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~58_combout  = (\spi_to_i2c_0|i2c_busy_cnt [29] & (!\spi_to_i2c_0|Add0~57 )) # (!\spi_to_i2c_0|i2c_busy_cnt [29] & ((\spi_to_i2c_0|Add0~57 ) # (GND)))
+// \spi_to_i2c_0|Add0~59  = CARRY((!\spi_to_i2c_0|Add0~57 ) # (!\spi_to_i2c_0|i2c_busy_cnt [29]))
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [29]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~57 ),
+	.combout(\spi_to_i2c_0|Add0~58_combout ),
+	.cout(\spi_to_i2c_0|Add0~59 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~58 .lut_mask = 16'h5A5F;
+defparam \spi_to_i2c_0|Add0~58 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N27
+dffeas \spi_to_i2c_0|i2c_busy_cnt[29] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~58_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [29]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[29] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[29] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N28
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~60 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~60_combout  = (\spi_to_i2c_0|i2c_busy_cnt [30] & (\spi_to_i2c_0|Add0~59  $ (GND))) # (!\spi_to_i2c_0|i2c_busy_cnt [30] & (!\spi_to_i2c_0|Add0~59  & VCC))
+// \spi_to_i2c_0|Add0~61  = CARRY((\spi_to_i2c_0|i2c_busy_cnt [30] & !\spi_to_i2c_0|Add0~59 ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_busy_cnt [30]),
+	.datac(gnd),
+	.datad(vcc),
+	.cin(\spi_to_i2c_0|Add0~59 ),
+	.combout(\spi_to_i2c_0|Add0~60_combout ),
+	.cout(\spi_to_i2c_0|Add0~61 ));
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~60 .lut_mask = 16'hC30C;
+defparam \spi_to_i2c_0|Add0~60 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: FF_X18_Y22_N29
+dffeas \spi_to_i2c_0|i2c_busy_cnt[30] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Add0~60_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [30]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[30] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[30] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X18_Y22_N30
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Add0~62 (
+// Equation(s):
+// \spi_to_i2c_0|Add0~62_combout  = \spi_to_i2c_0|i2c_busy_cnt [31] $ (\spi_to_i2c_0|Add0~61 )
+
+	.dataa(\spi_to_i2c_0|i2c_busy_cnt [31]),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(gnd),
+	.cin(\spi_to_i2c_0|Add0~61 ),
+	.combout(\spi_to_i2c_0|Add0~62_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Add0~62 .lut_mask = 16'h5A5A;
+defparam \spi_to_i2c_0|Add0~62 .sum_lutc_input = "cin";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N28
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~0 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~0_combout  = (!\spi_to_i2c_0|Add0~52_combout  & (!\spi_to_i2c_0|Add0~54_combout  & (!\spi_to_i2c_0|Add0~58_combout  & !\spi_to_i2c_0|Add0~56_combout )))
+
+	.dataa(\spi_to_i2c_0|Add0~52_combout ),
+	.datab(\spi_to_i2c_0|Add0~54_combout ),
+	.datac(\spi_to_i2c_0|Add0~58_combout ),
+	.datad(\spi_to_i2c_0|Add0~56_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~0 .lut_mask = 16'h0001;
+defparam \spi_to_i2c_0|Equal0~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N20
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~11 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~11_combout  = (!\spi_to_i2c_0|Add0~62_combout  & (!\spi_to_i2c_0|Add0~60_combout  & \spi_to_i2c_0|Equal0~0_combout ))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|Add0~62_combout ),
+	.datac(\spi_to_i2c_0|Add0~60_combout ),
+	.datad(\spi_to_i2c_0|Equal0~0_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~11_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~11 .lut_mask = 16'h0300;
+defparam \spi_to_i2c_0|Equal0~11 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N6
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~12 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~12_combout  = (\spi_to_i2c_0|Equal0~8_combout  & (!\spi_to_i2c_0|Add0~0_combout  & (\spi_to_i2c_0|Equal0~5_combout  & \spi_to_i2c_0|Equal0~11_combout )))
+
+	.dataa(\spi_to_i2c_0|Equal0~8_combout ),
+	.datab(\spi_to_i2c_0|Add0~0_combout ),
+	.datac(\spi_to_i2c_0|Equal0~5_combout ),
+	.datad(\spi_to_i2c_0|Equal0~11_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~12_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~12 .lut_mask = 16'h2000;
+defparam \spi_to_i2c_0|Equal0~12 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N30
+fiftyfivenm_lcell_comb \spi_to_i2c_0|run_once~0 (
+// Equation(s):
+// \spi_to_i2c_0|run_once~0_combout  = (\spi_to_i2c_0|run_once~q ) # ((\spi_to_i2c_0|Add0~2_combout  & (!\i2c_master_0|busy~reg0_q  & \spi_to_i2c_0|Equal0~12_combout )))
+
+	.dataa(\spi_to_i2c_0|Add0~2_combout ),
+	.datab(\i2c_master_0|busy~reg0_q ),
+	.datac(\spi_to_i2c_0|run_once~q ),
+	.datad(\spi_to_i2c_0|Equal0~12_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|run_once~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|run_once~0 .lut_mask = 16'hF2F0;
+defparam \spi_to_i2c_0|run_once~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X19_Y22_N31
+dffeas \spi_to_i2c_0|run_once (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|run_once~0_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|run_once~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|run_once .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|run_once .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y23_N30
+fiftyfivenm_lcell_comb \spi_to_i2c_0|i2c_busy_prev~0 (
+// Equation(s):
+// \spi_to_i2c_0|i2c_busy_prev~0_combout  = (\reset_n~input_o  & !\spi_to_i2c_0|run_once~q )
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(\reset_n~input_o ),
+	.datad(\spi_to_i2c_0|run_once~q ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|i2c_busy_prev~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_prev~0 .lut_mask = 16'h00F0;
+defparam \spi_to_i2c_0|i2c_busy_prev~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X19_Y23_N21
+dffeas \spi_to_i2c_0|i2c_busy_prev (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(gnd),
+	.asdata(\i2c_master_0|busy~reg0_q ),
+	.clrn(vcc),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(\spi_to_i2c_0|i2c_busy_prev~0_combout ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_prev~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_prev .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_prev .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y23_N20
+fiftyfivenm_lcell_comb \spi_to_i2c_0|process_0~0 (
+// Equation(s):
+// \spi_to_i2c_0|process_0~0_combout  = (\i2c_master_0|busy~reg0_q  & !\spi_to_i2c_0|i2c_busy_prev~q )
+
+	.dataa(\i2c_master_0|busy~reg0_q ),
+	.datab(gnd),
+	.datac(\spi_to_i2c_0|i2c_busy_prev~q ),
+	.datad(gnd),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|process_0~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|process_0~0 .lut_mask = 16'h0A0A;
+defparam \spi_to_i2c_0|process_0~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N18
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~9 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~9_combout  = (\spi_to_i2c_0|Equal0~5_combout  & \spi_to_i2c_0|Equal0~8_combout )
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(\spi_to_i2c_0|Equal0~5_combout ),
+	.datad(\spi_to_i2c_0|Equal0~8_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~9_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~9 .lut_mask = 16'hF000;
+defparam \spi_to_i2c_0|Equal0~9 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N0
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Equal0~10 (
+// Equation(s):
+// \spi_to_i2c_0|Equal0~10_combout  = (!\spi_to_i2c_0|Add0~60_combout  & (\spi_to_i2c_0|Equal0~0_combout  & (!\spi_to_i2c_0|Add0~62_combout  & \spi_to_i2c_0|Equal0~9_combout )))
+
+	.dataa(\spi_to_i2c_0|Add0~60_combout ),
+	.datab(\spi_to_i2c_0|Equal0~0_combout ),
+	.datac(\spi_to_i2c_0|Add0~62_combout ),
+	.datad(\spi_to_i2c_0|Equal0~9_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Equal0~10_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Equal0~10 .lut_mask = 16'h0400;
+defparam \spi_to_i2c_0|Equal0~10 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N26
+fiftyfivenm_lcell_comb \spi_to_i2c_0|i2c_busy_cnt~0 (
+// Equation(s):
+// \spi_to_i2c_0|i2c_busy_cnt~0_combout  = (\spi_to_i2c_0|Add0~2_combout  & ((\i2c_master_0|busy~reg0_q ) # ((\spi_to_i2c_0|Add0~0_combout ) # (!\spi_to_i2c_0|Equal0~10_combout ))))
+
+	.dataa(\spi_to_i2c_0|Add0~2_combout ),
+	.datab(\i2c_master_0|busy~reg0_q ),
+	.datac(\spi_to_i2c_0|Add0~0_combout ),
+	.datad(\spi_to_i2c_0|Equal0~10_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|i2c_busy_cnt~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt~0 .lut_mask = 16'hA8AA;
+defparam \spi_to_i2c_0|i2c_busy_cnt~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X19_Y22_N27
+dffeas \spi_to_i2c_0|i2c_busy_cnt[1] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|i2c_busy_cnt~0_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_busy_cnt [1]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_busy_cnt[1] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_busy_cnt[1] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y22_N16
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Selector0~0 (
+// Equation(s):
+// \spi_to_i2c_0|Selector0~0_combout  = (\spi_to_i2c_0|Equal0~10_combout  & (((\spi_to_i2c_0|Add0~0_combout  & \spi_to_i2c_0|i2c_ena~q )) # (!\spi_to_i2c_0|Add0~2_combout ))) # (!\spi_to_i2c_0|Equal0~10_combout  & (((\spi_to_i2c_0|i2c_ena~q ))))
+
+	.dataa(\spi_to_i2c_0|Add0~2_combout ),
+	.datab(\spi_to_i2c_0|Add0~0_combout ),
+	.datac(\spi_to_i2c_0|i2c_ena~q ),
+	.datad(\spi_to_i2c_0|Equal0~10_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Selector0~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Selector0~0 .lut_mask = 16'hD5F0;
+defparam \spi_to_i2c_0|Selector0~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X19_Y22_N17
+dffeas \spi_to_i2c_0|i2c_ena (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Selector0~0_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(!\spi_to_i2c_0|run_once~q ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_ena~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_ena .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_ena .power_up = "low";
+// synopsys translate_on
+
+// Location: FF_X22_Y23_N9
+dffeas \i2c_master_0|state.stop (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(gnd),
+	.asdata(\i2c_master_0|Selector22~0_combout ),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|state.stop~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|state.stop .is_wysiwyg = "true";
+defparam \i2c_master_0|state.stop .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N28
+fiftyfivenm_lcell_comb \i2c_master_0|Selector17~0 (
+// Equation(s):
+// \i2c_master_0|Selector17~0_combout  = (!\i2c_master_0|state.stop~q  & ((\spi_to_i2c_0|i2c_ena~q ) # (\i2c_master_0|state.ready~q )))
+
+	.dataa(gnd),
+	.datab(\spi_to_i2c_0|i2c_ena~q ),
+	.datac(\i2c_master_0|state.ready~q ),
+	.datad(\i2c_master_0|state.stop~q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector17~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector17~0 .lut_mask = 16'h00FC;
+defparam \i2c_master_0|Selector17~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X22_Y23_N29
+dffeas \i2c_master_0|state.ready (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|Selector17~0_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|state.ready~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|state.ready .is_wysiwyg = "true";
+defparam \i2c_master_0|state.ready .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N4
+fiftyfivenm_lcell_comb \i2c_master_0|Selector18~0 (
+// Equation(s):
+// \i2c_master_0|Selector18~0_combout  = (\spi_to_i2c_0|i2c_ena~q  & !\i2c_master_0|state.ready~q )
+
+	.dataa(\spi_to_i2c_0|i2c_ena~q ),
+	.datab(gnd),
+	.datac(\i2c_master_0|state.ready~q ),
+	.datad(gnd),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector18~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector18~0 .lut_mask = 16'h0A0A;
+defparam \i2c_master_0|Selector18~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X20_Y23_N23
+dffeas \i2c_master_0|state.start (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(gnd),
+	.asdata(\i2c_master_0|Selector18~0_combout ),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(vcc),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|state.start~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|state.start .is_wysiwyg = "true";
+defparam \i2c_master_0|state.start .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N12
+fiftyfivenm_lcell_comb \i2c_master_0|Selector23~0 (
+// Equation(s):
+// \i2c_master_0|Selector23~0_combout  = (\i2c_master_0|state.start~q ) # ((\i2c_master_0|scl_ena~q  & ((\spi_to_i2c_0|i2c_ena~q ) # (!\i2c_master_0|state.slv_ack2~q ))))
+
+	.dataa(\i2c_master_0|state.start~q ),
+	.datab(\spi_to_i2c_0|i2c_ena~q ),
+	.datac(\i2c_master_0|scl_ena~q ),
+	.datad(\i2c_master_0|state.slv_ack2~q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector23~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector23~0 .lut_mask = 16'hEAFA;
+defparam \i2c_master_0|Selector23~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X20_Y23_N13
+dffeas \i2c_master_0|scl_ena (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|Selector23~0_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|scl_ena~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|scl_ena .is_wysiwyg = "true";
+defparam \i2c_master_0|scl_ena .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X24_Y23_N10
+fiftyfivenm_lcell_comb \i2c_master_0|scl_clk~1 (
+// Equation(s):
+// \i2c_master_0|scl_clk~1_combout  = (!\i2c_master_0|process_0~4_combout ) # (!\i2c_master_0|LessThan1~0_combout )
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(\i2c_master_0|LessThan1~0_combout ),
+	.datad(\i2c_master_0|process_0~4_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|scl_clk~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|scl_clk~1 .lut_mask = 16'h0FFF;
+defparam \i2c_master_0|scl_clk~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X24_Y23_N11
+dffeas \i2c_master_0|scl_clk~en (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\i2c_master_0|scl_clk~1_combout ),
+	.asdata(vcc),
+	.clrn(vcc),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\reset_n~input_o ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|scl_clk~en_q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|scl_clk~en .is_wysiwyg = "true";
+defparam \i2c_master_0|scl_clk~en .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N22
+fiftyfivenm_lcell_comb \i2c_master_0|scl~1 (
+// Equation(s):
+// \i2c_master_0|scl~1_combout  = (!\i2c_master_0|scl_clk~en_q ) # (!\i2c_master_0|scl_ena~q )
+
+	.dataa(\i2c_master_0|scl_ena~q ),
+	.datab(gnd),
+	.datac(gnd),
+	.datad(\i2c_master_0|scl_clk~en_q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|scl~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|scl~1 .lut_mask = 16'h55FF;
+defparam \i2c_master_0|scl~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N8
+fiftyfivenm_lcell_comb \i2c_master_0|Selector24~2 (
+// Equation(s):
+// \i2c_master_0|Selector24~2_combout  = (\i2c_master_0|state.stop~q ) # (!\i2c_master_0|state.ready~q )
+
+	.dataa(gnd),
+	.datab(gnd),
+	.datac(\i2c_master_0|state.stop~q ),
+	.datad(\i2c_master_0|state.ready~q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector24~2_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector24~2 .lut_mask = 16'hF0FF;
+defparam \i2c_master_0|Selector24~2 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N6
+fiftyfivenm_lcell_comb \i2c_master_0|Selector24~3 (
+// Equation(s):
+// \i2c_master_0|Selector24~3_combout  = (!\i2c_master_0|sda_int~q  & ((\i2c_master_0|Selector24~2_combout ) # ((\i2c_master_0|state.slv_ack2~q  & !\spi_to_i2c_0|i2c_ena~q ))))
+
+	.dataa(\i2c_master_0|sda_int~q ),
+	.datab(\i2c_master_0|state.slv_ack2~q ),
+	.datac(\i2c_master_0|Selector24~2_combout ),
+	.datad(\spi_to_i2c_0|i2c_ena~q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector24~3_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector24~3 .lut_mask = 16'h5054;
+defparam \i2c_master_0|Selector24~3 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X19_Y23_N0
+fiftyfivenm_lcell_comb \spi_to_i2c_0|Selector2~0 (
+// Equation(s):
+// \spi_to_i2c_0|Selector2~0_combout  = (\spi_to_i2c_0|Add0~2_combout  & (((\spi_to_i2c_0|i2c_data_wr [4])))) # (!\spi_to_i2c_0|Add0~2_combout  & ((\spi_to_i2c_0|Equal0~10_combout  & (\spi_to_i2c_0|Add0~0_combout )) # (!\spi_to_i2c_0|Equal0~10_combout  & 
+// ((\spi_to_i2c_0|i2c_data_wr [4])))))
+
+	.dataa(\spi_to_i2c_0|Add0~2_combout ),
+	.datab(\spi_to_i2c_0|Add0~0_combout ),
+	.datac(\spi_to_i2c_0|i2c_data_wr [4]),
+	.datad(\spi_to_i2c_0|Equal0~10_combout ),
+	.cin(gnd),
+	.combout(\spi_to_i2c_0|Selector2~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \spi_to_i2c_0|Selector2~0 .lut_mask = 16'hE4F0;
+defparam \spi_to_i2c_0|Selector2~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X19_Y23_N1
+dffeas \spi_to_i2c_0|i2c_data_wr[4] (
+	.clk(\clock~inputclkctrl_outclk ),
+	.d(\spi_to_i2c_0|Selector2~0_combout ),
+	.asdata(vcc),
+	.clrn(vcc),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(\spi_to_i2c_0|i2c_busy_prev~0_combout ),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\spi_to_i2c_0|i2c_data_wr [4]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \spi_to_i2c_0|i2c_data_wr[4] .is_wysiwyg = "true";
+defparam \spi_to_i2c_0|i2c_data_wr[4] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N2
+fiftyfivenm_lcell_comb \i2c_master_0|addr_rw[5]~0 (
+// Equation(s):
+// \i2c_master_0|addr_rw[5]~0_combout  = (\reset_n~input_o  & (\spi_to_i2c_0|i2c_ena~q  & ((\i2c_master_0|state.slv_ack2~q ) # (!\i2c_master_0|state.ready~q ))))
+
+	.dataa(\reset_n~input_o ),
+	.datab(\i2c_master_0|state.slv_ack2~q ),
+	.datac(\spi_to_i2c_0|i2c_ena~q ),
+	.datad(\i2c_master_0|state.ready~q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|addr_rw[5]~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|addr_rw[5]~0 .lut_mask = 16'h80A0;
+defparam \i2c_master_0|addr_rw[5]~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N14
+fiftyfivenm_lcell_comb \i2c_master_0|data_tx[4]~0 (
+// Equation(s):
+// \i2c_master_0|data_tx[4]~0_combout  = (\i2c_master_0|addr_rw[5]~0_combout  & (\spi_to_i2c_0|i2c_data_wr [4])) # (!\i2c_master_0|addr_rw[5]~0_combout  & ((\i2c_master_0|data_tx [4])))
+
+	.dataa(\spi_to_i2c_0|i2c_data_wr [4]),
+	.datab(\i2c_master_0|addr_rw[5]~0_combout ),
+	.datac(\i2c_master_0|data_tx [4]),
+	.datad(gnd),
+	.cin(gnd),
+	.combout(\i2c_master_0|data_tx[4]~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|data_tx[4]~0 .lut_mask = 16'hB8B8;
+defparam \i2c_master_0|data_tx[4]~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X22_Y23_N15
+dffeas \i2c_master_0|data_tx[4] (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|data_tx[4]~0_combout ),
+	.asdata(vcc),
+	.clrn(vcc),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|data_tx [4]),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|data_tx[4] .is_wysiwyg = "true";
+defparam \i2c_master_0|data_tx[4] .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N24
+fiftyfivenm_lcell_comb \i2c_master_0|Selector24~0 (
+// Equation(s):
+// \i2c_master_0|Selector24~0_combout  = (\i2c_master_0|state.wr~q  & ((\i2c_master_0|bit_cnt [1] & ((\i2c_master_0|bit_cnt [0]) # (\i2c_master_0|data_tx [4]))) # (!\i2c_master_0|bit_cnt [1] & (\i2c_master_0|bit_cnt [0] & \i2c_master_0|data_tx [4]))))
+
+	.dataa(\i2c_master_0|bit_cnt [1]),
+	.datab(\i2c_master_0|bit_cnt [0]),
+	.datac(\i2c_master_0|data_tx [4]),
+	.datad(\i2c_master_0|state.wr~q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector24~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector24~0 .lut_mask = 16'hE800;
+defparam \i2c_master_0|Selector24~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N12
+fiftyfivenm_lcell_comb \i2c_master_0|Selector24~1 (
+// Equation(s):
+// \i2c_master_0|Selector24~1_combout  = (!\i2c_master_0|Add1~0_combout  & ((\i2c_master_0|Selector24~0_combout ) # ((\i2c_master_0|state.command~q  & !\i2c_master_0|bit_cnt [1]))))
+
+	.dataa(\i2c_master_0|state.command~q ),
+	.datab(\i2c_master_0|bit_cnt [1]),
+	.datac(\i2c_master_0|Add1~0_combout ),
+	.datad(\i2c_master_0|Selector24~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector24~1_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector24~1 .lut_mask = 16'h0F02;
+defparam \i2c_master_0|Selector24~1 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N22
+fiftyfivenm_lcell_comb \i2c_master_0|Selector24~4 (
+// Equation(s):
+// \i2c_master_0|Selector24~4_combout  = (\i2c_master_0|Selector24~3_combout ) # ((\i2c_master_0|Selector24~1_combout ) # ((\i2c_master_0|Equal1~0_combout  & \i2c_master_0|WideOr8~0_combout )))
+
+	.dataa(\i2c_master_0|Selector24~3_combout ),
+	.datab(\i2c_master_0|Equal1~0_combout ),
+	.datac(\i2c_master_0|WideOr8~0_combout ),
+	.datad(\i2c_master_0|Selector24~1_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector24~4_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector24~4 .lut_mask = 16'hFFEA;
+defparam \i2c_master_0|Selector24~4 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N10
+fiftyfivenm_lcell_comb \i2c_master_0|Selector24~6 (
+// Equation(s):
+// \i2c_master_0|Selector24~6_combout  = (\i2c_master_0|state.slv_ack1~q  & ((\i2c_master_0|bit_cnt [1] & ((\i2c_master_0|data_tx [4]))) # (!\i2c_master_0|bit_cnt [1] & (!\i2c_master_0|bit_cnt [0]))))
+
+	.dataa(\i2c_master_0|bit_cnt [0]),
+	.datab(\i2c_master_0|state.slv_ack1~q ),
+	.datac(\i2c_master_0|bit_cnt [1]),
+	.datad(\i2c_master_0|data_tx [4]),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector24~6_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector24~6 .lut_mask = 16'hC404;
+defparam \i2c_master_0|Selector24~6 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N0
+fiftyfivenm_lcell_comb \i2c_master_0|Selector24~7 (
+// Equation(s):
+// \i2c_master_0|Selector24~7_combout  = (\i2c_master_0|Selector24~6_combout ) # ((\i2c_master_0|state.start~q  & (\i2c_master_0|bit_cnt [0] $ (\i2c_master_0|bit_cnt [1]))))
+
+	.dataa(\i2c_master_0|state.start~q ),
+	.datab(\i2c_master_0|bit_cnt [0]),
+	.datac(\i2c_master_0|bit_cnt [1]),
+	.datad(\i2c_master_0|Selector24~6_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector24~7_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector24~7 .lut_mask = 16'hFF28;
+defparam \i2c_master_0|Selector24~7 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N0
+fiftyfivenm_lcell_comb \i2c_master_0|Selector24~5 (
+// Equation(s):
+// \i2c_master_0|Selector24~5_combout  = (\i2c_master_0|Selector20~0_combout  & ((\i2c_master_0|bit_cnt [1] & ((\spi_to_i2c_0|i2c_data_wr [4]))) # (!\i2c_master_0|bit_cnt [1] & (!\i2c_master_0|bit_cnt [0]))))
+
+	.dataa(\i2c_master_0|bit_cnt [1]),
+	.datab(\i2c_master_0|bit_cnt [0]),
+	.datac(\spi_to_i2c_0|i2c_data_wr [4]),
+	.datad(\i2c_master_0|Selector20~0_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector24~5_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector24~5 .lut_mask = 16'hB100;
+defparam \i2c_master_0|Selector24~5 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: LCCOMB_X22_Y23_N18
+fiftyfivenm_lcell_comb \i2c_master_0|Selector24~8 (
+// Equation(s):
+// \i2c_master_0|Selector24~8_combout  = (!\i2c_master_0|Selector24~4_combout  & ((\i2c_master_0|bit_cnt [2]) # ((!\i2c_master_0|Selector24~7_combout  & !\i2c_master_0|Selector24~5_combout ))))
+
+	.dataa(\i2c_master_0|Selector24~4_combout ),
+	.datab(\i2c_master_0|bit_cnt [2]),
+	.datac(\i2c_master_0|Selector24~7_combout ),
+	.datad(\i2c_master_0|Selector24~5_combout ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector24~8_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector24~8 .lut_mask = 16'h4445;
+defparam \i2c_master_0|Selector24~8 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: FF_X22_Y23_N19
+dffeas \i2c_master_0|sda_int (
+	.clk(\i2c_master_0|data_clk~clkctrl_outclk ),
+	.d(\i2c_master_0|Selector24~8_combout ),
+	.asdata(vcc),
+	.clrn(\reset_n~input_o ),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.q(\i2c_master_0|sda_int~q ),
+	.prn(vcc));
+// synopsys translate_off
+defparam \i2c_master_0|sda_int .is_wysiwyg = "true";
+defparam \i2c_master_0|sda_int .power_up = "low";
+// synopsys translate_on
+
+// Location: LCCOMB_X20_Y23_N28
+fiftyfivenm_lcell_comb \i2c_master_0|Selector29~0 (
+// Equation(s):
+// \i2c_master_0|Selector29~0_combout  = (\i2c_master_0|state.start~q  & (\i2c_master_0|data_clk~q )) # (!\i2c_master_0|state.start~q  & ((\i2c_master_0|state.stop~q  & (!\i2c_master_0|data_clk~q )) # (!\i2c_master_0|state.stop~q  & 
+// ((!\i2c_master_0|sda_int~q )))))
+
+	.dataa(\i2c_master_0|state.start~q ),
+	.datab(\i2c_master_0|data_clk~q ),
+	.datac(\i2c_master_0|state.stop~q ),
+	.datad(\i2c_master_0|sda_int~q ),
+	.cin(gnd),
+	.combout(\i2c_master_0|Selector29~0_combout ),
+	.cout());
+// synopsys translate_off
+defparam \i2c_master_0|Selector29~0 .lut_mask = 16'h989D;
+defparam \i2c_master_0|Selector29~0 .sum_lutc_input = "datac";
+// synopsys translate_on
+
+// Location: IOIBUF_X31_Y1_N8
+fiftyfivenm_io_ibuf \A[0]~input (
+	.i(A[0]),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\A[0]~input_o ));
+// synopsys translate_off
+defparam \A[0]~input .bus_hold = "false";
+defparam \A[0]~input .listen_to_nsleep_signal = "false";
+defparam \A[0]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X31_Y1_N22
+fiftyfivenm_io_ibuf \A[1]~input (
+	.i(A[1]),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\A[1]~input_o ));
+// synopsys translate_off
+defparam \A[1]~input .bus_hold = "false";
+defparam \A[1]~input .listen_to_nsleep_signal = "false";
+defparam \A[1]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X31_Y1_N1
+fiftyfivenm_io_ibuf \B[0]~input (
+	.i(B[0]),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\B[0]~input_o ));
+// synopsys translate_off
+defparam \B[0]~input .bus_hold = "false";
+defparam \B[0]~input .listen_to_nsleep_signal = "false";
+defparam \B[0]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X31_Y1_N15
+fiftyfivenm_io_ibuf \B[1]~input (
+	.i(B[1]),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\B[1]~input_o ));
+// synopsys translate_off
+defparam \B[1]~input .bus_hold = "false";
+defparam \B[1]~input .listen_to_nsleep_signal = "false";
+defparam \B[1]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X6_Y10_N22
+fiftyfivenm_io_ibuf \LED1~input (
+	.i(LED1),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\LED1~input_o ));
+// synopsys translate_off
+defparam \LED1~input .bus_hold = "false";
+defparam \LED1~input .listen_to_nsleep_signal = "false";
+defparam \LED1~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X6_Y10_N29
+fiftyfivenm_io_ibuf \LED2~input (
+	.i(LED2),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\LED2~input_o ));
+// synopsys translate_off
+defparam \LED2~input .bus_hold = "false";
+defparam \LED2~input .listen_to_nsleep_signal = "false";
+defparam \LED2~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X1_Y10_N15
+fiftyfivenm_io_ibuf \LED5~input (
+	.i(LED5),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\LED5~input_o ));
+// synopsys translate_off
+defparam \LED5~input .bus_hold = "false";
+defparam \LED5~input .listen_to_nsleep_signal = "false";
+defparam \LED5~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X31_Y6_N8
+fiftyfivenm_io_ibuf \siod~input (
+	.i(siod),
+	.ibar(gnd),
+	.nsleep(vcc),
+	.o(\siod~input_o ));
+// synopsys translate_off
+defparam \siod~input .bus_hold = "false";
+defparam \siod~input .listen_to_nsleep_signal = "false";
+defparam \siod~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: UNVM_X0_Y11_N40
+fiftyfivenm_unvm \~QUARTUS_CREATED_UNVM~ (
+	.arclk(vcc),
+	.arshft(vcc),
+	.drclk(vcc),
+	.drshft(vcc),
+	.drdin(vcc),
+	.nprogram(vcc),
+	.nerase(vcc),
+	.nosc_ena(\~QUARTUS_CREATED_GND~I_combout ),
+	.par_en(vcc),
+	.xe_ye(\~QUARTUS_CREATED_GND~I_combout ),
+	.se(\~QUARTUS_CREATED_GND~I_combout ),
+	.ardin(23'b11111111111111111111111),
+	.busy(\~QUARTUS_CREATED_UNVM~~busy ),
+	.osc(),
+	.bgpbusy(),
+	.sp_pass(),
+	.se_pass(),
+	.drdout());
+// synopsys translate_off
+defparam \~QUARTUS_CREATED_UNVM~ .addr_range1_end_addr = -1;
+defparam \~QUARTUS_CREATED_UNVM~ .addr_range1_offset = -1;
+defparam \~QUARTUS_CREATED_UNVM~ .addr_range2_offset = -1;
+defparam \~QUARTUS_CREATED_UNVM~ .is_compressed_image = "false";
+defparam \~QUARTUS_CREATED_UNVM~ .is_dual_boot = "false";
+defparam \~QUARTUS_CREATED_UNVM~ .is_eram_skip = "false";
+defparam \~QUARTUS_CREATED_UNVM~ .max_ufm_valid_addr = -1;
+defparam \~QUARTUS_CREATED_UNVM~ .max_valid_addr = -1;
+defparam \~QUARTUS_CREATED_UNVM~ .min_ufm_valid_addr = -1;
+defparam \~QUARTUS_CREATED_UNVM~ .min_valid_addr = -1;
+defparam \~QUARTUS_CREATED_UNVM~ .part_name = "quartus_created_unvm";
+defparam \~QUARTUS_CREATED_UNVM~ .reserve_block = "true";
+// synopsys translate_on
+
+// Location: ADCBLOCK_X10_Y24_N0
+fiftyfivenm_adcblock \~QUARTUS_CREATED_ADC1~ (
+	.soc(\~QUARTUS_CREATED_GND~I_combout ),
+	.usr_pwd(vcc),
+	.tsen(\~QUARTUS_CREATED_GND~I_combout ),
+	.clkin_from_pll_c0(gnd),
+	.chsel({\~QUARTUS_CREATED_GND~I_combout ,\~QUARTUS_CREATED_GND~I_combout ,\~QUARTUS_CREATED_GND~I_combout ,\~QUARTUS_CREATED_GND~I_combout ,\~QUARTUS_CREATED_GND~I_combout }),
+	.eoc(\~QUARTUS_CREATED_ADC1~~eoc ),
+	.dout());
+// synopsys translate_off
+defparam \~QUARTUS_CREATED_ADC1~ .analog_input_pin_mask = 0;
+defparam \~QUARTUS_CREATED_ADC1~ .clkdiv = 1;
+defparam \~QUARTUS_CREATED_ADC1~ .device_partname_fivechar_prefix = "none";
+defparam \~QUARTUS_CREATED_ADC1~ .is_this_first_or_second_adc = 1;
+defparam \~QUARTUS_CREATED_ADC1~ .prescalar = 0;
+defparam \~QUARTUS_CREATED_ADC1~ .pwd = 1;
+defparam \~QUARTUS_CREATED_ADC1~ .refsel = 0;
+defparam \~QUARTUS_CREATED_ADC1~ .reserve_block = "true";
+defparam \~QUARTUS_CREATED_ADC1~ .testbits = 66;
+defparam \~QUARTUS_CREATED_ADC1~ .tsclkdiv = 1;
+defparam \~QUARTUS_CREATED_ADC1~ .tsclksel = 0;
+// synopsys translate_on
+
+assign LED1 = \LED1~output_o ;
+
+assign LED2 = \LED2~output_o ;
+
+assign LED5 = \LED5~output_o ;
+
+assign sioc = \sioc~output_o ;
+
+assign siod = \siod~output_o ;
+
+endmodule
+
+module hard_block (
+
+	devpor,
+	devclrn,
+	devoe);
+
+// Design Ports Information
+// ~ALTERA_TMS~	=>  Location: PIN_16,	 I/O Standard: 2.5 V Schmitt Trigger,	 Current Strength: Default
+// ~ALTERA_TCK~	=>  Location: PIN_18,	 I/O Standard: 2.5 V Schmitt Trigger,	 Current Strength: Default
+// ~ALTERA_TDI~	=>  Location: PIN_19,	 I/O Standard: 2.5 V Schmitt Trigger,	 Current Strength: Default
+// ~ALTERA_TDO~	=>  Location: PIN_20,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// ~ALTERA_CONFIG_SEL~	=>  Location: PIN_126,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// ~ALTERA_nCONFIG~	=>  Location: PIN_129,	 I/O Standard: 2.5 V Schmitt Trigger,	 Current Strength: Default
+// ~ALTERA_nSTATUS~	=>  Location: PIN_136,	 I/O Standard: 2.5 V Schmitt Trigger,	 Current Strength: Default
+// ~ALTERA_CONF_DONE~	=>  Location: PIN_138,	 I/O Standard: 2.5 V Schmitt Trigger,	 Current Strength: Default
+
+input 	devpor;
+input 	devclrn;
+input 	devoe;
+
+wire gnd;
+wire vcc;
+wire unknown;
+
+assign gnd = 1'b0;
+assign vcc = 1'b1;
+assign unknown = 1'bx;
+
+wire \~ALTERA_TMS~~padout ;
+wire \~ALTERA_TCK~~padout ;
+wire \~ALTERA_TDI~~padout ;
+wire \~ALTERA_CONFIG_SEL~~padout ;
+wire \~ALTERA_nCONFIG~~padout ;
+wire \~ALTERA_nSTATUS~~padout ;
+wire \~ALTERA_CONF_DONE~~padout ;
+wire \~ALTERA_TMS~~ibuf_o ;
+wire \~ALTERA_TCK~~ibuf_o ;
+wire \~ALTERA_TDI~~ibuf_o ;
+wire \~ALTERA_CONFIG_SEL~~ibuf_o ;
+wire \~ALTERA_nCONFIG~~ibuf_o ;
+wire \~ALTERA_nSTATUS~~ibuf_o ;
+wire \~ALTERA_CONF_DONE~~ibuf_o ;
+
+
+endmodule
