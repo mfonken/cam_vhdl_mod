@@ -9,16 +9,16 @@
 --      generic input.
 -- reset
 --      Synchronous reset.
--- data_stream_in
+-- d_str_in
 --      Input data bus for bytes to transmit.
--- data_stream_in_stb
+-- d_str_in_stb
 --      Input strobe to qualify the input data bus.
--- data_stream_in_ack
+-- d_str_in_ack
 --      Output acknowledge to indicate the UART has begun sending the byte
---      provided on the data_stream_in port.
--- data_stream_out
+--      provided on the d_str_in port.
+-- d_str_out
 --      Data output port for received bytes.
--- data_stream_out_stb
+-- d_str_out_stb
 --      Output strobe to qualify the received byte. Will be valid for one clock
 --      cycle only.
 -- tx
@@ -38,12 +38,12 @@ entity uart is
     );
     port (
         clock               :   in  std_logic;
-        reset               :   in  std_logic;
-        data_stream_in      :   in  std_logic_vector(7 downto 0);
-        data_stream_in_stb  :   in  std_logic;
-        data_stream_in_ack  :   out std_logic;
-        data_stream_out     :   out std_logic_vector(7 downto 0);
-        data_stream_out_stb :   out std_logic;
+        reset_n             :   in  std_logic;
+        d_str_in      :   in  std_logic_vector(7 downto 0);
+        d_str_in_stb  :   in  std_logic;
+        d_str_in_ack  :   out std_logic;
+        d_str_out     :   out std_logic_vector(7 downto 0);
+        d_str_out_stb :   out std_logic;
         tx                  :   out std_logic;
         rx                  :   in  std_logic
     );
@@ -100,9 +100,9 @@ architecture rtl of uart is
     signal uart_rx_bit_tick : std_logic := '0';
 begin
     -- Connect IO
-    data_stream_in_ack  <= uart_rx_data_in_ack;
-    data_stream_out     <= uart_rx_data_vec;
-    data_stream_out_stb <= uart_rx_data_out_stb;
+    d_str_in_ack  <= uart_rx_data_in_ack;
+    d_str_out     <= uart_rx_data_vec;
+    d_str_out_stb <= uart_rx_data_out_stb;
     tx                  <= uart_tx_data;
     ---------------------------------------------------------------------------
     -- OVERSAMPLE_CLOCK_DIVIDER
@@ -261,7 +261,7 @@ begin
     end process tx_clock_divider;
     ---------------------------------------------------------------------------
     -- UART_SEND_DATA
-    -- Get data from data_stream_in and send it one bit at a time upon each
+    -- Get data from d_str_in and send it one bit at a time upon each
     -- baud tick. Send data lsb first.
     -- wait 1 tick, send start bit (0), send data 0-7, send stop bit (1)
     ---------------------------------------------------------------------------
@@ -278,12 +278,12 @@ begin
                 uart_rx_data_in_ack <= '0';
                 case uart_tx_state is
                     when tx_send_start_bit =>
-                        if tx_baud_tick = '1' and data_stream_in_stb = '1' then
+                        if tx_baud_tick = '1' and d_str_in_stb = '1' then
                             uart_tx_data  <= '0';
                             uart_tx_state <= tx_send_data;
                             uart_tx_count <= (others => '0');
                             uart_rx_data_in_ack <= '1';
-                            uart_tx_data_vec <= data_stream_in;
+                            uart_tx_data_vec <= d_str_in;
                         end if;
                     when tx_send_data =>
                         if tx_baud_tick = '1' then

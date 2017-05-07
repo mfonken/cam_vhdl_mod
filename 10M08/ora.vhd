@@ -15,29 +15,29 @@ use work.ora_math.all;
 -- Object Recognition Architecture
 ----------------------------------------------
 entity ora is
-	generic 
+	generic
 	(
-		g_clk_r		: integer			:= 50_000_000;
-		m_clk_r		: integer			:= 10_000_000;
-		thresh    	: integer			:= 250;
-		kernel    	: kernel_t			:= ( others => '0' );
+		g_clk_r			: integer					:= 50_000_000;
+		m_clk_r			: integer					:= 10_000_000;
+		thresh    	: integer					:= 250;
+		kernel    	: kernel_t				:= ( others => '0' );
 		buffer_c  	: auto_correct_t	:= ( others => '0' )
 --		pbuffer   	: packet_buffer_t := ( others => ( others => '0' ) );
 --		hasPacket 	: std_logic			:= '0'
-	);	
-	port 
+	);
+	port
 	(
 		-- Global clock
-		GCLK        : in    	std_logic;
+		gclk        : in    	std_logic;
 
 		-- Camera interface
-		CAM_EN		: inout	std_logic	:= '1';
-		PWDN			: out		std_logic	:= '1';
-		MCLK        : inout 	std_logic;
-		VSYNC       : in    	std_logic;
-		HREF        : in    	std_logic;
-		PCLK        : in    	std_logic;
-		CPI         : in    	std_logic_vector( 7 downto 0 )
+		cam_ena			: inout		std_logic	:= '1';
+		pwdn				: out			std_logic	:= '1';
+		mclk        : inout 	std_logic;
+		vsync       : in    	std_logic;
+		href        : in    	std_logic;
+		pclk        : in    	std_logic;
+		cpi         : in    	std_logic_vector( 7 downto 0 )
 	);
 end ora;
 
@@ -45,35 +45,35 @@ end ora;
 -- Main camera controller behaviour
 --------------------------------------------------------------------------------
 architecture gbehaviour of ora is
-	signal frame 		: frame_t;--                := ( others => ( others => '0' ) );
-	signal d_map 		: density_map_t;--          := ( others => '0' ), ( others => '0');
+	signal frame 			: frame_t;--                := ( others => ( others => '0' ) );
+	signal d_map 			: density_map_t;--          := ( others => '0' ), ( others => '0');
 	signal x_convolve : convolve_result_t;
 	signal y_convolve : convolve_result_t;
-	signal peaks 		: peaks_t;
+	signal peaks 			: peaks_t;
 
-	signal x 			: integer range FRAME_WIDTH  downto 0 := 0;
-	signal y 			: integer range FRAME_HEIGHT downto 0 := 0;
-	signal x_i 			: integer range FRAME_WIDTH  downto 0 := 0;
-	signal y_i 			: integer range FRAME_HEIGHT downto 0 := 0;
-	signal x_r 			: std_logic := '0';
-	signal y_r 			: std_logic := '0';
-	signal pixel		: unsigned( 7 downto 0 );
-	
-	signal c : std_logic_vector( 0 to 3 ) := "0000";
+	signal x 					: integer range FRAME_WIDTH  downto 0 := 0;
+	signal y 					: integer range FRAME_HEIGHT downto 0 := 0;
+	signal x_i 				: integer range FRAME_WIDTH  downto 0 := 0;
+	signal y_i 				: integer range FRAME_HEIGHT downto 0 := 0;
+	signal x_r 				: std_logic := '0';
+	signal y_r 				: std_logic := '0';
+	signal pixel			: unsigned( 7 downto 0 );
+
+	signal c 					: std_logic_vector( 0 to 3 ) := "0000";
 
 	begin
 	pixel <= unsigned( CPI );
 
-	
+
 
 	sync_main : process( GCLK, PCLK, HREF, VSYNC, x, y, x_i, y_i )
 	-- MCLK divider
 	constant MCLK_DIV      	: integer := g_clk_r / m_clk_r;
 	constant MCLK_DIV_HALF 	: integer := MCLK_DIV / 2;
-	
-	
+
+
 	begin
-		if rising_edge( GCLK ) then
+		if rising_edge( gclk ) then
 			if x_r = '1' then
 				x <= 0;
 			else
@@ -88,8 +88,8 @@ architecture gbehaviour of ora is
 
 			-- Clock divider & MCLK driver
 			if c = std_logic_vector(to_unsigned(MCLK_DIV_HALF,4)) then
-				MCLK <= not MCLK;
-				PWDN <= '0';
+				mclk <= not mclk;
+				pwdn <= '0';
 				c <= "0000";
 			else
 				c <= std_logic_vector(unsigned(c) + to_unsigned(1,4));
@@ -97,7 +97,7 @@ architecture gbehaviour of ora is
 		end if;
 
 		-- Collect on PCLK
-		if rising_edge( PCLK ) then
+		if rising_edge( pclk ) then
 			if( pixel > PIXEL_THRESH ) then
 				frame(y)(x) <= '1';
 			else
@@ -112,7 +112,7 @@ architecture gbehaviour of ora is
 		end if;
 
 		-- Increment line on HREF
-		if falling_edge( HREF ) then
+		if falling_edge( href ) then
 			x_r <= '1';
 			if y < FRAME_HEIGHT then
 				y_i <= y + 1;
@@ -124,7 +124,7 @@ architecture gbehaviour of ora is
 		end if;
 
 		-- Reset and process on VSYNC
-		if rising_edge( VSYNC ) then
+		if rising_edge( vsync ) then
 --			y_r <= '1';
 --			-- Process frame
 --			d_map <= density_mapper( frame );

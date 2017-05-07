@@ -34,7 +34,7 @@ entity C8_Project is
 	port (
 		LED1			: out		std_logic := '0';
 		LED2			: out		std_logic := '0';
-	
+
 		-- Global clock
 		clock  		: in    	std_logic;
 
@@ -46,8 +46,8 @@ entity C8_Project is
 		href      	: in    	std_logic;
 		pclk      	: in    	std_logic;
 		cpi       	: in    	std_logic_vector( 7 downto 0 );
-		siod  		: inout 	std_logic;
-		sioc  		: inout  std_logic;
+		sda  		: inout 	std_logic;
+		scl  		: inout  std_logic;
 
 		-- Serial interface
 		umd_tx    	: in    	std_logic;
@@ -67,7 +67,7 @@ signal	reset  			: std_logic;
 constant clock_r				: integer 				:= 50_000_000;
 -- Module clocks
 signal  	umd_clock         : std_logic          := '0';
-signal  	sio_clock         : std_logic          := '0';
+signal  	i2c_clock         : std_logic          := '0';
 signal  	ora_clock         : std_logic          := '0';
 
 -- System states
@@ -80,7 +80,7 @@ signal  	reset_sft         : std_logic          := '0';
 signal  	reset_hrd         : std_logic          := '0';
 signal  	auto_wake         : std_logic          := '0';
 
---signal	cam_ena				: std_logic				:= '0';		
+--signal	cam_ena				: std_logic				:= '0';
 signal  	cam_ready         : std_logic          := '0';
 signal  	has_umd_tx        : std_logic        	:= '0';
 signal  	has_umd_rx        : std_logic          := '0';
@@ -94,37 +94,106 @@ signal  	ora_auto_cor      : auto_correct_t     := DEFAULT_AUTO_CORRECT;
 signal  	packet_tx_i   		: integer            := 0;
 signal  	ora_bytes_to_tx  	: integer            := 0;
 signal  	ora_packet_buffer : packet_buffer_t;
-signal	ora_has_packet		: std_logic				:= '0';
+signal		ora_has_packet		: std_logic				:= '0';
 
 -- Uart signals
-signal	umd_rx_data       : std_logic_vector(7 downto 0);
-signal	umd_rx_stb  	   : std_logic;
-signal	umd_rx_ack  	   : std_logic;
-signal	umd_tx_data       : std_logic_vector(7 downto 0);
-signal	umd_tx_stb 	      : std_logic;
+signal		umd_rx_data       : std_logic_vector(7 downto 0);
+signal		umd_rx_stb  	   	: std_logic;
+signal		umd_rx_ack  	   	: std_logic;
+signal		umd_tx_data       : std_logic_vector(7 downto 0);
+signal		umd_tx_stb 	      : std_logic;
 
 -- UCP flags/inputs
-signal  	prev_umd_rx        : std_logic_vector( 7 downto 0 );
+signal  	prev_umd_rx       : std_logic_vector( 7 downto 0 );
 signal  	hasAck            : std_logic          := '0';
 signal  	hasNack           : std_logic          := '0';
 signal  	ora_thresh_new    : integer            :=  0;
 signal  	ora_kernel_new    : kernel_t				:= kernel.pulse_kernel;
 signal  	ora_auto_cor_new  : auto_correct_t 		:= auto_correct.auto_cor_none;
 
--- Sio signals
-signal 	sio_ena		      : std_logic				:= '0';
-signal 	sio_rw		     	: std_logic          := '0';
-signal 	sio_wr		      : std_logic_vector( 7 downto 0 );
-signal 	sio_rd		      : std_logic_vector( 7 downto 0 );
-signal	sio_bsy		      : std_logic;
-signal	sio_ack_err       : std_logic;
+-- i2c signals
+signal 		i2c_ena		      	: std_logic				:= '0';
+signal 		i2c_rw		     		: std_logic          := '0';
+signal 		i2c_wr		      	: std_logic_vector( 7 downto 0 );
+signal 		i2c_rd		      	: std_logic_vector( 7 downto 0 );
+signal		i2c_bsy		      	: std_logic;
+signal		i2c_bsy_prev    	: std_logic;
+signal		i2c_ack_err       : std_logic;
+
+-- COMPONENTS
+	component i2c_master is
+		generic
+			(
+				input_clk : integer;
+				bus_clk		: integer
+			);
+		port
+			(
+				clk				: in 			std_logic;
+				reset_n		: in 			std_logic;
+				ena				: in 			std_logic;
+				addr			: in 			std_logic_vector( 6 downto 0 );
+				rw				: in 			std_logic;
+				data_wr		: in			std_logic_vector( 7 downto 0 );
+				busy			: out 		std_logic := '0';
+				data_rd 	: out 		std_logic_vector( 7 downto 0 );
+				ack_error : buffer 	std_logic;
+				sda				: inout		std_logic;
+				scl				: inout		std_logic
+			);
+	end component i2c_master;
+
+component uart is
+		generic (
+			baud                : positive;
+			clock_frequency     : positive
+		);
+		port (
+			clock         :   in  std_logic;
+			reset         :   in  std_logic;
+			d_str_in      :   in  std_logic_vector( 7 downto 0 );
+			d_str_in_stb  :   in  std_logic;
+			d_str_in_ack  :   out std_logic;
+			d_str_out     :   out std_logic_vector( 7 downto 0 );
+			d_str_out_stb :   out std_logic;
+			tx            :   out std_logic;
+			rx            :   in  std_logic
+		);
+	end component uart;
+
+	component ora is
+		generic
+		(
+			g_clk_r			: integer;
+			m_clk_r			: integer;
+			thresh    	: integer;
+			kernel    	: kernel_t;
+			buffer_c  	: auto_correct_t
+	--		pbuffer   	: packet_buffer_t := ( others => ( others => '0' ) );
+	--		hasPacket 	: std_logic			:= '0'
+		);
+		port
+		(
+			-- Global clock
+			GCLK        : in    	std_logic;
+
+			-- Camera interface
+			CAM_EN		: inout	std_logic	:= '1';
+			PWDN			: out		std_logic	:= '1';
+			MCLK        : inout 	std_logic;
+			VSYNC       : in    	std_logic;
+			HREF        : in    	std_logic;
+			PCLK        : in    	std_logic;
+			CPI         : in    	std_logic_vector( 7 downto 0 )
+		);
+	end component ora;
 
 begin
 
-	LED1 <= sio_ena;
+	LED1 <= i2c_ena;
 	reset <= not reset_n;
 	-- UART Module entity map
-	umd : entity work.uart
+	umd : uart
 	generic map
 	(
 		115_200,		-- UART Baud Rate
@@ -132,58 +201,61 @@ begin
 	)
 	port map
 	(
-		umd_clock,
-		reset,
+		clock					=>	umd_clock,
+		reset_n				=>	reset_n,
 
 		-- tx: rx_pin>(UART MODULE)>tx_data>(CTL MODULE)
 		-- rx: tx_pin<(UART MODULE)<rx_data<(CTL_MODULE)
-		umd_rx_data,
-		umd_rx_stb,
-		umd_rx_ack,
-		umd_tx_data,
-		umd_tx_stb,
-		umd_rx,
-		umd_tx
+		d_str_in			=>	umd_rx_data,
+		d_str_in_stb	=>	umd_rx_stb,
+		d_str_in_ack	=>	umd_rx_ack,
+		d_str_out			=>	umd_tx_data,
+		d_str_out_stb	=>	umd_tx_stb,
+		rx						=>	umd_rx,
+		tx						=>	umd_tx
 	);
 
-	-- SIO Module entity map
-	sio : entity work.i2c_master
-	port map
-	(
-		sio_clock,
-		reset,
-		sio_ena,
-		OV9712_ADDR,
-		sio_rw,
-		sio_wr,
-		sio_bsy,
-		sio_rd,
-		sio_ack_err,
-		siod,
-		sioc
-	);
-
-	-- ORA/Camera Module entity map
-	ora : entity work.ora
+	i2c_master_0 : i2c_master
 	generic map
 	(
-		clock_r,
-		ora_clk_r,
-		DEFAULT_THRESH,
-		DEFAULT_KERNEL,
-		DEFAULT_AUTO_CORRECT
+		input_clk => sys_clk,
+		bus_clk		=> i2c_scl_frq
 	)
 	port map
 	(
-		ora_clock,
-		cam_ena,
-		pwdn,
-		mclk,
-		vsync,
-		href,
-		pclk,
-		cpi
+		clk 			=> 	i2c_clock,
+		reset_n 	=>	reset,
+		ena				=> 	i2c_ena,
+		addr			=> 	OV9712_ADDR,
+		rw				=> 	i2c_rw,
+		data_wr 	=> 	i2c_wr,
+		busy  		=> 	i2c_bsy,
+		data_rd		=>	i2c_rd,
+		ack_error	=> 	i2c_ack_err,
+		sda 			=>	sda,
+		scl				=> 	scl
+	);
 
+	-- ORA/Camera Module entity map
+	ora : ora
+	generic map
+	(
+		g_clk_r		=> 	sys_clk,
+		m_clk_r		=> 	ora_clk_frq,
+		thresh 		=> 	DEFAULT_THRESH,
+		kernel 		=>	DEFAULT_KERNEL,
+		buffer_c	=>	DEFAULT_AUTO_CORRECT
+	)
+	port map
+	(
+		gclk		=>	ora_clock,
+		cam_ena	=>	cam_ena,
+		pwdn		=>	pwdn,
+		mclk		=>	mclk,
+		vsync		=>	vsync,
+		href		=>	href,
+		pclk 		=>	pclk,
+		cpi			=>	cpi
 --		ora_bytes_to_tx,
 --		ora_packet_buffer,
 --		ora_has_packet
@@ -193,7 +265,7 @@ begin
 	-- Stateless signal assignments
 	--------------------------------------------------------------------------------
 	umd_clock <= clock;
-	sio_clock <= clock and sio_ena;
+	i2c_clock <= clock and i2c_ena;
 
 	ora_clock <= clock and cam_ena;
 	--------------------------------------------------------------------------------
@@ -233,7 +305,7 @@ begin
 					--Send actiavition/ready for operation ack
 					umd_rx_data <= "111" & ucp_dat.ack & "1";
 					packet_tx_i <= 0;
-					
+
 				-- Active: Stable standard operation
 				when active =>                               -- ACTIVE
 					state 	<= next_state;
@@ -440,57 +512,59 @@ begin
 	--------------------------------------------------------------------------------
 	-- Camera Initializer
 	--------------------------------------------------------------------------------
-	init_camera : process(sio_clock)
+	init_camera : process(i2c_clock)
 	variable reg_index : integer := 0;
-	variable sio_state : sio_tx_states_t := sio_reg_tx;
+	variable i2c_state : i2c_tx_states_t := i2c_reg_tx;
+	variable i2c_busy_cnt : integer := 0;  --keeps track of i2c busy signals during transaction
 	-------------------------------------
 	-- Prefered order:
 	--  cam_ready
-	--  sio_ena
-	--  sio_wr
-	--  sio_state
+	--  i2c_ena
+	--  i2c_wr
+	--  i2c_state
 	--  reg_index
 	-------------------------------------
 	begin
-		if rising_edge(sio_clock) then
---			if cam_ready = '0' then
---				cam_ready <= '1';
-				sio_wr    <= x"AA";
-				sio_ena	 <= '1';
-				LED2 		 <= '1';
---			else
---				cam_ready <= '0';
---				sio_wr    <= ( others => '0' );
---			end if;
-		
+		if rising_edge(i2c_clock) then
 			-- Runs once at startup
---			if cam_ready = '0' then
---				if reg_index /= DEFAULT_REGS'length then
---					cam_ready <= '0';
---					sio_ena   <= '1';
---					if sio_bsy = '0' then
---						case sio_state is
---							when sio_reg_tx =>
---								sio_wr    <= DEFAULT_REGS(reg_index).reg;
---								sio_state := sio_val_tx;
---							when sio_val_tx =>
---								sio_wr    <= DEFAULT_REGS(reg_index).val;
---								sio_state := sio_reg_tx;
---							when others =>
---								sio_wr    <= ( others => '0' );
---								sio_state := sio_standby;
---						end case;
---						reg_index := reg_index + 1;
---					end if;
---				else
---					cam_ready <= '1';
---					sio_ena   <= '0';
---					sio_wr    <= ( others => '0' );
---					sio_state := sio_standby;
---					reg_index := DEFAULT_REGS'length;
---				end if;
---			end if;
-		end if;			
+			if cam_ready = '0' then
+				if reg_index /= DEFAULT_REGS'length then
+					cam_ready <= '0';
+
+					i2c_bsy_prev <= i2c_bsy;                      --capture the value of the previous i2c busy signal
+					if i2c_bsy_prev = '0' and i2c_busy = '1') then --i2c busy just went high
+						i2c_busy_cnt := i2c_busy_cnt + 1;             --counts the times busy has gone from low to high during transaction
+					end if;
+
+					case i2c_busy_cnt is
+						when 0 =>
+							i2c_ena   <= '1';
+							i2c_wr    <= DEFAULT_REGS(reg_index).reg;
+							i2c_state := i2c_val_tx;
+						when 1 =>
+							i2c_ena 	<= '1';
+							i2c_wr    <= DEFAULT_REGS(reg_index).val;
+							i2c_rw 		<= '0';
+							i2c_state := i2c_reg_tx;
+						when 2 =>
+							i2c_ena <= '0';
+							i2c_busy_cnt := 0;
+							reg_index := reg_index + 1;
+						when others =>
+							i2c_wr    <= ( others => '0' );
+							i2c_state := i2c_standby;
+					end case;
+
+
+				else
+					cam_ready <= '1';
+					i2c_ena   <= '0';
+					i2c_wr    <= ( others => '0' );
+					i2c_state := i2c_standby;
+					reg_index := DEFAULT_REGS'length;
+				end if;
+			end if;
+		end if;
 	end process init_camera;
 	--------------------------------------------------------------------------------
 

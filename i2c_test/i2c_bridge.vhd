@@ -19,7 +19,7 @@
 --   Version History
 --   Version 1.0 12/05/2012 Scott Larson
 --     Initial Public Release
---    
+--
 --------------------------------------------------------------------------------
 
 LIBRARY ieee;
@@ -38,7 +38,7 @@ PORT(
 
   clock   : IN    STD_LOGIC;  --system clock
   reset_n : IN    STD_LOGIC;  --active low reset
-  
+
   sioc     : INOUT STD_LOGIC;  --i2c serial clock
   siod     : INOUT STD_LOGIC); --i2c serial data
 END i2c_bridge;
@@ -69,7 +69,7 @@ ARCHITECTURE logic OF i2c_bridge IS
       i2c_rw      : OUT  STD_LOGIC;                     --i2c read/write command
       i2c_data_wr : OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)); --data to write over the i2c bus
   END COMPONENT spi_to_i2c;
-  
+
   --declare i2c master component
   COMPONENT i2c_master IS
     GENERIC(
@@ -89,22 +89,22 @@ ARCHITECTURE logic OF i2c_bridge IS
       sda       : INOUT  STD_LOGIC;                    --serial data output of i2c bus
       scl       : INOUT  STD_LOGIC);                   --serial clock output of i2c bus
   END COMPONENT i2c_master;
-  
+
 BEGIN
-            
+
   --instantiate the bridge component
   spi_to_i2c_0:  spi_to_i2c
     PORT MAP(A => A, LED1 => LED1, LED2 => LED2, LED5 => LED5, clk => clock, reset_n => reset_n, i2c_busy => i2c_busy,
              i2c_data_rd => i2c_data_rd, i2c_ack_err => i2c_ack_err,
              i2c_ena => i2c_en, i2c_addr => i2c_addr, i2c_rw => i2c_rw,
-             i2c_data_wr => i2c_data_wr);  
-  
+             i2c_data_wr => i2c_data_wr);
+
   --instantiate the i2c master
   i2c_master_0:  i2c_master
     GENERIC MAP(input_clk => sys_clk_frq, bus_clk => i2c_scl_frq)
     PORT MAP(B => B, clk => clock, reset_n => reset_n, ena => i2c_en, addr => i2c_addr,
              rw => i2c_rw, data_wr => i2c_data_wr, busy => i2c_busy,
              data_rd => i2c_data_rd, ack_error => i2c_ack_err, sda => siod,
-             scl => sioc);  
+             scl => sioc);
 
 END logic;
