@@ -2,40 +2,7 @@
 	"partitions" : [
 		{
 			"name" : "Top",
-			"pins" : [
-				{
-					"name" : "LED1",
-					"strict" : false
-				},
-				{
-					"name" : "LED2",
-					"strict" : false
-				},
-				{
-					"name" : "pwdn",
-					"strict" : false
-				},
-				{
-					"name" : "mclk",
-					"strict" : false
-				},
-				{
-					"name" : "siod",
-					"strict" : false
-				},
-				{
-					"name" : "sioc",
-					"strict" : false
-				},
-				{
-					"name" : "clock",
-					"strict" : false
-				},
-				{
-					"name" : "reset_n",
-					"strict" : false
-				}
-			]
+			"pins" : []
 		}
 	]
 }

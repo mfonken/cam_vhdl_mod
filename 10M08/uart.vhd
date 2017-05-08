@@ -40,7 +40,7 @@ entity uart is
 	port
 		(
 			clock       :   in  std_logic;
-			reset_n     :   in  std_logic;
+			reset     	:   in  std_logic;
 			uart_tx     :   in  std_logic_vector(7 downto 0);
 			uart_tx_stb	:   in  std_logic;
 			uart_tx_ack :   out std_logic;

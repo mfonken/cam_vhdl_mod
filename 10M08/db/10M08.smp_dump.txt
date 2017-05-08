@@ -1,13 +1,17 @@
 
-State Machine - |C8_Project|state
-Name state.shutdown state.standby state.deactivate state.active state.activate 
-state.activate 0 0 0 0 0 
-state.active 0 0 0 1 1 
-state.deactivate 0 0 1 0 1 
-state.standby 0 1 0 0 1 
-state.shutdown 1 0 0 0 1 
+State Machine - |master_bridge|uart:umd|uart_tx_state
+Name uart_tx_state.tx_send_stop_bit uart_tx_state.tx_send_data uart_tx_state.tx_send_start_bit 
+uart_tx_state.tx_send_start_bit 0 0 0 
+uart_tx_state.tx_send_data 0 1 1 
+uart_tx_state.tx_send_stop_bit 1 0 1 
 
-State Machine - |C8_Project|i2c_master:sio|state
+State Machine - |master_bridge|uart:umd|uart_rx_state
+Name uart_rx_state.rx_get_stop_bit uart_rx_state.rx_get_data uart_rx_state.rx_get_start_bit 
+uart_rx_state.rx_get_start_bit 0 0 0 
+uart_rx_state.rx_get_data 0 1 1 
+uart_rx_state.rx_get_stop_bit 1 0 1 
+
+State Machine - |master_bridge|i2c_master:i2c_master_0|state
 Name state.stop state.mstr_ack state.slv_ack2 state.rd state.wr state.slv_ack1 state.command state.start state.ready 
 state.ready 0 0 0 0 0 0 0 0 0 
 state.start 0 0 0 0 0 0 0 1 1 
@@ -18,15 +22,3 @@ state.rd 0 0 0 1 0 0 0 0 1
 state.slv_ack2 0 0 1 0 0 0 0 0 1 
 state.mstr_ack 0 1 0 0 0 0 0 0 1 
 state.stop 1 0 0 0 0 0 0 0 1 
-
-State Machine - |C8_Project|uart:umd|uart_tx_state
-Name uart_tx_state.tx_send_stop_bit uart_tx_state.tx_send_data uart_tx_state.tx_send_start_bit 
-uart_tx_state.tx_send_start_bit 0 0 0 
-uart_tx_state.tx_send_data 0 1 1 
-uart_tx_state.tx_send_stop_bit 1 0 1 
-
-State Machine - |C8_Project|uart:umd|uart_rx_state
-Name uart_rx_state.rx_get_stop_bit uart_rx_state.rx_get_data uart_rx_state.rx_get_start_bit 
-uart_rx_state.rx_get_start_bit 0 0 0 
-uart_rx_state.rx_get_data 0 1 1 
-uart_rx_state.rx_get_stop_bit 1 0 1 

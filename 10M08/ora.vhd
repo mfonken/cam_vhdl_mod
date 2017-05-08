@@ -17,13 +17,13 @@ use work.ora_math.all;
 entity ora is
 	generic
 	(
-		g_clk_r			: integer					:= 50_000_000;
-		m_clk_r			: integer					:= 10_000_000;
-		thresh    	: integer					:= 250;
+		g_clk_r		: integer				:= 50_000_000;
+		m_clk_r		: integer				:= 10_000_000;
+		thresh    	: integer				:= 250;
 		kernel    	: kernel_t				:= ( others => '0' );
-		buffer_c  	: auto_correct_t	:= ( others => '0' )
---		pbuffer   	: packet_buffer_t := ( others => ( others => '0' ) );
---		hasPacket 	: std_logic			:= '0'
+		buffer_c  	: auto_correct_t		:= ( others => '0' )
+--		pbuffer   	: packet_buffer_t 	:= ( others => ( others => '0' ) );
+--		hasPacket 	: std_logic				:= '0'
 	);
 	port
 	(
@@ -31,16 +31,16 @@ entity ora is
 		gclk        : in    	std_logic;
 
 		-- Camera interface
-		ena					: inout		std_logic	:= '1';
-		pwdn				: out			std_logic	:= '1';
+		ena			: inout	std_logic	:= '1';
+		pwdn			: out		std_logic	:= '1';
 		mclk        : inout 	std_logic;
 		vsync       : in    	std_logic;
 		href        : in    	std_logic;
 		pclk        : in    	std_logic;
 		cpi         : in    	std_logic_vector( 7 downto 0 );
 
-		ora_pkt_ct	: out			integer 	:= 0;
-		ora_data		: out			std_logic_vector( 7 downto 0 )
+		ora_pkt_ct	: out		integer 		:= 0;
+		ora_data		: out		std_logic_vector( 7 downto 0 )
 	);
 end ora;
 
@@ -50,19 +50,19 @@ end ora;
 architecture gbehaviour of ora is
 	signal frame 			: frame_t;--                := ( others => ( others => '0' ) );
 	signal d_map 			: density_map_t;--          := ( others => '0' ), ( others => '0');
-	signal x_convolve : convolve_result_t;
-	signal y_convolve : convolve_result_t;
+	signal x_convolve 	: convolve_result_t;
+	signal y_convolve 	: convolve_result_t;
 	signal peaks 			: peaks_t;
 
-	signal x 					: integer range FRAME_WIDTH  downto 0 := 0;
-	signal y 					: integer range FRAME_HEIGHT downto 0 := 0;
+	signal x 				: integer range FRAME_WIDTH  downto 0 := 0;
+	signal y 				: integer range FRAME_HEIGHT downto 0 := 0;
 	signal x_i 				: integer range FRAME_WIDTH  downto 0 := 0;
 	signal y_i 				: integer range FRAME_HEIGHT downto 0 := 0;
-	signal x_r 				: std_logic := '0';
-	signal y_r 				: std_logic := '0';
+	signal x_r 				: std_logic 	:= '0';
+	signal y_r 				: std_logic 	:= '0';
 	signal pixel			: unsigned( 7 downto 0 );
 
-	signal c 					: std_logic_vector( 0 to 3 ) := "0000";
+	signal c 				: std_logic_vector( 0 to 3 ) := "0000";
 
 	begin
 	pixel <= unsigned( CPI );
@@ -73,7 +73,6 @@ architecture gbehaviour of ora is
 	-- MCLK divider
 	constant MCLK_DIV      	: integer := g_clk_r / m_clk_r;
 	constant MCLK_DIV_HALF 	: integer := MCLK_DIV / 2;
-
 
 	begin
 		if rising_edge( gclk ) then
@@ -128,24 +127,24 @@ architecture gbehaviour of ora is
 
 		-- Reset and process on VSYNC
 		if rising_edge( vsync ) then
-			y_r <= '1';
-			-- Process frame
-			d_map <= density_mapper( frame );
-
-			-- Convolve maps with a kernel
-			x_convolve <= convolveX( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, kernel );
-			y_convolve <= convolveY( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, kernel );
-
-			-- Calculate peaks in convolved map
-			peaks <= maxima( x_convolve, y_convolve );
-
-					buffer_c := 4;
-
-			Only set after packet is fully in buffer
-					hasPacket := '1';
-			   else
-			     y_r <= '0';
-			     hasPacket <= '0';
+--			y_r <= '1';
+--			-- Process frame
+--			d_map <= density_mapper( frame );
+--
+--			-- Convolve maps with a kernel
+--			x_convolve <= convolveX( FRAME_WIDTH,  d_map.x_map, KERNEL_LENGTH, kernel );
+--			y_convolve <= convolveY( FRAME_HEIGHT, d_map.y_map, KERNEL_LENGTH, kernel );
+--
+--			-- Calculate peaks in convolved map
+--			peaks <= maxima( x_convolve, y_convolve );
+--
+--					buffer_c := 4;
+--
+----			Only set after packet is fully in buffer
+--					hasPacket := '1';
+--			   else
+--			     y_r <= '0';
+--			     hasPacket <= '0';
 		end if;
 	end process sync_main;
 ----------------------------------------------

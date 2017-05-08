@@ -1,7 +1,7 @@
-PowerPlay Power Analyzer Status : Successful - Sat Apr 29 17:07:09 2017
+PowerPlay Power Analyzer Status : Successful - Sun May 07 22:47:37 2017
 Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 Revision Name : 10M08
-Top-level Entity Name : C8_Project
+Top-level Entity Name : master_bridge
 Family : MAX 10
 Device : 10M08SAE144C8GES
 Power Models : Final

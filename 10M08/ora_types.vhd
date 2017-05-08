@@ -27,8 +27,6 @@ package ora_types is
 	constant KERNEL_LENGTH 	: integer := 4;
 	constant NUM_KERNELS	 	: integer := 1;
 
-
-
 	-- Pixel threshold
 	constant PIXEL_THRESH  	: integer := 200;
 
