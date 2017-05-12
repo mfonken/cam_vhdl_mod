@@ -31,15 +31,15 @@ entity ora is
 		gclk        : in    	std_logic;
 
 		-- Camera interface
-		ena			: inout	std_logic	:= '1';
-		pwdn			: out		std_logic	:= '1';
+		ena			: inout	std_logic;
+		pwdn			: out		std_logic;
 		mclk        : inout 	std_logic;
 		vsync       : in    	std_logic;
 		href        : in    	std_logic;
 		pclk        : in    	std_logic;
 		cpi         : in    	std_logic_vector( 7 downto 0 );
 
-		ora_pkt_ct	: out		integer 		:= 0;
+		ora_pkt_ct	: out		integer;
 		ora_data		: out		std_logic_vector( 7 downto 0 )
 	);
 end ora;

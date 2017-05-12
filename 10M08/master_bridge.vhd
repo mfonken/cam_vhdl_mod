@@ -30,14 +30,17 @@ use work.ucp_lib.all;
 ----------------------------------------------
 entity master_bridge is
 	port (
-		LED1			: out		std_logic := '0';
-		LED2			: out		std_logic := '0';
+		LED1	: out	std_logic := '1';
+		LED2	: out	std_logic := '1';
+		LED3	: out	std_logic := '1';
+		LED4	: out	std_logic := '1';
+		LED5	: out	std_logic := '1';
 
 		-- Global clock
 		clock  		: in    	std_logic;
 
 		-- Camera interface
-		cam_ena 		: inout 	std_logic;
+		cam_ena 		: inout 	std_logic := '1';
 		mclk     	: inout 	std_logic;
 		pwdn			: out		std_logic;
 		vsync     	: in    	std_logic;
@@ -48,8 +51,8 @@ entity master_bridge is
 		scl  			: inout 	std_logic;
 
 		-- Serial interface
-		umd_tx    	: in    	std_logic;
-		umd_rx    	: out  	std_logic;
+		umd_tx    	: out    std_logic;
+		umd_rx    	: in  	std_logic;
 
 		-- Synchronous reset (active low)
 		reset_n		: inout	std_logic
@@ -89,7 +92,7 @@ signal  	packet_tx_i   		: integer         := 0;
 -- signal		ora_has_packet		: std_logic					:= '0';
 
 -- Uart signals
-signal	umd_ena				: std_logic			:= '0';
+signal	umd_ena				: std_logic			:= '1';
 signal	umd_rx_data    	: std_logic_vector(7 downto 0);
 signal	umd_rx_stb  		: std_logic;
 signal	umd_rx_ack  		: std_logic;
@@ -105,11 +108,11 @@ signal  	ora_kernel_new    : kernel_t			:= kernel.pulse_kernel;
 signal  	ora_auto_cor_new  : auto_correct_t 	:= auto_correct.auto_cor_none;
 
 -- i2c signals
-signal 	i2c_ena		   	: std_logic			:= '0';
+signal 	i2c_ena		   	: std_logic;
 signal 	i2c_rw		   	: std_logic       := '0';
 signal 	i2c_wr		   	: std_logic_vector( 7 downto 0 );
 signal 	i2c_rd		   	: std_logic_vector( 7 downto 0 );
-signal	i2c_bsy		   	: std_logic;
+signal	i2c_bsy		   	: std_logic			:= '0';
 signal	i2c_bsy_prev   	: std_logic;
 signal	i2c_ack_err    	: std_logic;
 
@@ -121,25 +124,35 @@ signal	i2c_ack_err    	: std_logic;
 		);
 		port
 		(
+			LED1	: out	std_logic := '1';
+			LED2	: out	std_logic := '1';
+			LED3	: out	std_logic := '1';
+			LED4	: out	std_logic := '1';
+			LED5	: out	std_logic := '1';
+			
 			clock			: in 		std_logic;
 			reset_n		: inout  std_logic;
-
-			i2c_ena		: out    std_logic		:= '0';
-			i2c_rw    	: out    std_logic      := '0';
+			
+			umd_clock	: inout	std_logic;
+			i2c_clock	: inout	std_logic;
+			ora_clock	: inout	std_logic;
+			
+			i2c_ena		: out    std_logic;
+			i2c_rw    	: out    std_logic	:= '0';
 			i2c_wr	  	: out    std_logic_vector( 7 downto 0 );
 			i2c_rd		: in     std_logic_vector( 7 downto 0 );
-			i2c_bsy		: in     std_logic;
+			i2c_bsy		: in     std_logic	:= '0';
 			-- i2c_ack_err       : std_logic;
 
-			umd_ena   	: out    std_logic		:= '0';
-			umd_tx    	: out    std_logic_vector( 7 downto 0 );
-			umd_rx    	: in     std_logic_vector( 7 downto 0 );
-			umd_r_stb 	: in     std_logic;
-			umd_r_ack 	: out    std_logic;
-			umd_t_stb 	: out    std_logic;
+			umd_ena   	: inout   	std_logic := '1';
+			umd_rx_data	: inout    	std_logic_vector( 7 downto 0 );
+			umd_rx_stb 	: inout    	std_logic;
+			umd_rx_ack 	: inout     std_logic;
+			umd_tx_data	: inout     std_logic_vector( 7 downto 0 );
+			umd_tx_stb 	: inout     std_logic;
 
-			ora_ena   	: out    std_logic		:= '0';
-			cam_ena   	: in     std_logic
+			ora_ena   	: inout  std_logic	:= '1';
+			cam_ena   	: inout  std_logic	:= '1'
 		);
 	end component master;
 
@@ -165,23 +178,23 @@ signal	i2c_ack_err    	: std_logic;
 		);
 	end component i2c_master;
 
-component uart is
-	generic
+	component uart is
+		generic 
 		(
-			baud        :   		positive;
-			clk_frq   	:   		positive
+			baud                : positive;
+			clock_frequency     : positive
 		);
-	port
-		(
-			clock       :   in  	std_logic;
-			reset	      :   in  	std_logic;
-			uart_tx     :   in  	std_logic_vector(7 downto 0);
-			uart_tx_stb	:   in  	std_logic;
-			uart_tx_ack :   out 	std_logic;
-			uart_rx     :   out 	std_logic_vector(7 downto 0);
-			uart_rx_stb :   out 	std_logic;
-			tx          :   out 	std_logic;
-			rx          :   in  	std_logic
+		port 
+		(  
+			clock               :   in  std_logic;
+			reset               :   in  std_logic;    
+			data_stream_in      :   in  std_logic_vector(7 downto 0);
+			data_stream_in_stb  :   in  std_logic;
+			data_stream_in_ack  :   out std_logic;
+			data_stream_out     :   out std_logic_vector(7 downto 0);
+			data_stream_out_stb :   out std_logic;
+			tx                  :   out std_logic;
+			rx                  :   in  std_logic
 		);
 	end component uart;
 
@@ -216,11 +229,6 @@ component uart is
 	end component ora;
 
 begin
-
-	umd_clock <= clock and umd_ena;
-  	i2c_clock <= clock and i2c_ena;
-  	ora_clock <= clock and ora_ena;
-	
 	-- Master module component initialization
 	master_m : master
 	generic map
@@ -229,8 +237,18 @@ begin
 	)
 	port map
 	(
+		LED1	=> LED1,
+		LED2	=> LED2,
+		LED3	=> LED3,
+		LED4	=> LED4,
+		LED5	=> LED5,
+	
 		clock				=>	clock,
 		reset_n			=>	reset_n,
+		
+		umd_clock		=> umd_clock,
+		i2c_clock		=> i2c_clock,
+		ora_clock		=>	ora_clock,
 
 		i2c_ena			=>	i2c_ena,
 		i2c_rw   		=>	i2c_rw,
@@ -240,11 +258,11 @@ begin
 		-- i2c_ack_err       : std_logic;
 
 		umd_ena   		=>	umd_ena,
-		umd_tx    		=>	umd_tx_data,
-		umd_rx    		=>	umd_rx_data,
-		umd_r_stb 		=> umd_rx_stb,
-		umd_r_ack 		=>	umd_rx_ack,
-		umd_t_stb 		=>	umd_tx_stb,
+		umd_tx_data		=>	umd_tx_data,
+		umd_rx_data		=>	umd_rx_data,
+		umd_rx_stb 		=> umd_rx_stb,
+		umd_rx_ack 		=>	umd_rx_ack,
+		umd_tx_stb 		=>	umd_tx_stb,
 
 		ora_ena   		=>	ora_ena,
 		cam_ena			=> cam_ena
@@ -276,23 +294,23 @@ begin
 	umd : uart
 	generic map
 	(
-		umd_baud_r,		-- UART Baud Rate
-		sys_clk_frq		-- System clock speed
+		baud				 		=> umd_baud_r,		-- UART Baud Rate
+		clock_frequency 		=> sys_clk_frq		-- System clock speed
 	)
 	port map
 	(
-		clock				=>	umd_clock,
-		reset				=>	reset_n,
+		clock						=>	umd_clock,
+		reset						=>	not reset_n,
 
 		-- tx: rx_pin>(UART MODULE)>tx_data>(CTL MODULE)
 		-- rx: tx_pin<(UART MODULE)<rx_data<(CTL_MODULE)
-		uart_tx			=>	umd_rx_data,
-		uart_tx_stb		=>	umd_rx_stb,
-		uart_tx_ack		=>	umd_rx_ack,
-		uart_rx			=>	umd_tx_data,
-		uart_rx_stb		=>	umd_tx_stb,
-		tx					=>	umd_rx,
-		rx					=>	umd_tx
+		data_stream_in			=>	umd_rx_data,
+		data_stream_in_stb	=>	umd_rx_stb,
+		data_stream_in_ack	=>	umd_rx_ack,
+		data_stream_out		=>	umd_tx_data,
+		data_stream_out_stb	=>	umd_tx_stb,
+		tx							=>	umd_tx,
+		rx							=>	umd_rx
 	);
 
 	-- ORA/Camera Module component instantiation

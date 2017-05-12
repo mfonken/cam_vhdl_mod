@@ -111,7 +111,7 @@ begin
   begin
     if(reset_n = '0') then                 --reset asserted
       state <= ready;                      --return to initial state
-      busy <= '1';                         --indicate not available
+      busy <= '0';                         --indicate not available
       scl_ena <= '0';                      --sets scl high impedance
       sda_int <= '1';                      --sets sda high impedance
       ack_error <= '0';                    --clear acknowledge error flag

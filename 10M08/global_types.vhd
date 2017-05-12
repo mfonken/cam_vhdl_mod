@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 package global_types is
 
 	-- System state type
-	type system_states_t is ( startup, activate, active, deactivate, standby, shutdown );
+	type system_states_t is ( startup, activate, live, deactivate, standby, shutdown );
 	
 	-- i2c state type
 	type i2c_tx_states_t is ( i2c_standby, i2c_reg_tx, i2c_val_tx );

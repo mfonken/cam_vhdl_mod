@@ -1,0 +1,12 @@
+
+State Machine - |master|uart:local_uart|uart_tx_state
+Name uart_tx_state.tx_send_stop_bit uart_tx_state.tx_send_data uart_tx_state.tx_send_start_bit 
+uart_tx_state.tx_send_start_bit 0 0 0 
+uart_tx_state.tx_send_data 0 1 1 
+uart_tx_state.tx_send_stop_bit 1 0 1 
+
+State Machine - |master|uart:local_uart|uart_rx_state
+Name uart_rx_state.rx_get_stop_bit uart_rx_state.rx_get_data uart_rx_state.rx_get_start_bit 
+uart_rx_state.rx_get_start_bit 0 0 0 
+uart_rx_state.rx_get_data 0 1 1 
+uart_rx_state.rx_get_stop_bit 1 0 1 

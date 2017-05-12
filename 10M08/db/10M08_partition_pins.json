@@ -2,7 +2,48 @@
 	"partitions" : [
 		{
 			"name" : "Top",
-			"pins" : []
+			"pins" : [
+				{
+					"name" : "LED3",
+					"strict" : false
+				},
+				{
+					"name" : "LED4",
+					"strict" : false
+				},
+				{
+					"name" : "umd_tx",
+					"strict" : false
+				},
+				{
+					"name" : "cam_ena",
+					"strict" : false
+				},
+				{
+					"name" : "mclk",
+					"strict" : false
+				},
+				{
+					"name" : "sda",
+					"strict" : false
+				},
+				{
+					"name" : "scl",
+					"strict" : false
+				},
+				{
+					"name" : "reset_n",
+					"strict" : false
+				},
+				{
+					"name" : "clock",
+					"strict" : false
+				},
+				{
+					"name" : "umd_rx",
+					"strict" : false
+				}
+			]
 		}
 	]
 }
