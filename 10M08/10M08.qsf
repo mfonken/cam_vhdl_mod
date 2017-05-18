@@ -75,9 +75,7 @@ set_location_assignment PIN_19 -to Arduino_IO10
 set_location_assignment PIN_20 -to Arduino_IO11
 set_location_assignment PIN_21 -to Arduino_IO12
 set_location_assignment PIN_22 -to Arduino_IO13
-set_location_assignment PIN_88 -to DIFFIO_R14P_CLK2P -tag platform
 set_location_assignment PIN_89 -to DIFFIO_R14N_CLK2N -tag platform
-set_location_assignment PIN_90 -to DIFFIO_R16P_CLK3P -tag platform
 set_location_assignment PIN_91 -to DIFFIO_R16N_CLK3N -tag platform
 set_location_assignment PIN_92 -to DIFFIO_R18P -tag platform
 set_location_assignment PIN_93 -to DIFFIO_R18N -tag platform
@@ -90,7 +88,6 @@ set_location_assignment PIN_102 -to DIFFIO_R28N -tag platform
 set_location_assignment PIN_105 -to DIFFIO_R33P -tag platform
 set_location_assignment PIN_106 -to DIFFIO_R33N -tag platform
 set_location_assignment PIN_110 -to DIFFIO_T1P -tag platform
-set_location_assignment PIN_111 -to DIFFIO_T1N -tag platform
 set_location_assignment PIN_113 -to DIFFIO_T4N -tag platform
 set_location_assignment PIN_114 -to DIFFIO_T6P -tag platform
 set_location_assignment PIN_118 -to DIFFIO_T10P -tag platform
@@ -137,7 +134,6 @@ set_global_assignment -name CDF_FILE output_files/Chain1.cdf
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top -tag platform
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top -tag platform
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to Clock -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_L20N_CLK1N -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_L20P_CLK1P -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_L27N_PLL_CLKOUTN -tag platform
@@ -164,9 +160,7 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO10 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO11 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO12 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO13 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R14P_CLK2P -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R14N_CLK2N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R16P_CLK3P -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R16N_CLK3N -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R18P -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R18N -tag platform
@@ -179,7 +173,6 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R28N -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R33P -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R33N -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T1P -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T1N -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T4N -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T6P -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T10P -tag platform
@@ -196,6 +189,9 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to LED4 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to LED5 -tag platform
 set_location_assignment PIN_86 -to scl
 set_location_assignment PIN_84 -to sda
-set_location_assignment PIN_62 -to umd_rx
-set_location_assignment PIN_64 -to umd_tx
+set_location_assignment PIN_88 -to umd_rx
+set_location_assignment PIN_90 -to umd_tx
+set_instance_assignment -name IO_STANDARD "2.5 V" -to A -tag platform
+set_location_assignment PIN_123 -to A
+set_location_assignment PIN_111 -to B
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

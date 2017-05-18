@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for 10M08
-Thu May 11 23:27:54 2017
+Wed May 17 23:58:13 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -92,14 +92,14 @@ agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.10        ;
+; Average used               ; 1.11        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   3.4%      ;
-;     Processor 3            ;   3.4%      ;
-;     Processor 4            ;   3.3%      ;
+;     Processor 2            ;   3.7%      ;
+;     Processor 3            ;   3.6%      ;
+;     Processor 4            ;   3.6%      ;
 +----------------------------+-------------+
 
 
@@ -112,13 +112,13 @@ agreement for further details.
 +------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------+
 
 
-+--------------------------------------------------+
-; Slow 1200mV 85C Model Fmax Summary               ;
-+------------+-----------------+------------+------+
-; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
-+------------+-----------------+------------+------+
-; 130.75 MHz ; 130.75 MHz      ; clock      ;      ;
-+------------+-----------------+------------+------+
++-------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary              ;
++-----------+-----------------+------------+------+
+; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
++-----------+-----------------+------------+------+
+; 141.7 MHz ; 141.7 MHz       ; clock      ;      ;
++-----------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
@@ -127,17 +127,17 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------+--------+--------------------+
 ; Clock ; Slack  ; End Point TNS      ;
 +-------+--------+--------------------+
-; clock ; -6.648 ; -360.605           ;
+; clock ; -6.057 ; -383.266           ;
 +-------+--------+--------------------+
 
 
 +------------------------------------+
 ; Slow 1200mV 85C Model Hold Summary ;
-+-------+-------+--------------------+
-; Clock ; Slack ; End Point TNS      ;
-+-------+-------+--------------------+
-; clock ; 0.179 ; 0.000              ;
-+-------+-------+--------------------+
++-------+--------+-------------------+
+; Clock ; Slack  ; End Point TNS     ;
++-------+--------+-------------------+
+; clock ; -0.055 ; -0.055            ;
++-------+--------+-------------------+
 
 
 ------------------------------------------
@@ -157,7 +157,7 @@ No paths to report.
 +-------+--------+----------------------------------+
 ; Clock ; Slack  ; End Point TNS                    ;
 +-------+--------+----------------------------------+
-; clock ; -3.000 ; -233.485                         ;
+; clock ; -3.000 ; -261.738                         ;
 +-------+--------+----------------------------------+
 
 
@@ -172,7 +172,7 @@ No synchronizer chains to report.
 +------------+-----------------+------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
 +------------+-----------------+------------+------+
-; 140.69 MHz ; 140.69 MHz      ; clock      ;      ;
+; 152.91 MHz ; 152.91 MHz      ; clock      ;      ;
 +------------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -182,17 +182,17 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------+--------+-------------------+
 ; Clock ; Slack  ; End Point TNS     ;
 +-------+--------+-------------------+
-; clock ; -6.108 ; -325.961          ;
+; clock ; -5.540 ; -345.295          ;
 +-------+--------+-------------------+
 
 
 +-----------------------------------+
 ; Slow 1200mV 0C Model Hold Summary ;
-+-------+-------+-------------------+
-; Clock ; Slack ; End Point TNS     ;
-+-------+-------+-------------------+
-; clock ; 0.068 ; 0.000             ;
-+-------+-------+-------------------+
++-------+--------+------------------+
+; Clock ; Slack  ; End Point TNS    ;
++-------+--------+------------------+
+; clock ; -0.164 ; -0.548           ;
++-------+--------+------------------+
 
 
 -----------------------------------------
@@ -212,7 +212,7 @@ No paths to report.
 +-------+--------+---------------------------------+
 ; Clock ; Slack  ; End Point TNS                   ;
 +-------+--------+---------------------------------+
-; clock ; -3.000 ; -233.485                        ;
+; clock ; -3.000 ; -261.738                        ;
 +-------+--------+---------------------------------+
 
 
@@ -227,7 +227,7 @@ No synchronizer chains to report.
 +-------+--------+-------------------+
 ; Clock ; Slack  ; End Point TNS     ;
 +-------+--------+-------------------+
-; clock ; -1.836 ; -59.076           ;
+; clock ; -1.621 ; -60.975           ;
 +-------+--------+-------------------+
 
 
@@ -236,7 +236,7 @@ No synchronizer chains to report.
 +-------+--------+------------------+
 ; Clock ; Slack  ; End Point TNS    ;
 +-------+--------+------------------+
-; clock ; -0.058 ; -0.097           ;
+; clock ; -0.119 ; -0.545           ;
 +-------+--------+------------------+
 
 
@@ -257,7 +257,7 @@ No paths to report.
 +-------+--------+---------------------------------+
 ; Clock ; Slack  ; End Point TNS                   ;
 +-------+--------+---------------------------------+
-; clock ; -3.000 ; -162.237                        ;
+; clock ; -3.000 ; -183.864                        ;
 +-------+--------+---------------------------------+
 
 
@@ -272,10 +272,10 @@ No synchronizer chains to report.
 +------------------+----------+--------+----------+---------+---------------------+
 ; Clock            ; Setup    ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
 +------------------+----------+--------+----------+---------+---------------------+
-; Worst-case Slack ; -6.648   ; -0.058 ; N/A      ; N/A     ; -3.000              ;
-;  clock           ; -6.648   ; -0.058 ; N/A      ; N/A     ; -3.000              ;
-; Design-wide TNS  ; -360.605 ; -0.097 ; 0.0      ; 0.0     ; -233.485            ;
-;  clock           ; -360.605 ; -0.097 ; N/A      ; N/A     ; -233.485            ;
+; Worst-case Slack ; -6.057   ; -0.164 ; N/A      ; N/A     ; -3.000              ;
+;  clock           ; -6.057   ; -0.164 ; N/A      ; N/A     ; -3.000              ;
+; Design-wide TNS  ; -383.266 ; -0.548 ; 0.0      ; 0.0     ; -261.738            ;
+;  clock           ; -383.266 ; -0.548 ; N/A      ; N/A     ; -261.738            ;
 +------------------+----------+--------+----------+---------+---------------------+
 
 
@@ -291,6 +291,8 @@ No synchronizer chains to report.
 ; LED5         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; pwdn         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; umd_tx       ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; A            ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; B            ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; cam_ena      ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; mclk         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; sda          ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
@@ -305,7 +307,6 @@ No synchronizer chains to report.
 +---------------------+-----------------------+-----------------+-----------------+
 ; Pin                 ; I/O Standard          ; 10-90 Rise Time ; 90-10 Fall Time ;
 +---------------------+-----------------------+-----------------+-----------------+
-; vsync               ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; href                ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; pclk                ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; cpi[0]              ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
@@ -316,12 +317,15 @@ No synchronizer chains to report.
 ; cpi[5]              ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; cpi[6]              ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; cpi[7]              ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; A                   ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; B                   ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; cam_ena             ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; mclk                ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; sda                 ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; scl                 ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; reset_n             ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; clock               ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; vsync               ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; umd_rx              ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TMS~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TCK~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
@@ -344,7 +348,9 @@ No synchronizer chains to report.
 ; LED4         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; LED5         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0932 V           ; 0.135 V                              ; 0.16 V                               ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0932 V          ; 0.135 V                             ; 0.16 V                              ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; pwdn         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
-; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.48e-09 V                   ; 2.39 V              ; -0.0848 V           ; 0.163 V                              ; 0.202 V                              ; 4.62e-10 s                  ; 4.54e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.48e-09 V                  ; 2.39 V             ; -0.0848 V          ; 0.163 V                             ; 0.202 V                             ; 4.62e-10 s                 ; 4.54e-10 s                 ; No                        ; Yes                       ;
+; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
+; A            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.33 V              ; -0.00564 V          ; 0.232 V                              ; 0.19 V                               ; 4.14e-09 s                  ; 3.92e-09 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.33 V             ; -0.00564 V         ; 0.232 V                             ; 0.19 V                              ; 4.14e-09 s                 ; 3.92e-09 s                 ; No                        ; Yes                       ;
+; B            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0932 V           ; 0.135 V                              ; 0.16 V                               ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0932 V          ; 0.135 V                             ; 0.16 V                              ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; cam_ena      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0932 V           ; 0.135 V                              ; 0.16 V                               ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0932 V          ; 0.135 V                             ; 0.16 V                              ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; mclk         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; sda          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
@@ -365,7 +371,9 @@ No synchronizer chains to report.
 ; LED4         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
 ; LED5         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0521 V           ; 0.17 V                               ; 0.231 V                              ; 4.74e-10 s                  ; 4.79e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0521 V          ; 0.17 V                              ; 0.231 V                             ; 4.74e-10 s                 ; 4.79e-10 s                 ; Yes                       ; Yes                       ;
 ; pwdn         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
-; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.36 V              ; -0.0484 V           ; 0.228 V                              ; 0.115 V                              ; 5.12e-10 s                  ; 6.12e-10 s                  ; Yes                        ; No                         ; 2.32 V                      ; 4.66e-07 V                  ; 2.36 V             ; -0.0484 V          ; 0.228 V                             ; 0.115 V                             ; 5.12e-10 s                 ; 6.12e-10 s                 ; Yes                       ; No                        ;
+; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
+; A            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.33 V              ; -0.00284 V          ; 0.213 V                              ; 0.149 V                              ; 5.03e-09 s                  ; 4.66e-09 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.33 V             ; -0.00284 V         ; 0.213 V                             ; 0.149 V                             ; 5.03e-09 s                 ; 4.66e-09 s                 ; Yes                       ; Yes                       ;
+; B            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0521 V           ; 0.17 V                               ; 0.231 V                              ; 4.74e-10 s                  ; 4.79e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0521 V          ; 0.17 V                              ; 0.231 V                             ; 4.74e-10 s                 ; 4.79e-10 s                 ; Yes                       ; Yes                       ;
 ; cam_ena      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0521 V           ; 0.17 V                               ; 0.231 V                              ; 4.74e-10 s                  ; 4.79e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0521 V          ; 0.17 V                              ; 0.231 V                             ; 4.74e-10 s                 ; 4.79e-10 s                 ; Yes                       ; Yes                       ;
 ; mclk         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
 ; sda          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
@@ -386,7 +394,9 @@ No synchronizer chains to report.
 ; LED4         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; LED5         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; pwdn         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
-; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.77 V              ; -0.0485 V           ; 0.289 V                              ; 0.058 V                              ; 2.81e-10 s                  ; 3.04e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.77 V             ; -0.0485 V          ; 0.289 V                             ; 0.058 V                             ; 2.81e-10 s                 ; 3.04e-10 s                 ; No                        ; Yes                       ;
+; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; A            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.64 V              ; -0.00888 V          ; 0.249 V                              ; 0.203 V                              ; 3.12e-09 s                  ; 3.02e-09 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.64 V             ; -0.00888 V         ; 0.249 V                             ; 0.203 V                             ; 3.12e-09 s                 ; 3.02e-09 s                 ; No                        ; Yes                       ;
+; B            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; cam_ena      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; mclk         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; sda          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
@@ -401,7 +411,7 @@ No synchronizer chains to report.
 +------------+----------+----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+----------+----------+----------+----------+
-; clock      ; clock    ; 5224     ; 0        ; 0        ; 0        ;
+; clock      ; clock    ; 5306     ; 0        ; 0        ; 0        ;
 +------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -411,7 +421,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +------------+----------+----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+----------+----------+----------+----------+
-; clock      ; clock    ; 5224     ; 0        ; 0        ; 0        ;
+; clock      ; clock    ; 5306     ; 0        ; 0        ; 0        ;
 +------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -435,10 +445,10 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 3     ; 3    ;
-; Unconstrained Input Port Paths  ; 123   ; 123  ;
-; Unconstrained Output Ports      ; 7     ; 7    ;
-; Unconstrained Output Port Paths ; 11    ; 11   ;
+; Unconstrained Input Ports       ; 4     ; 4    ;
+; Unconstrained Input Port Paths  ; 132   ; 132  ;
+; Unconstrained Output Ports      ; 9     ; 9    ;
+; Unconstrained Output Port Paths ; 13    ; 13   ;
 +---------------------------------+-------+------+
 
 
@@ -459,6 +469,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; reset_n    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; scl        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; umd_rx     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; vsync      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +------------+--------------------------------------------------------------------------------------+
 
 
@@ -467,6 +478,8 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +-------------+---------------------------------------------------------------------------------------+
 ; Output Port ; Comment                                                                               ;
 +-------------+---------------------------------------------------------------------------------------+
+; A           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; B           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED3        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED4        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; cam_ena     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -485,6 +498,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; reset_n    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; scl        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; umd_rx     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; vsync      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +------------+--------------------------------------------------------------------------------------+
 
 
@@ -493,6 +507,8 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +-------------+---------------------------------------------------------------------------------------+
 ; Output Port ; Comment                                                                               ;
 +-------------+---------------------------------------------------------------------------------------+
+; A           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; B           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED3        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED4        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; cam_ena     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -509,7 +525,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Thu May 11 23:27:51 2017
+    Info: Processing started: Wed May 17 23:58:11 2017
 Info: Command: quartus_sta 10M08 -c 10M08
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -526,63 +542,63 @@ Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -6.648
+Info (332146): Worst-case setup slack is -6.057
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.648            -360.605 clock 
-Info (332146): Worst-case hold slack is 0.179
+    Info (332119):    -6.057            -383.266 clock 
+Info (332146): Worst-case hold slack is -0.055
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.179               0.000 clock 
+    Info (332119):    -0.055              -0.055 clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -233.485 clock 
+    Info (332119):    -3.000            -261.738 clock 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Warning (334000): Timing characteristics of device 10M08SAE144C8GES are preliminary
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -6.108
+Info (332146): Worst-case setup slack is -5.540
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.108            -325.961 clock 
-Info (332146): Worst-case hold slack is 0.068
+    Info (332119):    -5.540            -345.295 clock 
+Info (332146): Worst-case hold slack is -0.164
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.068               0.000 clock 
+    Info (332119):    -0.164              -0.548 clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -233.485 clock 
+    Info (332119):    -3.000            -261.738 clock 
 Info: Analyzing Fast 1200mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -1.836
+Info (332146): Worst-case setup slack is -1.621
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.836             -59.076 clock 
-Info (332146): Worst-case hold slack is -0.058
+    Info (332119):    -1.621             -60.975 clock 
+Info (332146): Worst-case hold slack is -0.119
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.058              -0.097 clock 
+    Info (332119):    -0.119              -0.545 clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -162.237 clock 
+    Info (332119):    -3.000            -183.864 clock 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 674 megabytes
-    Info: Processing ended: Thu May 11 23:27:54 2017
-    Info: Elapsed time: 00:00:03
+    Info: Peak virtual memory: 678 megabytes
+    Info: Processing ended: Wed May 17 23:58:13 2017
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
 

@@ -39,7 +39,13 @@ package ora_types is
 	subtype k_array is std_logic_vector( ( KERNEL_LENGTH - 1 ) 	downto 0 );
 
 	-- Packet types
-	type packet_buffer_t is array( MAX_PACKETS-1 downto 0 ) of std_logic_vector( 7 downto 0 );
+	subtype byte0 is std_logic_vector( 7  downto 0  );
+	subtype byte1 is std_logic_vector( 15 downto 8  );
+	subtype byte2 is std_logic_vector( 23 downto 16 );
+	subtype byte3 is std_logic_vector( 31 downto 24 );
+	subtype byte4 is std_logic_vector( 39 downto 32 );
+	subtype byte5 is std_logic_vector( 47 downto 40 );
+	subtype packet_buffer_t is std_logic_vector( 47 downto 0 );
 
 	-- Camera frame type
 	type frame_t is array( FRAME_HEIGHT downto 0 ) of x_array;

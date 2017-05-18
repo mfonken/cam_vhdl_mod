@@ -35,6 +35,8 @@ entity master_bridge is
 		LED3	: out	std_logic := '1';
 		LED4	: out	std_logic := '1';
 		LED5	: out	std_logic := '1';
+		A	: inout std_logic := '0';
+		B	: inout std_logic := '0';
 
 		-- Global clock
 		clock  		: in    	std_logic;
@@ -67,7 +69,7 @@ architecture gbehaviour of master_bridge is
 
 constant sys_clk_frq			: integer 			:= 50_000_000;
 constant	i2c_scl_frq			: integer			:= 100_000;
-constant	umd_baud_r			: integer			:= 115_200;
+constant	umd_baud_r			: integer			:= 921_600;
 constant	ora_clk_frq			: integer			:= 10_000_000;
 
 -- Module clocks
@@ -87,9 +89,10 @@ signal  	ora_kernel        : kernel_t        := DEFAULT_KERNEL;
 signal  	ora_auto_cor      : auto_correct_t 	:= DEFAULT_AUTO_CORRECT;
 
 signal  	packet_tx_i   		: integer         := 0;
--- signal  	ora_bytes_to_tx  	: integer           := 0;
--- signal  	ora_packet_buffer : packet_buffer_t;
--- signal		ora_has_packet		: std_logic					:= '0';
+signal	ora_ack				: std_logic			:= '0';
+signal	ora_has_packet		: std_logic			:= '0';
+signal  	ora_bytes_to_tx  	: integer         := 0;
+signal  	ora_packet_buffer	: packet_buffer_t;
 
 -- Uart signals
 signal	umd_ena				: std_logic			:= '1';
@@ -130,29 +133,33 @@ signal	i2c_ack_err    	: std_logic;
 			LED4	: out	std_logic := '1';
 			LED5	: out	std_logic := '1';
 			
-			clock			: in 		std_logic;
-			reset_n		: inout  std_logic;
+			clock					: in 		std_logic;
+			reset_n				: inout  std_logic;
 			
-			umd_clock	: inout	std_logic;
-			i2c_clock	: inout	std_logic;
-			ora_clock	: inout	std_logic;
+			umd_clock			: inout	std_logic;
+			i2c_clock			: inout	std_logic;
+			ora_clock			: inout	std_logic;
 			
-			i2c_ena		: out    std_logic;
-			i2c_rw    	: out    std_logic	:= '0';
-			i2c_wr	  	: out    std_logic_vector( 7 downto 0 );
-			i2c_rd		: in     std_logic_vector( 7 downto 0 );
-			i2c_bsy		: in     std_logic	:= '0';
+			i2c_ena				: out    std_logic;
+			i2c_rw    			: out    std_logic	:= '0';
+			i2c_wr	  			: out    std_logic_vector( 7 downto 0 );
+			i2c_rd				: in     std_logic_vector( 7 downto 0 );
+			i2c_bsy				: in     std_logic	:= '0';
 			-- i2c_ack_err       : std_logic;
 
-			umd_ena   	: inout   	std_logic := '1';
-			umd_rx_data	: inout    	std_logic_vector( 7 downto 0 );
-			umd_rx_stb 	: inout    	std_logic;
-			umd_rx_ack 	: inout     std_logic;
-			umd_tx_data	: inout     std_logic_vector( 7 downto 0 );
-			umd_tx_stb 	: inout     std_logic;
+			umd_ena   			: inout 	std_logic := '1';
+			umd_rx_data			: inout  std_logic_vector( 7 downto 0 );
+			umd_rx_stb 			: inout  std_logic;
+			umd_rx_ack 			: inout  std_logic;
+			umd_tx_data			: inout  std_logic_vector( 7 downto 0 );
+			umd_tx_stb 			: inout  std_logic;
 
-			ora_ena   	: inout  std_logic	:= '1';
-			cam_ena   	: inout  std_logic	:= '1'
+			ora_ena   			: inout 	std_logic	:= '1';
+			ora_ack				: inout	std_logic;
+			ora_has_packet		: in		std_logic;
+			ora_bytes_to_tx	: in 		integer;
+			ora_packet_buffer	: inout	packet_buffer_t;
+			cam_ena   			: inout  std_logic	:= '1'
 		);
 	end component master;
 
@@ -211,20 +218,24 @@ signal	i2c_ack_err    	: std_logic;
 		);
 		port
 		(
+		A	: inout std_logic := '0';
+		B	: inout std_logic := '0';
 			-- Global clock
-			gclk        : in    	std_logic;
+			gclk        		: in    	std_logic;
 
-			-- Camera interface
-			ena			: inout	std_logic		:= '1';
-			pwdn			: out		std_logic		:= '1';
-			mclk        : inout 	std_logic;
-			vsync       : in    	std_logic;
-			href        : in    	std_logic;
-			pclk        : in    	std_logic;
-			cpi         : in    	std_logic_vector( 7 downto 0 );
+		-- Camera interface
+		ena					: inout	std_logic;
+		pwdn					: out		std_logic;
+		mclk        		: inout 	std_logic;
+		vsync       		: in    	std_logic;
+		href       		 	: in    	std_logic;
+		pclk        		: in    	std_logic;
+		cpi         		: in    	std_logic_vector( 7 downto 0 );
 
-			ora_pkt_ct	: out		integer 			:= 0;
-			ora_data		: out		std_logic_vector( 7 downto 0 )
+		ora_ack				: in		std_logic;
+		ora_has_packet		: inout		std_logic;
+		ora_bytes_to_tx	: out		integer;
+		ora_packet_buffer	: inout	packet_buffer_t
 		);
 	end component ora;
 
@@ -243,29 +254,33 @@ begin
 		LED4	=> LED4,
 		LED5	=> LED5,
 	
-		clock				=>	clock,
-		reset_n			=>	reset_n,
+		clock					=>	clock,
+		reset_n				=>	reset_n,
 		
-		umd_clock		=> umd_clock,
-		i2c_clock		=> i2c_clock,
-		ora_clock		=>	ora_clock,
+		umd_clock			=> umd_clock,
+		i2c_clock			=> i2c_clock,
+		ora_clock			=>	ora_clock,
 
-		i2c_ena			=>	i2c_ena,
-		i2c_rw   		=>	i2c_rw,
-		i2c_wr	 		=>	i2c_wr,
-		i2c_rd			=>	i2c_rd,
-		i2c_bsy			=>	i2c_bsy,
+		i2c_ena				=>	i2c_ena,
+		i2c_rw   			=>	i2c_rw,
+		i2c_wr	 			=>	i2c_wr,
+		i2c_rd				=>	i2c_rd,
+		i2c_bsy				=>	i2c_bsy,
 		-- i2c_ack_err       : std_logic;
 
-		umd_ena   		=>	umd_ena,
-		umd_tx_data		=>	umd_tx_data,
-		umd_rx_data		=>	umd_rx_data,
-		umd_rx_stb 		=> umd_rx_stb,
-		umd_rx_ack 		=>	umd_rx_ack,
-		umd_tx_stb 		=>	umd_tx_stb,
+		umd_ena   			=>	umd_ena,
+		umd_tx_data			=>	umd_tx_data,
+		umd_rx_data			=>	umd_rx_data,
+		umd_rx_stb 			=> umd_rx_stb,
+		umd_rx_ack 			=>	umd_rx_ack,
+		umd_tx_stb 			=>	umd_tx_stb,
 
-		ora_ena   		=>	ora_ena,
-		cam_ena			=> cam_ena
+		ora_ena   			=>	ora_ena,
+		ora_ack				=> ora_ack,
+		ora_has_packet		=> ora_has_packet,
+		ora_bytes_to_tx	=> ora_bytes_to_tx,
+		ora_packet_buffer	=> ora_packet_buffer,
+		cam_ena				=> cam_ena
 	);
 
 	-- I2C Module component instantiation
@@ -317,28 +332,29 @@ begin
 	ora_0 : ora
 	generic map
 	(
-		g_clk_r			=> sys_clk_frq,
-		m_clk_r			=> ora_clk_frq,
-		thresh 			=> DEFAULT_THRESH,
-		kernel 			=>	DEFAULT_KERNEL,
-		buffer_c			=>	DEFAULT_AUTO_CORRECT
+		g_clk_r					=> sys_clk_frq,
+		m_clk_r					=> ora_clk_frq,
+		thresh 					=> DEFAULT_THRESH,
+		kernel 					=>	DEFAULT_KERNEL,
+		buffer_c					=>	DEFAULT_AUTO_CORRECT
 	)
 	port map
 	(
-		gclk				=>	ora_clock,
-		ena				=>	cam_ena,
-		pwdn				=>	pwdn,
-		mclk				=>	mclk,
-		vsync				=>	vsync,
-		href				=>	href,
-		pclk 				=>	pclk,
-		cpi				=>	cpi,
-
-		ora_pkt_ct		=>	ora_pkt_ct,
-		ora_data			=> ora_data
---		ora_bytes_to_tx,
---		ora_packet_buffer,
---		ora_has_packet
+		A => A,
+		B => B,
+		gclk						=>	ora_clock,
+		ena						=>	cam_ena,
+		pwdn						=>	pwdn,
+		mclk						=>	mclk,
+		vsync						=>	vsync,
+		href						=>	href,
+		pclk 						=>	pclk,
+		cpi						=>	cpi,
+		
+		ora_ack					=>	ora_ack,
+		ora_has_packet			=> ora_has_packet,
+		ora_bytes_to_tx		=> ora_bytes_to_tx,
+		ora_packet_buffer		=> ora_packet_buffer
 	);
 
 	--------------------------------------------------------------------------------

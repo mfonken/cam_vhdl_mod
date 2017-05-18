@@ -16,6 +16,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "A",
+					"strict" : false
+				},
+				{
+					"name" : "B",
+					"strict" : false
+				},
+				{
 					"name" : "cam_ena",
 					"strict" : false
 				},
@@ -37,6 +45,10 @@
 				},
 				{
 					"name" : "clock",
+					"strict" : false
+				},
+				{
+					"name" : "vsync",
 					"strict" : false
 				},
 				{

@@ -34,29 +34,34 @@ entity master is
 		LED4	: out	std_logic := '1';
 		LED5	: out	std_logic := '1';
 		
-		clock			: in 			std_logic;
-      reset_n		: inout  	std_logic;
+		clock					: in 			std_logic;
+      reset_n				: inout  	std_logic;
 		
-		umd_clock	: inout 		std_logic;
-		i2c_clock	: inout 		std_logic;
-		ora_clock	: inout 		std_logic;
+		umd_clock			: inout 		std_logic;
+		i2c_clock			: inout 		std_logic;
+		ora_clock			: inout 		std_logic;
 
-      i2c_ena		: out     	std_logic;
-      i2c_rw    	: out     	std_logic;
-      i2c_wr	  	: out     	std_logic_vector( 7 downto 0 );
-      i2c_rd		: in      	std_logic_vector( 7 downto 0 );
-      i2c_bsy		: in      	std_logic;
+      i2c_ena				: out     	std_logic;
+      i2c_rw    			: out     	std_logic;
+      i2c_wr	  			: out     	std_logic_vector( 7 downto 0 );
+      i2c_rd				: in      	std_logic_vector( 7 downto 0 );
+      i2c_bsy				: in      	std_logic;
       -- i2c_ack_err       : std_logic;
 
 		
-      umd_ena   	: inout   	std_logic;
-      umd_rx_data	: inout    	std_logic_vector( 7 downto 0 );
-      umd_rx_stb 	: inout    	std_logic;
-      umd_rx_ack 	: inout     std_logic;
-		umd_tx_data	: inout     std_logic_vector( 7 downto 0 );
-      umd_tx_stb 	: inout     std_logic;
+      umd_ena   			: inout   	std_logic;
+      umd_rx_data			: inout    	std_logic_vector( 7 downto 0 );
+      umd_rx_stb 			: inout    	std_logic;
+      umd_rx_ack 			: inout     std_logic;
+		umd_tx_data			: inout     std_logic_vector( 7 downto 0 );
+      umd_tx_stb 			: inout     std_logic;
 
-      ora_ena   	: inout   	std_logic;
+      ora_ena   			: inout   	std_logic;
+		ora_ack				: inout		std_logic;
+		ora_has_packet		: in			std_logic;
+		ora_bytes_to_tx	: in 			integer;
+		ora_packet_buffer	: inout		packet_buffer_t;
+		
       cam_ena   	: inout   	std_logic
       -- ora_rx    : in      std_logic_vector( 23 downto 0 )
     );
@@ -91,14 +96,12 @@ architecture mbehaviour of master is
 	signal	hasAck				: std_logic			:= '0';
 	signal	hasNack				: std_logic 		:= '0';
 
-	signal	packet_tx_i			: integer			:= 0;
+	signal	packet_tx_i			: integer			range 0 to 48 := 0;
 
 	-- Uart signals
 	signal	prev_umd_rx			: std_logic_vector(7 downto 0);
 
-	signal 	ora_has_packet		: std_logic;
-	signal	ora_bytes_to_tx	: integer	:= 0;
-	signal	ora_packet_buffer : packet_buffer_t;
+	signal	ora_bytes_txd		: integer	:= 0;
 	
 	--  signal    cam_ena           : std_logic         := '0';
 	signal  	cam_ready         : std_logic         := '0';
@@ -165,14 +168,22 @@ architecture mbehaviour of master is
 					cam_ena 	<= '1';
 
 					-- If ora packet has bytes to send and umd_rx line is open the send
-					if ora_has_packet = '1' and packet_tx_i >= 0 and umd_rx_stb = '0' then
-						umd_rx_stb <= '1';
-						umd_rx_data <= ora_packet_buffer(packet_tx_i);
-						packet_tx_i <= packet_tx_i - 1;
-					else
---						umd_rx_stb <= '1';
-						umd_rx_data <= ucp_hdr.dat & ucp_dat.nack & ucp_ftr.slv;
-						packet_tx_i <= ora_bytes_to_tx;
+					if ora_has_packet = '1' then
+						packet_tx_i <= ora_packet_buffer'length;
+						ora_ack <= '1';
+					end if;
+					--
+					if ora_ack = '1' and umd_rx_stb = '0' then
+						if packet_tx_i /= 0 then
+							umd_rx_stb <= '1';
+							umd_rx_data <= ora_packet_buffer(packet_tx_i-1 downto packet_tx_i-8);--std_logic_vector(to_unsigned(packet_tx_i,8));--
+							packet_tx_i <= packet_tx_i - 8;
+							ora_ack <= '1';
+						else
+							ora_ack <= '0';
+						end if;
+					elsif umd_rx_ack = '1' then
+						umd_rx_stb <= '0';
 					end if;
 
 				-- Deactivate: Transition to standby or shutdown states

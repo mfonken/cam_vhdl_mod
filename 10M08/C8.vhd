@@ -80,12 +80,12 @@ signal  	reset_hrd         : std_logic         := '0';
 signal  	auto_wake         : std_logic         := '0';
 
 --signal	cam_ena				: std_logic				:= '0';
-signal  	cam_ready         : std_logic         := '0';
+signal  	cam_ready         : std_logic         	:= '0';
 signal  	has_umd_tx        : std_logic        	:= '0';
-signal  	has_umd_rx        : std_logic         := '0';
+signal  	has_umd_rx        : std_logic         	:= '0';
 
 -- Ora tuning
-constant	ora_clk_r					: integer						:= 10_000_000;
+constant	ora_clk_r			: integer						:= 10_000_000;
 signal  	ora_thresh        : integer           := DEFAULT_THRESH;
 signal  	ora_kernel        : kernel_t          := DEFAULT_KERNEL;
 signal  	ora_auto_cor      : auto_correct_t    := DEFAULT_AUTO_CORRECT;
