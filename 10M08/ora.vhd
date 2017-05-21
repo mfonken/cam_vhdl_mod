@@ -58,22 +58,22 @@ architecture gbehaviour of ora is
 --	signal y_convolve 	: convolve_result_t;
 --	signal x_peaks 		: x_peaks_a;
 --	signal y_peaks 		: y_peaks_a;
-	
+
 	-- Non-clock delay signals
 	signal pclk_d			: std_logic := '0';
 	signal href_d			: std_logic := '0';
 	signal vsync_d			: std_logic := '0';
 
-	signal x 				: integer range FRAME_WIDTH  downto 0 := 0;
-	signal y 				: integer range FRAME_HEIGHT downto 0 := 0;
-	signal x_i 				: integer range FRAME_WIDTH  downto 0 := 0;
-	signal y_i 				: integer range FRAME_HEIGHT downto 0 := 0;
+	signal x 				: integer range 0 to FRAME_WIDTH := 0;
+	signal y 				: integer range 0 to FRAME_HEIGHT := 0;
+	signal x_i 				: integer range 0 to FRAME_WIDTH := 0;
+	signal y_i 				: integer range 0 to FRAME_HEIGHT := 0;
 	signal x_r 				: std_logic 	:= '0';
 	signal y_r 				: std_logic 	:= '0';
 	signal pixel			: unsigned( 7 downto 0 );
 
 	signal c 				: std_logic_vector( 0 to 3 ) := "0000";
-	
+
 	signal prepare_packet : std_logic := '0';
 	signal x_p_l			: integer := 0;
 	signal y_p_l			: integer := 0;
@@ -81,25 +81,26 @@ architecture gbehaviour of ora is
 	begin
 	pixel <= unsigned( cpi );
 	B <= vsync_d;
-	
+
 	sync_process : process( gclk )
 	-- MCLK divider
 	constant MCLK_DIV      	: integer := g_clk_r / m_clk_r;
 	constant MCLK_DIV_HALF 	: integer := MCLK_DIV / 2;
 	variable x_map 			: x_array;
-	variable y_map 			: y_array;	
+	variable y_map 			: y_array;
 	variable x_convolve 		: convolve_result_t;
 	variable y_convolve 		: convolve_result_t;
 	variable x_peaks 			: x_peaks_a;
 	variable y_peaks 			: y_peaks_a;
 	variable t : integer range -(KERNEL_LENGTH-1) to FRAME_WIDTH := -(KERNEL_LENGTH-1);
+	variable peak					: std_logic	:= '1';
 
 	begin
 		if rising_edge( gclk ) then
 			pclk_d <= pclk;
 			href_d <= href;
 			vsync_d <= vsync;
-			
+
 			if x_r = '1' then
 				x <= 0;
 			else
@@ -120,7 +121,7 @@ architecture gbehaviour of ora is
 			else
 				c <= std_logic_vector(unsigned(c) + to_unsigned(1,4));
 			end if;
-		
+
 			-- Collect on PCLK
 			if pclk = '1' and pclk_d = '0' then
 				if pixel > PIXEL_THRESH and x < FRAME_WIDTH and y < FRAME_HEIGHT then
@@ -139,7 +140,7 @@ architecture gbehaviour of ora is
 					x_i <= x;
 				end if;
 			end if;
-			
+
 			-- Increment line on HREF
 			if href = '1' and href_d = '0' then
 				x_r <= '1';
@@ -151,47 +152,46 @@ architecture gbehaviour of ora is
 			else
 			  x_r <= '0';
 			end if;
-			
+
 			-- Reset and process on VSYNC
 			if vsync = '1' and vsync_d = '0' then
-				for i in 0 to FRAME_WIDTH - 1 loop
-					for j in 0 to KERNEL_LENGTH - 1 loop
-						t := i - j;
-						if t >= 0 and kernel(j) = '1' then
-							x_convolve(i) := x_convolve(i) + x_map(t);
-						end if;
-					end loop;
+
+				for i in 1 to FRAME_WIDTH loop
+					if x_map( i - 1 ) < x_map( i ) and x_map( i + 1 ) < x_map( i ) then
+						x_peaks.peaks(x_index) := x_map(i);
+						x_peaks.l := x_peaks.l + 1;
+					end if;
 				end loop;
-				for i in 0 to FRAME_HEIGHT - 1 loop
-					for j in 0 to KERNEL_LENGTH - 1 loop
-						t := i - j;
-						if t >= 0 and kernel(j) = '1' then
-							y_convolve(i) := y_convolve(i) + y_map(t);
-						end if;
-					end loop;
+				for i in 1 to FRAME_HEIGHT loop
+					if y_map( i - 1 ) < y_map( i ) and y_map( i + 1 ) < y_map( i ) then
+						y_peaks.peaks(y_index) := y_map(i);
+						y_peaks.l := y_peaks.l + 1;
+					end if;
 				end loop;
-				
-				ora_bytes_to_tx <= UART_BUFFER_BYTE_LENGTH;
-				
-				for i in 0 to UART_BUFFER_BYTE_LENGTH/2 - 1 loop
-					ora_packet_buffer(i) <= std_logic_vector(to_unsigned(x_map(i), 8));
-					ora_packet_buffer(i+UART_BUFFER_BYTE_LENGTH/2) <= std_logic_vector(to_unsigned(y_map(i), 8));
+
+				ora_bytes_to_tx <= UART_BUFFER_LENGTH;
+
+				for i in 0 to x_peaks.l - 1 loop
+					ora_packet_buffer(i) <= std_logic_vector(to_unsigned(x_peaks.peaks(i), 8));
 				end loop;
-				
+				for i in 0 to y_peaks.l - 1 loop
+					ora_packet_buffer(i + FRAME_WIDTH) <= std_logic_vector(to_unsigned(y_peaks.peaks(i), 8));
+				end loop;
+
 				prepare_packet <= '1';
 				y_r <= '1';
 			elsif vsync = '0' and vsync_d = '1' then
 				x_map 			:= ( others => 0 );
 				y_map 			:= ( others => 0 );
-				x_convolve		:= ( others => 0 );
-				y_convolve		:= ( others => 0 );
+				-- x_convolve		:= ( others => 0 );
+				-- y_convolve		:= ( others => 0 );
 				x_peaks.peaks	:= ( others => 0 );
 				y_peaks.peaks	:= ( others => 0 );
-				
+
 			else
 				y_r <= '0';
 			end if;
-			
+
 			if ora_ack = '1' then
 				prepare_packet <= '0';
 			end if;

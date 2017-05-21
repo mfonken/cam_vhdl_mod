@@ -38,8 +38,8 @@ package ora_types is
 	subtype k_array is std_logic_vector( ( KERNEL_LENGTH - 1 ) 	downto 0 );
 
 	-- Packet types
-	constant UART_BUFFER_BYTE_LENGTH	: integer := FRAME_WIDTH * 2;
-	type packet_buffer_t is array( UART_BUFFER_BYTE_LENGTH downto 0 ) of std_logic_vector( 7 downto 0 );
+	constant UART_BUFFER_LENGTH	: integer := FRAME_WIDTH * FRAME_HEIGHT;
+	type packet_buffer_t is array( UART_BUFFER_LENGTH downto 0 ) of std_logic_vector( 7 downto 0 );
 
 	-- Camera frame type
 	type frame_t is array( FRAME_HEIGHT downto 0 ) of std_logic_vector( FRAME_WIDTH downto 0 );
@@ -56,7 +56,7 @@ package ora_types is
 	-- Peaks array type
 	type x_peaks_t is array( 0 to MAX_PEAKS_X ) of integer;
 	type y_peaks_t is array( 0 to MAX_PEAKS_Y ) of integer;
-	
+
 		-- Peaks type
 	type x_peaks_a is record
 		peaks : x_peaks_t;
