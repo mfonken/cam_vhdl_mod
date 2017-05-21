@@ -5,9 +5,8 @@ use ieee.numeric_std.all;
 package ora_types is
 
 	-- Camera frame dimensions
-	constant FRAME_WIDTH   	: integer := 1280;
-	constant FRAME_HEIGHT  	: integer := 800;
-	constant MAX_ARRAY_L   	: integer := FRAME_WIDTH;
+	constant FRAME_WIDTH   	: integer := 50;--1280;
+	constant FRAME_HEIGHT  	: integer := 50;--800;
 
 	constant MAX_CONV_V    	: integer := 1000;
 	constant MAX_DIFF_V    	: integer := 60;
@@ -31,24 +30,19 @@ package ora_types is
 	constant PIXEL_THRESH  	: integer := 200;
 
 	-- Max integer value
-	constant MAX_VALUE		: integer := 1000;
+	constant MAX_VALUE		: integer := 255;
 
 	-- General array types
-	subtype x_array is std_logic_vector( FRAME_WIDTH 				downto 0 );
-	subtype y_array is std_logic_vector( FRAME_HEIGHT 				downto 0 );
+	type x_array is array( FRAME_WIDTH 	downto 0 ) of integer range 0 to MAX_VALUE;
+	type y_array is array( FRAME_HEIGHT downto 0 ) of integer range 0 to MAX_VALUE;
 	subtype k_array is std_logic_vector( ( KERNEL_LENGTH - 1 ) 	downto 0 );
 
 	-- Packet types
-	subtype byte0 is std_logic_vector( 7  downto 0  );
-	subtype byte1 is std_logic_vector( 15 downto 8  );
-	subtype byte2 is std_logic_vector( 23 downto 16 );
-	subtype byte3 is std_logic_vector( 31 downto 24 );
-	subtype byte4 is std_logic_vector( 39 downto 32 );
-	subtype byte5 is std_logic_vector( 47 downto 40 );
-	subtype packet_buffer_t is std_logic_vector( 47 downto 0 );
+	constant UART_BUFFER_BYTE_LENGTH	: integer := FRAME_WIDTH * 2;
+	type packet_buffer_t is array( UART_BUFFER_BYTE_LENGTH downto 0 ) of std_logic_vector( 7 downto 0 );
 
 	-- Camera frame type
-	type frame_t is array( FRAME_HEIGHT downto 0 ) of x_array;
+	type frame_t is array( FRAME_HEIGHT downto 0 ) of std_logic_vector( FRAME_WIDTH downto 0 );
 
 	-- Density map tyoe
 	type density_map_t is record
@@ -57,11 +51,21 @@ package ora_types is
 	end record density_map_t;
 
 	-- Convolution output array type
-	type convolve_result_t is array ( FRAME_WIDTH downto 0) of integer;
+	type convolve_result_t is array ( FRAME_WIDTH downto 0 ) of integer;
 
 	-- Peaks array type
-	type x_peaks_t is array( MAX_PEAKS_X downto 0 ) of integer;
-	type y_peaks_t is array( MAX_PEAKS_Y downto 0 ) of integer;
+	type x_peaks_t is array( 0 to MAX_PEAKS_X ) of integer;
+	type y_peaks_t is array( 0 to MAX_PEAKS_Y ) of integer;
+	
+		-- Peaks type
+	type x_peaks_a is record
+		peaks : x_peaks_t;
+		l 		: integer;
+	end record x_peaks_a;
+	type y_peaks_a is record
+		peaks : y_peaks_t;
+		l 		: integer;
+	end record y_peaks_a;
 
 	-- Kernel type
 	subtype kernel_t is std_logic_vector( KERNEL_LENGTH-1 downto 0 );
@@ -89,14 +93,6 @@ package ora_types is
 		auto_cor_med   => "10",
 		auto_cor_high  => "11"
 	);
-
-	-- Peaks type
-	type peaks_t is record
-		x_peaks  : x_peaks_t;
-		x_length : integer;
-		y_peaks  : y_peaks_t;
-		y_length : integer;
-	end record peaks_t;
 
 		-- Ora defaults
 	constant DEFAULT_THRESH 			: integer 				:= 200;

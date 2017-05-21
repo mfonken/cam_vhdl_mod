@@ -84,7 +84,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 11        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : 12        :        :                   :         : 1A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 13        :        :                   :         : 1A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 14        :        :                   :         : 1A        :                
-cpi[0]                       : 15        : input  : 2.5 V             :         : 1B        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 15        :        :                   :         : 1B        :                
 ~ALTERA_TMS~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 16        : input  : 2.5 V Schmitt Trigger :         : 1B        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 17        :        :                   :         : 1B        :                
 ~ALTERA_TCK~ / RESERVED_INPUT : 18        : input  : 2.5 V Schmitt Trigger :         : 1B        : N              
@@ -121,7 +121,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 48        :        :                   :      
 VCCIO3                       : 49        : power  :                   : 2.5V    : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 50        :        :                   :         : 3         :                
 VCC_ONE                      : 51        : power  :                   : 3.0V/3.3V :           :                
-cpi[1]                       : 52        : input  : 2.5 V             :         : 3         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 52        :        :                   :         : 3         :                
 GND                          : 53        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 54        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 55        :        :                   :         : 3         :                
@@ -129,8 +129,8 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 56        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : 57        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 58        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 59        :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 60        :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 61        :        :                   :         : 4         :                
+cpi[0]                       : 60        : input  : 2.5 V             :         : 3         : N              
+cpi[1]                       : 61        : input  : 2.5 V             :         : 4         : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 62        :        :                   :         : 4         :                
 GND                          : 63        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 64        :        :                   :         : 4         :                

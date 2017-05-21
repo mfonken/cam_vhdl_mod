@@ -213,8 +213,6 @@ signal	i2c_ack_err    	: std_logic;
 			thresh    	: 			integer;
 			kernel    	: 			kernel_t;
 			buffer_c  	: 			auto_correct_t
-	--		pbuffer   	: 			packet_buffer_t := ( others => ( others => '0' ) );
-	--		hasPacket 	:			std_logic			:= '0'
 		);
 		port
 		(

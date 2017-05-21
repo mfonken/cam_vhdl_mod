@@ -96,7 +96,7 @@ architecture mbehaviour of master is
 	signal	hasAck				: std_logic			:= '0';
 	signal	hasNack				: std_logic 		:= '0';
 
-	signal	packet_tx_i			: integer			range 0 to 48 := 0;
+	signal	packet_tx_i			: integer			range 0 to UART_BUFFER_BYTE_LENGTH := 0;
 
 	-- Uart signals
 	signal	prev_umd_rx			: std_logic_vector(7 downto 0);
@@ -165,19 +165,17 @@ architecture mbehaviour of master is
 				-- live: Stable standard operation
 				when live =>                               -- live
 					state 	<= next_state;
-					cam_ena 	<= '1';
+					cam_ena 	<= '1';--not ora_ack;
 
 					-- If ora packet has bytes to send and umd_rx line is open the send
 					if ora_has_packet = '1' then
-						packet_tx_i <= ora_packet_buffer'length;
+						packet_tx_i <= ora_bytes_to_tx;
 						ora_ack <= '1';
-					end if;
-					--
-					if ora_ack = '1' and umd_rx_stb = '0' then
-						if packet_tx_i /= 0 then
+					elsif ora_ack = '1' and umd_rx_stb = '0' then
+						if packet_tx_i >= 1 then
 							umd_rx_stb <= '1';
-							umd_rx_data <= ora_packet_buffer(packet_tx_i-1 downto packet_tx_i-8);--std_logic_vector(to_unsigned(packet_tx_i,8));--
-							packet_tx_i <= packet_tx_i - 8;
+							umd_rx_data <= ora_packet_buffer(packet_tx_i-1);--std_logic_vector(to_unsigned(packet_tx_i,8));
+							packet_tx_i <= packet_tx_i - 1;
 							ora_ack <= '1';
 						else
 							ora_ack <= '0';
