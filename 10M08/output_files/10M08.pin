@@ -77,9 +77,9 @@ REFGND                       : 4         :        :                   :         
 ADC_VREF                     : 5         :        :                   :         :           :                
 cpi[2]                       : 6         : input  : 2.5 V             :         : 1A        : Y              
 cpi[3]                       : 7         : input  : 2.5 V             :         : 1A        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 8         :        :                   :         : 1A        :                
+cpi[1]                       : 8         : input  : 2.5 V             :         : 1A        : N              
 VCCIO1A                      : 9         : power  :                   : 2.5V    : 1A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 10        :        :                   :         : 1A        :                
+cpi[0]                       : 10        : input  : 2.5 V             :         : 1A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 11        :        :                   :         : 1A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 12        :        :                   :         : 1A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 13        :        :                   :         : 1A        :                
@@ -129,8 +129,8 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 56        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : 57        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 58        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 59        :        :                   :         : 3         :                
-cpi[0]                       : 60        : input  : 2.5 V             :         : 3         : N              
-cpi[1]                       : 61        : input  : 2.5 V             :         : 4         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 60        :        :                   :         : 3         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 61        :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 62        :        :                   :         : 4         :                
 GND                          : 63        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 64        :        :                   :         : 4         :                

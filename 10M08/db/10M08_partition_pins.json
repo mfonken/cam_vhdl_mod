@@ -52,6 +52,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "cpi[6]",
+					"strict" : false
+				},
+				{
+					"name" : "cpi[7]",
+					"strict" : false
+				},
+				{
 					"name" : "cpi[3]",
 					"strict" : false
 				},
@@ -73,14 +81,6 @@
 				},
 				{
 					"name" : "cpi[5]",
-					"strict" : false
-				},
-				{
-					"name" : "cpi[6]",
-					"strict" : false
-				},
-				{
-					"name" : "cpi[7]",
 					"strict" : false
 				},
 				{

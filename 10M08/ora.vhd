@@ -66,10 +66,6 @@ architecture gbehaviour of ora is
 
 	signal x 				: integer range 0 to FRAME_WIDTH := 0;
 	signal y 				: integer range 0 to FRAME_HEIGHT := 0;
-	signal x_i 				: integer range 0 to FRAME_WIDTH := 0;
-	signal y_i 				: integer range 0 to FRAME_HEIGHT := 0;
-	signal x_r 				: std_logic 	:= '0';
-	signal y_r 				: std_logic 	:= '0';
 	signal pixel			: unsigned( 7 downto 0 );
 
 	signal c 				: std_logic_vector( 0 to 3 ) := "0000";
@@ -92,7 +88,11 @@ architecture gbehaviour of ora is
 	variable y_convolve 		: convolve_result_t;
 	variable x_peaks 			: x_peaks_a;
 	variable y_peaks 			: y_peaks_a;
-	variable t : integer range -(KERNEL_LENGTH-1) to FRAME_WIDTH := -(KERNEL_LENGTH-1);
+	variable x_max				: integer range 0 to MAX_VALUE;
+	variable	y_max				: integer range 0 to MAX_VALUE;
+	variable x_i				: integer range 0 to FRAME_WIDTH;
+	variable	y_i				: integer range 0 to FRAME_HEIGHT;
+--	variable t : integer range -(KERNEL_LENGTH-1) to FRAME_WIDTH := -(KERNEL_LENGTH-1);
 	variable peak					: std_logic	:= '1';
 
 	begin
@@ -100,18 +100,6 @@ architecture gbehaviour of ora is
 			pclk_d <= pclk;
 			href_d <= href;
 			vsync_d <= vsync;
-
-			if x_r = '1' then
-				x <= 0;
-			else
-				x <= x_i;
-			end if;
-
-			if y_r = '1' then
-				y <= 0;
-			else
-				y <= y_i;
-			end if;
 
 			-- Clock divider & MCLK driver
 			if c = std_logic_vector(to_unsigned(MCLK_DIV_HALF,4)) then
@@ -124,72 +112,58 @@ architecture gbehaviour of ora is
 
 			-- Collect on PCLK
 			if pclk = '1' and pclk_d = '0' then
-				if pixel > PIXEL_THRESH and x < FRAME_WIDTH and y < FRAME_HEIGHT then
---					frame(y)(x) <= '1';
+				if pixel > PIXEL_THRESH then -- and x < FRAME_WIDTH and y < FRAME_HEIGHT then
 					x_map(x) := x_map(x) + 1;
 					y_map(y) := y_map(y) + 1;
 					A <= '1';
 				else
---					frame(y)(x) <= '0';
 					A <= '0';
 				end if;
 
 				if x < FRAME_WIDTH then
-					x_i <= x + 1;
-				else
-					x_i <= x;
+					x <= x + 1;
 				end if;
 			end if;
 
 			-- Increment line on HREF
 			if href = '1' and href_d = '0' then
-				x_r <= '1';
+				x <= 0;
 				if y < FRAME_HEIGHT then
-					y_i <= y + 1;
-				else
-					y_i <= y;
+					y <= y + 1;
 				end if;
-			else
-			  x_r <= '0';
 			end if;
 
 			-- Reset and process on VSYNC
 			if vsync = '1' and vsync_d = '0' then
-
-				for i in 1 to FRAME_WIDTH loop
-					if x_map( i - 1 ) < x_map( i ) and x_map( i + 1 ) < x_map( i ) then
-						x_peaks.peaks(x_index) := x_map(i);
-						x_peaks.l := x_peaks.l + 1;
+				y <= 0;
+				x <= 0;
+				
+				x_max := x_map(0);
+				for i in 1 to FRAME_WIDTH - 1 loop
+					if x_max < x_map(i) then
+						x_max := x_map(i);
+						x_i := i;
 					end if;
 				end loop;
-				for i in 1 to FRAME_HEIGHT loop
-					if y_map( i - 1 ) < y_map( i ) and y_map( i + 1 ) < y_map( i ) then
-						y_peaks.peaks(y_index) := y_map(i);
-						y_peaks.l := y_peaks.l + 1;
+				
+				y_max := y_map(0);
+				for i in 1 to FRAME_HEIGHT - 1 loop
+					if y_max < y_map(i) then
+						y_max := y_map(i);
+						y_i := i;
 					end if;
 				end loop;
-
-				ora_bytes_to_tx <= UART_BUFFER_LENGTH;
-
-				for i in 0 to x_peaks.l - 1 loop
-					ora_packet_buffer(i) <= std_logic_vector(to_unsigned(x_peaks.peaks(i), 8));
-				end loop;
-				for i in 0 to y_peaks.l - 1 loop
-					ora_packet_buffer(i + FRAME_WIDTH) <= std_logic_vector(to_unsigned(y_peaks.peaks(i), 8));
-				end loop;
+				
+				ora_bytes_to_tx <= 3;
+				ora_packet_buffer(1) <= std_logic_vector(to_unsigned(x_i, 8));
+				ora_packet_buffer(0) <= std_logic_vector(to_unsigned(y_i, 8));
 
 				prepare_packet <= '1';
-				y_r <= '1';
 			elsif vsync = '0' and vsync_d = '1' then
-				x_map 			:= ( others => 0 );
-				y_map 			:= ( others => 0 );
-				-- x_convolve		:= ( others => 0 );
-				-- y_convolve		:= ( others => 0 );
-				x_peaks.peaks	:= ( others => 0 );
-				y_peaks.peaks	:= ( others => 0 );
-
-			else
-				y_r <= '0';
+				x_map 	:= ( others => 0 );
+				y_map 	:= ( others => 0 );
+				x_peaks	:= ( ( others => 0 ), 0 );
+				y_peaks	:= ( ( others => 0 ), 0 );
 			end if;
 
 			if ora_ack = '1' then
@@ -203,6 +177,7 @@ architecture gbehaviour of ora is
   packet_composer : process( gclk)
   begin
 	if rising_edge( gclk ) then
+		ora_packet_buffer(2) <= PACKET_HEADER;
 		ora_has_packet <= prepare_packet;
 	end if;
   end process packet_composer;

@@ -5,8 +5,8 @@ use ieee.numeric_std.all;
 package ora_types is
 
 	-- Camera frame dimensions
-	constant FRAME_WIDTH   	: integer := 50;--1280;
-	constant FRAME_HEIGHT  	: integer := 50;--800;
+	constant FRAME_WIDTH   	: integer := 1280;
+	constant FRAME_HEIGHT  	: integer := 800;
 
 	constant MAX_CONV_V    	: integer := 1000;
 	constant MAX_DIFF_V    	: integer := 60;
@@ -38,7 +38,7 @@ package ora_types is
 	subtype k_array is std_logic_vector( ( KERNEL_LENGTH - 1 ) 	downto 0 );
 
 	-- Packet types
-	constant UART_BUFFER_LENGTH	: integer := FRAME_WIDTH * FRAME_HEIGHT;
+	constant UART_BUFFER_LENGTH	: integer := MAX_PEAKS_X + MAX_PEAKS_Y;
 	type packet_buffer_t is array( UART_BUFFER_LENGTH downto 0 ) of std_logic_vector( 7 downto 0 );
 
 	-- Camera frame type
