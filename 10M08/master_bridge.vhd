@@ -132,14 +132,14 @@ signal	i2c_ack_err    	: std_logic;
 			LED3	: out	std_logic := '1';
 			LED4	: out	std_logic := '1';
 			LED5	: out	std_logic := '1';
-			
+
 			clock					: in 		std_logic;
 			reset_n				: inout  std_logic;
-			
+
 			umd_clock			: inout	std_logic;
 			i2c_clock			: inout	std_logic;
 			ora_clock			: inout	std_logic;
-			
+
 			i2c_ena				: out    std_logic;
 			i2c_rw    			: out    std_logic	:= '0';
 			i2c_wr	  			: out    std_logic_vector( 7 downto 0 );
@@ -186,15 +186,15 @@ signal	i2c_ack_err    	: std_logic;
 	end component i2c_master;
 
 	component uart is
-		generic 
+		generic
 		(
 			baud                : positive;
 			clock_frequency     : positive
 		);
-		port 
-		(  
+		port
+		(
 			clock               :   in  std_logic;
-			reset               :   in  std_logic;    
+			reset               :   in  std_logic;
 			data_stream_in      :   in  std_logic_vector(7 downto 0);
 			data_stream_in_stb  :   in  std_logic;
 			data_stream_in_ack  :   out std_logic;
@@ -251,10 +251,10 @@ begin
 		LED3	=> LED3,
 		LED4	=> LED4,
 		LED5	=> LED5,
-	
+
 		clock					=>	clock,
 		reset_n				=>	reset_n,
-		
+
 		umd_clock			=> umd_clock,
 		i2c_clock			=> i2c_clock,
 		ora_clock			=>	ora_clock,
@@ -348,7 +348,7 @@ begin
 		href						=>	href,
 		pclk 						=>	pclk,
 		cpi						=>	cpi,
-		
+
 		ora_ack					=>	ora_ack,
 		ora_has_packet			=> ora_has_packet,
 		ora_bytes_to_tx		=> ora_bytes_to_tx,
