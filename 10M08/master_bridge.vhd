@@ -23,6 +23,9 @@ use work.ucp_lib.all;
 
 -- I2C files
 --use work.i2c_master.all;
+
+-- RAM files
+--use work.hrddr.all;
 --------------------------------------------------------------------------------
 
 ----------------------------------------------
@@ -55,6 +58,14 @@ entity master_bridge is
 		-- Serial interface
 		umd_tx    	: out    std_logic;
 		umd_rx    	: in  	std_logic;
+		
+		-- HyperRAM interface
+		ram_rst     : out   std_logic;
+		ram_cs_n    : inout std_logic;
+		ram_ck_p    : inout std_logic;
+		ram_ck_n    : out   std_logic;
+		ram_rwds    : inout std_logic;
+		ram_dq      : inout std_logic_vector( 7 downto 0 );
 
 		-- Synchronous reset (active low)
 		reset_n		: inout	std_logic
@@ -71,11 +82,30 @@ constant sys_clk_frq			: integer 			:= 50_000_000;
 constant	i2c_scl_frq			: integer			:= 100_000;
 constant	umd_baud_r			: integer			:= 921_600;
 constant	ora_clk_frq			: integer			:= 10_000_000;
+constant	ram_clk_frq			: integer			:= 100_000_000;
+constant ram_latency			: integer			:= 1;
 
 -- Module clocks
 signal  	umd_clock         : std_logic       := '0';
 signal  	i2c_clock         : std_logic       := '0';
 signal  	ora_clock         : std_logic       := '0';
+signal	ram_clock			: std_logic			:= '0';
+
+-- RAM data
+signal	ram_ena				: std_logic			:= '0';
+signal	ram_data_wr       : std_logic_vector(  7 downto 0 );
+signal	ram_data_wr_stb   : std_logic;
+signal	ram_data_wr_ack   : std_logic;
+signal	ram_data_wr_lat   : std_logic;
+signal	ram_data_wr_len   : std_logic_vector(  7 downto 0 );
+signal	ram_data_rd       : std_logic_vector(  7 downto 0 );
+signal	ram_data_rd_stb   : std_logic;
+signal	ram_data_rd_len   : std_logic_vector(  7 downto 0 );
+signal	ram_data_str      : std_logic;
+signal	ram_burst         : std_logic;
+signal	ram_as            : std_logic;
+signal	ram_row           : std_logic_vector( 12 downto 0 );
+signal	ram_col           : std_logic_vector(  8 downto 0 );
 
 -- Ora data
 signal	ora_ena				: std_logic			:= '1';
@@ -147,19 +177,35 @@ signal	i2c_ack_err    	: std_logic;
 			i2c_bsy				: in     std_logic	:= '0';
 			-- i2c_ack_err       : std_logic;
 
-			umd_ena   			: inout 	std_logic := '1';
+			umd_ena   			: inout 	std_logic := '0';
 			umd_rx_data			: inout  std_logic_vector( 7 downto 0 );
 			umd_rx_stb 			: inout  std_logic;
 			umd_rx_ack 			: inout  std_logic;
 			umd_tx_data			: inout  std_logic_vector( 7 downto 0 );
 			umd_tx_stb 			: inout  std_logic;
 
-			ora_ena   			: inout 	std_logic	:= '1';
+			ora_ena   			: inout 	std_logic	:= '0';
 			ora_ack				: inout	std_logic;
 			ora_has_packet		: in		std_logic;
 			ora_bytes_to_tx	: in 		integer;
 			ora_packet_buffer	: inout	packet_buffer_t;
-			cam_ena   			: inout  std_logic	:= '1'
+			cam_ena   			: inout  std_logic	:= '0';
+			
+			ram_data_wr       : out    std_logic_vector(  7 downto 0 );
+			ram_data_wr_stb   : out    std_logic;
+			ram_data_wr_ack   : in   	std_logic;
+			ram_data_wr_lat   : out    std_logic;
+			ram_data_wr_len   : out   	std_logic_vector(  7 downto 0 );
+			ram_data_rd       : in   	std_logic_vector(  7 downto 0 );
+			ram_data_rd_stb   : in   	std_logic;
+			ram_data_rd_len   : out   	std_logic_vector(  7 downto 0 );
+
+			ram_data_str      : in   	std_logic;
+
+			ram_burst         : out    std_logic;
+			ram_as            : out    std_logic;
+			ram_row           : out    std_logic_vector( 12 downto 0 );
+			ram_col           : out    std_logic_vector(  8 downto 0 )
 		);
 	end component master;
 
@@ -208,34 +254,71 @@ signal	i2c_ack_err    	: std_logic;
 	component ora is
 		generic
 		(
-			g_clk_r		: 			integer;
-			m_clk_r		: 			integer;
-			thresh    	: 			integer;
-			kernel    	: 			kernel_t;
-			buffer_c  	: 			auto_correct_t
+			g_clk_r				: integer;
+			m_clk_r				: integer;
+			thresh    			: integer;
+			kernel    			: kernel_t;
+			buffer_c  			: auto_correct_t
 		);
 		port
 		(
-		A	: inout std_logic := '0';
-		B	: inout std_logic := '0';
-			-- Global clock
+			A	: inout std_logic := '0';
+			B	: inout std_logic := '0';
+				-- Global clock
 			gclk        		: in    	std_logic;
 
-		-- Camera interface
-		ena					: inout	std_logic;
-		pwdn					: out		std_logic;
-		mclk        		: inout 	std_logic;
-		vsync       		: in    	std_logic;
-		href       		 	: in    	std_logic;
-		pclk        		: in    	std_logic;
-		cpi         		: in    	std_logic_vector( 7 downto 0 );
+			-- Camera interface
+			ena					: inout	std_logic;
+			pwdn					: out		std_logic;
+			mclk        		: inout 	std_logic;
+			vsync       		: in    	std_logic;
+			href       		 	: in    	std_logic;
+			pclk        		: in    	std_logic;
+			cpi         		: in    	std_logic_vector( 7 downto 0 );
 
-		ora_ack				: in		std_logic;
-		ora_has_packet		: inout		std_logic;
-		ora_bytes_to_tx	: out		integer;
-		ora_packet_buffer	: inout	packet_buffer_t
+			ora_ack				: in		std_logic;
+			ora_has_packet		: inout	std_logic;
+			ora_bytes_to_tx	: out		integer;
+			ora_packet_buffer	: inout	packet_buffer_t
 		);
 	end component ora;
+	
+	component hrddr is
+		generic 
+		(
+			sys_ck_frequency  : positive;
+			ddr_ck_frequency  : positive;
+			latency           : positive
+		);
+		port 
+		(
+			clock             : in    	std_logic;
+			reset_n           : in    	std_logic;
+
+			data_wr           : in    	std_logic_vector(  7 downto 0 );
+			data_wr_stb       : in    	std_logic;
+			data_wr_ack       : out   	std_logic;
+			data_wr_lat       : in    	std_logic;
+			data_wr_len       : in   	std_logic_vector(  7 downto 0 );
+			data_rd           : out   	std_logic_vector(  7 downto 0 );
+			data_rd_stb       : in   	std_logic;
+			data_rd_len       : in   	std_logic_vector(  7 downto 0 );
+
+			data_str          : out   	std_logic;
+
+			burst             : in    	std_logic;
+			as                : in    	std_logic;
+			row               : in    	std_logic_vector( 12 downto 0 );
+			col               : in    	std_logic_vector(  8 downto 0 );
+
+			ram_rst				: out		std_logic;
+			ram_cs_n          : out   	std_logic;
+			ram_ck_p          : out   	std_logic;
+			ram_ck_n          : out   	std_logic;
+			ram_rwds          : inout 	std_logic;
+			ram_dq            : inout 	std_logic_vector(  7 downto 0 )
+		);
+	end component hrddr;
 
 begin
 	-- Master module component initialization
@@ -252,33 +335,47 @@ begin
 		LED4	=> LED4,
 		LED5	=> LED5,
 
-		clock					=>	clock,
-		reset_n				=>	reset_n,
+		clock						=>	clock,
+		reset_n					=>	reset_n,
 
-		umd_clock			=> umd_clock,
-		i2c_clock			=> i2c_clock,
-		ora_clock			=>	ora_clock,
+		umd_clock				=> umd_clock,
+		i2c_clock				=> i2c_clock,
+		ora_clock				=>	ora_clock,
 
-		i2c_ena				=>	i2c_ena,
-		i2c_rw   			=>	i2c_rw,
-		i2c_wr	 			=>	i2c_wr,
-		i2c_rd				=>	i2c_rd,
-		i2c_bsy				=>	i2c_bsy,
+		i2c_ena					=>	i2c_ena,
+		i2c_rw   				=>	i2c_rw,
+		i2c_wr	 				=>	i2c_wr,
+		i2c_rd					=>	i2c_rd,
+		i2c_bsy					=>	i2c_bsy,
 		-- i2c_ack_err       : std_logic;
 
-		umd_ena   			=>	umd_ena,
-		umd_tx_data			=>	umd_tx_data,
-		umd_rx_data			=>	umd_rx_data,
-		umd_rx_stb 			=> umd_rx_stb,
-		umd_rx_ack 			=>	umd_rx_ack,
-		umd_tx_stb 			=>	umd_tx_stb,
+		umd_ena   				=>	umd_ena,
+		umd_tx_data				=>	umd_tx_data,
+		umd_rx_data				=>	umd_rx_data,
+		umd_rx_stb 				=> umd_rx_stb,
+		umd_rx_ack 				=>	umd_rx_ack,
+		umd_tx_stb 				=>	umd_tx_stb,
 
-		ora_ena   			=>	ora_ena,
-		ora_ack				=> ora_ack,
-		ora_has_packet		=> ora_has_packet,
-		ora_bytes_to_tx	=> ora_bytes_to_tx,
-		ora_packet_buffer	=> ora_packet_buffer,
-		cam_ena				=> cam_ena
+		ora_ena   				=>	ora_ena,
+		ora_ack					=> ora_ack,
+		ora_has_packet			=> ora_has_packet,
+		ora_bytes_to_tx		=> ora_bytes_to_tx,
+		ora_packet_buffer		=> ora_packet_buffer,
+		cam_ena					=> cam_ena,
+		
+		ram_data_wr          =>	ram_data_wr,
+		ram_data_wr_stb      =>	ram_data_wr_stb,
+		ram_data_wr_ack      =>	ram_data_wr_ack,
+		ram_data_wr_lat      =>	ram_data_wr_lat,
+		ram_data_wr_len      =>	ram_data_wr_len,
+		ram_data_rd          => ram_data_rd,
+		ram_data_rd_stb      =>	ram_data_rd_stb,
+		ram_data_rd_len      =>	ram_data_rd_len,
+		ram_data_str         =>	ram_data_str,
+		ram_burst            =>	ram_burst,
+		ram_as               =>	ram_as,
+		ram_row              =>	ram_row,
+		ram_col              =>	ram_col
 	);
 
 	-- I2C Module component instantiation
@@ -353,6 +450,41 @@ begin
 		ora_has_packet			=> ora_has_packet,
 		ora_bytes_to_tx		=> ora_bytes_to_tx,
 		ora_packet_buffer		=> ora_packet_buffer
+	);
+			
+	hrddr_0 : hrddr
+	generic map
+	(
+		sys_ck_frequency    	=>	sys_clk_frq,
+		ddr_ck_frequency    	=>	ram_clk_frq,
+		latency             	=>	ram_latency
+	)
+	port map
+	(
+		clock               	=>	ram_clock,
+		reset_n             	=>	reset_n,
+
+		data_wr             	=>	ram_data_wr,
+		data_wr_stb         	=>	ram_data_wr_stb,
+		data_wr_ack         	=>	ram_data_wr_ack,
+		data_wr_lat         	=>	ram_data_wr_lat,
+		data_wr_len         	=>	ram_data_wr_len,
+		data_rd             	=> ram_data_rd,
+		data_rd_stb         	=>	ram_data_rd_stb,
+		data_rd_len        	=>	ram_data_rd_len,
+
+		data_str            	=>	ram_data_str,
+
+		burst               	=>	ram_burst,
+		as                  	=>	ram_as,
+		row                 	=>	ram_row,
+		col                 	=>	ram_col,
+		
+		cs_n                	=>	ram_cs_n,
+		ck_p                	=>	ram_ck_p,
+		ck_n                	=>	ram_ck_n,
+		rwds                	=>	ram_rwds,
+		dq                  	=>	ram_dq
 	);
 
 	--------------------------------------------------------------------------------

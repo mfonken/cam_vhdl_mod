@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 10M08
-Sun May 21 16:19:19 2017
+Wed May 24 00:22:12 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sun May 21 16:19:19 2017           ;
+; Analysis & Synthesis Status        ; Failed - Wed May 24 00:22:12 2017           ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; 10M08                                       ;
 ; Top-level Entity Name              ; master_bridge                               ;
@@ -164,7 +164,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Sun May 21 16:19:11 2017
+    Info: Processing started: Wed May 24 00:22:04 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 10M08 -c 10M08
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -178,6 +178,9 @@ Info (12021): Found 1 design units, including 0 entities, in source file ucp.vhd
 Info (12021): Found 2 design units, including 1 entities, in source file uart.vhd
     Info (12022): Found design unit 1: uart-rtl File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/uart.vhd Line: 50
     Info (12023): Found entity 1: uart File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/uart.vhd Line: 32
+Info (12021): Found 2 design units, including 1 entities, in source file hrddr.vhd
+    Info (12022): Found design unit 1: hrddr-rtl File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/hrddr.vhd Line: 44
+    Info (12023): Found entity 1: hrddr File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/hrddr.vhd Line: 10
 Info (12021): Found 2 design units, including 1 entities, in source file i2c_master.vhd
     Info (12022): Found design unit 1: i2c_master-logic File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/i2c_master.vhd Line: 56
     Info (12023): Found entity 1: i2c_master File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/i2c_master.vhd Line: 38
@@ -189,30 +192,16 @@ Info (12021): Found 1 design units, including 0 entities, in source file ora_typ
 Info (12021): Found 1 design units, including 0 entities, in source file global_types.vhd
     Info (12022): Found design unit 1: global_types File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/global_types.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file master.vhd
-    Info (12022): Found design unit 1: master-mbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 71
+    Info (12022): Found design unit 1: master-mbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 87
     Info (12023): Found entity 1: master File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 24
 Info (12021): Found 2 design units, including 1 entities, in source file master_bridge.vhd
-    Info (12022): Found design unit 1: master_bridge-gbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 67
-    Info (12023): Found entity 1: master_bridge File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 31
-Info (12127): Elaborating entity "master_bridge" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at master_bridge.vhd(120): object "i2c_ack_err" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 120
-Info (12128): Elaborating entity "master" for hierarchy "master:master_m" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 242
-Warning (10540): VHDL Signal Declaration warning at master.vhd(31): used explicit default value for signal "LED1" because signal was never assigned a value File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 31
-Warning (10540): VHDL Signal Declaration warning at master.vhd(32): used explicit default value for signal "LED2" because signal was never assigned a value File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 32
-Warning (10540): VHDL Signal Declaration warning at master.vhd(35): used explicit default value for signal "LED5" because signal was never assigned a value File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 35
-Warning (10036): Verilog HDL or VHDL warning at master.vhd(96): object "hasAck" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 96
-Warning (10036): Verilog HDL or VHDL warning at master.vhd(97): object "hasNack" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 97
-Info (12128): Elaborating entity "i2c_master" for hierarchy "i2c_master:i2c_master_0" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 285
-Info (12128): Elaborating entity "uart" for hierarchy "uart:umd" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 307
-Info (12128): Elaborating entity "ora" for hierarchy "ora:ora_0" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 330
-Warning (10036): Verilog HDL or VHDL warning at ora.vhd(89): object "x_peaks" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 89
-Warning (10036): Verilog HDL or VHDL warning at ora.vhd(90): object "y_peaks" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 90
-Error (10528): VHDL error at ora.vhd(145): value "256" is outside the target constraint range (0 to 255) File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 145
-Error (12152): Can't elaborate user hierarchy "ora:ora_0" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 330
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 9 warnings
-    Error: Peak virtual memory: 703 megabytes
-    Error: Processing ended: Sun May 21 16:19:19 2017
+    Info (12022): Found design unit 1: master_bridge-gbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 78
+    Info (12023): Found entity 1: master_bridge File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 34
+Error (10349): VHDL Association List error at master_bridge.vhd(483): formal "cs_n" does not exist File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 483
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 1 warning
+    Error: Peak virtual memory: 673 megabytes
+    Error: Processing ended: Wed May 24 00:22:12 2017
     Error: Elapsed time: 00:00:08
-    Error: Total CPU time (on all processors): 00:00:17
+    Error: Total CPU time (on all processors): 00:00:15
 
 

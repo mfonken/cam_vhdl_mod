@@ -62,8 +62,24 @@ entity master is
 		ora_bytes_to_tx	: in 			integer;
 		ora_packet_buffer	: inout		packet_buffer_t;
 		
-      cam_ena   	: inout   	std_logic
+      cam_ena   			: inout   	std_logic;
       -- ora_rx    : in      std_logic_vector( 23 downto 0 )
+		
+		ram_data_wr       : out    	std_logic_vector(  7 downto 0 );
+		ram_data_wr_stb   : out    	std_logic;
+		ram_data_wr_ack   : in   		std_logic;
+		ram_data_wr_lat   : out    	std_logic;
+		ram_data_wr_len   : out   		std_logic_vector(  7 downto 0 );
+		ram_data_rd       : in   		std_logic_vector(  7 downto 0 );
+		ram_data_rd_stb   : out   		std_logic;
+		ram_data_rd_len   : out   		std_logic_vector(  7 downto 0 );
+
+		ram_data_str      : in   		std_logic;
+
+		ram_burst         : out    	std_logic;
+		ram_as            : out    	std_logic;
+		ram_row           : out    	std_logic_vector( 12 downto 0 );
+		ram_col           : out    	std_logic_vector(  8 downto 0 )
     );
 
 end master;

@@ -532,7 +532,7 @@ begin
 					cam_ready <= '0';
 
 					i2c_bsy_prev <= i2c_bsy;                      --capture the value of the previous i2c busy signal
-					if i2c_bsy_prev = '0' and i2c_busy = '1') then --i2c busy just went high
+					if i2c_bsy_prev = '0' and i2c_busy = '1' then --i2c busy just went high
 						i2c_busy_cnt := i2c_busy_cnt + 1;             --counts the times busy has gone from low to high during transaction
 					end if;
 
