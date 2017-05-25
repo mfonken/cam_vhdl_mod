@@ -30,7 +30,7 @@ package ora_types is
 	constant PIXEL_THRESH  	: integer := 200;
 
 	-- Max integer value
-	constant MAX_VALUE		: integer := 255;
+	constant MAX_VALUE		: integer := 1;
 
 	-- General array types
 	type x_array is array( FRAME_WIDTH 	downto 0 ) of integer range 0 to MAX_VALUE;

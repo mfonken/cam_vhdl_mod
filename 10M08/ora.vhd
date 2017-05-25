@@ -44,7 +44,24 @@ entity ora is
 		ora_ack				: in		std_logic;
 		ora_has_packet		: inout	std_logic;
 		ora_bytes_to_tx	: out		integer;
-		ora_packet_buffer	: inout	packet_buffer_t
+		ora_packet_buffer	: inout	packet_buffer_t;
+		
+		r_rd_data       	: in   	std_logic_vector(  7 downto 0 );
+		r_rd_request    : out    std_logic;
+		r_rd_length     : out   	std_logic_vector(  7 downto 0 );
+
+		r_wr_data     	: out    std_logic_vector(  7 downto 0 );
+		r_wr_request    : out    std_logic;
+		r_wr_length     : out   	std_logic_vector(  7 downto 0 );
+		r_wr_ack        : in   	std_logic;
+
+		r_strobe        : inout 	std_logic;
+		r_request_ack   : in   	std_logic;
+
+		r_burst         : out    std_logic;
+		r_as            : out    std_logic;
+		r_row           : out    std_logic_vector( 12 downto 0 );
+		r_col           : out    std_logic_vector(  8 downto 0 )
 	);
 end ora;
 
@@ -77,6 +94,10 @@ architecture gbehaviour of ora is
 	begin
 	pixel <= unsigned( cpi );
 	B <= vsync_d;
+	
+	r_burst <= '1';
+	r_as    <= '0';
+	
 
 	sync_process : process( gclk )
 	-- MCLK divider
@@ -138,27 +159,34 @@ architecture gbehaviour of ora is
 				y <= 0;
 				x <= 0;
 				
-				x_max := x_map(0);
-				for i in 1 to FRAME_WIDTH - 1 loop
-					if x_max < x_map(i) then
-						x_max := x_map(i);
-						x_i := i;
-					end if;
-				end loop;
+				r_row <= std_logic_vector(to_unsigned(x, 13));	
+				r_col <= std_logic_vector(to_unsigned(y, 9));
 				
-				y_max := y_map(0);
-				for i in 1 to FRAME_HEIGHT - 1 loop
-					if y_max < y_map(i) then
-						y_max := y_map(i);
-						y_i := i;
-					end if;
-				end loop;
+				r_wr_data 	<= x"AA";
+				r_wr_request <= '1';
+				r_wr_length  <= "00000001";
 				
-				ora_bytes_to_tx <= 3;
-				ora_packet_buffer(1) <= std_logic_vector(to_unsigned(x_i, 8));
-				ora_packet_buffer(0) <= std_logic_vector(to_unsigned(y_i, 8));
+--				x_max := x_map(0);
+--				for i in 1 to FRAME_WIDTH - 1 loop
+--					if x_max < x_map(i) then
+--						x_max := x_map(i);
+--						x_i := i;
+--					end if;
+--				end loop;
+--				
+--				y_max := y_map(0);
+--				for i in 1 to FRAME_HEIGHT - 1 loop
+--					if y_max < y_map(i) then
+--						y_max := y_map(i);
+--						y_i := i;
+--					end if;
+--				end loop;
+--				
+--				ora_bytes_to_tx <= 3;
+--				ora_packet_buffer(1) <= std_logic_vector(to_unsigned(x_i, 8));
+--				ora_packet_buffer(0) <= std_logic_vector(to_unsigned(y_i, 8));
 
-				prepare_packet <= '1';
+--				prepare_packet <= '1';
 			elsif vsync = '0' and vsync_d = '1' then
 				x_map 	:= ( others => 0 );
 				y_map 	:= ( others => 0 );
@@ -168,6 +196,10 @@ architecture gbehaviour of ora is
 
 			if ora_ack = '1' then
 				prepare_packet <= '0';
+			end if;
+			
+			if r_wr_ack = '1' then
+				r_wr_request <= '0';
 			end if;
 		end if;
 	end process sync_process;

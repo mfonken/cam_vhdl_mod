@@ -49,8 +49,6 @@ architecture rtl of hrddr is
   constant lv : std_logic := '0';
   constant MAX_BURST : integer := 1024;
 
-  signal  ck_prev : std_logic;
-
   type machine is(ready, start, command, latency_delay, wr, rd, stop); --needed states
   signal state         : machine;
   type ca_64MB_t is record
@@ -86,6 +84,8 @@ ca.burst  <= burst;
 ca.row    <= row;
 ca.col_u  <= col( 8 downto 3 );
 ca.col_l  <= col( 2 downto 0 );
+ca.rsv1   <= ( others => '0' );
+ca.rsv2   <= ( others => '0' );
 ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 & ca.col_l;
 ---------------------------------------------------------------------------
 -- OVERSAMPLE_CLOCK_DIVIDER
@@ -131,7 +131,7 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
           cs_n <= '1';
           request_ack <= '0';
 
-          if data_wr_stb = '1' xor data_rd_stb = '1' then
+          if wr_request = '1' xor rd_request = '1' then
             ca.r_wn <= not wr_request and rd_request;
             request_ack <= '1';
             state <= start;
