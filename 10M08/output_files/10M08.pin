@@ -80,9 +80,9 @@ cpi[3]                       : 7         : input  : 2.5 V             :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : 8         :        :                   :         : 1A        :                
 VCCIO1A                      : 9         : power  :                   : 2.5V    : 1A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 10        :        :                   :         : 1A        :                
-ram_dq[1]                    : 11        : bidir  : 2.5 V             :         : 1A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 11        :        :                   :         : 1A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 12        :        :                   :         : 1A        :                
-ram_ck_p                     : 13        : bidir  : 2.5 V             :         : 1A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 13        :        :                   :         : 1A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 14        :        :                   :         : 1A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 15        :        :                   :         : 1B        :                
 ~ALTERA_TMS~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 16        : input  : 2.5 V Schmitt Trigger :         : 1B        : N              
@@ -108,28 +108,28 @@ VCCA1                        : 35        : power  :                   : 3.0V/3.3
 VCC_ONE                      : 36        : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 37        : power  :                   : 3.0V/3.3V :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 38        :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 39        :        :                   :         : 3         :                
+ram_ck_n                     : 39        : output : 2.5 V             :         : 3         : Y              
 VCCIO3                       : 40        : power  :                   : 2.5V    : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 41        :        :                   :         : 3         :                
+ram_dq[7]                    : 41        : bidir  : 2.5 V             :         : 3         : Y              
 GND                          : 42        : gnd    :                   :         :           :                
-ram_dq[7]                    : 43        : bidir  : 2.5 V             :         : 3         : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 44        :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 45        :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 46        :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 47        :        :                   :         : 3         :                
+ram_dq[6]                    : 43        : bidir  : 2.5 V             :         : 3         : Y              
+ram_ck_p                     : 44        : bidir  : 2.5 V             :         : 3         : Y              
+ram_cs_n                     : 45        : bidir  : 2.5 V             :         : 3         : Y              
+ram_dq[5]                    : 46        : bidir  : 2.5 V             :         : 3         : Y              
+ram_dq[4]                    : 47        : bidir  : 2.5 V             :         : 3         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 48        :        :                   :         : 3         :                
 VCCIO3                       : 49        : power  :                   : 2.5V    : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 50        :        :                   :         : 3         :                
+ram_rwds                     : 50        : bidir  : 2.5 V             :         : 3         : Y              
 VCC_ONE                      : 51        : power  :                   : 3.0V/3.3V :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 52        :        :                   :         : 3         :                
+ram_rst                      : 52        : output : 2.5 V             :         : 3         : Y              
 GND                          : 53        : gnd    :                   :         :           :                
-ram_cs_n                     : 54        : bidir  : 2.5 V             :         : 3         : N              
-cpi[0]                       : 55        : input  : 2.5 V             :         : 3         : N              
-cpi[1]                       : 56        : input  : 2.5 V             :         : 3         : N              
-ram_dq[5]                    : 57        : bidir  : 2.5 V             :         : 3         : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 58        :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 59        :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 60        :        :                   :         : 3         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 54        :        :                   :         : 3         :                
+ram_dq[3]                    : 55        : bidir  : 2.5 V             :         : 3         : Y              
+ram_dq[2]                    : 56        : bidir  : 2.5 V             :         : 3         : Y              
+ram_vcc                      : 57        : output : 2.5 V             :         : 3         : Y              
+ram_vccq                     : 58        : output : 2.5 V             :         : 3         : Y              
+ram_dq[1]                    : 59        : bidir  : 2.5 V             :         : 3         : Y              
+ram_dq[0]                    : 60        : bidir  : 2.5 V             :         : 3         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 61        :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 62        :        :                   :         : 4         :                
 GND                          : 63        : gnd    :                   :         :           :                
@@ -149,7 +149,7 @@ href                         : 76        : input  : 2.5 V             :         
 vsync                        : 77        : input  : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 78        :        :                   :         : 5         :                
 pwdn                         : 79        : output : 2.5 V             :         : 5         : Y              
-ram_rst                      : 80        : output : 2.5 V             :         : 5         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 80        :        :                   :         : 5         :                
 cam_ena                      : 81        : bidir  : 2.5 V             :         : 5         : Y              
 VCCIO5                       : 82        : power  :                   : 2.5V    : 5         :                
 GND                          : 83        : gnd    :                   :         :           :                
@@ -162,20 +162,20 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 89        :        :                   :      
 umd_tx                       : 90        : output : 2.5 V             :         : 6         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 91        :        :                   :         : 6         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 92        :        :                   :         : 6         :                
-ram_dq[6]                    : 93        : bidir  : 2.5 V             :         : 6         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 93        :        :                   :         : 6         :                
 VCCIO6                       : 94        : power  :                   : 2.5V    : 6         :                
 GND                          : 95        : gnd    :                   :         :           :                
-ram_dq[2]                    : 96        : bidir  : 2.5 V             :         : 6         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 96        :        :                   :         : 6         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 97        :        :                   :         : 6         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 98        :        :                   :         : 6         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 99        :        :                   :         : 6         :                
-ram_rwds                     : 100       : bidir  : 2.5 V             :         : 6         : N              
+cpi[1]                       : 100       : input  : 2.5 V             :         : 6         : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 101       :        :                   :         : 6         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 102       :        :                   :         : 6         :                
 VCCIO6                       : 103       : power  :                   : 2.5V    : 6         :                
 GND                          : 104       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 105       :        :                   :         : 6         :                
-ram_dq[0]                    : 106       : bidir  : 2.5 V             :         : 6         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 106       :        :                   :         : 6         :                
 VCCA3                        : 107       : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 108       : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 109       : power  :                   : 3.0V/3.3V :           :                
@@ -189,11 +189,11 @@ GND                          : 116       : gnd    :                   :         
 VCCIO7                       : 117       : power  :                   : 2.5V    : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 118       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 119       :        :                   :         : 7         :                
-ram_dq[4]                    : 120       : bidir  : 2.5 V             :         : 8         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 120       :        :                   :         : 8         :                
 reset_n                      : 121       : bidir  : 2.5 V             :         : 8         : Y              
-ram_dq[3]                    : 122       : bidir  : 2.5 V             :         : 8         : N              
+cpi[0]                       : 122       : input  : 2.5 V             :         : 8         : N              
 A                            : 123       : bidir  : 2.5 V             :         : 8         : Y              
-ram_ck_n                     : 124       : output : 2.5 V             :         : 8         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 124       :        :                   :         : 8         :                
 GND                          : 125       : gnd    :                   :         :           :                
 ~ALTERA_CONFIG_SEL~ / RESERVED_INPUT : 126       : input  : 2.5 V             :         : 8         : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 127       :        :                   :         : 8         :                

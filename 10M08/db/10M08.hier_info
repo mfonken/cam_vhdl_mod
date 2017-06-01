@@ -1,16 +1,16 @@
 |master_bridge
-LED1 <= master:master_m.LED1
-LED2 <= master:master_m.LED2
-LED3 <= master:master_m.LED3
-LED4 <= master:master_m.LED4
-LED5 <= master:master_m.LED5
-A <> ora:ora_0.A
-B <> ora:ora_0.B
+LED1 << master:master_m.LED1
+LED2 << master:master_m.LED2
+LED3 << master:master_m.LED3
+LED4 << master:master_m.LED4
+LED5 << master:master_m.LED5
+A <> hrddr:hrddr_0.A
+B <> hrddr:hrddr_0.B
 clock => master:master_m.clock
 cam_ena <> master:master_m.cam_ena
 cam_ena <> ora:ora_0.ena
 mclk <> ora:ora_0.mclk
-pwdn <= ora:ora_0.pwdn
+pwdn << ora:ora_0.pwdn
 vsync => ora:ora_0.vsync
 href => ora:ora_0.href
 pclk => ora:ora_0.pclk
@@ -24,12 +24,12 @@ cpi[6] => ora:ora_0.cpi[6]
 cpi[7] => ora:ora_0.cpi[7]
 sda <> i2c_master:i2c_master_0.sda
 scl <> i2c_master:i2c_master_0.scl
-umd_tx <= uart:umd.tx
+umd_tx << uart:umd.tx
 umd_rx => uart:umd.rx
-ram_rst <= comb.DB_MAX_OUTPUT_PORT_TYPE
+ram_rst << comb.DB_MAX_OUTPUT_PORT_TYPE
 ram_cs_n <> hrddr:hrddr_0.cs_n
 ram_ck_p <> hrddr:hrddr_0.ck_p
-ram_ck_n <= hrddr:hrddr_0.ck_n
+ram_ck_n << hrddr:hrddr_0.ck_n
 ram_rwds <> hrddr:hrddr_0.rwds
 ram_dq[0] <> hrddr:hrddr_0.dq[0]
 ram_dq[1] <> hrddr:hrddr_0.dq[1]
@@ -39,6 +39,8 @@ ram_dq[4] <> hrddr:hrddr_0.dq[4]
 ram_dq[5] <> hrddr:hrddr_0.dq[5]
 ram_dq[6] <> hrddr:hrddr_0.dq[6]
 ram_dq[7] <> hrddr:hrddr_0.dq[7]
+ram_vcc << <VCC>
+ram_vccq << <VCC>
 reset_n <> master:master_m.reset_n
 
 
@@ -51,6 +53,7 @@ LED5 <= <VCC>
 clock => umd_clock.IN1
 clock => i2c_clock.IN1
 clock => ora_clock.IN1
+clock => ram_clock.IN1
 clock => shdn.CLK
 clock => LED4~reg0.CLK
 clock => LED3~reg0.CLK
@@ -78,6 +81,7 @@ clock => state~4.DATAIN
 umd_clock <> umd_clock
 i2c_clock <> i2c_clock
 ora_clock <> ora_clock
+ram_clock <> ram_clock
 i2c_ena <= i2c_ena~reg0.DB_MAX_OUTPUT_PORT_TYPE
 i2c_rw <= i2c_rw~reg0.DB_MAX_OUTPUT_PORT_TYPE
 i2c_wr[0] <= i2c_wr[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -192,6 +196,7 @@ ora_bytes_to_tx[29] => ~NO_FANOUT~
 ora_bytes_to_tx[30] => ~NO_FANOUT~
 ora_bytes_to_tx[31] => ~NO_FANOUT~
 cam_ena <> cam_ena~reg0
+ram_ena <> <VCC>
 
 
 |master_bridge|i2c_master:i2c_master_0
@@ -495,8 +500,6 @@ rx => uart_rx_data_sr.DATAB
 
 
 |master_bridge|ora:ora_0
-A <> A~reg0
-B <> B
 gclk => ora_has_packet~reg0.CLK
 gclk => ora_packet_buffer[2][0]~reg0.CLK
 gclk => ora_packet_buffer[2][1]~reg0.CLK
@@ -507,14 +510,13 @@ gclk => ora_packet_buffer[2][5]~reg0.CLK
 gclk => ora_packet_buffer[2][6]~reg0.CLK
 gclk => ora_packet_buffer[2][7]~reg0.CLK
 gclk => prepare_packet.CLK
-gclk => r_wr_length[0]~reg0.CLK
-gclk => r_wr_length[1]~reg0.CLK
-gclk => r_wr_length[2]~reg0.CLK
-gclk => r_wr_length[3]~reg0.CLK
-gclk => r_wr_length[4]~reg0.CLK
-gclk => r_wr_length[5]~reg0.CLK
-gclk => r_wr_length[6]~reg0.CLK
-gclk => r_wr_length[7]~reg0.CLK
+gclk => c[3].CLK
+gclk => c[2].CLK
+gclk => c[1].CLK
+gclk => c[0].CLK
+gclk => pwdn~reg0.CLK
+gclk => mclk~reg0.CLK
+gclk => r_rd_request~reg0.CLK
 gclk => r_wr_request~reg0.CLK
 gclk => r_wr_data[0]~reg0.CLK
 gclk => r_wr_data[1]~reg0.CLK
@@ -524,6 +526,14 @@ gclk => r_wr_data[4]~reg0.CLK
 gclk => r_wr_data[5]~reg0.CLK
 gclk => r_wr_data[6]~reg0.CLK
 gclk => r_wr_data[7]~reg0.CLK
+gclk => r_wr_length[0]~reg0.CLK
+gclk => r_wr_length[1]~reg0.CLK
+gclk => r_wr_length[2]~reg0.CLK
+gclk => r_wr_length[3]~reg0.CLK
+gclk => r_wr_length[4]~reg0.CLK
+gclk => r_wr_length[5]~reg0.CLK
+gclk => r_wr_length[6]~reg0.CLK
+gclk => r_wr_length[7]~reg0.CLK
 gclk => r_col[0]~reg0.CLK
 gclk => r_col[1]~reg0.CLK
 gclk => r_col[2]~reg0.CLK
@@ -546,54 +556,21 @@ gclk => r_row[9]~reg0.CLK
 gclk => r_row[10]~reg0.CLK
 gclk => r_row[11]~reg0.CLK
 gclk => r_row[12]~reg0.CLK
-gclk => y[0].CLK
-gclk => y[1].CLK
-gclk => y[2].CLK
-gclk => y[3].CLK
-gclk => y[4].CLK
-gclk => y[5].CLK
-gclk => y[6].CLK
-gclk => y[7].CLK
-gclk => y[8].CLK
-gclk => y[9].CLK
-gclk => x[0].CLK
-gclk => x[1].CLK
-gclk => x[2].CLK
-gclk => x[3].CLK
-gclk => x[4].CLK
-gclk => x[5].CLK
-gclk => x[6].CLK
-gclk => x[7].CLK
-gclk => x[8].CLK
-gclk => x[9].CLK
-gclk => x[10].CLK
-gclk => A~reg0.CLK
-gclk => c[3].CLK
-gclk => c[2].CLK
-gclk => c[1].CLK
-gclk => c[0].CLK
-gclk => pwdn~reg0.CLK
-gclk => mclk~reg0.CLK
-gclk => vsync_d.CLK
-gclk => href_d.CLK
-gclk => pclk_d.CLK
+gclk => \hrddr_test:run_once.CLK
 ena <> <UNC>
 pwdn <= pwdn~reg0.DB_MAX_OUTPUT_PORT_TYPE
 mclk <> mclk~reg0
-vsync => sync_process.IN1
-vsync => vsync_d.DATAIN
-href => sync_process.IN1
-href => href_d.DATAIN
-pclk => sync_process.IN1
-pclk => pclk_d.DATAIN
-cpi[0] => LessThan0.IN16
-cpi[1] => LessThan0.IN15
-cpi[2] => LessThan0.IN14
-cpi[3] => LessThan0.IN13
-cpi[4] => LessThan0.IN12
-cpi[5] => LessThan0.IN11
-cpi[6] => LessThan0.IN10
-cpi[7] => LessThan0.IN9
+vsync => ~NO_FANOUT~
+href => ~NO_FANOUT~
+pclk => ~NO_FANOUT~
+cpi[0] => ~NO_FANOUT~
+cpi[1] => ~NO_FANOUT~
+cpi[2] => ~NO_FANOUT~
+cpi[3] => ~NO_FANOUT~
+cpi[4] => ~NO_FANOUT~
+cpi[5] => ~NO_FANOUT~
+cpi[6] => ~NO_FANOUT~
+cpi[7] => ~NO_FANOUT~
 ora_ack => prepare_packet.ENA
 ora_has_packet <> ora_has_packet~reg0
 ora_bytes_to_tx[0] <= <VCC>
@@ -1124,7 +1101,7 @@ r_rd_data[4] => ~NO_FANOUT~
 r_rd_data[5] => ~NO_FANOUT~
 r_rd_data[6] => ~NO_FANOUT~
 r_rd_data[7] => ~NO_FANOUT~
-r_rd_request <= r_rd_request.DB_MAX_OUTPUT_PORT_TYPE
+r_rd_request <= r_rd_request~reg0.DB_MAX_OUTPUT_PORT_TYPE
 r_rd_length[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
 r_rd_length[1] <= r_rd_length[1].DB_MAX_OUTPUT_PORT_TYPE
 r_rd_length[2] <= r_rd_length[2].DB_MAX_OUTPUT_PORT_TYPE
@@ -1150,9 +1127,9 @@ r_wr_length[4] <= r_wr_length[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 r_wr_length[5] <= r_wr_length[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 r_wr_length[6] <= r_wr_length[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 r_wr_length[7] <= r_wr_length[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-r_wr_ack => r_wr_request.OUTPUTSELECT
 r_strobe <> <UNC>
-r_request_ack => ~NO_FANOUT~
+r_request_ack => r_wr_request.OUTPUTSELECT
+r_request_ack => r_rd_request~reg0.ENA
 r_burst <= <VCC>
 r_as <= <GND>
 r_row[0] <= r_row[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -1180,6 +1157,8 @@ r_col[8] <= r_col[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |master_bridge|hrddr:hrddr_0
+A <> A~reg0
+B <> B~reg0
 clock => ck_prev.CLK
 clock => rwds_prev.CLK
 clock => strobe_prev.CLK
@@ -1192,7 +1171,6 @@ clock => rd_data[5]~reg0.CLK
 clock => rd_data[6]~reg0.CLK
 clock => rd_data[7]~reg0.CLK
 clock => strobe~reg0.CLK
-clock => wr_ack~reg0.CLK
 clock => dq[0]~reg0.CLK
 clock => dq[1]~reg0.CLK
 clock => dq[2]~reg0.CLK
@@ -1202,6 +1180,8 @@ clock => dq[5]~reg0.CLK
 clock => dq[6]~reg0.CLK
 clock => dq[7]~reg0.CLK
 clock => ca.r_wn.CLK
+clock => B~reg0.CLK
+clock => A~reg0.CLK
 clock => request_ack~reg0.CLK
 clock => cs_n~reg0.CLK
 clock => \hrddr_process:data_counter[0].CLK
@@ -1222,6 +1202,14 @@ clock => ck_n~reg0.CLK
 clock => ck_p~reg0.CLK
 clock => ddr_ck_div_counter[0].CLK
 clock => ddr_ck_div_counter[1].CLK
+clock => ddr_ck_div_counter[2].CLK
+clock => ddr_ck_div_counter[3].CLK
+clock => ddr_ck_div_counter[4].CLK
+clock => ddr_ck_div_counter[5].CLK
+clock => ddr_ck_div_counter[6].CLK
+clock => ddr_ck_div_counter[7].CLK
+clock => ddr_ck_div_counter[8].CLK
+clock => ddr_ck_div_counter[9].CLK
 clock => state~8.DATAIN
 reset_n => tick_counter.OUTPUTSELECT
 reset_n => tick_counter.OUTPUTSELECT
@@ -1255,14 +1243,14 @@ rd_data[6] <= rd_data[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 rd_data[7] <= rd_data[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 rd_request => hrddr_process.IN0
 rd_request => r_wn.IN0
-rd_length[0] => Equal4.IN21
-rd_length[1] => Equal4.IN20
-rd_length[2] => Equal4.IN19
-rd_length[3] => Equal4.IN18
-rd_length[4] => Equal4.IN17
-rd_length[5] => Equal4.IN16
-rd_length[6] => Equal4.IN15
-rd_length[7] => Equal4.IN14
+rd_length[0] => Equal3.IN21
+rd_length[1] => Equal3.IN20
+rd_length[2] => Equal3.IN19
+rd_length[3] => Equal3.IN18
+rd_length[4] => Equal3.IN17
+rd_length[5] => Equal3.IN16
+rd_length[6] => Equal3.IN15
+rd_length[7] => Equal3.IN14
 wr_data[0] => dq.DATAA
 wr_data[1] => dq.DATAA
 wr_data[2] => dq.DATAA
@@ -1273,15 +1261,14 @@ wr_data[6] => dq.DATAA
 wr_data[7] => dq.DATAA
 wr_request => hrddr_process.IN1
 wr_request => r_wn.IN1
-wr_length[0] => Equal3.IN21
-wr_length[1] => Equal3.IN20
-wr_length[2] => Equal3.IN19
-wr_length[3] => Equal3.IN18
-wr_length[4] => Equal3.IN17
-wr_length[5] => Equal3.IN16
-wr_length[6] => Equal3.IN15
-wr_length[7] => Equal3.IN14
-wr_ack <= wr_ack~reg0.DB_MAX_OUTPUT_PORT_TYPE
+wr_length[0] => Equal2.IN21
+wr_length[1] => Equal2.IN20
+wr_length[2] => Equal2.IN19
+wr_length[3] => Equal2.IN18
+wr_length[4] => Equal2.IN17
+wr_length[5] => Equal2.IN16
+wr_length[6] => Equal2.IN15
+wr_length[7] => Equal2.IN14
 strobe <> strobe~reg0
 request_ack <= request_ack~reg0.DB_MAX_OUTPUT_PORT_TYPE
 burst => Mux2.IN50

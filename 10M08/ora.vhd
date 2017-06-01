@@ -27,8 +27,7 @@ entity ora is
 	);
 	port
 	(
-		A	: inout std_logic := '0';
-		B	: inout std_logic := '0';
+
 		-- Global clock
 		gclk        		: in    	std_logic;
 
@@ -47,21 +46,20 @@ entity ora is
 		ora_packet_buffer	: inout	packet_buffer_t;
 		
 		r_rd_data       	: in   	std_logic_vector(  7 downto 0 );
-		r_rd_request    : out    std_logic;
-		r_rd_length     : out   	std_logic_vector(  7 downto 0 );
+		r_rd_request    	: out    std_logic;
+		r_rd_length     	: out   	std_logic_vector(  7 downto 0 );
 
-		r_wr_data     	: out    std_logic_vector(  7 downto 0 );
-		r_wr_request    : out    std_logic;
-		r_wr_length     : out   	std_logic_vector(  7 downto 0 );
-		r_wr_ack        : in   	std_logic;
+		r_wr_data     		: out    std_logic_vector(  7 downto 0 );
+		r_wr_request    	: out    std_logic;
+		r_wr_length     	: out   	std_logic_vector(  7 downto 0 );
 
-		r_strobe        : inout 	std_logic;
-		r_request_ack   : in   	std_logic;
+		r_strobe        	: inout 	std_logic;
+		r_request_ack   	: in   	std_logic;
 
-		r_burst         : out    std_logic;
-		r_as            : out    std_logic;
-		r_row           : out    std_logic_vector( 12 downto 0 );
-		r_col           : out    std_logic_vector(  8 downto 0 )
+		r_burst         	: out    std_logic;
+		r_as            	: out    std_logic;
+		r_row           	: out    std_logic_vector( 12 downto 0 );
+		r_col           	: out    std_logic_vector(  8 downto 0 )
 	);
 end ora;
 
@@ -93,11 +91,35 @@ architecture gbehaviour of ora is
 
 	begin
 	pixel <= unsigned( cpi );
-	B <= vsync_d;
 	
 	r_burst <= '1';
 	r_as    <= '0';
 	
+	--/*******RAM TEST START******/
+	hrddr_test : process( gclk )
+	variable run_once : std_logic := '0';
+	begin
+		if rising_edge( gclk ) then
+			if run_once = '0' then
+				r_row <= "1010101010101";--std_logic_vector(to_unsigned(10, 13));	
+				r_col <= "101010101";--std_logic_vector(to_unsigned(10, 9));
+				
+				r_wr_length <= x"01";
+				r_wr_data	<= x"aa";
+				r_wr_request <= '1';
+				
+--				r_rd_length <= x"01";
+--				r_rd_request <= '1';
+				run_once := '1';
+			end if;
+			
+			if r_request_ack = '1' then
+				r_wr_request <= '0';
+				r_rd_request <= '0';
+			end if;
+		end if;
+	end process hrddr_test;
+	--/*******RAM TEST END******/
 
 	sync_process : process( gclk )
 	-- MCLK divider
@@ -136,9 +158,9 @@ architecture gbehaviour of ora is
 				if pixel > PIXEL_THRESH then -- and x < FRAME_WIDTH and y < FRAME_HEIGHT then
 					x_map(x) := x_map(x) + 1;
 					y_map(y) := y_map(y) + 1;
-					A <= '1';
-				else
-					A <= '0';
+--					A <= '1';
+--				else
+--					A <= '0';
 				end if;
 
 				if x < FRAME_WIDTH then
@@ -158,13 +180,6 @@ architecture gbehaviour of ora is
 			if vsync = '1' and vsync_d = '0' then
 				y <= 0;
 				x <= 0;
-				
-				r_row <= std_logic_vector(to_unsigned(x, 13));	
-				r_col <= std_logic_vector(to_unsigned(y, 9));
-				
-				r_wr_data 	<= x"AA";
-				r_wr_request <= '1';
-				r_wr_length  <= "00000001";
 				
 --				x_max := x_map(0);
 --				for i in 1 to FRAME_WIDTH - 1 loop
@@ -198,9 +213,7 @@ architecture gbehaviour of ora is
 				prepare_packet <= '0';
 			end if;
 			
-			if r_wr_ack = '1' then
-				r_wr_request <= '0';
-			end if;
+			
 		end if;
 	end process sync_process;
 ----------------------------------------------

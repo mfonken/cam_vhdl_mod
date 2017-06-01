@@ -40,6 +40,7 @@ entity master is
 		umd_clock			: inout 		std_logic;
 		i2c_clock			: inout 		std_logic;
 		ora_clock			: inout 		std_logic;
+		ram_clock			: inout		std_logic;
 
       i2c_ena				: out     	std_logic;
       i2c_rw    			: out     	std_logic;
@@ -62,8 +63,9 @@ entity master is
 		ora_bytes_to_tx	: in 			integer;
 		ora_packet_buffer	: inout		packet_buffer_t;
 		
-      cam_ena   			: inout   	std_logic
+      cam_ena   			: inout   	std_logic;
 		
+		ram_ena				: inout		std_logic
 --		ram_rd_data       : in   	std_logic_vector(  7 downto 0 );
 --		ram_rd_request    : out    std_logic;
 --		ram_rd_length     : out   	std_logic_vector(  7 downto 0 );
@@ -126,7 +128,9 @@ architecture mbehaviour of master is
 	umd_clock <= clock and umd_ena and reset_n;
   	i2c_clock <= clock and reset_n;-- and i2c_ena;
   	ora_clock <= clock and ora_ena and reset_n;
+	ram_clock <= clock and ram_ena and reset_n;
   
+	ram_ena <= '1';
 	ora_ena <= '1';
 	umd_ena <= '1';
 --	LED1 <= not ( umd_ena and reset_n );

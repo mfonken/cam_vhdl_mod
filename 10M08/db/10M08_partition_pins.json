@@ -16,6 +16,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "ram_ck_n",
+					"strict" : false
+				},
+				{
 					"name" : "A",
 					"strict" : false
 				},
@@ -40,51 +44,51 @@
 					"strict" : false
 				},
 				{
+					"name" : "ram_cs_n",
+					"strict" : false
+				},
+				{
+					"name" : "ram_ck_p",
+					"strict" : false
+				},
+				{
+					"name" : "ram_dq[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ram_dq[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ram_dq[2]",
+					"strict" : false
+				},
+				{
+					"name" : "ram_dq[3]",
+					"strict" : false
+				},
+				{
+					"name" : "ram_dq[4]",
+					"strict" : false
+				},
+				{
+					"name" : "ram_dq[5]",
+					"strict" : false
+				},
+				{
+					"name" : "ram_dq[6]",
+					"strict" : false
+				},
+				{
+					"name" : "ram_dq[7]",
+					"strict" : false
+				},
+				{
 					"name" : "reset_n",
 					"strict" : false
 				},
 				{
 					"name" : "clock",
-					"strict" : false
-				},
-				{
-					"name" : "pclk",
-					"strict" : false
-				},
-				{
-					"name" : "cpi[6]",
-					"strict" : false
-				},
-				{
-					"name" : "cpi[4]",
-					"strict" : false
-				},
-				{
-					"name" : "cpi[5]",
-					"strict" : false
-				},
-				{
-					"name" : "cpi[7]",
-					"strict" : false
-				},
-				{
-					"name" : "cpi[3]",
-					"strict" : false
-				},
-				{
-					"name" : "cpi[0]",
-					"strict" : false
-				},
-				{
-					"name" : "cpi[1]",
-					"strict" : false
-				},
-				{
-					"name" : "cpi[2]",
-					"strict" : false
-				},
-				{
-					"name" : "vsync",
 					"strict" : false
 				},
 				{

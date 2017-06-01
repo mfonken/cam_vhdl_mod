@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 10M08
-Wed May 24 22:36:15 2017
+Thu Jun 01 10:53:10 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -30,12 +30,11 @@ Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
  22. Parameter Settings for User Entity Instance: uart:umd
  23. Parameter Settings for User Entity Instance: ora:ora_0
  24. Parameter Settings for User Entity Instance: hrddr:hrddr_0
- 25. Port Connectivity Checks: "hrddr:hrddr_0"
- 26. Port Connectivity Checks: "i2c_master:i2c_master_0"
- 27. Port Connectivity Checks: "master:master_m"
- 28. Post-Synthesis Netlist Statistics for Top Partition
- 29. Elapsed Time Per Partition
- 30. Analysis & Synthesis Messages
+ 25. Port Connectivity Checks: "i2c_master:i2c_master_0"
+ 26. Port Connectivity Checks: "master:master_m"
+ 27. Post-Synthesis Netlist Statistics for Top Partition
+ 28. Elapsed Time Per Partition
+ 29. Analysis & Synthesis Messages
 
 
 
@@ -62,16 +61,16 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed May 24 22:36:15 2017       ;
+; Analysis & Synthesis Status        ; Successful - Thu Jun 01 10:53:10 2017       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; 10M08                                       ;
 ; Top-level Entity Name              ; master_bridge                               ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 279                                         ;
-;     Total combinational functions  ; 272                                         ;
-;     Dedicated logic registers      ; 163                                         ;
-; Total registers                    ; 163                                         ;
-; Total pins                         ; 40                                          ;
+; Total logic elements               ; 347                                         ;
+;     Total combinational functions  ; 340                                         ;
+;     Dedicated logic registers      ; 206                                         ;
+; Total registers                    ; 206                                         ;
+; Total pins                         ; 42                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -180,8 +179,7 @@ agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-4         ;   0.0%      ;
+;     Processors 2-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -209,30 +207,30 @@ agreement for further details.
 +---------------------------------------------+-----------------------------+
 ; Resource                                    ; Usage                       ;
 +---------------------------------------------+-----------------------------+
-; Estimated Total logic elements              ; 279                         ;
+; Estimated Total logic elements              ; 347                         ;
 ;                                             ;                             ;
-; Total combinational functions               ; 272                         ;
+; Total combinational functions               ; 340                         ;
 ; Logic element usage by number of LUT inputs ;                             ;
-;     -- 4 input functions                    ; 130                         ;
-;     -- 3 input functions                    ; 43                          ;
-;     -- <=2 input functions                  ; 99                          ;
+;     -- 4 input functions                    ; 154                         ;
+;     -- 3 input functions                    ; 70                          ;
+;     -- <=2 input functions                  ; 116                         ;
 ;                                             ;                             ;
 ; Logic elements by mode                      ;                             ;
-;     -- normal mode                          ; 222                         ;
-;     -- arithmetic mode                      ; 50                          ;
+;     -- normal mode                          ; 271                         ;
+;     -- arithmetic mode                      ; 69                          ;
 ;                                             ;                             ;
-; Total registers                             ; 163                         ;
-;     -- Dedicated logic registers            ; 163                         ;
+; Total registers                             ; 206                         ;
+;     -- Dedicated logic registers            ; 206                         ;
 ;     -- I/O registers                        ; 0                           ;
 ;                                             ;                             ;
-; I/O pins                                    ; 40                          ;
+; I/O pins                                    ; 42                          ;
 ;                                             ;                             ;
 ; Embedded Multiplier 9-bit elements          ; 0                           ;
 ;                                             ;                             ;
 ; Maximum fan-out node                        ; master:master_m|umd_clock~0 ;
-; Maximum fan-out                             ; 127                         ;
-; Total fan-out                               ; 1413                        ;
-; Average fan-out                             ; 2.65                        ;
+; Maximum fan-out                             ; 170                         ;
+; Total fan-out                               ; 1742                        ;
+; Average fan-out                             ; 2.69                        ;
 +---------------------------------------------+-----------------------------+
 
 
@@ -241,10 +239,11 @@ agreement for further details.
 +------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                    ; Entity Name   ; Library Name ;
 +------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------+---------------+--------------+
-; |master_bridge               ; 272 (1)             ; 163 (0)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 40   ; 0            ; 0          ; |master_bridge                         ; master_bridge ; work         ;
+; |master_bridge               ; 340 (1)             ; 206 (0)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 42   ; 0            ; 0          ; |master_bridge                         ; master_bridge ; work         ;
+;    |hrddr:hrddr_0|           ; 76 (76)             ; 44 (44)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|hrddr:hrddr_0           ; hrddr         ; work         ;
 ;    |i2c_master:i2c_master_0| ; 74 (74)             ; 30 (30)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|i2c_master:i2c_master_0 ; i2c_master    ; work         ;
-;    |master:master_m|         ; 112 (112)           ; 73 (73)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|master:master_m         ; master        ; work         ;
-;    |ora:ora_0|               ; 10 (10)             ; 8 (8)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|ora:ora_0               ; ora           ; work         ;
+;    |master:master_m|         ; 107 (107)           ; 73 (73)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|master:master_m         ; master        ; work         ;
+;    |ora:ora_0|               ; 7 (7)               ; 7 (7)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|ora:ora_0               ; ora           ; work         ;
 ;    |uart:umd|                ; 75 (75)             ; 52 (52)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|uart:umd                ; uart          ; work         ;
 +------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -353,153 +352,92 @@ Encoding Type:  One-Hot
 +------------------+----------------+---------------+------------------+------------+----------------+---------------+
 
 
-+----------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                 ;
-+--------------------------------------------------+-------------------------------------------------+
-; Register name                                    ; Reason for Removal                              ;
-+--------------------------------------------------+-------------------------------------------------+
-; hrddr:hrddr_0|rwds_prev                          ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|ck_prev                            ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|ck_n                               ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|wr_ack                             ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|dq[0]~reg0                         ; Stuck at GND due to stuck port clock            ;
-; ora:ora_0|r_row[2,10]                            ; Lost fanout                                     ;
-; ora:ora_0|r_col[0,3]                             ; Lost fanout                                     ;
-; ora:ora_0|r_wr_data[0]                           ; Lost fanout                                     ;
-; hrddr:hrddr_0|dq[1]~reg0                         ; Stuck at GND due to stuck port clock            ;
-; ora:ora_0|r_row[3,11]                            ; Lost fanout                                     ;
-; ora:ora_0|r_col[1,4]                             ; Lost fanout                                     ;
-; ora:ora_0|r_wr_data[1]                           ; Lost fanout                                     ;
-; hrddr:hrddr_0|dq[2]~reg0                         ; Stuck at GND due to stuck port clock            ;
-; ora:ora_0|r_row[4,12]                            ; Lost fanout                                     ;
-; ora:ora_0|r_col[2,5]                             ; Lost fanout                                     ;
-; ora:ora_0|r_wr_data[2]                           ; Lost fanout                                     ;
-; hrddr:hrddr_0|dq[3]~reg0                         ; Stuck at GND due to stuck port clock            ;
-; ora:ora_0|r_row[5]                               ; Lost fanout                                     ;
-; ora:ora_0|r_col[6]                               ; Lost fanout                                     ;
-; ora:ora_0|r_wr_data[3]                           ; Lost fanout                                     ;
-; hrddr:hrddr_0|dq[4]~reg0                         ; Stuck at GND due to stuck port clock            ;
-; ora:ora_0|r_row[6]                               ; Lost fanout                                     ;
-; ora:ora_0|r_col[7]                               ; Lost fanout                                     ;
-; ora:ora_0|r_wr_data[4]                           ; Lost fanout                                     ;
-; hrddr:hrddr_0|dq[5]~reg0                         ; Stuck at GND due to stuck port clock            ;
-; ora:ora_0|r_row[7]                               ; Lost fanout                                     ;
-; ora:ora_0|r_col[8]                               ; Lost fanout                                     ;
-; ora:ora_0|r_wr_data[5]                           ; Lost fanout                                     ;
-; hrddr:hrddr_0|dq[6]~reg0                         ; Stuck at GND due to stuck port clock            ;
-; ora:ora_0|r_row[0,8]                             ; Lost fanout                                     ;
-; ora:ora_0|r_wr_data[6]                           ; Lost fanout                                     ;
-; hrddr:hrddr_0|dq[7]~reg0                         ; Stuck at GND due to stuck port clock            ;
-; ora:ora_0|r_row[1,9]                             ; Lost fanout                                     ;
-; ora:ora_0|r_wr_data[7]                           ; Lost fanout                                     ;
-; hrddr:hrddr_0|ca.r_wn                            ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|cs_n~reg0                          ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|\hrddr_process:data_counter[0..10] ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|\hrddr_process:tick_counter[0]     ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|\hrddr_process:tick_counter[1,2]   ; Stuck at VCC due to stuck port clock            ;
-; hrddr:hrddr_0|ck_p~reg0                          ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|ddr_ck_div_counter[0,1]            ; Stuck at GND due to stuck port clock            ;
-; ora:ora_0|pwdn                                   ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|r_wr_length[1..7]                      ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|r_wr_length[0]                         ; Stuck at VCC due to stuck port data_in          ;
-; ora_packet_buffer[2][7]                          ; Stuck at VCC due to stuck port data_in          ;
-; ora_packet_buffer[2][6]                          ; Stuck at VCC due to stuck port data_in          ;
-; ora_packet_buffer[2][5]                          ; Stuck at VCC due to stuck port data_in          ;
-; ora_packet_buffer[2][4]                          ; Stuck at GND due to stuck port data_in          ;
-; ora_packet_buffer[2][3]                          ; Stuck at VCC due to stuck port data_in          ;
-; ora_packet_buffer[2][2]                          ; Stuck at VCC due to stuck port data_in          ;
-; ora_packet_buffer[2][1]                          ; Stuck at VCC due to stuck port data_in          ;
-; ora_packet_buffer[2][0]                          ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|prepare_packet                         ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|ora_has_packet~reg0                    ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|href_d                                 ; Lost fanout                                     ;
-; ora:ora_0|x[0..10]                               ; Lost fanout                                     ;
-; ora:ora_0|y[0..9]                                ; Lost fanout                                     ;
-; ora:ora_0|r_wr_request                           ; Stuck at VCC due to stuck port data_in          ;
-; master:master_m|i2c_wr[0]                        ; Stuck at GND due to stuck port data_in          ;
-; master:master_m|i2c_rw                           ; Stuck at GND due to stuck port data_in          ;
-; master:master_m|i2c_wr[7]                        ; Stuck at VCC due to stuck port data_in          ;
-; master:master_m|i2c_wr[2,3]                      ; Stuck at GND due to stuck port data_in          ;
-; i2c_master:i2c_master_0|addr_rw[1..4,7]          ; Merged with i2c_master:i2c_master_0|addr_rw[0]  ;
-; i2c_master:i2c_master_0|data_tx[0,2,3]           ; Merged with i2c_master:i2c_master_0|addr_rw[0]  ;
-; i2c_master:i2c_master_0|addr_rw[6]               ; Merged with i2c_master:i2c_master_0|addr_rw[5]  ;
-; i2c_master:i2c_master_0|data_tx[7]               ; Merged with i2c_master:i2c_master_0|addr_rw[5]  ;
-; i2c_master:i2c_master_0|data_tx[6]               ; Merged with i2c_master:i2c_master_0|data_tx[1]  ;
-; master:master_m|i2c_wr[6]                        ; Merged with master:master_m|i2c_wr[1]           ;
-; master:master_m|i2c_wr[5]                        ; Merged with master:master_m|i2c_wr[4]           ;
-; i2c_master:i2c_master_0|data_tx[5]               ; Merged with i2c_master:i2c_master_0|data_tx[4]  ;
-; i2c_master:i2c_master_0|addr_rw[0]               ; Stuck at GND due to stuck port data_in          ;
-; i2c_master:i2c_master_0|addr_rw[5]               ; Stuck at VCC due to stuck port data_in          ;
-; uart:umd|rx_baud_counter[2]                      ; Stuck at GND due to stuck port data_in          ;
-; hrddr:hrddr_0|state.ready                        ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|state.start                        ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|state.command                      ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|state.latency_delay                ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|state.wr                           ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|state.rd                           ; Stuck at GND due to stuck port clock            ;
-; hrddr:hrddr_0|state.stop                         ; Lost fanout                                     ;
-; master:master_m|state_lock.deactivate            ; Merged with master:master_m|state_lock.activate ;
-; master:master_m|state_lock.activate              ; Stuck at GND due to stuck port data_in          ;
-; master:master_m|umd_rx_data[3]~reg0              ; Merged with master:master_m|umd_rx_data[2]~reg0 ;
-; Total Number of Removed Registers = 135          ;                                                 ;
-+--------------------------------------------------+-------------------------------------------------+
++-------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                        ;
++-----------------------------------------+-------------------------------------------------+
+; Register name                           ; Reason for Removal                              ;
++-----------------------------------------+-------------------------------------------------+
+; ora:ora_0|r_row[12]                     ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_row[11]                     ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_row[10]                     ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_row[9]                      ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_row[8]                      ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_row[7]                      ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_row[6]                      ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_row[5]                      ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_row[4]                      ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_row[3]                      ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_row[2]                      ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_row[1]                      ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_row[0]                      ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_col[8]                      ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_col[7]                      ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_col[6]                      ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_col[5]                      ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_col[4]                      ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_col[3]                      ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_col[2]                      ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_col[1]                      ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_col[0]                      ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_wr_length[1..7]             ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_wr_length[0]                ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_wr_data[7]                  ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_wr_data[6]                  ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_wr_data[5]                  ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_wr_data[4]                  ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_wr_data[3]                  ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_wr_data[2]                  ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_wr_data[1]                  ; Stuck at VCC due to stuck port data_in          ;
+; ora:ora_0|r_wr_data[0]                  ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|r_rd_request                  ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|pwdn                          ; Stuck at GND due to stuck port data_in          ;
+; ora_packet_buffer[2][7]                 ; Stuck at VCC due to stuck port data_in          ;
+; ora_packet_buffer[2][6]                 ; Stuck at VCC due to stuck port data_in          ;
+; ora_packet_buffer[2][5]                 ; Stuck at VCC due to stuck port data_in          ;
+; ora_packet_buffer[2][4]                 ; Stuck at GND due to stuck port data_in          ;
+; ora_packet_buffer[2][3]                 ; Stuck at VCC due to stuck port data_in          ;
+; ora_packet_buffer[2][2]                 ; Stuck at VCC due to stuck port data_in          ;
+; ora_packet_buffer[2][1]                 ; Stuck at VCC due to stuck port data_in          ;
+; ora_packet_buffer[2][0]                 ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|prepare_packet                ; Stuck at GND due to stuck port data_in          ;
+; ora:ora_0|ora_has_packet~reg0           ; Stuck at GND due to stuck port data_in          ;
+; hrddr:hrddr_0|ca.r_wn                   ; Stuck at GND due to stuck port data_in          ;
+; master:master_m|i2c_wr[0]               ; Stuck at GND due to stuck port data_in          ;
+; master:master_m|i2c_rw                  ; Stuck at GND due to stuck port data_in          ;
+; master:master_m|i2c_wr[7]               ; Stuck at VCC due to stuck port data_in          ;
+; master:master_m|i2c_wr[2,3]             ; Stuck at GND due to stuck port data_in          ;
+; i2c_master:i2c_master_0|addr_rw[1..4,7] ; Merged with i2c_master:i2c_master_0|addr_rw[0]  ;
+; i2c_master:i2c_master_0|data_tx[0,2,3]  ; Merged with i2c_master:i2c_master_0|addr_rw[0]  ;
+; i2c_master:i2c_master_0|addr_rw[6]      ; Merged with i2c_master:i2c_master_0|addr_rw[5]  ;
+; i2c_master:i2c_master_0|data_tx[7]      ; Merged with i2c_master:i2c_master_0|addr_rw[5]  ;
+; i2c_master:i2c_master_0|data_tx[6]      ; Merged with i2c_master:i2c_master_0|data_tx[1]  ;
+; master:master_m|i2c_wr[6]               ; Merged with master:master_m|i2c_wr[1]           ;
+; master:master_m|i2c_wr[5]               ; Merged with master:master_m|i2c_wr[4]           ;
+; i2c_master:i2c_master_0|data_tx[5]      ; Merged with i2c_master:i2c_master_0|data_tx[4]  ;
+; i2c_master:i2c_master_0|addr_rw[0]      ; Stuck at GND due to stuck port data_in          ;
+; i2c_master:i2c_master_0|addr_rw[5]      ; Stuck at VCC due to stuck port data_in          ;
+; uart:umd|rx_baud_counter[2]             ; Stuck at GND due to stuck port data_in          ;
+; hrddr:hrddr_0|state.rd                  ; Merged with hrddr:hrddr_0|state.latency_delay   ;
+; master:master_m|state_lock.deactivate   ; Merged with master:master_m|state_lock.activate ;
+; hrddr:hrddr_0|state.latency_delay       ; Stuck at GND due to stuck port data_in          ;
+; master:master_m|state_lock.activate     ; Stuck at GND due to stuck port data_in          ;
+; master:master_m|umd_rx_data[3]~reg0     ; Merged with master:master_m|umd_rx_data[2]~reg0 ;
+; Total Number of Removed Registers = 78  ;                                                 ;
++-----------------------------------------+-------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                         ;
-+---------------------------+---------------------------+-----------------------------------------------------------------------------+
-; Register name             ; Reason for Removal        ; Registers Removed due to This Register                                      ;
-+---------------------------+---------------------------+-----------------------------------------------------------------------------+
-; hrddr:hrddr_0|rwds_prev   ; Stuck at GND              ; hrddr:hrddr_0|dq[0]~reg0, ora:ora_0|r_wr_data[0], hrddr:hrddr_0|dq[1]~reg0, ;
-;                           ; due to stuck port clock   ; ora:ora_0|r_wr_data[1], hrddr:hrddr_0|dq[2]~reg0, ora:ora_0|r_wr_data[2],   ;
-;                           ;                           ; hrddr:hrddr_0|dq[3]~reg0, ora:ora_0|r_wr_data[3], hrddr:hrddr_0|dq[4]~reg0, ;
-;                           ;                           ; ora:ora_0|r_wr_data[4], hrddr:hrddr_0|dq[5]~reg0, ora:ora_0|r_wr_data[5],   ;
-;                           ;                           ; hrddr:hrddr_0|dq[6]~reg0, ora:ora_0|r_wr_data[6], hrddr:hrddr_0|dq[7]~reg0, ;
-;                           ;                           ; ora:ora_0|r_wr_data[7], hrddr:hrddr_0|ca.r_wn, hrddr:hrddr_0|cs_n~reg0,     ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[0],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[1],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[2],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[3],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[4],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[5],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[6],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[7],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[8],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[9],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:data_counter[10],                              ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:tick_counter[0],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:tick_counter[1],                               ;
-;                           ;                           ; hrddr:hrddr_0|\hrddr_process:tick_counter[2], hrddr:hrddr_0|ck_p~reg0,      ;
-;                           ;                           ; hrddr:hrddr_0|ddr_ck_div_counter[0], hrddr:hrddr_0|ddr_ck_div_counter[1]    ;
-; hrddr:hrddr_0|ck_prev     ; Stuck at GND              ; hrddr:hrddr_0|wr_ack, ora:ora_0|r_wr_request                                ;
-;                           ; due to stuck port clock   ;                                                                             ;
-; ora:ora_0|r_row[10]       ; Lost Fanouts              ; ora:ora_0|x[10]                                                             ;
-; ora:ora_0|r_row[2]        ; Lost Fanouts              ; ora:ora_0|x[2]                                                              ;
-; ora:ora_0|r_col[3]        ; Lost Fanouts              ; ora:ora_0|y[3]                                                              ;
-; ora:ora_0|r_col[0]        ; Lost Fanouts              ; ora:ora_0|y[0]                                                              ;
-; ora:ora_0|r_row[3]        ; Lost Fanouts              ; ora:ora_0|x[3]                                                              ;
-; ora:ora_0|r_col[4]        ; Lost Fanouts              ; ora:ora_0|y[4]                                                              ;
-; ora:ora_0|r_col[1]        ; Lost Fanouts              ; ora:ora_0|y[1]                                                              ;
-; ora:ora_0|r_row[4]        ; Lost Fanouts              ; ora:ora_0|x[4]                                                              ;
-; ora:ora_0|r_col[5]        ; Lost Fanouts              ; ora:ora_0|y[5]                                                              ;
-; ora:ora_0|r_col[2]        ; Lost Fanouts              ; ora:ora_0|y[2]                                                              ;
-; ora:ora_0|r_row[5]        ; Lost Fanouts              ; ora:ora_0|x[5]                                                              ;
-; ora:ora_0|r_col[6]        ; Lost Fanouts              ; ora:ora_0|y[6]                                                              ;
-; ora:ora_0|r_row[6]        ; Lost Fanouts              ; ora:ora_0|x[6]                                                              ;
-; ora:ora_0|r_col[7]        ; Lost Fanouts              ; ora:ora_0|y[7]                                                              ;
-; ora:ora_0|r_row[7]        ; Lost Fanouts              ; ora:ora_0|x[7]                                                              ;
-; ora:ora_0|r_col[8]        ; Lost Fanouts              ; ora:ora_0|y[8]                                                              ;
-; ora:ora_0|r_row[8]        ; Lost Fanouts              ; ora:ora_0|x[8]                                                              ;
-; ora:ora_0|r_row[0]        ; Lost Fanouts              ; ora:ora_0|x[0]                                                              ;
-; ora:ora_0|r_row[9]        ; Lost Fanouts              ; ora:ora_0|x[9]                                                              ;
-; ora:ora_0|r_row[1]        ; Lost Fanouts              ; ora:ora_0|x[1]                                                              ;
-; ora:ora_0|prepare_packet  ; Stuck at GND              ; ora:ora_0|ora_has_packet~reg0                                               ;
-;                           ; due to stuck port data_in ;                                                                             ;
-; master:master_m|i2c_rw    ; Stuck at GND              ; i2c_master:i2c_master_0|addr_rw[0]                                          ;
-;                           ; due to stuck port data_in ;                                                                             ;
-; hrddr:hrddr_0|state.ready ; Stuck at GND              ; hrddr:hrddr_0|state.stop                                                    ;
-;                           ; due to stuck port clock   ;                                                                             ;
-+---------------------------+---------------------------+-----------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                   ;
++--------------------------+---------------------------+----------------------------------------+
+; Register name            ; Reason for Removal        ; Registers Removed due to This Register ;
++--------------------------+---------------------------+----------------------------------------+
+; ora:ora_0|r_wr_length[7] ; Stuck at GND              ; hrddr:hrddr_0|ca.r_wn                  ;
+;                          ; due to stuck port data_in ;                                        ;
+; ora:ora_0|prepare_packet ; Stuck at GND              ; ora:ora_0|ora_has_packet~reg0          ;
+;                          ; due to stuck port data_in ;                                        ;
+; master:master_m|i2c_rw   ; Stuck at GND              ; i2c_master:i2c_master_0|addr_rw[0]     ;
+;                          ; due to stuck port data_in ;                                        ;
++--------------------------+---------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -507,8 +445,8 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 163   ;
-; Number of registers using Synchronous Clear  ; 20    ;
+; Total registers                              ; 206   ;
+; Number of registers using Synchronous Clear  ; 41    ;
 ; Number of registers using Synchronous Load   ; 6     ;
 ; Number of registers using Asynchronous Clear ; 59    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -517,50 +455,57 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 
 
-+---------------------------------------------------+
-; Inverted Register Statistics                      ;
-+-----------------------------------------+---------+
-; Inverted Register                       ; Fan out ;
-+-----------------------------------------+---------+
-; master:master_m|LED3                    ; 1       ;
-; master:master_m|LED4                    ; 2       ;
-; uart:umd|uart_tx_data                   ; 2       ;
-; uart:umd|uart_rx_bit                    ; 4       ;
-; i2c_master:i2c_master_0|sda_int         ; 2       ;
-; uart:umd|uart_rx_filter[0]              ; 3       ;
-; uart:umd|uart_rx_filter[1]              ; 3       ;
-; i2c_master:i2c_master_0|bit_cnt[0]      ; 12      ;
-; i2c_master:i2c_master_0|bit_cnt[1]      ; 11      ;
-; i2c_master:i2c_master_0|bit_cnt[2]      ; 8       ;
-; uart:umd|uart_rx_data_sr[1]             ; 2       ;
-; uart:umd|uart_rx_data_sr[0]             ; 1       ;
-; Total number of inverted registers = 12 ;         ;
-+-----------------------------------------+---------+
++--------------------------------------------------------+
+; Inverted Register Statistics                           ;
++----------------------------------------------+---------+
+; Inverted Register                            ; Fan out ;
++----------------------------------------------+---------+
+; master:master_m|LED3                         ; 1       ;
+; master:master_m|LED4                         ; 2       ;
+; uart:umd|uart_tx_data                        ; 2       ;
+; uart:umd|uart_rx_bit                         ; 4       ;
+; i2c_master:i2c_master_0|sda_int              ; 2       ;
+; uart:umd|uart_rx_filter[0]                   ; 3       ;
+; uart:umd|uart_rx_filter[1]                   ; 3       ;
+; hrddr:hrddr_0|\hrddr_process:tick_counter[2] ; 3       ;
+; hrddr:hrddr_0|\hrddr_process:tick_counter[1] ; 4       ;
+; i2c_master:i2c_master_0|bit_cnt[0]           ; 12      ;
+; i2c_master:i2c_master_0|bit_cnt[1]           ; 11      ;
+; i2c_master:i2c_master_0|bit_cnt[2]           ; 8       ;
+; uart:umd|uart_rx_data_sr[1]                  ; 2       ;
+; uart:umd|uart_rx_data_sr[0]                  ; 1       ;
+; Total number of inverted registers = 14      ;         ;
++----------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                        ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; Yes        ; |master_bridge|i2c_master:i2c_master_0|data_tx[1] ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |master_bridge|uart:umd|tx_baud_counter[6]        ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |master_bridge|uart:umd|rx_baud_counter[2]        ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_data_vec[7]       ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_bit_spacing[2]    ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |master_bridge|master:master_m|packet_tx_i[4]     ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_count[1]          ;
-; 6:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |master_bridge|uart:umd|uart_tx_data_vec[0]       ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_tx_count[1]          ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_data_sr[0]        ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |master_bridge|i2c_master:i2c_master_0|bit_cnt[1] ;
-; 18:1               ; 6 bits    ; 72 LEs        ; 12 LEs               ; 60 LEs                 ; No         ; |master_bridge|master:master_m|next_state         ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |master_bridge|uart:umd|uart_tx_state             ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |master_bridge|uart:umd|uart_rx_state             ;
-; 62:1               ; 6 bits    ; 246 LEs       ; 246 LEs              ; 0 LEs                  ; No         ; |master_bridge|master:master_m|umd_rx_data        ;
-; 7:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |master_bridge|hrddr:hrddr_0|Selector2            ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; |master_bridge|hrddr:hrddr_0|Selector1            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; Yes        ; |master_bridge|i2c_master:i2c_master_0|data_tx[4]           ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |master_bridge|uart:umd|tx_baud_counter[6]                  ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |master_bridge|uart:umd|rx_baud_counter[1]                  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_data_vec[6]                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_bit_spacing[1]              ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |master_bridge|hrddr:hrddr_0|ddr_ck_div_counter[3]          ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |master_bridge|master:master_m|packet_tx_i[5]               ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_count[0]                    ;
+; 6:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |master_bridge|uart:umd|uart_tx_data_vec[1]                 ;
+; 6:1                ; 11 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; Yes        ; |master_bridge|hrddr:hrddr_0|\hrddr_process:data_counter[0] ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_tx_count[1]                    ;
+; 12:1               ; 5 bits    ; 40 LEs        ; 25 LEs               ; 15 LEs                 ; Yes        ; |master_bridge|hrddr:hrddr_0|dq[3]~reg0                     ;
+; 12:1               ; 3 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |master_bridge|hrddr:hrddr_0|dq[1]~reg0                     ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_data_sr[1]                  ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |master_bridge|i2c_master:i2c_master_0|bit_cnt[0]           ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |master_bridge|hrddr:hrddr_0|\hrddr_process:tick_counter[1] ;
+; 18:1               ; 6 bits    ; 72 LEs        ; 12 LEs               ; 60 LEs                 ; No         ; |master_bridge|master:master_m|next_state                   ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |master_bridge|uart:umd|uart_tx_state                       ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |master_bridge|uart:umd|uart_rx_state                       ;
+; 62:1               ; 6 bits    ; 246 LEs       ; 246 LEs              ; 0 LEs                  ; No         ; |master_bridge|master:master_m|umd_rx_data                  ;
+; 8:1                ; 5 bits    ; 25 LEs        ; 20 LEs               ; 5 LEs                  ; No         ; |master_bridge|hrddr:hrddr_0|Selector7                      ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |master_bridge|hrddr:hrddr_0|Selector5                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------+
 
 
 +--------------------------------------------------------------+
@@ -615,19 +560,10 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Parameter Name   ; Value    ; Type                         ;
 +------------------+----------+------------------------------+
 ; sys_ck_frequency ; 50000000 ; Signed Integer               ;
-; ddr_ck_frequency ; 25000000 ; Signed Integer               ;
+; ddr_ck_frequency ; 2500000  ; Signed Integer               ;
 ; latency          ; 1        ; Signed Integer               ;
 +------------------+----------+------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-------------------------------------------+
-; Port Connectivity Checks: "hrddr:hrddr_0" ;
-+-------+-------+----------+----------------+
-; Port  ; Type  ; Severity ; Details        ;
-+-------+-------+----------+----------------+
-; clock ; Input ; Info     ; Stuck at GND   ;
-+-------+-------+----------+----------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -652,6 +588,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; umd_tx_data ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 ; umd_tx_stb  ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 ; ora_ena     ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ram_ena     ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +-------------+-------+----------+-------------------------------------------------------------------------------------+
 
 
@@ -660,29 +597,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 40                          ;
-; cycloneiii_ff         ; 163                         ;
+; boundary_port         ; 42                          ;
+; cycloneiii_ff         ; 206                         ;
 ;     CLR               ; 12                          ;
 ;     ENA               ; 28                          ;
 ;     ENA CLR           ; 47                          ;
 ;     ENA SCLR          ; 9                           ;
 ;     ENA SLD           ; 6                           ;
-;     SCLR              ; 11                          ;
-;     plain             ; 50                          ;
+;     SCLR              ; 32                          ;
+;     plain             ; 72                          ;
 ; cycloneiii_io_obuf    ; 18                          ;
-; cycloneiii_lcell_comb ; 276                         ;
-;     arith             ; 50                          ;
-;         2 data inputs ; 48                          ;
-;         3 data inputs ; 2                           ;
-;     normal            ; 226                         ;
+; cycloneiii_lcell_comb ; 344                         ;
+;     arith             ; 69                          ;
+;         2 data inputs ; 57                          ;
+;         3 data inputs ; 12                          ;
+;     normal            ; 275                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 8                           ;
-;         2 data inputs ; 45                          ;
-;         3 data inputs ; 41                          ;
-;         4 data inputs ; 130                         ;
+;         1 data inputs ; 9                           ;
+;         2 data inputs ; 52                          ;
+;         3 data inputs ; 58                          ;
+;         4 data inputs ; 154                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 9.90                        ;
-; Average LUT depth     ; 3.93                        ;
+; Max LUT depth         ; 10.10                       ;
+; Average LUT depth     ; 3.79                        ;
 +-----------------------+-----------------------------+
 
 
@@ -691,7 +628,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -701,12 +638,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Wed May 24 22:36:06 2017
+    Info: Processing started: Thu Jun 01 10:53:00 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 10M08 -c 10M08
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file ora.vhd
-    Info (12022): Found design unit 1: ora-gbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 71
+    Info (12022): Found design unit 1: ora-gbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 69
     Info (12023): Found entity 1: ora File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 17
 Info (12021): Found 1 design units, including 0 entities, in source file ov9712.vhd
     Info (12022): Found design unit 1: OV9712 File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/OV9712.vhd Line: 5
@@ -716,7 +653,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file uart.vh
     Info (12022): Found design unit 1: uart-rtl File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/uart.vhd Line: 50
     Info (12023): Found entity 1: uart File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/uart.vhd Line: 32
 Info (12021): Found 2 design units, including 1 entities, in source file hrddr.vhd
-    Info (12022): Found design unit 1: hrddr-rtl File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/hrddr.vhd Line: 45
+    Info (12022): Found design unit 1: hrddr-rtl File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/hrddr.vhd Line: 46
     Info (12023): Found entity 1: hrddr File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/hrddr.vhd Line: 10
 Info (12021): Found 2 design units, including 1 entities, in source file i2c_master.vhd
     Info (12022): Found design unit 1: i2c_master-logic File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/i2c_master.vhd Line: 56
@@ -729,53 +666,63 @@ Info (12021): Found 1 design units, including 0 entities, in source file ora_typ
 Info (12021): Found 1 design units, including 0 entities, in source file global_types.vhd
     Info (12022): Found design unit 1: global_types File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/global_types.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file master.vhd
-    Info (12022): Found design unit 1: master-mbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 87
+    Info (12022): Found design unit 1: master-mbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 89
     Info (12023): Found entity 1: master File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 24
 Info (12021): Found 2 design units, including 1 entities, in source file master_bridge.vhd
-    Info (12022): Found design unit 1: master_bridge-gbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 78
+    Info (12022): Found design unit 1: master_bridge-gbehaviour File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 81
     Info (12023): Found entity 1: master_bridge File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 34
 Info (12127): Elaborating entity "master_bridge" for the top level hierarchy
 Warning (10541): VHDL Signal Declaration warning at master_bridge.vhd(63): used implicit default value for signal "ram_rst" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 63
-Warning (10540): VHDL Signal Declaration warning at master_bridge.vhd(92): used explicit default value for signal "ram_clock" because signal was never assigned a value File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 92
-Warning (10036): Verilog HDL or VHDL warning at master_bridge.vhd(151): object "i2c_ack_err" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 151
-Info (12128): Elaborating entity "master" for hierarchy "master:master_m" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 344
+Warning (10540): VHDL Signal Declaration warning at master_bridge.vhd(70): used explicit default value for signal "ram_vcc" because signal was never assigned a value File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 70
+Warning (10540): VHDL Signal Declaration warning at master_bridge.vhd(71): used explicit default value for signal "ram_vccq" because signal was never assigned a value File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 71
+Warning (10036): Verilog HDL or VHDL warning at master_bridge.vhd(153): object "i2c_ack_err" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 153
+Info (12128): Elaborating entity "master" for hierarchy "master:master_m" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 348
 Warning (10540): VHDL Signal Declaration warning at master.vhd(31): used explicit default value for signal "LED1" because signal was never assigned a value File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 31
 Warning (10540): VHDL Signal Declaration warning at master.vhd(32): used explicit default value for signal "LED2" because signal was never assigned a value File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 32
 Warning (10540): VHDL Signal Declaration warning at master.vhd(35): used explicit default value for signal "LED5" because signal was never assigned a value File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 35
-Warning (10036): Verilog HDL or VHDL warning at master.vhd(112): object "hasAck" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 112
-Warning (10036): Verilog HDL or VHDL warning at master.vhd(113): object "hasNack" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 113
-Info (12128): Elaborating entity "i2c_master" for hierarchy "i2c_master:i2c_master_0" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 401
-Info (12128): Elaborating entity "uart" for hierarchy "uart:umd" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 423
-Info (12128): Elaborating entity "ora" for hierarchy "ora:ora_0" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 446
-Warning (10541): VHDL Signal Declaration warning at ora.vhd(46): used implicit default value for signal "ora_bytes_to_tx" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 46
-Warning (10541): VHDL Signal Declaration warning at ora.vhd(50): used implicit default value for signal "r_rd_request" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 50
-Warning (10541): VHDL Signal Declaration warning at ora.vhd(51): used implicit default value for signal "r_rd_length" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 51
-Warning (10036): Verilog HDL or VHDL warning at ora.vhd(110): object "x_peaks" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 110
-Warning (10036): Verilog HDL or VHDL warning at ora.vhd(111): object "y_peaks" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 111
-Info (12128): Elaborating entity "hrddr" for hierarchy "hrddr:hrddr_0" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 488
+Warning (10036): Verilog HDL or VHDL warning at master.vhd(114): object "hasAck" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 114
+Warning (10036): Verilog HDL or VHDL warning at master.vhd(115): object "hasNack" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master.vhd Line: 115
+Info (12128): Elaborating entity "i2c_master" for hierarchy "i2c_master:i2c_master_0" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 407
+Info (12128): Elaborating entity "uart" for hierarchy "uart:umd" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 429
+Info (12128): Elaborating entity "ora" for hierarchy "ora:ora_0" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 452
+Warning (10541): VHDL Signal Declaration warning at ora.vhd(45): used implicit default value for signal "ora_bytes_to_tx" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 45
+Warning (10541): VHDL Signal Declaration warning at ora.vhd(50): used implicit default value for signal "r_rd_length" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 50
+Warning (10036): Verilog HDL or VHDL warning at ora.vhd(132): object "x_peaks" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 132
+Warning (10036): Verilog HDL or VHDL warning at ora.vhd(133): object "y_peaks" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 133
+Info (12128): Elaborating entity "hrddr" for hierarchy "hrddr:hrddr_0" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 491
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13034): The following nodes have both tri-state and non-tri-state drivers
     Warning (13035): Inserted always-enabled tri-state buffer between "A" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 41
     Warning (13035): Inserted always-enabled tri-state buffer between "B" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 42
     Warning (13035): Inserted always-enabled tri-state buffer between "cam_ena" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 48
     Warning (13035): Inserted always-enabled tri-state buffer between "mclk" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 49
+    Warning (13035): Inserted always-enabled tri-state buffer between "ram_cs_n" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 64
+    Warning (13035): Inserted always-enabled tri-state buffer between "ram_ck_p" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 65
+    Warning (13035): Inserted always-enabled tri-state buffer between "ram_dq[0]" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13035): Inserted always-enabled tri-state buffer between "ram_dq[1]" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13035): Inserted always-enabled tri-state buffer between "ram_dq[2]" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13035): Inserted always-enabled tri-state buffer between "ram_dq[3]" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13035): Inserted always-enabled tri-state buffer between "ram_dq[4]" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13035): Inserted always-enabled tri-state buffer between "ram_dq[5]" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13035): Inserted always-enabled tri-state buffer between "ram_dq[6]" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13035): Inserted always-enabled tri-state buffer between "ram_dq[7]" and its non-tri-state driver. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
 Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "ram_rwds" has no driver File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 67
-    Warning (13040): bidirectional pin "reset_n" has no driver File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 71
-Warning (13032): The following tri-state nodes are fed by constants
-    Warning (13033): The pin "ram_cs_n" is fed by GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 64
-    Warning (13033): The pin "ram_ck_p" is fed by GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 65
-    Warning (13033): The pin "ram_dq[0]" is fed by GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
-    Warning (13033): The pin "ram_dq[1]" is fed by GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
-    Warning (13033): The pin "ram_dq[2]" is fed by GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
-    Warning (13033): The pin "ram_dq[3]" is fed by GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
-    Warning (13033): The pin "ram_dq[4]" is fed by GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
-    Warning (13033): The pin "ram_dq[5]" is fed by GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
-    Warning (13033): The pin "ram_dq[6]" is fed by GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
-    Warning (13033): The pin "ram_dq[7]" is fed by GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13040): bidirectional pin "reset_n" has no driver File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 74
 Info (13060): One or more bidirectional pins are fed by always enabled tri-state buffers
     Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "A" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 41
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "B" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 42
     Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "mclk" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 49
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "ram_cs_n" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 64
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "ram_ck_p" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 65
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "ram_dq[0]" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "ram_dq[1]" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "ram_dq[2]" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "ram_dq[3]" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "ram_dq[4]" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "ram_dq[5]" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "ram_dq[6]" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "ram_dq[7]" is moved to its source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
 Info (13000): Registers with preset signals will power-up high File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/i2c_master.vhd Line: 64
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13009): TRI or OPNDRN buffers permanently enabled
@@ -783,28 +730,48 @@ Warning (13009): TRI or OPNDRN buffers permanently enabled
     Warning (13010): Node "B~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 42
     Warning (13010): Node "cam_ena~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 48
     Warning (13010): Node "mclk~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 49
+    Warning (13010): Node "ram_cs_n~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 64
+    Warning (13010): Node "ram_ck_p~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 65
+    Warning (13010): Node "ram_dq[0]~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13010): Node "ram_dq[1]~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13010): Node "ram_dq[2]~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13010): Node "ram_dq[3]~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13010): Node "ram_dq[4]~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13010): Node "ram_dq[5]~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13010): Node "ram_dq[6]~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
+    Warning (13010): Node "ram_dq[7]~synth" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LED1" is stuck at VCC File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 36
     Warning (13410): Pin "LED2" is stuck at VCC File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 37
     Warning (13410): Pin "LED5" is stuck at VCC File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 40
     Warning (13410): Pin "pwdn" is stuck at GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 50
     Warning (13410): Pin "ram_rst" is stuck at GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 63
-    Warning (13410): Pin "ram_ck_n" is stuck at GND File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 66
+    Warning (13410): Pin "ram_vcc" is stuck at VCC File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 70
+    Warning (13410): Pin "ram_vccq" is stuck at VCC File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 71
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 53 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
+Warning (21074): Design contains 11 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "vsync" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 51
     Warning (15610): No output dependent on input pin "href" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 52
-Info (21057): Implemented 360 device resources after synthesis - the final resource count might be different
+    Warning (15610): No output dependent on input pin "pclk" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 53
+    Warning (15610): No output dependent on input pin "cpi[0]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
+    Warning (15610): No output dependent on input pin "cpi[1]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
+    Warning (15610): No output dependent on input pin "cpi[2]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
+    Warning (15610): No output dependent on input pin "cpi[3]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
+    Warning (15610): No output dependent on input pin "cpi[4]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
+    Warning (15610): No output dependent on input pin "cpi[5]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
+    Warning (15610): No output dependent on input pin "cpi[6]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
+    Warning (15610): No output dependent on input pin "cpi[7]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
+Info (21057): Implemented 430 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
-    Info (21059): Implemented 9 output pins
+    Info (21059): Implemented 11 output pins
     Info (21060): Implemented 18 bidirectional pins
-    Info (21061): Implemented 320 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 48 warnings
-    Info: Peak virtual memory: 700 megabytes
-    Info: Processing ended: Wed May 24 22:36:15 2017
-    Info: Elapsed time: 00:00:09
+    Info (21061): Implemented 388 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 68 warnings
+    Info: Peak virtual memory: 685 megabytes
+    Info: Processing ended: Thu Jun 01 10:53:10 2017
+    Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:18
 
 

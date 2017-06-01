@@ -14,6 +14,8 @@ entity hrddr is
         latency             : positive
     );
     port (
+	 	A	: inout std_logic := '0';
+		B	: inout std_logic := '0';
         clock               : in    std_logic;
         reset_n             : in    std_logic;
 
@@ -24,7 +26,6 @@ entity hrddr is
         wr_data             : in    std_logic_vector(  7 downto 0 );
         wr_request          : in    std_logic;
         wr_length           : in   	std_logic_vector(  7 downto 0 );
-        wr_ack              : out   std_logic;
 
         strobe              : inout std_logic;
         request_ack         : out   std_logic;
@@ -44,7 +45,7 @@ end hrddr;
 
 architecture rtl of hrddr is
   constant ddr_ck_div : integer := sys_ck_frequency / ddr_ck_frequency;
-  constant ddr_ck_div_width : integer := integer(log2(real(ddr_ck_div))) + 1;
+  constant ddr_ck_div_width : integer := ddr_ck_div / 2;--integer(log2(real(ddr_ck_div))) + 1;
   signal   ddr_ck_div_counter : unsigned(ddr_ck_div_width - 1 downto 0) := (others => '0');
   constant lv : std_logic := '0';
   constant MAX_BURST : integer := 1024;
@@ -91,26 +92,27 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 -- OVERSAMPLE_CLOCK_DIVIDER
 -- generate an oversampled tick (baud * 16)
 ---------------------------------------------------------------------------
-  clock_divider : process (clock)
-  begin
-    if rising_edge (clock) then
-        if reset_n = '0' or cs_n = '1' then    -- Sync reset or ram not selected
-            ddr_ck_div_counter <= (others => '0');
-            ck_p <= '0';
-            ck_n <= '1';
-        else
-            if ddr_ck_div_counter = ddr_ck_div then
-                ddr_ck_div_counter <= (others => '0');
-                ck_p <= '1';
-                ck_n <= '0';
-            else
-                ddr_ck_div_counter <= ddr_ck_div_counter + 1;
-                ck_p <= '0';
-                ck_n <= '1';
-            end if;
-        end if;
-    end if;
-  end process clock_divider;
+	clock_divider : process (clock)
+	begin
+		if rising_edge (clock) then
+			if reset_n = '0' or cs_n = '1' then    -- Sync reset or ram not selected
+				ddr_ck_div_counter <= (others => '0');
+				ck_p <= '0';
+				ck_n <= '1';
+			else
+				ddr_ck_div_counter <= ddr_ck_div_counter + 1;
+				if ddr_ck_div_counter < ddr_ck_div_width then
+					ck_p <= '0';
+					ck_n <= '1';
+				elsif ddr_ck_div_counter < ddr_ck_div then
+					ck_p <= '1';
+					ck_n <= '0';
+				else
+					ddr_ck_div_counter <= ( others => '0' );
+				end if;
+			end if;
+		end if;
+	end process clock_divider;
 
 
   hrddr_process : process(clock)
@@ -130,6 +132,8 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
         when ready =>
           cs_n <= '1';
           request_ack <= '0';
+			 A <= '0';
+			 B <= '0';
 
           if wr_request = '1' xor rd_request = '1' then
             ca.r_wn <= not wr_request and rd_request;
@@ -147,17 +151,19 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
           cs_n <= '0';
           request_ack <= '1';
           data_counter := 0;
+			 A <= '0';
+			 B <= '1';
 
           if ck_p /= ck_prev then                -- Sync to ck (ddr)
             if tick_counter = 0 then
-              if ca.r_wn = '0' then             -- if writing
-                state <= wr;                    -- write without latency
+              if ca.r_wn = '0' then              -- if writing
+                state <= wr;                     -- write without latency
               else
                 state <= latency_delay;
               end if;
             else
               tick_counter := tick_counter - 1;
-              dq <= ca_bfr( tick_counter*8+7 downto tick_counter*8 ); --TX command-address (6 clock events)
+              dq <= ca_bfr( tick_counter*8+7 downto tick_counter*8 ); --TX command-address (6 clock events) std_logic_vector(to_unsigned(tick_counter, 8));--
             end if;
           end if;
 
@@ -173,6 +179,7 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
                 state <= rd;
               end if;
             else
+					dq <= std_logic_vector(to_unsigned(tick_counter, 8));
               tick_counter := tick_counter + 1;
             end if;
           end if;
@@ -180,11 +187,12 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
         when wr =>
           cs_n <= '0';
           request_ack <= '1';
+			 A <= '1';
+			 B <= '0';
 
           if ck_p /= ck_prev then                -- Sync to ck (ddr)
             if data_counter = to_integer( unsigned( wr_length ) ) then
               state <= stop;
-              wr_ack <= '1';
             else
               dq <= wr_data;
               data_counter := data_counter + 1;
@@ -207,6 +215,8 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
           end if;
 
         when stop =>
+			A <= '1';	
+			 B <= '1';
           cs_n <= '1';
           request_ack <= '0';
           state <= ready;

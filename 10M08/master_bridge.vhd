@@ -66,6 +66,9 @@ entity master_bridge is
 		ram_ck_n    : out   std_logic;
 		ram_rwds    : inout std_logic;
 		ram_dq      : inout std_logic_vector( 7 downto 0 );
+		
+		ram_vcc		: out	std_logic := '1';
+		ram_vccq		: out	std_logic := '1';
 
 		-- Synchronous reset (active low)
 		reset_n		: inout	std_logic
@@ -82,7 +85,7 @@ constant sys_clk_frq			: integer 			:= 50_000_000;
 constant	i2c_scl_frq			: integer			:= 100_000;
 constant	umd_baud_r			: integer			:= 921_600;
 constant	ora_clk_frq			: integer			:= 10_000_000;
-constant	ram_clk_frq			: integer			:= 25_000_000;
+constant	ram_clk_frq			: integer			:= 2_500_000;
 constant ram_latency			: integer			:= 1;
 
 -- Module clocks
@@ -96,7 +99,6 @@ signal	ram_ena				: std_logic			:= '0';
 signal	ram_wr_data       : std_logic_vector(  7 downto 0 );
 signal	ram_wr_request   	: std_logic;
 signal	ram_wr_length   	: std_logic_vector(  7 downto 0 );
-signal	ram_wr_ack   		: std_logic;
 	
 signal	ram_rd_data       : std_logic_vector(  7 downto 0 );
 signal	ram_rd_request   	: std_logic;
@@ -170,6 +172,7 @@ signal	i2c_ack_err    	: std_logic;
 			umd_clock			: inout	std_logic;
 			i2c_clock			: inout	std_logic;
 			ora_clock			: inout	std_logic;
+			ram_clock			: inout	std_logic;
 
 			i2c_ena				: out    std_logic;
 			i2c_rw    			: out    std_logic	:= '0';
@@ -190,7 +193,9 @@ signal	i2c_ack_err    	: std_logic;
 			ora_has_packet		: in		std_logic;
 			ora_bytes_to_tx	: in 		integer;
 			ora_packet_buffer	: inout	packet_buffer_t;
-			cam_ena   			: inout  std_logic	:= '0'
+			cam_ena   			: inout  std_logic	:= '0';
+			
+			ram_ena				: inout 	std_logic	:= '0'
 			
 --			ram_rd_data       : in   	std_logic_vector(  7 downto 0 );
 --			ram_rd_request    : out    std_logic;
@@ -264,8 +269,7 @@ signal	i2c_ack_err    	: std_logic;
 		);
 		port
 		(
-			A	: inout std_logic := '0';
-			B	: inout std_logic := '0';
+			
 				-- Global clock
 			gclk        		: in    	std_logic;
 
@@ -290,7 +294,6 @@ signal	i2c_ack_err    	: std_logic;
 			r_wr_data     		: out    std_logic_vector(  7 downto 0 );
 			r_wr_request    	: out    std_logic;
 			r_wr_length     	: out   	std_logic_vector(  7 downto 0 );
-			r_wr_ack        	: in   	std_logic;
 
 			r_strobe        	: inout 	std_logic;
 			r_request_ack   	: in   	std_logic;
@@ -311,6 +314,8 @@ signal	i2c_ack_err    	: std_logic;
 		);
 		port 
 		(
+		A	: inout std_logic := '0';
+		B	: inout std_logic := '0';
 			clock               : in    std_logic;
 			reset_n             : in    std_logic;
 
@@ -321,7 +326,6 @@ signal	i2c_ack_err    	: std_logic;
 			wr_data             : in    std_logic_vector(  7 downto 0 );
 			wr_request          : in    std_logic;
 			wr_length           : in   	std_logic_vector(  7 downto 0 );
-			wr_ack              : out   std_logic;
 
 			strobe              : inout std_logic;
 			request_ack         : out   std_logic;
@@ -360,6 +364,7 @@ begin
 		umd_clock				=> umd_clock,
 		i2c_clock				=> i2c_clock,
 		ora_clock				=>	ora_clock,
+		ram_clock				=> ram_clock,
 
 		i2c_ena					=>	i2c_ena,
 		i2c_rw   				=>	i2c_rw,
@@ -380,8 +385,9 @@ begin
 		ora_has_packet			=> ora_has_packet,
 		ora_bytes_to_tx		=> ora_bytes_to_tx,
 		ora_packet_buffer		=> ora_packet_buffer,
-		cam_ena					=> cam_ena
+		cam_ena					=> cam_ena,
 		
+		ram_ena					=> ram_ena
 --		ram_rd_data          =>	ram_rd_data,
 --		ram_rd_request       =>	ram_rd_request,
 --		ram_rd_length        =>	ram_rd_length,
@@ -454,8 +460,6 @@ begin
 	)
 	port map
 	(
-		A => A,
-		B => B,
 		gclk						=>	ora_clock,
 		ena						=>	cam_ena,
 		pwdn						=>	pwdn,
@@ -476,7 +480,6 @@ begin
 		r_wr_data         	=>	ram_wr_data,
 		r_wr_request			=> ram_wr_request,
 		r_wr_length        	=>	ram_wr_length,
-		r_wr_ack           	=> ram_wr_ack,
 		r_strobe        		=>	ram_strobe,
 		r_request_ack      	=>	ram_request_ack,
 		r_burst            	=>	ram_burst,
@@ -494,6 +497,8 @@ begin
 	)
 	port map
 	(  
+	A => A,
+	B => B,
 		clock               	=>	ram_clock,
 		reset_n             	=>	reset_n,
 
@@ -503,7 +508,6 @@ begin
 		wr_data         		=>	ram_wr_data,
 		wr_request				=> ram_wr_request,
 		wr_length         	=>	ram_wr_length,
-		wr_ack             	=> ram_wr_ack,
 		strobe         		=>	ram_strobe,
 		request_ack        	=>	ram_request_ack,
 
@@ -520,7 +524,7 @@ begin
 		
 		
 	);
-
+	
 	--------------------------------------------------------------------------------
 
 end gbehaviour;
