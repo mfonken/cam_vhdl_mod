@@ -1,5 +1,5 @@
 Fitter report for 10M08
-Thu Jun 01 10:53:18 2017
+Mon Jun 05 22:42:49 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -70,17 +70,17 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Thu Jun 01 10:53:18 2017       ;
+; Fitter Status                      ; Successful - Mon Jun 05 22:42:49 2017       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; 10M08                                       ;
 ; Top-level Entity Name              ; master_bridge                               ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M08SAE144C8GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 346 / 8,064 ( 4 % )                         ;
-;     Total combinational functions  ; 341 / 8,064 ( 4 % )                         ;
-;     Dedicated logic registers      ; 206 / 8,064 ( 3 % )                         ;
-; Total registers                    ; 206                                         ;
+; Total logic elements               ; 370 / 8,064 ( 5 % )                         ;
+;     Total combinational functions  ; 366 / 8,064 ( 5 % )                         ;
+;     Dedicated logic registers      ; 207 / 8,064 ( 3 % )                         ;
+; Total registers                    ; 207                                         ;
 ; Total pins                         ; 42 / 101 ( 42 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 387,072 ( 0 % )                         ;
@@ -156,13 +156,13 @@ agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.08        ;
+; Average used               ; 1.11        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   2.6%      ;
-;     Processors 3-4         ;   2.5%      ;
+;     Processor 2            ;   3.9%      ;
+;     Processors 3-4         ;   3.7%      ;
 +----------------------------+-------------+
 
 
@@ -177,7 +177,6 @@ agreement for further details.
 ; Location     ;                ;              ; Arduino_IO13            ; PIN_22        ; QSF Assignment ;
 ; Location     ;                ;              ; Arduino_IO8             ; PIN_17        ; QSF Assignment ;
 ; Location     ;                ;              ; Arduino_IO9             ; PIN_18        ; QSF Assignment ;
-; Location     ;                ;              ; DIFFIO_B1N              ; PIN_38        ; QSF Assignment ;
 ; Location     ;                ;              ; DIFFIO_L20N_CLK1N       ; PIN_28        ; QSF Assignment ;
 ; Location     ;                ;              ; DIFFIO_L20P_CLK1P       ; PIN_29        ; QSF Assignment ;
 ; Location     ;                ;              ; DIFFIO_L27N_PLL_CLKOUTN ; PIN_32        ; QSF Assignment ;
@@ -246,8 +245,8 @@ agreement for further details.
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 668 ) ; 0.00 % ( 0 / 668 )         ; 0.00 % ( 0 / 668 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 668 ) ; 0.00 % ( 0 / 668 )         ; 0.00 % ( 0 / 668 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 695 ) ; 0.00 % ( 0 / 695 )         ; 0.00 % ( 0 / 695 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 695 ) ; 0.00 % ( 0 / 695 )         ; 0.00 % ( 0 / 695 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -270,7 +269,7 @@ agreement for further details.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 652 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 679 )    ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 16 )     ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -286,26 +285,26 @@ The pin-out file can be found in C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10
 +---------------------------------------------+---------------------+
 ; Resource                                    ; Usage               ;
 +---------------------------------------------+---------------------+
-; Total logic elements                        ; 346 / 8,064 ( 4 % ) ;
-;     -- Combinational with no register       ; 140                 ;
-;     -- Register only                        ; 5                   ;
-;     -- Combinational with a register        ; 201                 ;
+; Total logic elements                        ; 370 / 8,064 ( 5 % ) ;
+;     -- Combinational with no register       ; 163                 ;
+;     -- Register only                        ; 4                   ;
+;     -- Combinational with a register        ; 203                 ;
 ;                                             ;                     ;
 ; Logic element usage by number of LUT inputs ;                     ;
-;     -- 4 input functions                    ; 154                 ;
-;     -- 3 input functions                    ; 70                  ;
-;     -- <=2 input functions                  ; 117                 ;
-;     -- Register only                        ; 5                   ;
+;     -- 4 input functions                    ; 179                 ;
+;     -- 3 input functions                    ; 72                  ;
+;     -- <=2 input functions                  ; 115                 ;
+;     -- Register only                        ; 4                   ;
 ;                                             ;                     ;
 ; Logic elements by mode                      ;                     ;
-;     -- normal mode                          ; 272                 ;
-;     -- arithmetic mode                      ; 69                  ;
+;     -- normal mode                          ; 302                 ;
+;     -- arithmetic mode                      ; 64                  ;
 ;                                             ;                     ;
-; Total registers*                            ; 206 / 8,542 ( 2 % ) ;
-;     -- Dedicated logic registers            ; 206 / 8,064 ( 3 % ) ;
+; Total registers*                            ; 207 / 8,542 ( 2 % ) ;
+;     -- Dedicated logic registers            ; 207 / 8,064 ( 3 % ) ;
 ;     -- I/O registers                        ; 0 / 478 ( 0 % )     ;
 ;                                             ;                     ;
-; Total LABs:  partially or completely used   ; 30 / 504 ( 6 % )    ;
+; Total LABs:  partially or completely used   ; 33 / 504 ( 7 % )    ;
 ; Virtual pins                                ; 0                   ;
 ; I/O pins                                    ; 42 / 101 ( 42 % )   ;
 ;     -- Clock pins                           ; 3 / 4 ( 75 % )      ;
@@ -324,12 +323,12 @@ The pin-out file can be found in C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10
 ; CRC blocks                                  ; 0 / 1 ( 0 % )       ;
 ; Remote update blocks                        ; 0 / 1 ( 0 % )       ;
 ; Oscillator blocks                           ; 0 / 1 ( 0 % )       ;
-; Average interconnect usage (total/H/V)      ; 0.7% / 0.7% / 0.8%  ;
-; Peak interconnect usage (total/H/V)         ; 1.7% / 1.7% / 1.6%  ;
-; Maximum fan-out                             ; 170                 ;
-; Highest non-global fan-out                  ; 132                 ;
-; Total fan-out                               ; 1759                ;
-; Average fan-out                             ; 2.61                ;
+; Average interconnect usage (total/H/V)      ; 0.7% / 0.7% / 0.7%  ;
+; Peak interconnect usage (total/H/V)         ; 2.2% / 2.3% / 2.1%  ;
+; Maximum fan-out                             ; 171                 ;
+; Highest non-global fan-out                  ; 141                 ;
+; Total fan-out                               ; 1859                ;
+; Average fan-out                             ; 2.66                ;
 +---------------------------------------------+---------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -342,26 +341,26 @@ The pin-out file can be found in C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10
 +---------------------------------------------+--------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                ; Low                            ;
 ;                                             ;                    ;                                ;
-; Total logic elements                        ; 346 / 8064 ( 4 % ) ; 0 / 8064 ( 0 % )               ;
-;     -- Combinational with no register       ; 140                ; 0                              ;
-;     -- Register only                        ; 5                  ; 0                              ;
-;     -- Combinational with a register        ; 201                ; 0                              ;
+; Total logic elements                        ; 370 / 8064 ( 5 % ) ; 0 / 8064 ( 0 % )               ;
+;     -- Combinational with no register       ; 163                ; 0                              ;
+;     -- Register only                        ; 4                  ; 0                              ;
+;     -- Combinational with a register        ; 203                ; 0                              ;
 ;                                             ;                    ;                                ;
 ; Logic element usage by number of LUT inputs ;                    ;                                ;
-;     -- 4 input functions                    ; 154                ; 0                              ;
-;     -- 3 input functions                    ; 70                 ; 0                              ;
-;     -- <=2 input functions                  ; 117                ; 0                              ;
-;     -- Register only                        ; 5                  ; 0                              ;
+;     -- 4 input functions                    ; 179                ; 0                              ;
+;     -- 3 input functions                    ; 72                 ; 0                              ;
+;     -- <=2 input functions                  ; 115                ; 0                              ;
+;     -- Register only                        ; 4                  ; 0                              ;
 ;                                             ;                    ;                                ;
 ; Logic elements by mode                      ;                    ;                                ;
-;     -- normal mode                          ; 272                ; 0                              ;
-;     -- arithmetic mode                      ; 69                 ; 0                              ;
+;     -- normal mode                          ; 302                ; 0                              ;
+;     -- arithmetic mode                      ; 64                 ; 0                              ;
 ;                                             ;                    ;                                ;
-; Total registers                             ; 206                ; 0                              ;
-;     -- Dedicated logic registers            ; 206 / 8064 ( 3 % ) ; 0 / 8064 ( 0 % )               ;
+; Total registers                             ; 207                ; 0                              ;
+;     -- Dedicated logic registers            ; 207 / 8064 ( 3 % ) ; 0 / 8064 ( 0 % )               ;
 ;     -- I/O registers                        ; 0                  ; 0                              ;
 ;                                             ;                    ;                                ;
-; Total LABs:  partially or completely used   ; 30 / 504 ( 6 % )   ; 0 / 504 ( 0 % )                ;
+; Total LABs:  partially or completely used   ; 33 / 504 ( 7 % )   ; 0 / 504 ( 0 % )                ;
 ;                                             ;                    ;                                ;
 ; Virtual pins                                ; 0                  ; 0                              ;
 ; I/O pins                                    ; 42                 ; 0                              ;
@@ -379,8 +378,8 @@ The pin-out file can be found in C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10
 ;     -- Registered Output Connections        ; 0                  ; 0                              ;
 ;                                             ;                    ;                                ;
 ; Internal Connections                        ;                    ;                                ;
-;     -- Total Connections                    ; 1760               ; 8                              ;
-;     -- Registered Connections               ; 677                ; 0                              ;
+;     -- Total Connections                    ; 1860               ; 8                              ;
+;     -- Registered Connections               ; 709                ; 0                              ;
 ;                                             ;                    ;                                ;
 ; External Connections                        ;                    ;                                ;
 ;     -- Top                                  ; 36                 ; 0                              ;
@@ -439,10 +438,10 @@ The pin-out file can be found in C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10
 ; LED4     ; 140   ; 8        ; 1            ; 10           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; LED5     ; 141   ; 8        ; 1            ; 10           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; pwdn     ; 79    ; 5        ; 31           ; 4            ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; ram_ck_n ; 39    ; 3        ; 3            ; 0            ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; ram_rst  ; 52    ; 3        ; 11           ; 0            ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; ram_vcc  ; 57    ; 3        ; 17           ; 0            ; 28           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; ram_vccq ; 58    ; 3        ; 17           ; 0            ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; ram_ck_n ; 43    ; 3        ; 6            ; 0            ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; ram_rst  ; 56    ; 3        ; 15           ; 0            ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; ram_vcc  ; 59    ; 3        ; 17           ; 0            ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; ram_vccq ; 60    ; 3        ; 19           ; 0            ; 28           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; umd_tx   ; 90    ; 6        ; 31           ; 11           ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 +----------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
 
@@ -456,18 +455,18 @@ The pin-out file can be found in C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10
 ; B         ; 111   ; 7        ; 29           ; 25           ; 7            ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
 ; cam_ena   ; 81    ; 5        ; 31           ; 4            ; 14           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
 ; mclk      ; 74    ; 5        ; 31           ; 1            ; 7            ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_ck_p  ; 44    ; 3        ; 9            ; 0            ; 28           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_cs_n  ; 45    ; 3        ; 9            ; 0            ; 21           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_dq[0] ; 60    ; 3        ; 19           ; 0            ; 28           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_dq[1] ; 59    ; 3        ; 17           ; 0            ; 0            ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_dq[2] ; 56    ; 3        ; 15           ; 0            ; 14           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_dq[3] ; 55    ; 3        ; 15           ; 0            ; 21           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_dq[4] ; 47    ; 3        ; 11           ; 0            ; 28           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_dq[5] ; 46    ; 3        ; 9            ; 0            ; 0            ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_dq[6] ; 43    ; 3        ; 6            ; 0            ; 14           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_dq[7] ; 41    ; 3        ; 6            ; 0            ; 21           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; no         ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; ram_rwds  ; 50    ; 3        ; 11           ; 0            ; 7            ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; yes        ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
-; reset_n   ; 121   ; 8        ; 15           ; 25           ; 21           ; 132                   ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; yes        ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_ck_p  ; 46    ; 3        ; 9            ; 0            ; 0            ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; no         ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_cs_n  ; 47    ; 3        ; 11           ; 0            ; 28           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; no         ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_dq[0] ; 58    ; 3        ; 17           ; 0            ; 21           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; no         ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_dq[1] ; 57    ; 3        ; 17           ; 0            ; 28           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; no         ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_dq[2] ; 52    ; 3        ; 11           ; 0            ; 0            ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; no         ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_dq[3] ; 50    ; 3        ; 11           ; 0            ; 7            ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; no         ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_dq[4] ; 45    ; 3        ; 9            ; 0            ; 21           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; no         ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_dq[5] ; 44    ; 3        ; 9            ; 0            ; 28           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; no         ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_dq[6] ; 39    ; 3        ; 3            ; 0            ; 7            ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; no         ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_dq[7] ; 38    ; 3        ; 3            ; 0            ; 14           ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; no         ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; ram_rwds  ; 55    ; 3        ; 15           ; 0            ; 21           ; 3                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; no              ; yes        ; no       ; Off          ; 1.8 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
+; reset_n   ; 121   ; 8        ; 15           ; 25           ; 21           ; 141                   ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; yes        ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; -                                               ;
 ; scl       ; 86    ; 5        ; 31           ; 6            ; 0            ; 1                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; yes        ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; i2c_master:i2c_master_0|scl~1 (inverted)        ;
 ; sda       ; 84    ; 5        ; 31           ; 6            ; 7            ; 0                     ; 0                  ; no     ; no             ; no              ; no                     ; no            ; 2         ; yes             ; yes        ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; User                 ; 0 pF                 ; i2c_master:i2c_master_0|Selector29~0 (inverted) ;
 +-----------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+------------------------+---------------+-----------+-----------------+------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+----------------------+----------------------+-------------------------------------------------+
@@ -500,7 +499,7 @@ The pin-out file can be found in C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10
 ; 1A       ; 2 / 8 ( 25 % )   ; 2.5V          ; --           ;
 ; 1B       ; 4 / 10 ( 40 % )  ; 2.5V          ; --           ;
 ; 2        ; 1 / 7 ( 14 % )   ; 2.5V          ; --           ;
-; 3        ; 15 / 18 ( 83 % ) ; 2.5V          ; --           ;
+; 3        ; 15 / 18 ( 83 % ) ; 1.8V          ; --           ;
 ; 4        ; 4 / 7 ( 57 % )   ; 2.5V          ; --           ;
 ; 5        ; 8 / 12 ( 67 % )  ; 2.5V          ; --           ;
 ; 6        ; 3 / 15 ( 20 % )  ; 2.5V          ; --           ;
@@ -551,29 +550,29 @@ The pin-out file can be found in C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10
 ; 35       ;            ; --       ; VCCA1                                          ; power  ;                       ; 3.0V/3.3V ; --         ;                 ; --       ; --           ;
 ; 36       ;            ; --       ; VCC_ONE                                        ; power  ;                       ; 3.0V/3.3V ; --         ;                 ; --       ; --           ;
 ; 37       ;            ; --       ; VCC_ONE                                        ; power  ;                       ; 3.0V/3.3V ; --         ;                 ; --       ; --           ;
-; 38       ; 60         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;           ; Column I/O ;                 ; no       ; On           ;
-; 39       ; 62         ; 3        ; ram_ck_n                                       ; output ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
-; 40       ;            ; 3        ; VCCIO3                                         ; power  ;                       ; 2.5V      ; --         ;                 ; --       ; --           ;
-; 41       ; 64         ; 3        ; ram_dq[7]                                      ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 38       ; 60         ; 3        ; ram_dq[7]                                      ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 39       ; 62         ; 3        ; ram_dq[6]                                      ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 40       ;            ; 3        ; VCCIO3                                         ; power  ;                       ; 1.8V      ; --         ;                 ; --       ; --           ;
+; 41       ; 64         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;           ; Column I/O ;                 ; no       ; On           ;
 ; 42       ;            ;          ; GND                                            ; gnd    ;                       ;           ; --         ;                 ; --       ; --           ;
-; 43       ; 66         ; 3        ; ram_dq[6]                                      ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
-; 44       ; 68         ; 3        ; ram_ck_p                                       ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
-; 45       ; 70         ; 3        ; ram_cs_n                                       ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
-; 46       ; 72         ; 3        ; ram_dq[5]                                      ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
-; 47       ; 74         ; 3        ; ram_dq[4]                                      ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 43       ; 66         ; 3        ; ram_ck_n                                       ; output ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 44       ; 68         ; 3        ; ram_dq[5]                                      ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 45       ; 70         ; 3        ; ram_dq[4]                                      ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 46       ; 72         ; 3        ; ram_ck_p                                       ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 47       ; 74         ; 3        ; ram_cs_n                                       ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
 ; 48       ; 77         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;           ; Column I/O ;                 ; --       ; --           ;
-; 49       ;            ; 3        ; VCCIO3                                         ; power  ;                       ; 2.5V      ; --         ;                 ; --       ; --           ;
-; 50       ; 76         ; 3        ; ram_rwds                                       ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 49       ;            ; 3        ; VCCIO3                                         ; power  ;                       ; 1.8V      ; --         ;                 ; --       ; --           ;
+; 50       ; 76         ; 3        ; ram_dq[3]                                      ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
 ; 51       ;            ; --       ; VCC_ONE                                        ; power  ;                       ; 3.0V/3.3V ; --         ;                 ; --       ; --           ;
-; 52       ; 78         ; 3        ; ram_rst                                        ; output ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 52       ; 78         ; 3        ; ram_dq[2]                                      ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
 ; 53       ;            ;          ; GND                                            ; gnd    ;                       ;           ; --         ;                 ; --       ; --           ;
 ; 54       ; 80         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;           ; Column I/O ;                 ; no       ; On           ;
-; 55       ; 84         ; 3        ; ram_dq[3]                                      ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
-; 56       ; 86         ; 3        ; ram_dq[2]                                      ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
-; 57       ; 88         ; 3        ; ram_vcc                                        ; output ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
-; 58       ; 90         ; 3        ; ram_vccq                                       ; output ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
-; 59       ; 92         ; 3        ; ram_dq[1]                                      ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
-; 60       ; 94         ; 3        ; ram_dq[0]                                      ; bidir  ; 2.5 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 55       ; 84         ; 3        ; ram_rwds                                       ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 56       ; 86         ; 3        ; ram_rst                                        ; output ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 57       ; 88         ; 3        ; ram_dq[1]                                      ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 58       ; 90         ; 3        ; ram_dq[0]                                      ; bidir  ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 59       ; 92         ; 3        ; ram_vcc                                        ; output ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
+; 60       ; 94         ; 3        ; ram_vccq                                       ; output ; 1.8 V                 ;           ; Column I/O ; Y               ; no       ; Off          ;
 ; 61       ; 101        ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;           ; Column I/O ;                 ; --       ; --           ;
 ; 62       ; 102        ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                ;        ;                       ;           ; Column I/O ;                 ; no       ; On           ;
 ; 63       ;            ;          ; GND                                            ; gnd    ;                       ;           ; --         ;                 ; --       ; --           ;
@@ -685,27 +684,27 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; cpi[6]    ; Incomplete set of assignments        ;
 ; cpi[7]    ; Incomplete set of assignments        ;
 ; umd_tx    ; Incomplete set of assignments        ;
-; ram_rst   ; Incomplete set of assignments        ;
-; ram_ck_n  ; Incomplete set of assignments        ;
-; ram_vcc   ; Incomplete set of assignments        ;
-; ram_vccq  ; Incomplete set of assignments        ;
+; ram_rst   ; Missing drive strength and slew rate ;
+; ram_ck_n  ; Missing drive strength and slew rate ;
+; ram_vcc   ; Missing drive strength and slew rate ;
+; ram_vccq  ; Missing drive strength and slew rate ;
 ; A         ; Missing drive strength and slew rate ;
 ; B         ; Incomplete set of assignments        ;
 ; cam_ena   ; Incomplete set of assignments        ;
 ; mclk      ; Incomplete set of assignments        ;
 ; sda       ; Incomplete set of assignments        ;
 ; scl       ; Incomplete set of assignments        ;
-; ram_cs_n  ; Incomplete set of assignments        ;
-; ram_ck_p  ; Incomplete set of assignments        ;
-; ram_rwds  ; Incomplete set of assignments        ;
-; ram_dq[0] ; Incomplete set of assignments        ;
-; ram_dq[1] ; Incomplete set of assignments        ;
-; ram_dq[2] ; Incomplete set of assignments        ;
-; ram_dq[3] ; Incomplete set of assignments        ;
-; ram_dq[4] ; Incomplete set of assignments        ;
-; ram_dq[5] ; Incomplete set of assignments        ;
-; ram_dq[6] ; Incomplete set of assignments        ;
-; ram_dq[7] ; Incomplete set of assignments        ;
+; ram_cs_n  ; Missing drive strength and slew rate ;
+; ram_ck_p  ; Missing drive strength and slew rate ;
+; ram_rwds  ; Missing drive strength and slew rate ;
+; ram_dq[0] ; Missing drive strength and slew rate ;
+; ram_dq[1] ; Missing drive strength and slew rate ;
+; ram_dq[2] ; Missing drive strength and slew rate ;
+; ram_dq[3] ; Missing drive strength and slew rate ;
+; ram_dq[4] ; Missing drive strength and slew rate ;
+; ram_dq[5] ; Missing drive strength and slew rate ;
+; ram_dq[6] ; Missing drive strength and slew rate ;
+; ram_dq[7] ; Missing drive strength and slew rate ;
 ; reset_n   ; Incomplete set of assignments        ;
 ; clock     ; Incomplete set of assignments        ;
 ; umd_rx    ; Incomplete set of assignments        ;
@@ -719,12 +718,12 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+----------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node   ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; ADC blocks ; Full Hierarchy Name                    ; Entity Name   ; Library Name ;
 +------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+----------------------------------------+---------------+--------------+
-; |master_bridge               ; 346 (1)     ; 206 (0)                   ; 0 (0)         ; 0           ; 0    ; 1          ; 0            ; 0       ; 0         ; 42   ; 0            ; 140 (1)      ; 5 (0)             ; 201 (0)          ; 0          ; |master_bridge                         ; master_bridge ; work         ;
-;    |hrddr:hrddr_0|           ; 76 (76)     ; 44 (44)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 32 (32)      ; 0 (0)             ; 44 (44)          ; 0          ; |master_bridge|hrddr:hrddr_0           ; hrddr         ; work         ;
-;    |i2c_master:i2c_master_0| ; 77 (77)     ; 30 (30)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 47 (47)      ; 3 (3)             ; 27 (27)          ; 0          ; |master_bridge|i2c_master:i2c_master_0 ; i2c_master    ; work         ;
-;    |master:master_m|         ; 108 (108)   ; 73 (73)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 35 (35)      ; 1 (1)             ; 72 (72)          ; 0          ; |master_bridge|master:master_m         ; master        ; work         ;
-;    |ora:ora_0|               ; 8 (8)       ; 7 (7)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 7 (7)            ; 0          ; |master_bridge|ora:ora_0               ; ora           ; work         ;
-;    |uart:umd|                ; 76 (76)     ; 52 (52)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 24 (24)      ; 1 (1)             ; 51 (51)          ; 0          ; |master_bridge|uart:umd                ; uart          ; work         ;
+; |master_bridge               ; 370 (1)     ; 207 (0)                   ; 0 (0)         ; 0           ; 0    ; 1          ; 0            ; 0       ; 0         ; 42   ; 0            ; 163 (1)      ; 4 (0)             ; 203 (0)          ; 0          ; |master_bridge                         ; master_bridge ; work         ;
+;    |hrddr:hrddr_0|           ; 96 (96)     ; 43 (43)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 53 (53)      ; 0 (0)             ; 43 (43)          ; 0          ; |master_bridge|hrddr:hrddr_0           ; hrddr         ; work         ;
+;    |i2c_master:i2c_master_0| ; 76 (76)     ; 30 (30)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 46 (46)      ; 1 (1)             ; 29 (29)          ; 0          ; |master_bridge|i2c_master:i2c_master_0 ; i2c_master    ; work         ;
+;    |master:master_m|         ; 110 (110)   ; 73 (73)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 36 (36)      ; 1 (1)             ; 73 (73)          ; 0          ; |master_bridge|master:master_m         ; master        ; work         ;
+;    |ora:ora_0|               ; 10 (10)     ; 9 (9)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 9 (9)            ; 0          ; |master_bridge|ora:ora_0               ; ora           ; work         ;
+;    |uart:umd|                ; 78 (78)     ; 52 (52)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 26 (26)      ; 2 (2)             ; 50 (50)          ; 0          ; |master_bridge|uart:umd                ; uart          ; work         ;
 +------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+----------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -764,7 +763,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; scl       ; Bidir    ; (6) 873 ps    ; --            ; --                    ; --  ; --   ;
 ; ram_cs_n  ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
 ; ram_ck_p  ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
-; ram_rwds  ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
+; ram_rwds  ; Bidir    ; (6) 868 ps    ; --            ; --                    ; --  ; --   ;
 ; ram_dq[0] ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
 ; ram_dq[1] ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
 ; ram_dq[2] ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
@@ -773,7 +772,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ram_dq[5] ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
 ; ram_dq[6] ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
 ; ram_dq[7] ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
-; reset_n   ; Bidir    ; --            ; (6) 868 ps    ; --                    ; --  ; --   ;
+; reset_n   ; Bidir    ; (6) 868 ps    ; --            ; --                    ; --  ; --   ;
 ; clock     ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
 ; umd_rx    ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
 +-----------+----------+---------------+---------------+-----------------------+-----+------+
@@ -805,6 +804,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ram_cs_n                                             ;                   ;         ;
 ; ram_ck_p                                             ;                   ;         ;
 ; ram_rwds                                             ;                   ;         ;
+;      - hrddr:hrddr_0|rwds_prev                       ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector9~2                     ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|state~17                        ; 0                 ; 6       ;
 ; ram_dq[0]                                            ;                   ;         ;
 ; ram_dq[1]                                            ;                   ;         ;
 ; ram_dq[2]                                            ;                   ;         ;
@@ -814,167 +816,176 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ram_dq[6]                                            ;                   ;         ;
 ; ram_dq[7]                                            ;                   ;         ;
 ; reset_n                                              ;                   ;         ;
-;      - uart:umd|uart_tx_data_vec[0]                  ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_data_vec[1]                  ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_out_stb                 ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_data_vec[2]                  ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_data_vec[3]                  ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_in_ack                  ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_data_vec[4]                  ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_data_vec[5]                  ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_data_vec[6]                  ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_data_vec[7]                  ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_count[1]                     ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_count[2]                     ; 1                 ; 6       ;
-;      - uart:umd|rx_baud_counter[1]                   ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add3~8                          ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add3~6                          ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add3~4                          ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add3~2                          ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add3~20                         ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add3~18                         ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add3~16                         ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add3~14                         ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add3~12                         ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add3~10                         ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_data~2                       ; 1                 ; 6       ;
-;      - master:master_m|umd_clock~0                   ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|ddr_ck_div_counter[3]~10        ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_vec~0                   ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_count[0]~0                   ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_vec~1                   ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_vec~2                   ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_vec~3                   ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_vec~4                   ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_vec~5                   ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_vec~6                   ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_vec~7                   ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_state~10                     ; 1                 ; 6       ;
-;      - uart:umd|tx_baud_tick~0                       ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_count[1]~1                   ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_state~13                     ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|data_clk_prev         ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|state.start           ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|state.stop            ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|sda_int               ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|scl_ena               ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|scl_clk               ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_state~12                     ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_bit~0                        ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_bit~1                        ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_state~13                     ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_state~14                     ; 1                 ; 6       ;
-;      - master:master_m|cam_ready                     ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_count~2                      ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_count[1]~3                   ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_state~14                     ; 1                 ; 6       ;
-;      - uart:umd|uart_tx_state~15                     ; 1                 ; 6       ;
-;      - uart:umd|tx_baud_counter[6]~9                 ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Equal2~0                        ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Selector7~1                     ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Selector3~0                     ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|data_clk              ; 1                 ; 6       ;
-;      - master:master_m|i2c_ena                       ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|state.ready           ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|state.slv_ack2        ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|state.mstr_ack        ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|state.command         ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|state.slv_ack1        ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|bit_cnt[0]            ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|bit_cnt[1]            ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|bit_cnt[2]            ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|state.wr              ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|state.rd              ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|count[7]              ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|count[6]              ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|count[5]              ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|count[4]              ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|count[3]              ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|count[2]              ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|count[1]              ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|stretch               ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|count[0]              ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|count[8]              ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|tick_counter~0                  ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Selector27~0                    ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Add1~0                          ; 1                 ; 6       ;
-;      - uart:umd|rx_baud_tick~0                       ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_count~2                      ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_state~15                     ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_filter~1                     ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_filter~2                     ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[1]  ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[0]  ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|busy                  ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[30] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[29] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[28] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[27] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[26] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[25] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[24] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[23] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[22] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[21] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[20] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[19] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[18] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[17] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[16] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[15] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[14] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[13] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[12] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[11] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[10] ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[9]  ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[8]  ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[7]  ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[6]  ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[5]  ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[4]  ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[3]  ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[2]  ; 1                 ; 6       ;
-;      - master:master_m|\init_camera:i2c_busy_cnt[31] ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|data_counter~0                  ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Selector7~4                     ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|tick_counter~1                  ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|tick_counter~2                  ; 1                 ; 6       ;
-;      - hrddr:hrddr_0|Selector5~3                     ; 1                 ; 6       ;
-;      - i2c_master:i2c_master_0|data_tx[1]~2          ; 1                 ; 6       ;
-;      - master:master_m|i2c_bsy_prev~0                ; 1                 ; 6       ;
-;      - uart:umd|rx_baud_counter~0                    ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_sr~0                    ; 1                 ; 6       ;
-;      - uart:umd|uart_rx_data_sr~1                    ; 1                 ; 6       ;
+;      - uart:umd|uart_tx_data_vec[0]                  ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_data_vec[1]                  ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_out_stb                 ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_data_vec[2]                  ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_data_vec[3]                  ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_in_ack                  ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_data_vec[4]                  ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_data_vec[5]                  ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_data_vec[6]                  ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_data_vec[7]                  ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_count[1]                     ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_count[2]                     ; 0                 ; 6       ;
+;      - uart:umd|rx_baud_counter[1]                   ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add3~8                          ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add3~6                          ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add3~4                          ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add3~2                          ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add3~20                         ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add3~18                         ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add3~16                         ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add3~14                         ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add3~12                         ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add3~10                         ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_data~2                       ; 0                 ; 6       ;
+;      - master:master_m|umd_clock~0                   ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|ck_p~0                          ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_vec~0                   ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_count[0]~0                   ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_vec~1                   ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_vec~2                   ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_vec~3                   ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_vec~4                   ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_vec~5                   ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_vec~6                   ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_vec~7                   ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_state~10                     ; 0                 ; 6       ;
+;      - uart:umd|tx_baud_tick~0                       ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_count[1]~1                   ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_state~13                     ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|ddr_ck_div_counter[3]~9         ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|data_clk_prev         ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|state.start           ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|state.stop            ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|sda_int               ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|scl_ena               ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|scl_clk               ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_state~12                     ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_bit~0                        ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_bit~1                        ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_state~13                     ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_state~14                     ; 0                 ; 6       ;
+;      - master:master_m|cam_ready                     ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_count~2                      ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_count[1]~3                   ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_state~14                     ; 0                 ; 6       ;
+;      - uart:umd|uart_tx_state~15                     ; 0                 ; 6       ;
+;      - uart:umd|tx_baud_counter[6]~9                 ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Equal2~0                        ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|tick_counter~0                  ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|tick_counter~1                  ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector30~0                    ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|tick_counter~2                  ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector3~0                     ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector5~3                     ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|data_clk              ; 0                 ; 6       ;
+;      - master:master_m|i2c_ena                       ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|state.ready           ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|state.slv_ack2        ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|state.mstr_ack        ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|state.command         ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|state.slv_ack1        ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|bit_cnt[0]            ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|bit_cnt[1]            ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|bit_cnt[2]            ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|state.wr              ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|state.rd              ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|count[7]              ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|count[6]              ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|count[5]              ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|count[4]              ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|count[3]              ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|count[2]              ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|count[1]              ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|stretch               ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|count[0]              ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|count[8]              ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector31~0                    ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector27~1                    ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add1~0                          ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Add1~1                          ; 0                 ; 6       ;
+;      - uart:umd|rx_baud_tick~0                       ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_count~2                      ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_state~15                     ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_filter~1                     ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_filter~2                     ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[26] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[25] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[24] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[23] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[22] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[21] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[20] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[19] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[18] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[17] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[16] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[15] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[14] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[13] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[12] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[11] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[10] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[9]  ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[8]  ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[7]  ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[6]  ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[5]  ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[4]  ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[3]  ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[2]  ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[1]  ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[0]  ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|busy                  ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[27] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[28] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[29] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[31] ; 0                 ; 6       ;
+;      - master:master_m|\init_camera:i2c_busy_cnt[30] ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|state~17                        ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|data_counter~0                  ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector7~0                     ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector30~3                    ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector11~0                    ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector12~0                    ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector6~2                     ; 0                 ; 6       ;
+;      - i2c_master:i2c_master_0|data_tx[1]~2          ; 0                 ; 6       ;
+;      - master:master_m|i2c_bsy_prev~0                ; 0                 ; 6       ;
+;      - uart:umd|rx_baud_counter~0                    ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_sr~0                    ; 0                 ; 6       ;
+;      - uart:umd|uart_rx_data_sr~1                    ; 0                 ; 6       ;
+;      - hrddr:hrddr_0|Selector29~3                    ; 0                 ; 6       ;
 ; clock                                                ;                   ;         ;
 ; umd_rx                                               ;                   ;         ;
 ;      - uart:umd|uart_rx_data_sr~1                    ; 0                 ; 0       ;
 +------------------------------------------------------+-------------------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Control Signals                                                                                                                                                                                ;
-+----------------------------------------+--------------------+---------+-----------------------------------------+--------+----------------------+------------------+---------------------------+
-; Name                                   ; Location           ; Fan-Out ; Usage                                   ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+----------------------------------------+--------------------+---------+-----------------------------------------+--------+----------------------+------------------+---------------------------+
-; clock                                  ; PIN_27             ; 36      ; Clock                                   ; yes    ; Global Clock         ; GCLK4            ; --                        ;
-; hrddr:hrddr_0|ddr_ck_div_counter[3]~23 ; LCCOMB_X19_Y15_N22 ; 10      ; Sync. clear                             ; no     ; --                   ; --               ; --                        ;
-; hrddr:hrddr_0|state.command            ; FF_X18_Y15_N27     ; 17      ; Sync. clear                             ; no     ; --                   ; --               ; --                        ;
-; i2c_master:i2c_master_0|bit_cnt[2]~0   ; LCCOMB_X19_Y21_N18 ; 3       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
-; i2c_master:i2c_master_0|data_tx[1]~3   ; LCCOMB_X19_Y21_N26 ; 2       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
-; i2c_master:i2c_master_0|process_1~0    ; LCCOMB_X19_Y21_N2  ; 12      ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
-; master:master_m|cam_ready              ; FF_X24_Y21_N5      ; 37      ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
-; master:master_m|i2c_bsy_prev~0         ; LCCOMB_X23_Y21_N30 ; 3       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
-; master:master_m|packet_tx_i[5]~13      ; LCCOMB_X17_Y19_N0  ; 6       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
-; master:master_m|state.live             ; FF_X20_Y18_N1      ; 19      ; Sync. load                              ; no     ; --                   ; --               ; --                        ;
-; master:master_m|umd_clock~0            ; LCCOMB_X23_Y10_N2  ; 170     ; Clock                                   ; yes    ; Global Clock         ; GCLK6            ; --                        ;
-; reset_n                                ; PIN_121            ; 132     ; Async. clear, Clock enable, Sync. clear ; no     ; --                   ; --               ; --                        ;
-; uart:umd|rx_baud_tick                  ; FF_X19_Y20_N29     ; 8       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
-; uart:umd|tx_baud_counter[6]~9          ; LCCOMB_X18_Y19_N30 ; 7       ; Sync. clear                             ; no     ; --                   ; --               ; --                        ;
-; uart:umd|uart_rx_bit~1                 ; LCCOMB_X19_Y20_N22 ; 4       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
-; uart:umd|uart_rx_count[0]~0            ; LCCOMB_X18_Y18_N24 ; 11      ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
-; uart:umd|uart_tx_count[1]~1            ; LCCOMB_X19_Y19_N10 ; 10      ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
-+----------------------------------------+--------------------+---------+-----------------------------------------+--------+----------------------+------------------+---------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                                                                                                               ;
++---------------------------------------+--------------------+---------+-----------------------------------------+--------+----------------------+------------------+---------------------------+
+; Name                                  ; Location           ; Fan-Out ; Usage                                   ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++---------------------------------------+--------------------+---------+-----------------------------------------+--------+----------------------+------------------+---------------------------+
+; clock                                 ; PIN_27             ; 36      ; Clock                                   ; yes    ; Global Clock         ; GCLK4            ; --                        ;
+; hrddr:hrddr_0|ddr_ck_div_counter[3]~9 ; LCCOMB_X12_Y4_N12  ; 5       ; Sync. clear                             ; no     ; --                   ; --               ; --                        ;
+; hrddr:hrddr_0|state.command           ; FF_X16_Y4_N15      ; 19      ; Sync. clear                             ; no     ; --                   ; --               ; --                        ;
+; i2c_master:i2c_master_0|bit_cnt[2]~0  ; LCCOMB_X17_Y21_N22 ; 3       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
+; i2c_master:i2c_master_0|data_tx[1]~3  ; LCCOMB_X17_Y19_N14 ; 2       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
+; i2c_master:i2c_master_0|process_1~0   ; LCCOMB_X17_Y19_N0  ; 12      ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
+; master:master_m|cam_ready             ; FF_X19_Y21_N25     ; 37      ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
+; master:master_m|i2c_bsy_prev~0        ; LCCOMB_X20_Y21_N6  ; 3       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
+; master:master_m|packet_tx_i[4]~13     ; LCCOMB_X16_Y20_N8  ; 6       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
+; master:master_m|state.live            ; FF_X20_Y21_N5      ; 19      ; Sync. load                              ; no     ; --                   ; --               ; --                        ;
+; master:master_m|umd_clock~0           ; LCCOMB_X23_Y10_N2  ; 171     ; Clock                                   ; yes    ; Global Clock         ; GCLK8            ; --                        ;
+; reset_n                               ; PIN_121            ; 141     ; Async. clear, Clock enable, Sync. clear ; no     ; --                   ; --               ; --                        ;
+; uart:umd|rx_baud_tick                 ; FF_X23_Y10_N19     ; 8       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
+; uart:umd|tx_baud_counter[6]~9         ; LCCOMB_X14_Y20_N8  ; 7       ; Sync. clear                             ; no     ; --                   ; --               ; --                        ;
+; uart:umd|uart_rx_bit~1                ; LCCOMB_X23_Y10_N8  ; 4       ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
+; uart:umd|uart_rx_count[0]~0           ; LCCOMB_X19_Y18_N12 ; 11      ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
+; uart:umd|uart_tx_count[1]~1           ; LCCOMB_X20_Y20_N10 ; 10      ; Clock enable                            ; no     ; --                   ; --               ; --                        ;
++---------------------------------------+--------------------+---------+-----------------------------------------+--------+----------------------+------------------+---------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -982,8 +993,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------+-------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 ; Name                        ; Location          ; Fan-Out ; Fan-Out Using Intentional Clock Skew ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +-----------------------------+-------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
-; clock                       ; PIN_27            ; 36      ; 0                                    ; Global Clock         ; GCLK4            ; --                        ;
-; master:master_m|umd_clock~0 ; LCCOMB_X23_Y10_N2 ; 170     ; 1                                    ; Global Clock         ; GCLK6            ; --                        ;
+; clock                       ; PIN_27            ; 36      ; 5                                    ; Global Clock         ; GCLK4            ; --                        ;
+; master:master_m|umd_clock~0 ; LCCOMB_X23_Y10_N2 ; 171     ; 4                                    ; Global Clock         ; GCLK8            ; --                        ;
 +-----------------------------+-------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 
 
@@ -992,29 +1003,29 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+------------------------+
 ; Routing Resource Type ; Usage                  ;
 +-----------------------+------------------------+
-; Block interconnects   ; 305 / 27,275 ( 1 % )   ;
-; C16 interconnects     ; 20 / 1,240 ( 2 % )     ;
-; C4 interconnects      ; 113 / 20,832 ( < 1 % ) ;
-; Direct links          ; 132 / 27,275 ( < 1 % ) ;
+; Block interconnects   ; 358 / 27,275 ( 1 % )   ;
+; C16 interconnects     ; 12 / 1,240 ( < 1 % )   ;
+; C4 interconnects      ; 107 / 20,832 ( < 1 % ) ;
+; Direct links          ; 128 / 27,275 ( < 1 % ) ;
 ; Global clocks         ; 2 / 10 ( 20 % )        ;
-; Local interconnects   ; 255 / 8,064 ( 3 % )    ;
-; R24 interconnects     ; 13 / 1,320 ( < 1 % )   ;
-; R4 interconnects      ; 144 / 28,560 ( < 1 % ) ;
+; Local interconnects   ; 276 / 8,064 ( 3 % )    ;
+; R24 interconnects     ; 8 / 1,320 ( < 1 % )    ;
+; R4 interconnects      ; 200 / 28,560 ( < 1 % ) ;
 +-----------------------+------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Logic Elements                                                         ;
 +---------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 11.53) ; Number of LABs  (Total = 30) ;
+; Number of Logic Elements  (Average = 11.21) ; Number of LABs  (Total = 33) ;
 +---------------------------------------------+------------------------------+
-; 1                                           ; 2                            ;
-; 2                                           ; 3                            ;
+; 1                                           ; 4                            ;
+; 2                                           ; 2                            ;
 ; 3                                           ; 1                            ;
 ; 4                                           ; 1                            ;
 ; 5                                           ; 0                            ;
 ; 6                                           ; 2                            ;
-; 7                                           ; 0                            ;
+; 7                                           ; 1                            ;
 ; 8                                           ; 0                            ;
 ; 9                                           ; 0                            ;
 ; 10                                          ; 1                            ;
@@ -1022,59 +1033,60 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 12                                          ; 0                            ;
 ; 13                                          ; 1                            ;
 ; 14                                          ; 0                            ;
-; 15                                          ; 3                            ;
-; 16                                          ; 15                           ;
+; 15                                          ; 2                            ;
+; 16                                          ; 17                           ;
 +---------------------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.63) ; Number of LABs  (Total = 30) ;
+; LAB-wide Signals  (Average = 1.48) ; Number of LABs  (Total = 33) ;
 +------------------------------------+------------------------------+
-; 1 Async. clear                     ; 10                           ;
-; 1 Clock                            ; 27                           ;
-; 1 Clock enable                     ; 6                            ;
+; 1 Async. clear                     ; 6                            ;
+; 1 Clock                            ; 26                           ;
+; 1 Clock enable                     ; 8                            ;
 ; 1 Sync. clear                      ; 2                            ;
+; 1 Sync. load                       ; 1                            ;
 ; 2 Clock enables                    ; 2                            ;
-; 2 Clocks                           ; 2                            ;
+; 2 Clocks                           ; 4                            ;
 +------------------------------------+------------------------------+
 
 
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 18.37) ; Number of LABs  (Total = 30) ;
+; Number of Signals Sourced  (Average = 17.48) ; Number of LABs  (Total = 33) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 1                            ;
-; 2                                            ; 1                            ;
-; 3                                            ; 1                            ;
-; 4                                            ; 2                            ;
+; 2                                            ; 5                            ;
+; 3                                            ; 0                            ;
+; 4                                            ; 0                            ;
 ; 5                                            ; 1                            ;
-; 6                                            ; 1                            ;
+; 6                                            ; 0                            ;
 ; 7                                            ; 0                            ;
-; 8                                            ; 0                            ;
-; 9                                            ; 0                            ;
+; 8                                            ; 1                            ;
+; 9                                            ; 1                            ;
 ; 10                                           ; 1                            ;
 ; 11                                           ; 1                            ;
 ; 12                                           ; 0                            ;
 ; 13                                           ; 0                            ;
 ; 14                                           ; 0                            ;
 ; 15                                           ; 0                            ;
-; 16                                           ; 1                            ;
-; 17                                           ; 0                            ;
-; 18                                           ; 1                            ;
-; 19                                           ; 0                            ;
+; 16                                           ; 0                            ;
+; 17                                           ; 1                            ;
+; 18                                           ; 0                            ;
+; 19                                           ; 2                            ;
 ; 20                                           ; 2                            ;
-; 21                                           ; 2                            ;
-; 22                                           ; 3                            ;
+; 21                                           ; 1                            ;
+; 22                                           ; 6                            ;
 ; 23                                           ; 1                            ;
 ; 24                                           ; 0                            ;
-; 25                                           ; 3                            ;
-; 26                                           ; 4                            ;
-; 27                                           ; 1                            ;
-; 28                                           ; 0                            ;
+; 25                                           ; 2                            ;
+; 26                                           ; 1                            ;
+; 27                                           ; 2                            ;
+; 28                                           ; 1                            ;
 ; 29                                           ; 0                            ;
 ; 30                                           ; 0                            ;
 ; 31                                           ; 2                            ;
@@ -1085,51 +1097,52 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------------------------------------------------------------------+
 ; LAB Signals Sourced Out                                                        ;
 +-------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 6.07) ; Number of LABs  (Total = 30) ;
+; Number of Signals Sourced Out  (Average = 6.15) ; Number of LABs  (Total = 33) ;
 +-------------------------------------------------+------------------------------+
 ; 0                                               ; 0                            ;
-; 1                                               ; 6                            ;
+; 1                                               ; 8                            ;
 ; 2                                               ; 4                            ;
 ; 3                                               ; 1                            ;
 ; 4                                               ; 3                            ;
-; 5                                               ; 3                            ;
-; 6                                               ; 1                            ;
-; 7                                               ; 2                            ;
-; 8                                               ; 2                            ;
+; 5                                               ; 2                            ;
+; 6                                               ; 0                            ;
+; 7                                               ; 0                            ;
+; 8                                               ; 6                            ;
 ; 9                                               ; 1                            ;
-; 10                                              ; 1                            ;
-; 11                                              ; 2                            ;
-; 12                                              ; 0                            ;
-; 13                                              ; 0                            ;
-; 14                                              ; 1                            ;
-; 15                                              ; 1                            ;
+; 10                                              ; 2                            ;
+; 11                                              ; 1                            ;
+; 12                                              ; 1                            ;
+; 13                                              ; 1                            ;
+; 14                                              ; 0                            ;
+; 15                                              ; 0                            ;
 ; 16                                              ; 2                            ;
+; 17                                              ; 1                            ;
 +-------------------------------------------------+------------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                        ;
 +---------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 8.17) ; Number of LABs  (Total = 30) ;
+; Number of Distinct Inputs  (Average = 8.88) ; Number of LABs  (Total = 33) ;
 +---------------------------------------------+------------------------------+
 ; 0                                           ; 0                            ;
 ; 1                                           ; 1                            ;
 ; 2                                           ; 3                            ;
-; 3                                           ; 3                            ;
-; 4                                           ; 2                            ;
-; 5                                           ; 5                            ;
-; 6                                           ; 1                            ;
-; 7                                           ; 3                            ;
-; 8                                           ; 2                            ;
-; 9                                           ; 1                            ;
-; 10                                          ; 2                            ;
-; 11                                          ; 1                            ;
-; 12                                          ; 0                            ;
+; 3                                           ; 5                            ;
+; 4                                           ; 4                            ;
+; 5                                           ; 2                            ;
+; 6                                           ; 2                            ;
+; 7                                           ; 2                            ;
+; 8                                           ; 1                            ;
+; 9                                           ; 0                            ;
+; 10                                          ; 1                            ;
+; 11                                          ; 0                            ;
+; 12                                          ; 1                            ;
 ; 13                                          ; 0                            ;
-; 14                                          ; 1                            ;
-; 15                                          ; 3                            ;
-; 16                                          ; 0                            ;
-; 17                                          ; 0                            ;
+; 14                                          ; 4                            ;
+; 15                                          ; 1                            ;
+; 16                                          ; 3                            ;
+; 17                                          ; 1                            ;
 ; 18                                          ; 1                            ;
 ; 19                                          ; 0                            ;
 ; 20                                          ; 0                            ;
@@ -1147,8 +1160,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 32                                          ; 0                            ;
 ; 33                                          ; 0                            ;
 ; 34                                          ; 0                            ;
-; 35                                          ; 0                            ;
-; 36                                          ; 1                            ;
+; 35                                          ; 1                            ;
 +---------------------------------------------+------------------------------+
 
 
@@ -1209,9 +1221,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
 ; Pin/Rules          ; IO_000001    ; IO_000002    ; IO_000003    ; IO_000004    ; IO_000005    ; IO_000006 ; IO_000007    ; IO_000008    ; IO_000009 ; IO_000010 ; IO_000011    ; IO_000012    ; IO_000013    ; IO_000014    ; IO_000015    ; IO_000018    ; IO_000019    ; IO_000020    ; IO_000021    ; IO_000022    ; IO_000023    ; IO_000024    ; IO_000026    ; IO_000027    ; IO_000045    ; IO_000046    ; IO_000047    ; IO_000033 ; IO_000034    ; IO_000042    ;
 +--------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
-; Total Pass         ; 40           ; 0            ; 40           ; 0            ; 0            ; 42        ; 40           ; 0            ; 42        ; 42        ; 0            ; 29           ; 0            ; 0            ; 31           ; 0            ; 29           ; 31           ; 0            ; 0            ; 4            ; 29           ; 0            ; 0            ; 0            ; 0            ; 0            ; 42        ; 0            ; 0            ;
+; Total Pass         ; 40           ; 0            ; 40           ; 0            ; 0            ; 42        ; 40           ; 0            ; 42        ; 42        ; 0            ; 29           ; 0            ; 0            ; 20           ; 0            ; 29           ; 20           ; 0            ; 0            ; 4            ; 29           ; 0            ; 0            ; 0            ; 0            ; 0            ; 42        ; 0            ; 0            ;
 ; Total Unchecked    ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
-; Total Inapplicable ; 2            ; 42           ; 2            ; 42           ; 42           ; 0         ; 2            ; 42           ; 0         ; 0         ; 42           ; 13           ; 42           ; 42           ; 11           ; 42           ; 13           ; 11           ; 42           ; 42           ; 38           ; 13           ; 42           ; 42           ; 42           ; 42           ; 42           ; 0         ; 42           ; 42           ;
+; Total Inapplicable ; 2            ; 42           ; 2            ; 42           ; 42           ; 0         ; 2            ; 42           ; 0         ; 0         ; 42           ; 13           ; 42           ; 42           ; 22           ; 42           ; 13           ; 22           ; 42           ; 42           ; 38           ; 13           ; 42           ; 42           ; 42           ; 42           ; 42           ; 0         ; 42           ; 42           ;
 ; Total Fail         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
 ; LED1               ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; LED2               ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
@@ -1241,17 +1253,17 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; mclk               ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; sda                ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; scl                ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_cs_n           ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_ck_p           ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_rwds           ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_dq[0]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_dq[1]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_dq[2]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_dq[3]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_dq[4]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_dq[5]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_dq[6]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; ram_dq[7]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_cs_n           ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_ck_p           ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_rwds           ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_dq[0]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_dq[1]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_dq[2]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_dq[3]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_dq[4]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_dq[5]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_dq[6]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; ram_dq[7]          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; reset_n            ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; clock              ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; umd_rx             ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
@@ -1300,7 +1312,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------+----------------------+-------------------+
 ; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
 +-----------------+----------------------+-------------------+
-; clock           ; clock                ; 23.1              ;
+; clock           ; clock                ; 19.9              ;
 +-----------------+----------------------+-------------------+
 Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
 This will disable optimization of problematic paths and expose them for further analysis using the TimeQuest Timing Analyzer.
@@ -1311,66 +1323,67 @@ This will disable optimization of problematic paths and expose them for further 
 +-----------------------------------------------+-----------------------------------------------+-------------------+
 ; Source Register                               ; Destination Register                          ; Delay Added in ns ;
 +-----------------------------------------------+-----------------------------------------------+-------------------+
-; master:master_m|umd_rx_data[7]~reg0           ; uart:umd|uart_tx_data_vec[7]                  ; 2.765             ;
-; master:master_m|umd_rx_stb~reg0               ; uart:umd|uart_tx_data                         ; 2.054             ;
-; master:master_m|umd_rx_data[5]~reg0           ; uart:umd|uart_tx_data_vec[5]                  ; 1.680             ;
-; master:master_m|umd_rx_data[4]~reg0           ; uart:umd|uart_tx_data_vec[4]                  ; 1.680             ;
-; master:master_m|umd_rx_data[2]~reg0           ; uart:umd|uart_tx_data_vec[3]                  ; 1.680             ;
-; master:master_m|umd_rx_data[1]~reg0           ; uart:umd|uart_tx_data_vec[1]                  ; 1.680             ;
-; master:master_m|umd_rx_data[0]~reg0           ; uart:umd|uart_tx_data_vec[0]                  ; 1.680             ;
-; master:master_m|umd_rx_data[6]~reg0           ; uart:umd|uart_tx_data_vec[6]                  ; 1.678             ;
-; uart:umd|uart_tx_data                         ; uart:umd|uart_tx_data                         ; 0.837             ;
-; uart:umd|uart_tx_state.tx_send_start_bit      ; uart:umd|uart_tx_data                         ; 0.837             ;
-; uart:umd|tx_baud_tick                         ; uart:umd|uart_tx_data                         ; 0.837             ;
-; uart:umd|uart_tx_data_vec[6]                  ; uart:umd|uart_tx_data_vec[5]                  ; 0.692             ;
-; uart:umd|uart_tx_data_vec[5]                  ; uart:umd|uart_tx_data_vec[4]                  ; 0.692             ;
-; uart:umd|uart_tx_data_vec[4]                  ; uart:umd|uart_tx_data_vec[3]                  ; 0.692             ;
-; uart:umd|uart_tx_data_vec[3]                  ; uart:umd|uart_tx_data_vec[2]                  ; 0.692             ;
-; uart:umd|uart_tx_data_vec[2]                  ; uart:umd|uart_tx_data_vec[1]                  ; 0.692             ;
-; uart:umd|uart_tx_data_vec[1]                  ; uart:umd|uart_tx_data_vec[0]                  ; 0.692             ;
-; uart:umd|uart_tx_state.tx_send_data           ; uart:umd|uart_tx_data_vec[5]                  ; 0.692             ;
-; uart:umd|uart_tx_data_vec[7]                  ; uart:umd|uart_tx_data_vec[6]                  ; 0.547             ;
-; uart:umd|uart_tx_count[2]                     ; uart:umd|uart_tx_state.tx_send_stop_bit       ; 0.142             ;
-; uart:umd|uart_tx_count[0]                     ; uart:umd|uart_tx_state.tx_send_stop_bit       ; 0.142             ;
-; uart:umd|uart_tx_count[1]                     ; uart:umd|uart_tx_state.tx_send_stop_bit       ; 0.142             ;
-; uart:umd|uart_tx_state.tx_send_stop_bit       ; uart:umd|uart_tx_state.tx_send_stop_bit       ; 0.142             ;
-; uart:umd|uart_rx_data_vec[1]                  ; uart:umd|uart_rx_data_vec[0]                  ; 0.106             ;
-; uart:umd|uart_rx_data_vec[2]                  ; uart:umd|uart_rx_data_vec[1]                  ; 0.106             ;
-; uart:umd|uart_rx_data_vec[4]                  ; uart:umd|uart_rx_data_vec[3]                  ; 0.106             ;
-; uart:umd|uart_rx_data_vec[3]                  ; uart:umd|uart_rx_data_vec[2]                  ; 0.106             ;
-; master:master_m|state.deactivate              ; master:master_m|state_lock.shutdown           ; 0.105             ;
-; hrddr:hrddr_0|\hrddr_process:data_counter[10] ; hrddr:hrddr_0|\hrddr_process:data_counter[10] ; 0.096             ;
-; uart:umd|rx_baud_counter[0]                   ; uart:umd|rx_baud_tick                         ; 0.096             ;
-; hrddr:hrddr_0|ddr_ck_div_counter[9]           ; hrddr:hrddr_0|ddr_ck_div_counter[9]           ; 0.095             ;
-; master:master_m|shdn                          ; master:master_m|state_lock.shutdown           ; 0.095             ;
-; master:master_m|state_lock.live               ; master:master_m|next_state.live               ; 0.094             ;
-; master:master_m|state_lock.shutdown           ; master:master_m|next_state.shutdown           ; 0.094             ;
-; master:master_m|state_lock.startup            ; master:master_m|next_state.startup            ; 0.094             ;
-; master:master_m|state.activate                ; master:master_m|state_lock.live               ; 0.094             ;
-; hrddr:hrddr_0|state.command                   ; hrddr:hrddr_0|\hrddr_process:tick_counter[0]  ; 0.093             ;
-; ora:ora_0|c[1]                                ; ora:ora_0|c[2]                                ; 0.092             ;
-; hrddr:hrddr_0|state.wr                        ; hrddr:hrddr_0|A~reg0                          ; 0.091             ;
-; master:master_m|next_state.live               ; master:master_m|state.live                    ; 0.088             ;
-; uart:umd|tx_baud_counter[6]                   ; uart:umd|tx_baud_counter[6]                   ; 0.087             ;
-; master:master_m|state.live                    ; master:master_m|cam_ena~reg0                  ; 0.079             ;
-; hrddr:hrddr_0|state.stop                      ; hrddr:hrddr_0|A~reg0                          ; 0.078             ;
-; i2c_master:i2c_master_0|state.slv_ack1        ; i2c_master:i2c_master_0|state.wr              ; 0.078             ;
-; ora:ora_0|c[0]                                ; ora:ora_0|c[2]                                ; 0.077             ;
-; hrddr:hrddr_0|state.start                     ; hrddr:hrddr_0|state.command                   ; 0.073             ;
-; i2c_master:i2c_master_0|state.stop            ; i2c_master:i2c_master_0|state.ready           ; 0.073             ;
-; uart:umd|uart_rx_state.rx_get_stop_bit        ; uart:umd|uart_rx_state.rx_get_data            ; 0.057             ;
-; i2c_master:i2c_master_0|state.mstr_ack        ; i2c_master:i2c_master_0|state.rd              ; 0.054             ;
-; uart:umd|uart_rx_bit_spacing[0]               ; uart:umd|uart_rx_bit_spacing[1]               ; 0.044             ;
-; i2c_master:i2c_master_0|count[0]              ; i2c_master:i2c_master_0|count[7]              ; 0.043             ;
-; uart:umd|uart_rx_bit_tick                     ; uart:umd|uart_rx_state.rx_get_data            ; 0.039             ;
-; ora:ora_0|c[2]                                ; ora:ora_0|mclk~reg0                           ; 0.031             ;
-; master:master_m|state.startup                 ; master:master_m|state.deactivate              ; 0.029             ;
-; uart:umd|uart_rx_count[0]                     ; uart:umd|uart_rx_state.rx_get_stop_bit        ; 0.029             ;
-; uart:umd|uart_rx_count[2]                     ; uart:umd|uart_rx_state.rx_get_stop_bit        ; 0.029             ;
-; uart:umd|uart_rx_state.rx_get_data            ; uart:umd|uart_rx_state.rx_get_stop_bit        ; 0.029             ;
-; uart:umd|uart_rx_count[1]                     ; uart:umd|uart_rx_state.rx_get_stop_bit        ; 0.029             ;
+; master:master_m|umd_rx_data[7]~reg0           ; uart:umd|uart_tx_data_vec[7]                  ; 2.606             ;
+; master:master_m|umd_rx_stb~reg0               ; uart:umd|uart_tx_data                         ; 2.148             ;
+; master:master_m|umd_rx_data[5]~reg0           ; uart:umd|uart_tx_data_vec[5]                  ; 1.292             ;
+; master:master_m|umd_rx_data[0]~reg0           ; uart:umd|uart_tx_data_vec[0]                  ; 1.292             ;
+; master:master_m|umd_rx_data[6]~reg0           ; uart:umd|uart_tx_data_vec[6]                  ; 1.226             ;
+; master:master_m|umd_rx_data[4]~reg0           ; uart:umd|uart_tx_data_vec[4]                  ; 1.085             ;
+; master:master_m|umd_rx_data[1]~reg0           ; uart:umd|uart_tx_data_vec[1]                  ; 1.085             ;
+; master:master_m|umd_rx_data[2]~reg0           ; uart:umd|uart_tx_data_vec[3]                  ; 1.061             ;
+; uart:umd|uart_tx_state.tx_send_start_bit      ; uart:umd|uart_tx_data_vec[7]                  ; 0.980             ;
+; uart:umd|tx_baud_tick                         ; uart:umd|uart_tx_data_vec[7]                  ; 0.980             ;
+; uart:umd|uart_tx_data                         ; uart:umd|uart_tx_data                         ; 0.793             ;
+; uart:umd|uart_tx_data_vec[6]                  ; uart:umd|uart_tx_data_vec[5]                  ; 0.628             ;
+; uart:umd|uart_tx_data_vec[1]                  ; uart:umd|uart_tx_data_vec[0]                  ; 0.628             ;
+; uart:umd|uart_tx_state.tx_send_data           ; uart:umd|uart_tx_data_vec[5]                  ; 0.628             ;
+; uart:umd|uart_tx_data_vec[5]                  ; uart:umd|uart_tx_data_vec[4]                  ; 0.599             ;
+; uart:umd|uart_tx_data_vec[2]                  ; uart:umd|uart_tx_data_vec[1]                  ; 0.599             ;
+; uart:umd|uart_tx_data_vec[4]                  ; uart:umd|uart_tx_data_vec[3]                  ; 0.590             ;
+; uart:umd|uart_tx_data_vec[3]                  ; uart:umd|uart_tx_data_vec[2]                  ; 0.590             ;
+; uart:umd|uart_tx_data_vec[7]                  ; uart:umd|uart_tx_data_vec[6]                  ; 0.412             ;
+; uart:umd|uart_tx_count[2]                     ; uart:umd|uart_tx_state.tx_send_stop_bit       ; 0.347             ;
+; uart:umd|uart_tx_count[0]                     ; uart:umd|uart_tx_state.tx_send_stop_bit       ; 0.347             ;
+; uart:umd|uart_tx_count[1]                     ; uart:umd|uart_tx_state.tx_send_stop_bit       ; 0.347             ;
+; uart:umd|uart_tx_state.tx_send_stop_bit       ; uart:umd|uart_tx_state.tx_send_stop_bit       ; 0.347             ;
+; reset_n                                       ; uart:umd|uart_tx_state.tx_send_start_bit      ; 0.214             ;
+; uart:umd|uart_rx_count[2]                     ; uart:umd|uart_rx_state.rx_get_stop_bit        ; 0.175             ;
+; uart:umd|uart_rx_bit_tick                     ; uart:umd|uart_rx_state.rx_get_stop_bit        ; 0.103             ;
+; uart:umd|uart_rx_count[0]                     ; uart:umd|uart_rx_state.rx_get_stop_bit        ; 0.103             ;
+; uart:umd|uart_rx_state.rx_get_data            ; uart:umd|uart_rx_state.rx_get_stop_bit        ; 0.103             ;
+; uart:umd|uart_rx_count[1]                     ; uart:umd|uart_rx_state.rx_get_stop_bit        ; 0.103             ;
+; master:master_m|state.deactivate              ; master:master_m|state_lock.shutdown           ; 0.098             ;
+; master:master_m|next_state.standby            ; master:master_m|state.standby                 ; 0.097             ;
+; i2c_master:i2c_master_0|state.mstr_ack        ; i2c_master:i2c_master_0|state.rd              ; 0.097             ;
+; uart:umd|uart_rx_data_vec[1]                  ; uart:umd|uart_rx_data_vec[0]                  ; 0.097             ;
+; uart:umd|uart_rx_data_vec[2]                  ; uart:umd|uart_rx_data_vec[1]                  ; 0.097             ;
+; uart:umd|uart_rx_data_vec[5]                  ; uart:umd|uart_rx_data_vec[4]                  ; 0.097             ;
+; uart:umd|uart_rx_data_vec[4]                  ; uart:umd|uart_rx_data_vec[3]                  ; 0.097             ;
+; uart:umd|uart_rx_data_vec[3]                  ; uart:umd|uart_rx_data_vec[2]                  ; 0.097             ;
+; hrddr:hrddr_0|\hrddr_process:data_counter[10] ; hrddr:hrddr_0|\hrddr_process:data_counter[10] ; 0.089             ;
+; uart:umd|rx_baud_counter[0]                   ; uart:umd|rx_baud_tick                         ; 0.087             ;
+; master:master_m|state_lock.live               ; master:master_m|next_state.live               ; 0.086             ;
+; master:master_m|state_lock.standby            ; master:master_m|next_state.standby            ; 0.086             ;
+; master:master_m|state_lock.shutdown           ; master:master_m|next_state.shutdown           ; 0.086             ;
+; i2c_master:i2c_master_0|state.start           ; i2c_master:i2c_master_0|state.command         ; 0.086             ;
+; master:master_m|state_lock.startup            ; master:master_m|next_state.startup            ; 0.086             ;
+; master:master_m|state.activate                ; master:master_m|state_lock.live               ; 0.086             ;
+; master:master_m|shdn                          ; master:master_m|state_lock.shutdown           ; 0.085             ;
+; hrddr:hrddr_0|state.latency_delay             ; hrddr:hrddr_0|\hrddr_process:tick_counter[0]  ; 0.083             ;
+; ora:ora_0|c[1]                                ; ora:ora_0|c[2]                                ; 0.082             ;
+; master:master_m|state.live                    ; master:master_m|umd_rx_data[4]~reg0           ; 0.080             ;
+; uart:umd|tx_baud_counter[6]                   ; uart:umd|tx_baud_counter[6]                   ; 0.078             ;
+; ora:ora_0|c[0]                                ; ora:ora_0|c[2]                                ; 0.070             ;
+; i2c_master:i2c_master_0|state.slv_ack1        ; i2c_master:i2c_master_0|state.wr              ; 0.069             ;
+; i2c_master:i2c_master_0|state.stop            ; i2c_master:i2c_master_0|state.ready           ; 0.063             ;
+; i2c_master:i2c_master_0|count[0]              ; i2c_master:i2c_master_0|count[6]              ; 0.034             ;
+; uart:umd|uart_rx_bit_spacing[0]               ; uart:umd|uart_rx_bit_spacing[1]               ; 0.034             ;
+; ora:ora_0|\hrddr_test:run_once[1]             ; ora:ora_0|r_rd_request                        ; 0.024             ;
+; i2c_master:i2c_master_0|state.rd              ; i2c_master:i2c_master_0|busy                  ; 0.024             ;
+; master:master_m|state.startup                 ; master:master_m|state.deactivate              ; 0.020             ;
+; i2c_master:i2c_master_0|state.slv_ack2        ; i2c_master:i2c_master_0|state.stop            ; 0.017             ;
 +-----------------------------------------------+-----------------------------------------------+-------------------+
-Note: This table only shows the top 58 path(s) that have the largest delay added for hold.
+Note: This table only shows the top 59 path(s) that have the largest delay added for hold.
 
 
 +-----------------+
@@ -1426,7 +1439,7 @@ Info (176215): I/O bank details before I/O pin placement
         Info (176213): I/O bank number 1A does not use VREF pins and has undetermined VCCIO pins. 2 total pin(s) used --  6 pins available
         Info (176213): I/O bank number 1B does not use VREF pins and has undetermined VCCIO pins. 4 total pin(s) used --  6 pins available
         Info (176213): I/O bank number 2 does not use VREF pins and has undetermined VCCIO pins. 1 total pin(s) used --  6 pins available
-        Info (176213): I/O bank number 3 does not use VREF pins and has 2.5V VCCIO pins. 15 total pin(s) used --  3 pins available
+        Info (176213): I/O bank number 3 does not use VREF pins and has 1.8V VCCIO pins. 15 total pin(s) used --  3 pins available
         Info (176213): I/O bank number 4 does not use VREF pins and has undetermined VCCIO pins. 4 total pin(s) used --  3 pins available
         Info (176213): I/O bank number 5 does not use VREF pins and has 2.5V VCCIO pins. 8 total pin(s) used --  4 pins available
         Info (176213): I/O bank number 6 does not use VREF pins and has 2.5V VCCIO pins. 2 total pin(s) used --  13 pins available
@@ -1439,7 +1452,6 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "Arduino_IO13" is assigned to location or region, but does not exist in design
     Warning (15706): Node "Arduino_IO8" is assigned to location or region, but does not exist in design
     Warning (15706): Node "Arduino_IO9" is assigned to location or region, but does not exist in design
-    Warning (15706): Node "DIFFIO_B1N" is assigned to location or region, but does not exist in design
     Warning (15706): Node "DIFFIO_L20N_CLK1N" is assigned to location or region, but does not exist in design
     Warning (15706): Node "DIFFIO_L20P_CLK1P" is assigned to location or region, but does not exist in design
     Warning (15706): Node "DIFFIO_L27N_PLL_CLKOUTN" is assigned to location or region, but does not exist in design
@@ -1472,14 +1484,14 @@ Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
 Info (170191): Fitter placement operations beginning
 Info (170137): Fitter placement was successful
-Info (170192): Fitter placement operations ending: elapsed time is 00:00:01
+Info (170192): Fitter placement operations ending: elapsed time is 00:00:00
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
     Info (170196): Router estimated peak interconnect usage is 1% of the available device resources in the region that extends from location X10_Y13 to location X20_Y25
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
-Info (11888): Total time spent on timing analysis during the Fitter is 0.27 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.23 seconds.
 Info (334003): Started post-fitting delay annotation
 Warning (334000): Timing characteristics of device 10M08SAE144C8GES are preliminary
 Info (334004): Delay annotation completed successfully
@@ -1506,10 +1518,10 @@ Warning (169064): Following 16 pins have no output enable or a GND or VCC output
     Info (169065): Pin ram_dq[7] has a permanently enabled output enable File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 68
     Info (169065): Pin reset_n has a permanently disabled output enable File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 74
 Info (144001): Generated suppressed messages file C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/output_files/10M08.fit.smsg
-Info: Quartus Prime Fitter was successful. 0 errors, 44 warnings
-    Info: Peak virtual memory: 1447 megabytes
-    Info: Processing ended: Thu Jun 01 10:53:18 2017
-    Info: Elapsed time: 00:00:07
+Info: Quartus Prime Fitter was successful. 0 errors, 43 warnings
+    Info: Peak virtual memory: 1449 megabytes
+    Info: Processing ended: Mon Jun 05 22:42:50 2017
+    Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:07
 
 

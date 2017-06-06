@@ -30,7 +30,7 @@
  --                  Bank 1A:       2.5V
  --                  Bank 1B:       2.5V
  --                  Bank 2:       2.5V
- --                  Bank 3:       2.5V
+ --                  Bank 3:       1.8V
  --                  Bank 4:       2.5V
  --                  Bank 5:       2.5V
  --                  Bank 6:       2.5V
@@ -107,29 +107,29 @@ VCCA2                        : 34        : power  :                   : 3.0V/3.3
 VCCA1                        : 35        : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 36        : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 37        : power  :                   : 3.0V/3.3V :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 38        :        :                   :         : 3         :                
-ram_ck_n                     : 39        : output : 2.5 V             :         : 3         : Y              
-VCCIO3                       : 40        : power  :                   : 2.5V    : 3         :                
-ram_dq[7]                    : 41        : bidir  : 2.5 V             :         : 3         : Y              
+ram_dq[7]                    : 38        : bidir  : 1.8 V             :         : 3         : Y              
+ram_dq[6]                    : 39        : bidir  : 1.8 V             :         : 3         : Y              
+VCCIO3                       : 40        : power  :                   : 1.8V    : 3         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 41        :        :                   :         : 3         :                
 GND                          : 42        : gnd    :                   :         :           :                
-ram_dq[6]                    : 43        : bidir  : 2.5 V             :         : 3         : Y              
-ram_ck_p                     : 44        : bidir  : 2.5 V             :         : 3         : Y              
-ram_cs_n                     : 45        : bidir  : 2.5 V             :         : 3         : Y              
-ram_dq[5]                    : 46        : bidir  : 2.5 V             :         : 3         : Y              
-ram_dq[4]                    : 47        : bidir  : 2.5 V             :         : 3         : Y              
+ram_ck_n                     : 43        : output : 1.8 V             :         : 3         : Y              
+ram_dq[5]                    : 44        : bidir  : 1.8 V             :         : 3         : Y              
+ram_dq[4]                    : 45        : bidir  : 1.8 V             :         : 3         : Y              
+ram_ck_p                     : 46        : bidir  : 1.8 V             :         : 3         : Y              
+ram_cs_n                     : 47        : bidir  : 1.8 V             :         : 3         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 48        :        :                   :         : 3         :                
-VCCIO3                       : 49        : power  :                   : 2.5V    : 3         :                
-ram_rwds                     : 50        : bidir  : 2.5 V             :         : 3         : Y              
+VCCIO3                       : 49        : power  :                   : 1.8V    : 3         :                
+ram_dq[3]                    : 50        : bidir  : 1.8 V             :         : 3         : Y              
 VCC_ONE                      : 51        : power  :                   : 3.0V/3.3V :           :                
-ram_rst                      : 52        : output : 2.5 V             :         : 3         : Y              
+ram_dq[2]                    : 52        : bidir  : 1.8 V             :         : 3         : Y              
 GND                          : 53        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 54        :        :                   :         : 3         :                
-ram_dq[3]                    : 55        : bidir  : 2.5 V             :         : 3         : Y              
-ram_dq[2]                    : 56        : bidir  : 2.5 V             :         : 3         : Y              
-ram_vcc                      : 57        : output : 2.5 V             :         : 3         : Y              
-ram_vccq                     : 58        : output : 2.5 V             :         : 3         : Y              
-ram_dq[1]                    : 59        : bidir  : 2.5 V             :         : 3         : Y              
-ram_dq[0]                    : 60        : bidir  : 2.5 V             :         : 3         : Y              
+ram_rwds                     : 55        : bidir  : 1.8 V             :         : 3         : Y              
+ram_rst                      : 56        : output : 1.8 V             :         : 3         : Y              
+ram_dq[1]                    : 57        : bidir  : 1.8 V             :         : 3         : Y              
+ram_dq[0]                    : 58        : bidir  : 1.8 V             :         : 3         : Y              
+ram_vcc                      : 59        : output : 1.8 V             :         : 3         : Y              
+ram_vccq                     : 60        : output : 1.8 V             :         : 3         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 61        :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 62        :        :                   :         : 4         :                
 GND                          : 63        : gnd    :                   :         :           :                

@@ -97,10 +97,10 @@ architecture gbehaviour of ora is
 	
 	--/*******RAM TEST START******/
 	hrddr_test : process( gclk )
-	variable run_once : std_logic := '0';
+	variable run_once : integer := 0;
 	begin
 		if rising_edge( gclk ) then
-			if run_once = '0' then
+			if run_once = 0 then
 				r_row <= "1010101010101";--std_logic_vector(to_unsigned(10, 13));	
 				r_col <= "101010101";--std_logic_vector(to_unsigned(10, 9));
 				
@@ -110,12 +110,21 @@ architecture gbehaviour of ora is
 				
 --				r_rd_length <= x"01";
 --				r_rd_request <= '1';
-				run_once := '1';
+				run_once := 1;
+			elsif run_once = 2 then
+				r_row <= "1010101010101";
+				r_col <= "101010101";
+				
+				r_rd_length <= x"01";
+				r_rd_request <= '1';
+				
+				run_once := 3;
 			end if;
 			
 			if r_request_ack = '1' then
 				r_wr_request <= '0';
 				r_rd_request <= '0';
+				run_once := 2;
 			end if;
 		end if;
 	end process hrddr_test;

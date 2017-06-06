@@ -85,7 +85,7 @@ constant sys_clk_frq			: integer 			:= 50_000_000;
 constant	i2c_scl_frq			: integer			:= 100_000;
 constant	umd_baud_r			: integer			:= 921_600;
 constant	ora_clk_frq			: integer			:= 10_000_000;
-constant	ram_clk_frq			: integer			:= 2_500_000;
+constant	ram_clk_frq			: integer			:= 5_000_000;
 constant ram_latency			: integer			:= 1;
 
 -- Module clocks
@@ -196,23 +196,6 @@ signal	i2c_ack_err    	: std_logic;
 			cam_ena   			: inout  std_logic	:= '0';
 			
 			ram_ena				: inout 	std_logic	:= '0'
-			
---			ram_rd_data       : in   	std_logic_vector(  7 downto 0 );
---			ram_rd_request    : out    std_logic;
---			ram_rd_length     : out   	std_logic_vector(  7 downto 0 );
---
---			ram_wr_data     	: out    std_logic_vector(  7 downto 0 );
---			ram_wr_request    : out    std_logic;
---			ram_wr_length     : out   	std_logic_vector(  7 downto 0 );
---			ram_wr_ack        : in   	std_logic;
---
---			ram_strobe        : inout 	std_logic;
---			ram_request_ack   : in   	std_logic;
---
---			ram_burst         : out    std_logic;
---			ram_as            : out    std_logic;
---			ram_row           : out    std_logic_vector( 12 downto 0 );
---			ram_col           : out    std_logic_vector(  8 downto 0 )
 		);
 	end component master;
 
@@ -388,19 +371,6 @@ begin
 		cam_ena					=> cam_ena,
 		
 		ram_ena					=> ram_ena
---		ram_rd_data          =>	ram_rd_data,
---		ram_rd_request       =>	ram_rd_request,
---		ram_rd_length        =>	ram_rd_length,
---		ram_wr_data         	=>	ram_wr_data,
---		ram_wr_request			=> ram_wr_request,
---		ram_wr_length        =>	ram_wr_length,
---		ram_wr_ack           => ram_wr_ack,
---		ram_strobe        	=>	ram_strobe,
---		ram_request_ack      =>	ram_request_ack,
---		ram_burst            =>	ram_burst,
---		ram_as               =>	ram_as,
---		ram_row              =>	ram_row,
---		ram_col              =>	ram_col
 	);
 
 	-- I2C Module component instantiation

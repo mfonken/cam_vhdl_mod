@@ -66,22 +66,6 @@ entity master is
       cam_ena   			: inout   	std_logic;
 		
 		ram_ena				: inout		std_logic
---		ram_rd_data       : in   	std_logic_vector(  7 downto 0 );
---		ram_rd_request    : out    std_logic;
---		ram_rd_length     : out   	std_logic_vector(  7 downto 0 );
---
---		ram_wr_data     	: out    std_logic_vector(  7 downto 0 );
---		ram_wr_request    : out    std_logic;
---		ram_wr_length     : out   	std_logic_vector(  7 downto 0 );
---		ram_wr_ack        : in   	std_logic;
---
---		ram_strobe        : inout 	std_logic;
---		ram_request_ack   : in   	std_logic;
---
---		ram_burst         : out    std_logic;
---		ram_as            : out    std_logic;
---		ram_row           : out    std_logic_vector( 12 downto 0 );
---		ram_col           : out    std_logic_vector(  8 downto 0 )
     );
 
 end master;

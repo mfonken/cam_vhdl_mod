@@ -53,7 +53,6 @@ set_location_assignment PIN_28 -to DIFFIO_L20N_CLK1N -tag platform
 set_location_assignment PIN_29 -to DIFFIO_L20P_CLK1P -tag platform
 set_location_assignment PIN_32 -to DIFFIO_L27N_PLL_CLKOUTN -tag platform
 set_location_assignment PIN_33 -to DIFFIO_L27P_PLL_CLKOUTP -tag platform
-set_location_assignment PIN_38 -to DIFFIO_B1N -tag platform
 set_location_assignment PIN_17 -to Arduino_IO8
 set_location_assignment PIN_18 -to Arduino_IO9
 set_location_assignment PIN_19 -to Arduino_IO10
@@ -165,19 +164,35 @@ set_global_assignment -name VHDL_FILE global_types.vhd
 set_global_assignment -name VHDL_FILE master.vhd
 set_global_assignment -name VHDL_FILE master_bridge.vhd
 set_global_assignment -name CDF_FILE output_files/Chain1.cdf
-set_location_assignment PIN_39 -to ram_ck_n
-set_location_assignment PIN_44 -to ram_ck_p
-set_location_assignment PIN_45 -to ram_cs_n
-set_location_assignment PIN_41 -to ram_dq[7]
-set_location_assignment PIN_43 -to ram_dq[6]
-set_location_assignment PIN_46 -to ram_dq[5]
-set_location_assignment PIN_47 -to ram_dq[4]
-set_location_assignment PIN_55 -to ram_dq[3]
-set_location_assignment PIN_56 -to ram_dq[2]
-set_location_assignment PIN_59 -to ram_dq[1]
-set_location_assignment PIN_60 -to ram_dq[0]
-set_location_assignment PIN_52 -to ram_rst
-set_location_assignment PIN_50 -to ram_rwds
-set_location_assignment PIN_57 -to ram_vcc
-set_location_assignment PIN_58 -to ram_vccq
+set_location_assignment PIN_43 -to ram_ck_n
+set_location_assignment PIN_46 -to ram_ck_p
+set_location_assignment PIN_47 -to ram_cs_n
+set_location_assignment PIN_38 -to ram_dq[7]
+set_location_assignment PIN_39 -to ram_dq[6]
+set_location_assignment PIN_44 -to ram_dq[5]
+set_location_assignment PIN_45 -to ram_dq[4]
+set_location_assignment PIN_50 -to ram_dq[3]
+set_location_assignment PIN_52 -to ram_dq[2]
+set_location_assignment PIN_57 -to ram_dq[1]
+set_location_assignment PIN_58 -to ram_dq[0]
+set_location_assignment PIN_56 -to ram_rst
+set_location_assignment PIN_55 -to ram_rwds
+set_location_assignment PIN_59 -to ram_vcc
+set_location_assignment PIN_60 -to ram_vccq
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_vcc
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_vccq
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_rwds
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_rst
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[0]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[2]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[3]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[5]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[7]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_ck_p
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_ck_n
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_cs_n
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[4]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[6]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[1]
+set_global_assignment -name CDF_FILE Chain1.cdf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
