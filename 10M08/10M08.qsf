@@ -59,22 +59,8 @@ set_location_assignment PIN_19 -to Arduino_IO10
 set_location_assignment PIN_20 -to Arduino_IO11
 set_location_assignment PIN_21 -to Arduino_IO12
 set_location_assignment PIN_22 -to Arduino_IO13
-set_location_assignment PIN_89 -to DIFFIO_R14N_CLK2N -tag platform
-set_location_assignment PIN_91 -to DIFFIO_R16N_CLK3N -tag platform
-set_location_assignment PIN_92 -to DIFFIO_R18P -tag platform
-set_location_assignment PIN_93 -to DIFFIO_R18N -tag platform
-set_location_assignment PIN_96 -to DIFFIO_R26P_DPCLK3 -tag platform
-set_location_assignment PIN_98 -to DIFFIO_R26N_DPCLK2 -tag platform
-set_location_assignment PIN_99 -to DIFFIO_R27P -tag platform
-set_location_assignment PIN_100 -to DIFFIO_R28P -tag platform
-set_location_assignment PIN_101 -to DIFFIO_R27N -tag platform
-set_location_assignment PIN_102 -to DIFFIO_R28N -tag platform
-set_location_assignment PIN_105 -to DIFFIO_R33P -tag platform
-set_location_assignment PIN_106 -to DIFFIO_R33N -tag platform
-set_location_assignment PIN_110 -to DIFFIO_T1P -tag platform
 set_location_assignment PIN_113 -to DIFFIO_T4N -tag platform
 set_location_assignment PIN_114 -to DIFFIO_T6P -tag platform
-set_location_assignment PIN_118 -to DIFFIO_T10P -tag platform
 set_location_assignment PIN_119 -to DIFFIO_T10N -tag platform
 set_location_assignment PIN_120 -to SWITCH1 -tag platform
 set_location_assignment PIN_124 -to SWITCH2 -tag platform
@@ -118,22 +104,8 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO10 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO11 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO12 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO13 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R14N_CLK2N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R16N_CLK3N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R18P -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R18N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R26P_DPCLK3 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R26N_DPCLK2 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R27P -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R28P -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R27N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R28N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R33P -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_R33N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T1P -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T4N -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T6P -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T10P -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T10N -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH1 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH2 -tag platform
@@ -147,11 +119,9 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to LED4 -tag platform
 set_instance_assignment -name IO_STANDARD "2.5 V" -to LED5 -tag platform
 set_location_assignment PIN_86 -to scl
 set_location_assignment PIN_84 -to sda
-set_location_assignment PIN_88 -to umd_rx
-set_location_assignment PIN_90 -to umd_tx
 set_instance_assignment -name IO_STANDARD "2.5 V" -to A -tag platform
-set_location_assignment PIN_123 -to A
-set_location_assignment PIN_111 -to B
+set_location_assignment PIN_118 -to A
+set_location_assignment PIN_110 -to B
 set_global_assignment -name VHDL_FILE ora.vhd
 set_global_assignment -name VHDL_FILE OV9712.vhd
 set_global_assignment -name VHDL_FILE ucp.vhd
@@ -195,4 +165,17 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[4]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[6]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[1]
 set_global_assignment -name CDF_FILE Chain1.cdf
+set_location_assignment PIN_106 -to t_ram_dq[7]
+set_location_assignment PIN_105 -to t_ram_dq[6]
+set_location_assignment PIN_101 -to t_ram_dq[5]
+set_location_assignment PIN_99 -to t_ram_dq[4]
+set_location_assignment PIN_93 -to t_ram_dq[3]
+set_location_assignment PIN_92 -to t_ram_dq[2]
+set_location_assignment PIN_89 -to t_ram_dq[1]
+set_location_assignment PIN_88 -to t_ram_dq[0]
+set_location_assignment PIN_102 -to t_ram_ck_n
+set_location_assignment PIN_100 -to t_ram_ck_p
+set_location_assignment PIN_98 -to t_ram_cs_n
+set_location_assignment PIN_96 -to t_ram_rwds
+set_location_assignment PIN_91 -to t_ram_rst
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

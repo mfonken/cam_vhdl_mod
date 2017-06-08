@@ -8,39 +8,39 @@ library ieee;
     use ieee.math_real.all;
 
 entity hrddr is
-    generic (
-        sys_ck_frequency    : positive;
-        ddr_ck_frequency    : positive;
-        latency             : positive
-    );
-    port (
-	 	A	: inout std_logic := '0';
+	generic (
+		sys_ck_frequency    : positive;
+		ddr_ck_frequency    : positive;
+		latency             : positive
+	);
+	port (
+		A	: inout std_logic := '0';
 		B	: inout std_logic := '0';
-        clock               : in    std_logic;
-        reset_n             : in    std_logic;
+		clock               : in    	std_logic;
+		reset_n             : in    	std_logic;
 
-        rd_data             : out   std_logic_vector(  7 downto 0 );
-        rd_request          : in    std_logic;
-        rd_length           : in   	std_logic_vector(  7 downto 0 );
+		rd_data             : out   	std_logic_vector(  7 downto 0 );
+		rd_request          : in		std_logic;
+		rd_length           : in   	std_logic_vector(  7 downto 0 );
 
-        wr_data             : in    std_logic_vector(  7 downto 0 );
-        wr_request          : in    std_logic;
-        wr_length           : in   	std_logic_vector(  7 downto 0 );
+		wr_data             : in    	std_logic_vector(  7 downto 0 );
+		wr_request          : in    	std_logic;
+		wr_length           : in   	std_logic_vector(  7 downto 0 );
 
-        strobe              : inout std_logic;
-        request_ack         : out   std_logic;
+		strobe              : inout	std_logic;
+		request_ack         : out   	std_logic;
 
-        burst               : in    std_logic;
-        as                  : in    std_logic;
-        row                 : in    std_logic_vector( 12 downto 0 );
-        col                 : in    std_logic_vector(  8 downto 0 );
+		burst               : in   	std_logic;
+		as                  : in    	std_logic;
+		row                 : in    	std_logic_vector( 12 downto 0 );
+		col                 : in    	std_logic_vector(  8 downto 0 );
 
-        cs_n                : inout std_logic;
-        ck_p                : inout std_logic;
-        ck_n                : out   std_logic;
-        rwds                : inout std_logic;
-        dq                  : inout std_logic_vector(  7 downto 0 )
-    );
+		cs_n                : inout 	std_logic;
+		ck_p                : inout 	std_logic;
+		ck_n                : out   	std_logic;
+		rwds                : inout 	std_logic;
+		dq                  : inout 	std_logic_vector(  7 downto 0 )
+	);
 end hrddr;
 
 architecture rtl of hrddr is
@@ -51,7 +51,7 @@ architecture rtl of hrddr is
   constant MAX_BURST : integer := 1024;
 
   type machine is(ready, start, command, latency_delay, wr, rd, stop); --needed states
-  signal state         : machine;
+  signal state         : machine := ready;
   type ca_64MB_t is record
 		r_wn  : std_logic;
 		as    : std_logic;
@@ -77,6 +77,8 @@ architecture rtl of hrddr is
   signal strobe_prev  : std_logic := '0';
   signal rwds_prev : std_logic := '0';
   signal ck_prev   : std_logic := '0';
+  
+  signal data_ready	: std_logic := '0';
 
 begin
 
@@ -95,11 +97,11 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 	clock_divider : process (clock)
 	begin
 		if rising_edge (clock) then
-			if reset_n = '0' or cs_n = '1' then    -- Sync reset or ram not selected
+			if reset_n = '0' or cs_n = '1' or data_ready = '0' then    -- Sync reset or ram not selected
 				ddr_ck_div_counter <= (others => '0');
 				ck_p <= '0';
 				ck_n <= '1';
-			else
+			elsif data_ready = '1' then
 				ddr_ck_div_counter <= ddr_ck_div_counter + 1;
 				if ddr_ck_div_counter < ddr_ck_div_width then
 					ck_p <= '0';
@@ -115,118 +117,134 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 	end process clock_divider;
 
 
-  hrddr_process : process(clock)
-  variable tick_counter : integer range 0 to 6*latency := 6*latency;
-  variable data_counter : integer range 0 to MAX_BURST;
-  begin
-    if rising_edge(clock) then
-      if reset_n = '0' then
-        cs_n <= '1';
-        request_ack <= '0';
-        tick_counter := 0;
-        data_counter := 0;
-        state <= ready;
-      end if;
+	hrddr_process : process(clock)
+	variable tick_counter : integer range 0 to 6*latency := 6*latency;
+	variable data_counter : integer range 0 to MAX_BURST;
+	begin
+		if rising_edge(clock) then
+			if reset_n = '0' then
+				cs_n <= '1';
+				request_ack <= '0';
+				tick_counter := 0;
+				data_counter := 0;
+				state <= ready;
+			end if;
 
-      case state is
-        when ready =>
-          cs_n <= '1';
-          request_ack <= '0';
-			 A <= '0';
-			 B <= '0';
+			case state is
+				when ready =>
+					cs_n <= '1';
+					data_ready <= '0';
+					request_ack <= '0';
+					A <= '1';
+					B <= '1';
 
-          if wr_request = '1' xor rd_request = '1' then
-            ca.r_wn <= not wr_request and rd_request;
-            request_ack <= '1';
-            state <= start;
-          end if;
+					if wr_request = '1' xor rd_request = '1' then
+						ca.r_wn <= not wr_request and rd_request;
+						state <= start;
+					end if;
 
-        when start =>
-          cs_n <= '0';
-          request_ack <= '1';
-          tick_counter := 6;
-          state <= command;
+				when start =>
+					cs_n <= '0';
+					data_ready <= '0';
+					request_ack <= '1';
+					tick_counter := 5;
+					dq <= ca_bfr( 47 downto 40 );
+					A <= '0';
+					B <= '0';
+					state <= command;
 
-        when command =>
-          cs_n <= '0';
-          request_ack <= '1';
-          data_counter := 0;
-			 A <= '0';
-			 B <= '1';
+				when command =>
+					cs_n <= '0';
+					data_ready <= '1';
+					request_ack <= '1';
+					data_counter := 0;
+					
+					if ck_p /= ck_prev then                -- Sync to ck (ddr)
+						if tick_counter = 0 then
+							if ca.r_wn = '0' then              -- if writing
+								dq <= wr_data;
+								strobe <= not strobe_prev;
+								state <= wr;                     -- write without latency
+							else
+								state <= latency_delay;
+							end if;
+						else
+							tick_counter := tick_counter - 1;
+							dq <= ca_bfr( tick_counter*8+7 downto tick_counter*8 ); --TX command-address (6 clock events) std_logic_vector(to_unsigned(tick_counter, 8));--
+						end if;
+					end if;
 
-          if ck_p /= ck_prev then                -- Sync to ck (ddr)
-            if tick_counter = 0 then
-              if ca.r_wn = '0' then              -- if writing
-                state <= wr;                     -- write without latency
-              else
-                state <= latency_delay;
-              end if;
-            else
-              tick_counter := tick_counter - 1;
-              dq <= ca_bfr( tick_counter*8+7 downto tick_counter*8 ); --TX command-address (6 clock events) std_logic_vector(to_unsigned(tick_counter, 8));--
-            end if;
-          end if;
+				when latency_delay =>
+					cs_n <= '0';
+					data_ready <= '1';
+					request_ack <= '1';
+					
+					A <= '0';
+					B <= '1';
 
-        when latency_delay =>
-          cs_n <= '0';
-          request_ack <= '1';
+					if ck_p /= ck_prev then                -- Sync to ck (ddr)
+						if tick_counter = 8*latency then
+							if ca.r_wn = '0' then
+								state <= wr;
+							else
+								dq <= ( others => 'Z' );
+								rwds <= 'Z';
+								state <= rd;
+							end if;
+						else
+--							dq <= std_logic_vector(to_unsigned(tick_counter, 8));
+							tick_counter := tick_counter + 1;
+						end if;
+					end if;
 
-          if ck_p /= ck_prev then                -- Sync to ck (ddr)
-            if tick_counter = 6*latency then
-              if ca.r_wn = '0' then
-                state <= wr;
-              else
-                state <= rd;
-              end if;
-            else
-					dq <= std_logic_vector(to_unsigned(tick_counter, 8));
-              tick_counter := tick_counter + 1;
-            end if;
-          end if;
+				when wr =>
+					cs_n <= '0';
+					data_ready <= '1';
+					request_ack <= '1';
+					A <= '0';
+					B <= '0';
 
-        when wr =>
-          cs_n <= '0';
-          request_ack <= '1';
-			 A <= '1';
-			 B <= '0';
+					if ck_p /= ck_prev then                -- Sync to ck (ddr)
+						if data_counter = to_integer( unsigned( wr_length ) ) - 1 then
+							state <= stop;
+						else
+							dq <= wr_data;
+							data_counter := data_counter + 1;
+							strobe <= not strobe_prev;
+						end if;
+					end if;
 
-          if ck_p /= ck_prev then                -- Sync to ck (ddr)
-            if data_counter = to_integer( unsigned( wr_length ) ) then
-              state <= stop;
-            else
-              dq <= wr_data;
-              data_counter := data_counter + 1;
-              strobe <= not strobe_prev;
-            end if;
-          end if;
+				when rd =>
+					cs_n <= '0';
+					data_ready <= '1';
+					request_ack <= '1';
+					A <= '1';
+					B <= '0';
 
-        when rd =>
-          cs_n <= '0';
-          request_ack <= '1';
+					if rwds /= rwds_prev then
+						if data_counter = to_integer( unsigned( rd_length ) ) - 1 then
+							state <= stop;
+						else
+							rd_data <= dq;
+							data_counter := data_counter + 1;
+							strobe <= not strobe_prev;
+						end if;
+					end if;
 
-          if rwds /= rwds_prev then
-            if data_counter = to_integer( unsigned( rd_length ) ) then
-              state <= stop;
-            else
-              rd_data <= dq;
-              data_counter := data_counter + 1;
-              strobe <= not strobe_prev;
-            end if;
-          end if;
+				when stop =>
+					A <= '1';	
+					B <= '1';
+					cs_n <= '1';
+					data_ready <= '0';
+					request_ack <= '0';
+					state <= ready;
 
-        when stop =>
-			A <= '1';	
-			 B <= '1';
-          cs_n <= '1';
-          request_ack <= '0';
-          state <= ready;
+			end case;
 
-      end case;
+			strobe_prev <= strobe;
+			rwds_prev <= rwds;
+			ck_prev <= ck_p;
 
-      strobe_prev <= strobe;
-      rwds_prev <= rwds;
-      ck_prev <= ck_p;
-
-    end if;
-  end process hrddr_process;
+		end if;
+	end process hrddr_process;
 end rtl;

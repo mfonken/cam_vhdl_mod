@@ -1,5 +1,5 @@
 Flow report for 10M08
-Mon Jun 05 22:42:59 2017
+Thu Jun 08 15:48:22 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -41,18 +41,18 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Mon Jun 05 22:42:59 2017       ;
+; Flow Status                        ; Successful - Thu Jun 08 15:48:22 2017       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; 10M08                                       ;
 ; Top-level Entity Name              ; master_bridge                               ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M08SAE144C8GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 370 / 8,064 ( 5 % )                         ;
-;     Total combinational functions  ; 366 / 8,064 ( 5 % )                         ;
-;     Dedicated logic registers      ; 207 / 8,064 ( 3 % )                         ;
-; Total registers                    ; 207                                         ;
-; Total pins                         ; 42 / 101 ( 42 % )                           ;
+; Total logic elements               ; 430 / 8,064 ( 5 % )                         ;
+;     Total combinational functions  ; 425 / 8,064 ( 5 % )                         ;
+;     Dedicated logic registers      ; 245 / 8,064 ( 3 % )                         ;
+; Total registers                    ; 245                                         ;
+; Total pins                         ; 55 / 101 ( 54 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 387,072 ( 0 % )                         ;
 ; Embedded Multiplier 9-bit elements ; 0 / 48 ( 0 % )                              ;
@@ -67,7 +67,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/05/2017 22:42:33 ;
+; Start date & time ; 06/08/2017 15:47:55 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; 10M08               ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+---------------+----------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name   ; Section Id     ;
 +-------------------------------------+----------------------------------------+---------------+---------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 48710643792706.149672415315096         ; --            ; --            ; --             ;
+; COMPILER_SIGNATURE_ID               ; 48710643792706.149695847502428         ; --            ; --            ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --            ; --            ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)              ; <None>        ; --            ; --             ;
 ; FLOW_ENABLE_POWER_ANALYZER          ; On                                     ; Off           ; --            ; --             ;
@@ -99,13 +99,13 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 689 MB              ; 00:00:19                           ;
-; Fitter                    ; 00:00:05     ; 1.1                     ; 1449 MB             ; 00:00:07                           ;
-; Assembler                 ; 00:00:00     ; 1.0                     ; 566 MB              ; 00:00:01                           ;
-; PowerPlay Power Analyzer  ; 00:00:02     ; 1.2                     ; 710 MB              ; 00:00:02                           ;
-; TimeQuest Timing Analyzer ; 00:00:03     ; 1.1                     ; 678 MB              ; 00:00:03                           ;
-; EDA Netlist Writer        ; 00:00:00     ; 1.0                     ; 539 MB              ; 00:00:01                           ;
-; Total                     ; 00:00:20     ; --                      ; --                  ; 00:00:33                           ;
+; Analysis & Synthesis      ; 00:00:09     ; 1.0                     ; 689 MB              ; 00:00:18                           ;
+; Fitter                    ; 00:00:06     ; 1.1                     ; 1452 MB             ; 00:00:07                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 571 MB              ; 00:00:01                           ;
+; PowerPlay Power Analyzer  ; 00:00:02     ; 1.2                     ; 716 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:03     ; 1.1                     ; 680 MB              ; 00:00:03                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 544 MB              ; 00:00:01                           ;
+; Total                     ; 00:00:22     ; --                      ; --                  ; 00:00:32                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

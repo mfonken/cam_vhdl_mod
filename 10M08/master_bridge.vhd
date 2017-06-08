@@ -60,15 +60,22 @@ entity master_bridge is
 		umd_rx    	: in  	std_logic;
 		
 		-- HyperRAM interface
-		ram_rst     : out   std_logic;
-		ram_cs_n    : inout std_logic;
-		ram_ck_p    : inout std_logic;
-		ram_ck_n    : out   std_logic;
-		ram_rwds    : inout std_logic;
-		ram_dq      : inout std_logic_vector( 7 downto 0 );
+		ram_rst     : inout 	std_logic := '1';
+		ram_cs_n    : inout	std_logic := '1';
+		ram_ck_p    : inout 	std_logic := '0';
+		ram_ck_n    : inout 	std_logic := '1';
+		ram_rwds    : inout 	std_logic := 'Z';
+		ram_dq      : inout	std_logic_vector( 7 downto 0 );
 		
-		ram_vcc		: out	std_logic := '1';
-		ram_vccq		: out	std_logic := '1';
+		ram_vcc		: out		std_logic := '1';
+		ram_vccq		: out		std_logic := '1';
+		
+		t_ram_rst   : inout  std_logic;
+		t_ram_cs_n  : inout 	std_logic;
+		t_ram_ck_p  : inout 	std_logic;
+		t_ram_ck_n  : inout	std_logic;
+		t_ram_rwds  : inout 	std_logic;
+		t_ram_dq    : inout 	std_logic_vector( 7 downto 0 );
 
 		-- Synchronous reset (active low)
 		reset_n		: inout	std_logic
@@ -97,14 +104,14 @@ signal	ram_clock			: std_logic			:= '0';
 -- RAM data
 signal	ram_ena				: std_logic			:= '0';
 signal	ram_wr_data       : std_logic_vector(  7 downto 0 );
-signal	ram_wr_request   	: std_logic;
+signal	ram_wr_request   	: std_logic			:= '0';
 signal	ram_wr_length   	: std_logic_vector(  7 downto 0 );
 	
 signal	ram_rd_data       : std_logic_vector(  7 downto 0 );
-signal	ram_rd_request   	: std_logic;
+signal	ram_rd_request   	: std_logic 		:= '0';
 signal	ram_rd_length   	: std_logic_vector(  7 downto 0 );
-signal	ram_strobe      	: std_logic;
-signal	ram_request_ack	: std_logic;
+signal	ram_strobe      	: std_logic 		:= '0';
+signal	ram_request_ack	: std_logic 		:= '0';
 signal	ram_burst         : std_logic;
 signal	ram_as            : std_logic;
 signal	ram_row           : std_logic_vector( 12 downto 0 );
@@ -144,7 +151,7 @@ signal  	ora_kernel_new    : kernel_t			:= kernel.pulse_kernel;
 signal  	ora_auto_cor_new  : auto_correct_t 	:= auto_correct.auto_cor_none;
 
 -- i2c signals
-signal 	i2c_ena		   	: std_logic;
+signal 	i2c_ena		   	: std_logic			:= '1';
 signal 	i2c_rw		   	: std_logic       := '0';
 signal 	i2c_wr		   	: std_logic_vector( 7 downto 0 );
 signal 	i2c_rd		   	: std_logic_vector( 7 downto 0 );
@@ -181,21 +188,21 @@ signal	i2c_ack_err    	: std_logic;
 			i2c_bsy				: in     std_logic	:= '0';
 			-- i2c_ack_err       : std_logic;
 
-			umd_ena   			: inout 	std_logic := '0';
+			umd_ena   			: inout 	std_logic;
 			umd_rx_data			: inout  std_logic_vector( 7 downto 0 );
 			umd_rx_stb 			: inout  std_logic;
 			umd_rx_ack 			: inout  std_logic;
 			umd_tx_data			: inout  std_logic_vector( 7 downto 0 );
 			umd_tx_stb 			: inout  std_logic;
 
-			ora_ena   			: inout 	std_logic	:= '0';
+			ora_ena   			: inout 	std_logic;
 			ora_ack				: inout	std_logic;
 			ora_has_packet		: in		std_logic;
 			ora_bytes_to_tx	: in 		integer;
 			ora_packet_buffer	: inout	packet_buffer_t;
-			cam_ena   			: inout  std_logic	:= '0';
+			cam_ena   			: inout  std_logic;
 			
-			ram_ena				: inout 	std_logic	:= '0'
+			ram_ena				: inout 	std_logic
 		);
 	end component master;
 
@@ -276,7 +283,7 @@ signal	i2c_ack_err    	: std_logic;
 
 			r_wr_data     		: out    std_logic_vector(  7 downto 0 );
 			r_wr_request    	: out    std_logic;
-			r_wr_length     	: out   	std_logic_vector(  7 downto 0 );
+			r_wr_length     	: inout 	std_logic_vector(  7 downto 0 );
 
 			r_strobe        	: inout 	std_logic;
 			r_request_ack   	: in   	std_logic;
@@ -327,6 +334,15 @@ signal	i2c_ack_err    	: std_logic;
 	end component hrddr;
 
 begin
+	
+	-- Test lines for HRDDR
+	t_ram_rst 	<= ram_rst;
+	t_ram_cs_n 	<= ram_cs_n;
+	t_ram_ck_p	<= ram_ck_p;
+	t_ram_ck_n 	<= ram_ck_n;
+	t_ram_rwds 	<= ram_rwds;
+	t_ram_dq 	<= ram_dq;
+
 	-- Master module component initialization
 	master_m : master
 	generic map
