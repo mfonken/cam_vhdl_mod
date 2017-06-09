@@ -93,7 +93,7 @@ constant	i2c_scl_frq			: integer			:= 100_000;
 constant	umd_baud_r			: integer			:= 921_600;
 constant	ora_clk_frq			: integer			:= 10_000_000;
 constant	ram_clk_frq			: integer			:= 5_000_000;
-constant ram_latency			: integer			:= 1;
+constant ram_lat_config		: positive			:= 8;
 
 -- Module clocks
 signal  	umd_clock         : std_logic       := '0';
@@ -264,6 +264,7 @@ signal	i2c_ack_err    	: std_logic;
 			gclk        		: in    	std_logic;
 
 			-- Camera interface
+			reset_n				: inout	std_logic;
 			ena					: inout	std_logic;
 			pwdn					: out		std_logic;
 			mclk        		: inout 	std_logic;
@@ -300,40 +301,42 @@ signal	i2c_ack_err    	: std_logic;
 		(
 			sys_ck_frequency  : positive;
 			ddr_ck_frequency  : positive;
-			latency           : positive
+			latency_config		: positive
 		);
 		port 
 		(
-		A	: inout std_logic := '0';
-		B	: inout std_logic := '0';
-			clock               : in    std_logic;
-			reset_n             : in    std_logic;
+			A	: inout std_logic := '0';
+			B	: inout std_logic := '0';
+			clock            	: in    	std_logic;
+			reset_n           : in    	std_logic;
 
-			rd_data             : out   std_logic_vector(  7 downto 0 );
-			rd_request          : in    std_logic;
-			rd_length           : in   	std_logic_vector(  7 downto 0 );
+			rd_data           : out   	std_logic_vector(  7 downto 0 );
+			rd_request        : in		std_logic;
+			rd_length         : in   	std_logic_vector(  7 downto 0 );
 
-			wr_data             : in    std_logic_vector(  7 downto 0 );
-			wr_request          : in    std_logic;
-			wr_length           : in   	std_logic_vector(  7 downto 0 );
+			wr_data           : in    	std_logic_vector(  7 downto 0 );
+			wr_request        : in    	std_logic;
+			wr_length         : in   	std_logic_vector(  7 downto 0 );
 
-			strobe              : inout std_logic;
-			request_ack         : out   std_logic;
+			strobe            : inout	std_logic;
+			request_ack       : out   	std_logic;
 
-			burst               : in    std_logic;
-			as                  : in    std_logic;
-			row                 : in    std_logic_vector( 12 downto 0 );
-			col                 : in    std_logic_vector(  8 downto 0 );
+			burst             : in   	std_logic;
+			as                : in    	std_logic;
+			row               : in    	std_logic_vector( 12 downto 0 );
+			col               : in    	std_logic_vector(  8 downto 0 );
 
-			cs_n                : inout std_logic;
-			ck_p                : inout std_logic;
-			ck_n                : out   std_logic;
-			rwds                : inout std_logic;
-			dq                  : inout std_logic_vector(  7 downto 0 )
+			cs_n              : inout 	std_logic;
+			ck_p              : inout 	std_logic;
+			ck_n              : out   	std_logic;
+			rwds              : inout 	std_logic;
+			dq                : inout 	std_logic_vector(  7 downto 0 )
 		);
 	end component hrddr;
 
 begin
+	
+	ram_rst <= reset_n;
 	
 	-- Test lines for HRDDR
 	t_ram_rst 	<= ram_rst;
@@ -342,6 +345,15 @@ begin
 	t_ram_ck_n 	<= ram_ck_n;
 	t_ram_rwds 	<= ram_rwds;
 	t_ram_dq 	<= ram_dq;
+	
+--	reset_handler : process( clock )
+--	begin
+--		if rising_edge( clock ) then
+--			if reset_n = '0' then
+--				ram_cs_n <= '1';
+--			end if;
+--		end if;
+--	end process reset_handler;
 
 	-- Master module component initialization
 	master_m : master
@@ -447,6 +459,7 @@ begin
 	port map
 	(
 		gclk						=>	ora_clock,
+		reset_n					=> reset_n,
 		ena						=>	cam_ena,
 		pwdn						=>	pwdn,
 		mclk						=>	mclk,
@@ -479,14 +492,14 @@ begin
 	(
 		sys_ck_frequency    	=>	sys_clk_frq,
 		ddr_ck_frequency    	=>	ram_clk_frq,
-		latency             	=>	ram_latency
+		latency_config			=> ram_lat_config
 	)
 	port map
 	(  
 	A => A,
 	B => B,
 		clock               	=>	ram_clock,
-		reset_n             	=>	reset_n,
+		reset_n             	=>	ram_rst,
 
 		rd_data             	=>	ram_rd_data,
 		rd_request         	=>	ram_rd_request,

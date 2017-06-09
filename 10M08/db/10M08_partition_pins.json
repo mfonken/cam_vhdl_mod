@@ -76,6 +76,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "ram_dq[4]",
+					"strict" : false
+				},
+				{
 					"name" : "ram_dq[5]",
 					"strict" : false
 				},
@@ -121,6 +125,10 @@
 				},
 				{
 					"name" : "t_ram_dq[3]",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_dq[4]",
 					"strict" : false
 				},
 				{

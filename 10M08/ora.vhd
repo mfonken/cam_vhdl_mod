@@ -32,6 +32,7 @@ entity ora is
 		gclk        		: in    	std_logic;
 
 		-- Camera interface
+		reset_n				: inout	std_logic;
 		ena					: inout	std_logic;
 		pwdn					: out		std_logic;
 		mclk        		: inout 	std_logic;
@@ -91,59 +92,71 @@ architecture gbehaviour of ora is
 
 	begin
 	pixel <= unsigned( cpi );
-
+	
 	r_burst <= '1';
-	r_as    <= '0';
-
+	
 	--/*******RAM TEST START******/
 	hrddr_test : process( gclk )
 	variable state_counter 	: integer := 0;
-	constant write_wait		: integer := 50;
+	constant write_wait		: integer := 200;
 	constant read_wait		: integer := write_wait + 100;
 	constant finished			: integer := read_wait + 1;
 
-	constant	test_word		: std_logic_vector( 15 downto 0 ) := x"abcd";
+	constant	test_word		: std_logic_vector( 15 downto 0 ) := x"8ff3";--1000 1111 1111 0011";
 	variable write_index		: integer	:= 0;
 	variable write_lower		: integer	:= 7;
 	variable r_strobe_prev	: std_logic := '0';
 	begin
 		if rising_edge( gclk ) then
-			if state_counter = write_wait then
-				r_row <= ( others => '0' );--std_logic_vector(to_unsigned(10, 13));
-				r_col <= ( others => '0' );--std_logic_vector(to_unsigned(10, 9));
-
-				r_wr_length <= std_logic_vector( to_unsigned( test_word'length / 16, 8 ) );
-				write_lower := ( test_word'length / 8 - write_index - 1 ) * 8;
-				r_wr_data	<= test_word( write_lower + 7 downto write_lower );
-				r_wr_request <= '1';
-
-				state_counter := state_counter + 1;
-			elsif state_counter = read_wait then
-				r_row <= ( others => '0' );--"1010101010101";
-				r_col <= ( others => '0' );--"101010101";
-
-				r_rd_length <= x"01";
-				r_rd_request <= '1';
-
-				state_counter := finished;
-
-			elsif state_counter < read_wait then
-				state_counter := state_counter + 1;
-			end if;
-
-			if r_request_ack = '1' then
+			if reset_n = '0' then
+				state_counter 	:= 0;
+				write_index 	:= 0;
+				r_strobe_prev 	:= '0';
 				r_wr_request <= '0';
 				r_rd_request <= '0';
+			else
+				if state_counter = write_wait then
+					r_row <= "0000000000100";
+					r_col <= "000000000";
+
+					r_wr_length <= std_logic_vector( to_unsigned( test_word'length / 16, 8 ) );
+					r_wr_data	<= test_word( test_word'length - 1 downto test_word'length - 8 );
+					
+					r_as    <= '1';
+					
+					r_wr_request <= '1';
+					write_index := 0;
+
+					state_counter := state_counter + 1;
+				elsif state_counter = read_wait then
+					r_row <= "0000000000100";
+					r_col <= "000000000";
+
+					r_as    <= '1';
+					
+					r_rd_length <= x"01";
+					r_rd_request <= '1';
+
+
+					state_counter := finished;
+
+				elsif state_counter < read_wait and r_request_ack = '0' then
+					state_counter := state_counter + 1;
+				end if;
+
+				if r_request_ack = '1' then
+					r_wr_request <= '0';
+					r_rd_request <= '0';
+				end if;
+
+				if std_logic_vector( to_unsigned( write_index, 8 ) ) < r_wr_length and r_strobe /= r_strobe_prev then
+					write_index := write_index + 1;
+					write_lower := ( test_word'length / 8 - write_index - 1 ) * 8;
+					r_wr_data	<= test_word( write_lower + 7 downto write_lower );
+				end if;
+
+				r_strobe_prev := r_strobe;
 			end if;
-
-			if std_logic_vector( to_unsigned( write_index, 8 ) ) < r_wr_length and r_strobe /= r_strobe_prev then
-				write_index := write_index + 1;
-				write_lower := ( test_word'length / 8 - write_index - 1 ) * 8;
-				r_wr_data	<= test_word( write_lower + 7 downto write_lower );
-			end if;
-
-			r_strobe_prev := r_strobe;
-
 		end if;
 	end process hrddr_test;
 	--/*******RAM TEST END******/
