@@ -63,6 +63,11 @@ architecture rtl of hrddr is
 		col_l : std_logic_vector(  2 downto 0  );
 	end record ca_64MB_t;
 
+  constant read_command   : std_logic := '1';
+  constant write_command  : std_logic := '0';
+  constant register_space : std_logic := '1';
+  constant memory_space   : std_logic := '0';
+
   signal ca      : ca_64MB_t;
   signal ca_bfr  : std_logic_vector( 47 downto 0 );
 
@@ -77,7 +82,7 @@ architecture rtl of hrddr is
   signal strobe_prev  : std_logic := '0';
   signal rwds_prev : std_logic := '0';
   signal ck_prev   : std_logic := '0';
-  
+
   signal data_ready	: std_logic := '0';
 
 begin
@@ -118,8 +123,9 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 
 
 	hrddr_process : process(clock)
-	variable tick_counter : integer range 0 to 6*latency := 6*latency;
-	variable data_counter : integer range 0 to MAX_BURST;
+	variable tick_counter    : integer range 0 to 6*latency := 6*latency;
+  variable latency_counter : integer range 0 to 8*latency := 0;
+	variable data_counter    : integer range 0 to MAX_BURST;
 	begin
 		if rising_edge(clock) then
 			if reset_n = '0' then
@@ -148,6 +154,8 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 					data_ready <= '0';
 					request_ack <= '1';
 					tick_counter := 5;
+          latency_counter := 0;
+          rwds <= 'Z';
 					dq <= ca_bfr( 47 downto 40 );
 					A <= '0';
 					B <= '0';
@@ -158,10 +166,10 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 					data_ready <= '1';
 					request_ack <= '1';
 					data_counter := 0;
-					
+
 					if ck_p /= ck_prev then                -- Sync to ck (ddr)
 						if tick_counter = 0 then
-							if ca.r_wn = '0' then              -- if writing
+							if ca.as = register_space and ca.r_wn = write_command then -- if writing to register space
 								dq <= wr_data;
 								strobe <= not strobe_prev;
 								state <= wr;                     -- write without latency
@@ -169,6 +177,15 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 								state <= latency_delay;
 							end if;
 						else
+              if tick_counter < 3 then
+                if rwds = '1' then
+                  latency <= 2;
+                else
+                  latency <= 1;
+                end if;
+                latency_counter := latency_counter + 1;
+              end if;
+
 							tick_counter := tick_counter - 1;
 							dq <= ca_bfr( tick_counter*8+7 downto tick_counter*8 ); --TX command-address (6 clock events) std_logic_vector(to_unsigned(tick_counter, 8));--
 						end if;
@@ -178,22 +195,23 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 					cs_n <= '0';
 					data_ready <= '1';
 					request_ack <= '1';
-					
+
 					A <= '0';
 					B <= '1';
 
 					if ck_p /= ck_prev then                -- Sync to ck (ddr)
-						if tick_counter = 8*latency then
+						if latency_counter = 8*latency - 1 then
 							if ca.r_wn = '0' then
+                data_counter <= to_integer( unsigned( wr_length ) ) - 1;
 								state <= wr;
 							else
 								dq <= ( others => 'Z' );
-								rwds <= 'Z';
+                data_counter <= to_integer( unsigned( rd_length ) ) - 1;
 								state <= rd;
 							end if;
 						else
 --							dq <= std_logic_vector(to_unsigned(tick_counter, 8));
-							tick_counter := tick_counter + 1;
+							latency_counter := latency_counter + 1;
 						end if;
 					end if;
 
@@ -205,13 +223,16 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 					B <= '0';
 
 					if ck_p /= ck_prev then                -- Sync to ck (ddr)
-						if data_counter = to_integer( unsigned( wr_length ) ) - 1 then
+						if data_counter = 0 then
 							state <= stop;
 						else
 							dq <= wr_data;
-							data_counter := data_counter + 1;
 							strobe <= not strobe_prev;
 						end if;
+
+            if strobe = '0' then
+              data_counter := data_counter - 1;
+            end if;
 					end if;
 
 				when rd =>
@@ -222,17 +243,20 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 					B <= '0';
 
 					if rwds /= rwds_prev then
-						if data_counter = to_integer( unsigned( rd_length ) ) - 1 then
+						if data_counter = 0 then
 							state <= stop;
 						else
 							rd_data <= dq;
-							data_counter := data_counter + 1;
 							strobe <= not strobe_prev;
 						end if;
+
+            if strobe = '0' then
+              data_counter := data_counter - 1;
+            end if;
 					end if;
 
 				when stop =>
-					A <= '1';	
+					A <= '1';
 					B <= '1';
 					cs_n <= '1';
 					data_ready <= '0';
