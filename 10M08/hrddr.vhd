@@ -144,10 +144,7 @@ if rising_edge(clock) then
 			request_ack <= '0';
 			
 			rwds <= 'Z';
-			dq <= ( others => 'Z' );
-			
-			A <= '1';
-			B <= '1';
+			dq <= ( others => '0' );
 
 			if wr_request = '1' xor rd_request = '1' then
 				ca.r_wn <= not wr_request and rd_request;
@@ -165,8 +162,7 @@ if rising_edge(clock) then
 			latency_counter := 0;
 			
 			dq <= ca_bfr( 47 downto 40 );
-			A <= '0';
-			B <= '0';
+
 			state <= command;
 
 		when command =>
@@ -208,18 +204,19 @@ if rising_edge(clock) then
 			rwds <= 'Z';
 			dq <= ( others => 'Z' );
 
-			A <= '0';
-			B <= '1';
-
 			if ck_p /= ck_prev then                -- Sync to ck (ddr)
 				if latency_counter = latency_config*2*latency - 1 then
 					if ca.r_wn = '0' then
 						data_counter := to_integer( unsigned( wr_length ) );
 						dq <= wr_data;
 						strobe <= not strobe_prev;
+						rwds <= '0';
+						dq <= ( others => 'Z' );
 						state <= wr;
 					else
 						data_counter := to_integer( unsigned( rd_length ) );
+						rwds <= 'Z';
+						dq <= ( others => 'Z' );
 						state <= rd;
 					end if;
 				else
@@ -240,14 +237,8 @@ if rising_edge(clock) then
 				end if;
 				
 				if data_counter = 0 then
-					A <= '1';
-					B <= '1';
-
 					state <= stop;
 				else
-					A <= '0';
-					B <= '0';
-
 					dq <= wr_data;
 					strobe <= not strobe_prev;
 				end if;
@@ -259,11 +250,6 @@ if rising_edge(clock) then
 			cs_n <= '0';
 			data_ready <= '1';
 			request_ack <= '1';
-			rwds <= '1';
-			dq <= ( others => 'Z' );
-			
-			A <= '1';
-			B <= '0';
 
 			if ck_p /= ck_prev then  --rwds /= rwds_prev then
 				if ck_p = '0' then
@@ -280,12 +266,11 @@ if rising_edge(clock) then
 			end if;
 
 		when stop =>
-			A <= '1';
-			B <= '1';
 			cs_n <= '1';
 			data_ready <= '0';
 			request_ack <= '0';
 			rwds <= 'Z';
+			dq <= ( others => '0' );
 			state <= ready;
 
 	end case;

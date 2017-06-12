@@ -16,11 +16,55 @@
 					"strict" : false
 				},
 				{
-					"name" : "A",
+					"name" : "t_ram_rst",
 					"strict" : false
 				},
 				{
-					"name" : "B",
+					"name" : "t_ram_cs_n",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_ck_p",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_ck_n",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_rwds",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_dq[0]",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_dq[1]",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_dq[2]",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_dq[3]",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_dq[4]",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_dq[5]",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_dq[6]",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_dq[7]",
 					"strict" : false
 				},
 				{
@@ -89,58 +133,6 @@
 				},
 				{
 					"name" : "ram_dq[7]",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_rst",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_cs_n",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_ck_p",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_ck_n",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_rwds",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_dq[0]",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_dq[1]",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_dq[2]",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_dq[3]",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_dq[4]",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_dq[5]",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_dq[6]",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_dq[7]",
 					"strict" : false
 				},
 				{
