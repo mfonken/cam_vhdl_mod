@@ -149,21 +149,21 @@ set_location_assignment PIN_56 -to ram_rst
 set_location_assignment PIN_55 -to ram_rwds
 set_location_assignment PIN_59 -to ram_vcc
 set_location_assignment PIN_60 -to ram_vccq
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_vcc
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_vccq
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_rwds
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_rst
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[0]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[2]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[3]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[5]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[7]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_ck_p
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_ck_n
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_cs_n
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[4]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[6]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to ram_dq[1]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_vcc
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_vccq
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_rwds
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_rst
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[0]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[2]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[3]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[5]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[7]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_ck_p
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_ck_n
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_cs_n
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[4]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[6]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[1]
 set_global_assignment -name CDF_FILE Chain1.cdf
 set_location_assignment PIN_106 -to t_ram_dq[7]
 set_location_assignment PIN_105 -to t_ram_dq[6]
@@ -178,4 +178,18 @@ set_location_assignment PIN_100 -to t_ram_ck_p
 set_location_assignment PIN_98 -to t_ram_cs_n
 set_location_assignment PIN_96 -to t_ram_rwds
 set_location_assignment PIN_91 -to t_ram_rst
+set_global_assignment -name CDF_FILE Chain2.cdf
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_ck_n
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_ck_p
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_cs_n
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[7]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[6]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[5]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[4]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[3]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[2]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[1]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[0]
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_rst
+set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_rwds
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -67,15 +67,15 @@ entity master_bridge is
 		ram_rwds    : inout 	std_logic := 'Z';
 		ram_dq      : inout	std_logic_vector( 7 downto 0 );
 		
-		ram_vcc		: out		std_logic := '1';
-		ram_vccq		: out		std_logic := '1';
+		ram_vcc		: out		std_logic := '0';
+		ram_vccq		: out		std_logic := '0';
 		
-		t_ram_rst   : inout  std_logic;
-		t_ram_cs_n  : inout 	std_logic;
-		t_ram_ck_p  : inout 	std_logic;
-		t_ram_ck_n  : inout	std_logic;
-		t_ram_rwds  : inout 	std_logic;
-		t_ram_dq    : inout 	std_logic_vector( 7 downto 0 );
+		t_ram_rst   : out 	std_logic;
+		t_ram_cs_n  : out 	std_logic;
+		t_ram_ck_p  : out 	std_logic;
+		t_ram_ck_n  : out		std_logic;
+		t_ram_rwds  : out 	std_logic;
+		t_ram_dq    : out 	std_logic_vector( 7 downto 0 );
 
 		-- Synchronous reset (active low)
 		reset_n		: inout	std_logic
@@ -93,7 +93,7 @@ constant	i2c_scl_frq			: integer			:= 100_000;
 constant	umd_baud_r			: integer			:= 921_600;
 constant	ora_clk_frq			: integer			:= 10_000_000;
 constant	ram_clk_frq			: integer			:= 5_000_000;
-constant ram_lat_config		: positive			:= 8;
+constant ram_lat_config		: positive			:= 6;
 
 -- Module clocks
 signal  	umd_clock         : std_logic       := '0';
