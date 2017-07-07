@@ -92,17 +92,17 @@ architecture gbehaviour of ora is
 
 	begin
 	pixel <= unsigned( cpi );
-	
+
 	r_burst <= '1';
-	
+
 	--/*******RAM TEST START******/
 	hrddr_test : process( gclk )
 	variable state_counter 	: integer := 0;
-	constant write_wait		: integer := 100;
-	constant read_wait		: integer := write_wait + 100;
-	constant finished			: integer := read_wait + 1;
+	constant write_wait			: integer := 100;
+	constant read_wait			: integer := write_wait + 100;
+	constant finished				: integer := read_wait + 1;
 
-	constant	test_word		: std_logic_vector( 15 downto 0 ) := x"abcd";--x"8ff3";1000 1111 1111 0011";
+	constant	test_word			: std_logic_vector( 15 downto 0 ) := x"abcd";--x"8ff3";1000 1111 1111 0011";
 	variable write_index		: integer	:= 0;
 	variable write_lower		: integer	:= 7;
 	variable r_strobe_prev	: std_logic := '0';
@@ -116,44 +116,44 @@ architecture gbehaviour of ora is
 				r_rd_request 	<= '0';
 			else
 				if state_counter = write_wait then
+					r_as	<= hyperram_command.memory_space;
 					r_row <= "0101010101010";
 					r_col <= "010101010";
 
+					r_wr_length 	<= x"01";--std_logic_vector( to_unsigned( test_word'length / 16, 8 ) );
+					r_wr_data			<= test_word;
+					r_wr_request	<= '1';
+
 					write_index 	:= 0;
-					
-					r_wr_length 	<= x"02";--std_logic_vector( to_unsigned( test_word'length / 16, 8 ) );
-					r_wr_data		<= x"67";--test_word( test_word'length - 1 downto test_word'length - 8 );
-				
-					r_as    			<= '0';
-					r_wr_request 	<= '1';
-					
-					state_counter := state_counter + 1;				
 
-				elsif state_counter < read_wait and r_request_ack = '0' then
+					state_counter := state_counter + 1;
+
+				elsif state_counter < write_wait then
 					state_counter 	:= state_counter + 1;
-				
-				elsif state_counter = read_wait then
-					r_row 			<= "0101010101010";
-					r_col 			<= "010101010";
-											 
-					r_as    			<= '0';
-					
-					r_rd_length 	<= x"02";
-					r_rd_request 	<= '1';
-
-					state_counter 	:= finished;
-					
+				-- elsif state_counter < read_wait and r_request_ack = '0' then
+				-- 	state_counter 	:= state_counter + 1;
+				--
+				-- elsif state_counter = read_wait then
+				-- 	r_row 			<= "0101010101010";
+				-- 	r_col 			<= "010101010";
+				--
+				-- 	r_as    			<= '0';
+				--
+				-- 	r_rd_length 	<= x"02";
+				-- 	r_rd_request 	<= '1';
+				--
+				-- 	state_counter 	:= finished;
+				--
 				end if;
+				-- if std_logic_vector( to_unsigned( write_index, 8 ) ) < r_wr_length and r_strobe /= r_strobe_prev then
+				-- 	write_lower 	:= test_word'length - write_index * 8;
+				-- 	r_wr_data		<= x"89";--test_word( ( write_lower + 7 ) downto write_lower );
+				-- 	write_index 	:= write_index + 1;
+				-- end if;
 
 				if r_request_ack = '1' then
 					r_wr_request 	<= '0';
 					r_rd_request 	<= '0';
-				end if;
-
-				if std_logic_vector( to_unsigned( write_index, 8 ) ) < r_wr_length and r_strobe /= r_strobe_prev then
-					write_lower 	:= test_word'length - write_index * 8;
-					r_wr_data		<= x"89";--test_word( ( write_lower + 7 ) downto write_lower );
-					write_index 	:= write_index + 1;
 				end if;
 
 				r_strobe_prev 		:= r_strobe;
