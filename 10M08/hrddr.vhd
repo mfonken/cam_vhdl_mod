@@ -45,7 +45,7 @@ end hrddr;
 
 architecture rtl of hrddr is
   constant 	ddr_ck_div : integer := sys_ck_frequency / ddr_ck_frequency;
-  constant 	ddr_ck_div_width : integer := ddr_ck_div / 2;--integer(log2(real(ddr_ck_div))) + 1;
+  constant 	ddr_ck_div_width : integer := ddr_ck_div / 2;
   signal   	ddr_ck_div_counter : unsigned(ddr_ck_div_width - 1 downto 0) := (others => '0');
   constant 	lv : std_logic := '0';
   constant	MAX_BURST : integer := 1024;
@@ -152,6 +152,9 @@ if rising_edge(clock) then
 			end if;
 
 		when start =>
+			A <= '0';
+			B <= '0';
+			
 			cs_n <= '0';
 			data_ready <= '0';
 			request_ack <= '1';
@@ -162,10 +165,12 @@ if rising_edge(clock) then
 			latency_counter := 0;
 			
 			dq <= ca_bfr( 47 downto 40 );
-
 			state <= command;
 
 		when command =>
+			A <= '0';
+			B <= '1';
+			
 			cs_n <= '0';
 			data_ready <= '1';
 			request_ack <= '1';
@@ -185,7 +190,7 @@ if rising_edge(clock) then
 				else
 					if tick_counter < 3 then
 						if rwds = '1' then
-							latency <= 2;
+							latency <= 1;
 						else
 							latency <= 1;
 						end if;
@@ -198,15 +203,21 @@ if rising_edge(clock) then
 			end if;
 
 		when latency_delay =>
+			A <= '0';
+			B <= '0';
+			
 			cs_n <= '0';
 			data_ready <= '1';
 			request_ack <= '1';
 			rwds <= 'Z';
 			dq <= ( others => 'Z' );
 
-			if ck_p /= ck_prev then                -- Sync to ck (ddr)
-				if latency_counter = latency_config*2*latency - 1 then
+			if ck_p /= ck_prev and ck_p = '1' then                -- Sync to ck (ddr)
+				if latency_counter = latency_config*latency - 1 then
 					if ca.r_wn = '0' then
+						A <= '1';
+						B <= '0';
+					
 						data_counter := to_integer( unsigned( wr_length ) );
 						dq <= wr_data;
 						strobe <= not strobe_prev;
@@ -214,18 +225,24 @@ if rising_edge(clock) then
 						dq <= ( others => 'Z' );
 						state <= wr;
 					else
+						A <= '0';
+						B <= '1';
+						
 						data_counter := to_integer( unsigned( rd_length ) );
 						rwds <= 'Z';
 						dq <= ( others => 'Z' );
 						state <= rd;
 					end if;
 				else
---					dq <= std_logic_vector(to_unsigned(latency_counter, 8));
+					dq <= std_logic_vector(to_unsigned(latency_counter, 8));
 					latency_counter := latency_counter + 1;
 				end if;
 			end if;
 
 		when wr =>
+			A <= '1';
+			B <= '0';
+			
 			cs_n <= '0';
 			data_ready <= '1';
 			request_ack <= '1';
@@ -247,6 +264,9 @@ if rising_edge(clock) then
 			end if;
 
 		when rd =>
+			A <= '0';
+			B <= '1';
+			
 			cs_n <= '0';
 			data_ready <= '1';
 			request_ack <= '1';
@@ -266,6 +286,9 @@ if rising_edge(clock) then
 			end if;
 
 		when stop =>
+			A <= '1';
+			B <= '1';
+			
 			cs_n <= '1';
 			data_ready <= '0';
 			request_ack <= '0';

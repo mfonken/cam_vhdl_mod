@@ -88,11 +88,11 @@ end master_bridge;
 architecture gbehaviour of master_bridge is
 -- signal		reset_n						: std_logic;
 
-constant sys_clk_frq			: integer 			:= 50_000_000;
+constant sys_clk_frq			: integer 			:= 400_000_000;
 constant	i2c_scl_frq			: integer			:= 100_000;
 constant	umd_baud_r			: integer			:= 921_600;
 constant	ora_clk_frq			: integer			:= 10_000_000;
-constant	ram_clk_frq			: integer			:= 5_000_000;
+constant	ram_clk_frq			: integer			:= 10_000_000;
 constant ram_lat_config		: positive			:= 6;
 
 -- Module clocks
