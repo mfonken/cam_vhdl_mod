@@ -239,8 +239,8 @@ if rising_edge(clock) then
 			request_ack <= '1';
       rwds <= 'Z';
 
-			if ck_p /= ck_prev then  --rwds /= rwds_prev then
-        if ck_p = '1' then
+			if rwds /= rwds_prev then
+        if rwds = '1' then
           rd_data( 15 downto 8 ) <= dq;
         else
           rd_data( 7 downto 0 ) <= dq;
