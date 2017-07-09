@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Thu Jul 06 23:08:42 2017
+Analysis & Synthesis Status : Successful - Sun Jul 09 00:37:48 2017
 Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 Revision Name : 10M08
 Top-level Entity Name : master_bridge
 Family : MAX 10
-Total logic elements : 529
-    Total combinational functions : 515
-    Dedicated logic registers : 288
-Total registers : 288
-Total pins : 55
+Total logic elements : 522
+    Total combinational functions : 502
+    Dedicated logic registers : 271
+Total registers : 271
+Total pins : 53
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0

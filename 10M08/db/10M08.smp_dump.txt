@@ -1,13 +1,11 @@
 
-State Machine - |master_bridge|hrddr:hrddr_0|state
-Name state.stop state.rd state.wr state.latency_delay state.command state.start state.ready 
-state.ready 0 0 0 0 0 0 0 
-state.start 0 0 0 0 0 1 1 
-state.command 0 0 0 0 1 0 1 
-state.latency_delay 0 0 0 1 0 0 1 
-state.wr 0 0 1 0 0 0 1 
-state.rd 0 1 0 0 0 0 1 
-state.stop 1 0 0 0 0 0 1 
+State Machine - |master_bridge|hyperram:hyperram_0|state
+Name state.rd state.wr state.latency_delay state.command state.idle 
+state.idle 0 0 0 0 0 
+state.command 0 0 0 1 1 
+state.latency_delay 0 0 1 0 1 
+state.wr 0 1 0 0 1 
+state.rd 1 0 0 0 1 
 
 State Machine - |master_bridge|uart:umd|uart_tx_state
 Name uart_tx_state.tx_send_stop_bit uart_tx_state.tx_send_data uart_tx_state.tx_send_start_bit 

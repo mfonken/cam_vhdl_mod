@@ -67,8 +67,8 @@ entity master_bridge is
 		ram_rwds    : inout 	std_logic := 'Z';
 		ram_dq      : inout	std_logic_vector( 7 downto 0 );
 		
-		ram_vcc		: out		std_logic := '0';
-		ram_vccq		: out		std_logic := '0';
+--		ram_vcc		: out		std_logic := '0';
+--		ram_vccq		: out		std_logic := '0';
 		
 		t_ram_rst   : out 	std_logic;
 		t_ram_cs_n  : out 	std_logic;
@@ -103,15 +103,16 @@ signal	ram_clock			: std_logic			:= '0';
 
 -- RAM data
 signal	ram_ena				: std_logic			:= '0';
-signal	ram_wr_data       : std_logic_vector(  7 downto 0 );
+signal	ram_wr_data       : std_logic_vector(  15 downto 0 );
 signal	ram_wr_request   	: std_logic			:= '0';
 signal	ram_wr_length   	: std_logic_vector(  7 downto 0 );
 	
-signal	ram_rd_data       : std_logic_vector(  7 downto 0 );
+signal	ram_rd_data       : std_logic_vector(  15 downto 0 );
 signal	ram_rd_request   	: std_logic 		:= '0';
 signal	ram_rd_length   	: std_logic_vector(  7 downto 0 );
 signal	ram_strobe      	: std_logic 		:= '0';
 signal	ram_request_ack	: std_logic 		:= '0';
+signal	ram_busy				: std_logic			:= '0';
 signal	ram_burst         : std_logic;
 signal	ram_as            : std_logic;
 signal	ram_row           : std_logic_vector( 12 downto 0 );
@@ -278,16 +279,17 @@ signal	i2c_ack_err    	: std_logic;
 			ora_bytes_to_tx	: out		integer;
 			ora_packet_buffer	: inout	packet_buffer_t;
 			
-			r_rd_data       	: in   	std_logic_vector(  7 downto 0 );
+			r_rd_data       	: in   	std_logic_vector(  15 downto 0 );
 			r_rd_request    	: out    std_logic;
 			r_rd_length     	: out   	std_logic_vector(  7 downto 0 );
 
-			r_wr_data     		: out    std_logic_vector(  7 downto 0 );
+			r_wr_data     		: out    std_logic_vector(  15 downto 0 );
 			r_wr_request    	: out    std_logic;
 			r_wr_length     	: inout 	std_logic_vector(  7 downto 0 );
 
 			r_strobe        	: inout 	std_logic;
 			r_request_ack   	: in   	std_logic;
+			r_busy				: in 		std_logic;
 
 			r_burst         	: out    std_logic;
 			r_as            	: out    std_logic;
@@ -296,7 +298,7 @@ signal	i2c_ack_err    	: std_logic;
 		);
 	end component ora;
 	
-	component hrddr is
+	component hyperram is
 		generic 
 		(
 			sys_ck_frequency  : positive;
@@ -310,13 +312,15 @@ signal	i2c_ack_err    	: std_logic;
 			clock            	: in    	std_logic;
 			reset_n           : in    	std_logic;
 
-			rd_data           : out   	std_logic_vector(  7 downto 0 );
-			rd_request        : in		std_logic;
+			rd_data           : out   	std_logic_vector(  15 downto 0 );
+			rd_request        : in		std_logic := '0';
 			rd_length         : in   	std_logic_vector(  7 downto 0 );
 
-			wr_data           : in    	std_logic_vector(  7 downto 0 );
-			wr_request        : in    	std_logic;
+			wr_data           : in    	std_logic_vector(  15 downto 0 );
+			wr_request        : in    	std_logic := '0';
 			wr_length         : in   	std_logic_vector(  7 downto 0 );
+			
+			busy					: inout		std_logic;
 
 			strobe            : inout	std_logic;
 			request_ack       : out   	std_logic;
@@ -332,7 +336,7 @@ signal	i2c_ack_err    	: std_logic;
 			rwds              : inout 	std_logic;
 			dq                : inout 	std_logic_vector(  7 downto 0 )
 		);
-	end component hrddr;
+	end component hyperram;
 
 begin
 	
@@ -481,13 +485,14 @@ begin
 		r_wr_length        	=>	ram_wr_length,
 		r_strobe        		=>	ram_strobe,
 		r_request_ack      	=>	ram_request_ack,
+		r_busy					=> ram_busy,
 		r_burst            	=>	ram_burst,
 		r_as               	=>	ram_as,
 		r_row              	=>	ram_row,
 		r_col              	=>	ram_col
 	);
 			
-	hrddr_0 : hrddr
+	hyperram_0 : hyperram
 	generic map
 	(
 		sys_ck_frequency    	=>	sys_clk_frq,
@@ -507,6 +512,9 @@ begin
 		wr_data         		=>	ram_wr_data,
 		wr_request				=> ram_wr_request,
 		wr_length         	=>	ram_wr_length,
+		
+		busy						=> ram_busy,
+	
 		strobe         		=>	ram_strobe,
 		request_ack        	=>	ram_request_ack,
 
@@ -520,8 +528,6 @@ begin
 		ck_n                	=>	ram_ck_n,
 		rwds                	=>	ram_rwds,
 		dq                  	=>	ram_dq
-		
-		
 	);
 	
 	--------------------------------------------------------------------------------

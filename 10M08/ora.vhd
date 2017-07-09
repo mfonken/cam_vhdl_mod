@@ -10,6 +10,7 @@ use ieee.numeric_std.all;
 -- Project constants
 use work.ora_types.all;
 use work.ora_math.all;
+use work.hyperram_types.all;
 
 ----------------------------------------------
 -- Object Recognition Architecture
@@ -46,16 +47,17 @@ entity ora is
 		ora_bytes_to_tx	: out		integer;
 		ora_packet_buffer	: inout	packet_buffer_t;
 
-		r_rd_data       	: in   	std_logic_vector(  7 downto 0 );
+		r_rd_data       	: in   	std_logic_vector(  15 downto 0 );
 		r_rd_request    	: out    std_logic;
 		r_rd_length     	: out   	std_logic_vector(  7 downto 0 );
 
-		r_wr_data     		: out    std_logic_vector(  7 downto 0 );
+		r_wr_data     		: out    std_logic_vector(  15 downto 0 );
 		r_wr_request    	: out    std_logic;
 		r_wr_length     	: inout  std_logic_vector(  7 downto 0 );
 
 		r_strobe        	: inout 	std_logic;
 		r_request_ack   	: in   	std_logic;
+		r_busy				: in 		std_logic;
 
 		r_burst         	: out    std_logic;
 		r_as            	: out    std_logic;
@@ -75,6 +77,7 @@ architecture gbehaviour of ora is
 --	signal x_peaks 		: x_peaks_a;
 --	signal y_peaks 		: y_peaks_a;
 
+
 	-- Non-clock delay signals
 	signal pclk_d			: std_logic := '0';
 	signal href_d			: std_logic := '0';
@@ -93,70 +96,54 @@ architecture gbehaviour of ora is
 	begin
 	pixel <= unsigned( cpi );
 
-	r_burst <= '1';
+	r_burst 			<= '1';
+	r_as    			<= hyperram_command.memory_space;
+	r_row          <= "0000000000000";
+	r_col          <= "000000000";
+	
+	r_rd_length    <= x"01";
+	r_wr_data     	<= x"abcd";
+	r_wr_length    <= x"01";
 
 	--/*******RAM TEST START******/
 	hrddr_test : process( gclk )
-	variable state_counter 	: integer := 0;
-	constant write_wait			: integer := 100;
-	constant read_wait			: integer := write_wait + 100;
+	variable state_counter 		: integer := 0;
+	constant write_wait			: integer := 255;
+	constant read_wait			: integer := write_wait + 511;
 	constant finished				: integer := read_wait + 1;
 
-	constant	test_word			: std_logic_vector( 15 downto 0 ) := x"abcd";--x"8ff3";1000 1111 1111 0011";
-	variable write_index		: integer	:= 0;
-	variable write_lower		: integer	:= 7;
-	variable r_strobe_prev	: std_logic := '0';
+--	constant	test_word			: std_logic_vector( 15 downto 0 ) := x"abcd";--x"8ff3";1000 1111 1111 0011";
+--	variable write_index			: integer	:= 0;
+--	variable write_lower			: integer	:= 7;
+--	variable r_busy_prev			: std_logic := '0';
+--	variable r_strobe_prev		: std_logic := '0';
+	
+
 	begin
 		if rising_edge( gclk ) then
 			if reset_n = '0' then
 				state_counter 	:= 0;
-				write_index 	:= write_wait;
-				r_strobe_prev 	:= '0';
 				r_wr_request 	<= '0';
 				r_rd_request 	<= '0';
 			else
-				if state_counter = write_wait then
-					r_as	<= hyperram_command.memory_space;
-					r_row <= "0101010101010";
-					r_col <= "010101010";
-
-					r_wr_length 	<= x"01";--std_logic_vector( to_unsigned( test_word'length / 16, 8 ) );
-					r_wr_data			<= test_word;
-					r_wr_request	<= '1';
-
-					write_index 	:= 0;
-
-					state_counter := state_counter + 1;
-
-				elsif state_counter < write_wait then
-					state_counter 	:= state_counter + 1;
-				-- elsif state_counter < read_wait and r_request_ack = '0' then
-				-- 	state_counter 	:= state_counter + 1;
-				--
-				-- elsif state_counter = read_wait then
-				-- 	r_row 			<= "0101010101010";
-				-- 	r_col 			<= "010101010";
-				--
-				-- 	r_as    			<= '0';
-				--
-				-- 	r_rd_length 	<= x"02";
-				-- 	r_rd_request 	<= '1';
-				--
-				-- 	state_counter 	:= finished;
-				--
+				if r_busy = '0' then
+					if state_counter < finished then
+						state_counter := state_counter + 1;
+					end if;
+					
+					if state_counter = write_wait then
+						r_wr_request	<= '1';
+					end if;
+					
+--					if state_counter = read_wait then
+--						r_rd_request 	<= '1';
+--					end if;
 				end if;
-				-- if std_logic_vector( to_unsigned( write_index, 8 ) ) < r_wr_length and r_strobe /= r_strobe_prev then
-				-- 	write_lower 	:= test_word'length - write_index * 8;
-				-- 	r_wr_data		<= x"89";--test_word( ( write_lower + 7 ) downto write_lower );
-				-- 	write_index 	:= write_index + 1;
-				-- end if;
-
+				
 				if r_request_ack = '1' then
 					r_wr_request 	<= '0';
 					r_rd_request 	<= '0';
 				end if;
-
-				r_strobe_prev 		:= r_strobe;
 			end if;
 		end if;
 	end process hrddr_test;

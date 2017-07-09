@@ -75,7 +75,7 @@ set_location_assignment PIN_141 -to LED5 -tag platform
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
-set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE 12.5%
+set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
 set_location_assignment PIN_97 -to clock
 set_location_assignment PIN_70 -to cpi[7]
 set_location_assignment PIN_69 -to cpi[6]
@@ -122,18 +122,6 @@ set_location_assignment PIN_84 -to sda
 set_instance_assignment -name IO_STANDARD "2.5 V" -to A -tag platform
 set_location_assignment PIN_118 -to A
 set_location_assignment PIN_110 -to B
-set_global_assignment -name VHDL_FILE ora.vhd
-set_global_assignment -name VHDL_FILE OV9712.vhd
-set_global_assignment -name VHDL_FILE ucp.vhd
-set_global_assignment -name VHDL_FILE uart.vhd
-set_global_assignment -name VHDL_FILE hrddr.vhd
-set_global_assignment -name VHDL_FILE i2c_master.vhd
-set_global_assignment -name VHDL_FILE ora_math.vhd
-set_global_assignment -name VHDL_FILE ora_types.vhd
-set_global_assignment -name VHDL_FILE global_types.vhd
-set_global_assignment -name VHDL_FILE master.vhd
-set_global_assignment -name VHDL_FILE master_bridge.vhd
-set_global_assignment -name CDF_FILE output_files/Chain1.cdf
 set_location_assignment PIN_43 -to ram_ck_n
 set_location_assignment PIN_46 -to ram_ck_p
 set_location_assignment PIN_47 -to ram_cs_n
@@ -164,7 +152,6 @@ set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_cs_n
 set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[4]
 set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[6]
 set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[1]
-set_global_assignment -name CDF_FILE Chain1.cdf
 set_location_assignment PIN_106 -to t_ram_dq[7]
 set_location_assignment PIN_105 -to t_ram_dq[6]
 set_location_assignment PIN_101 -to t_ram_dq[5]
@@ -178,7 +165,6 @@ set_location_assignment PIN_100 -to t_ram_ck_p
 set_location_assignment PIN_98 -to t_ram_cs_n
 set_location_assignment PIN_96 -to t_ram_rwds
 set_location_assignment PIN_91 -to t_ram_rst
-set_global_assignment -name CDF_FILE Chain2.cdf
 set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_ck_n
 set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_ck_p
 set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_cs_n
@@ -193,4 +179,18 @@ set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[0]
 set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_rst
 set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_rwds
 set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to clock
+set_global_assignment -name VHDL_FILE hyperram_types.vhd
+set_global_assignment -name VHDL_FILE hyperram.vhd
+set_global_assignment -name VHDL_FILE ora.vhd
+set_global_assignment -name VHDL_FILE OV9712.vhd
+set_global_assignment -name VHDL_FILE ucp.vhd
+set_global_assignment -name VHDL_FILE uart.vhd
+set_global_assignment -name VHDL_FILE i2c_master.vhd
+set_global_assignment -name VHDL_FILE ora_math.vhd
+set_global_assignment -name VHDL_FILE ora_types.vhd
+set_global_assignment -name VHDL_FILE global_types.vhd
+set_global_assignment -name VHDL_FILE master.vhd
+set_global_assignment -name VHDL_FILE master_bridge.vhd
+set_global_assignment -name CDF_FILE output_files/Chain1.cdf
+set_global_assignment -name CDF_FILE Chain1.cdf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
