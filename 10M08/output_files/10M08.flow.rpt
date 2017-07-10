@@ -1,5 +1,5 @@
 Flow report for 10M08
-Sun Jul 09 00:38:07 2017
+Sun Jul 09 22:49:54 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -41,17 +41,17 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Sun Jul 09 00:38:07 2017       ;
+; Flow Status                        ; Successful - Sun Jul 09 22:49:54 2017       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; 10M08                                       ;
 ; Top-level Entity Name              ; master_bridge                               ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M08SAE144C8GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 522 / 8,064 ( 6 % )                         ;
-;     Total combinational functions  ; 502 / 8,064 ( 6 % )                         ;
-;     Dedicated logic registers      ; 271 / 8,064 ( 3 % )                         ;
-; Total registers                    ; 271                                         ;
+; Total logic elements               ; 401 / 8,064 ( 5 % )                         ;
+;     Total combinational functions  ; 376 / 8,064 ( 5 % )                         ;
+;     Dedicated logic registers      ; 229 / 8,064 ( 3 % )                         ;
+; Total registers                    ; 229                                         ;
 ; Total pins                         ; 53 / 101 ( 52 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 387,072 ( 0 % )                         ;
@@ -67,7 +67,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 07/09/2017 00:37:38 ;
+; Start date & time ; 07/09/2017 22:49:28 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; 10M08               ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+---------------+----------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name   ; Section Id     ;
 +-------------------------------------+----------------------------------------+---------------+---------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 48710643792706.149958225807072         ; --            ; --            ; --             ;
+; COMPILER_SIGNATURE_ID               ; 48710643792706.149966216809928         ; --            ; --            ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --            ; --            ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)              ; <None>        ; --            ; --             ;
 ; FLOW_ENABLE_POWER_ANALYZER          ; On                                     ; Off           ; --            ; --             ;
@@ -100,13 +100,13 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 692 MB              ; 00:00:20                           ;
-; Fitter                    ; 00:00:07     ; 1.1                     ; 1450 MB             ; 00:00:09                           ;
-; Assembler                 ; 00:00:01     ; 1.0                     ; 567 MB              ; 00:00:01                           ;
-; PowerPlay Power Analyzer  ; 00:00:02     ; 1.2                     ; 717 MB              ; 00:00:02                           ;
-; TimeQuest Timing Analyzer ; 00:00:03     ; 1.2                     ; 681 MB              ; 00:00:03                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 543 MB              ; 00:00:01                           ;
-; Total                     ; 00:00:24     ; --                      ; --                  ; 00:00:36                           ;
+; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 686 MB              ; 00:00:20                           ;
+; Fitter                    ; 00:00:05     ; 1.1                     ; 1458 MB             ; 00:00:07                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 569 MB              ; 00:00:01                           ;
+; PowerPlay Power Analyzer  ; 00:00:02     ; 1.2                     ; 712 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:02     ; 1.2                     ; 678 MB              ; 00:00:02                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 542 MB              ; 00:00:01                           ;
+; Total                     ; 00:00:21     ; --                      ; --                  ; 00:00:33                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

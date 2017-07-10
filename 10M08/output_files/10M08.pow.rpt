@@ -1,5 +1,5 @@
 PowerPlay Power Analyzer report for 10M08
-Sun Jul 09 00:38:01 2017
+Sun Jul 09 22:49:49 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -53,19 +53,19 @@ agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.22        ;
+; Average used               ; 1.17        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   7.5%      ;
+;     Processors 2-4         ;   5.8%      ;
 +----------------------------+-------------+
 
 
 +-------------------------------------------------------------------------------------------+
 ; PowerPlay Power Analyzer Summary                                                          ;
 +----------------------------------------+--------------------------------------------------+
-; PowerPlay Power Analyzer Status        ; Successful - Sun Jul 09 00:38:01 2017            ;
+; PowerPlay Power Analyzer Status        ; Successful - Sun Jul 09 22:49:49 2017            ;
 ; Quartus Prime Version                  ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition      ;
 ; Revision Name                          ; 10M08                                            ;
 ; Top-level Entity Name                  ; master_bridge                                    ;
@@ -239,7 +239,7 @@ agreement for further details.
 +----------+---------------+---------------------+-----------------------+----------------------+
 ; I/O Bank ; VCCIO Voltage ; Total Current Drawn ; Dynamic Current Drawn ; Static Current Drawn ;
 +----------+---------------+---------------------+-----------------------+----------------------+
-; 1A       ; 2.5V          ; 0.25 mA             ; 0.00 mA               ; 0.25 mA              ;
+; 1A       ; 2.5V          ; 0.26 mA             ; 0.00 mA               ; 0.26 mA              ;
 ; 1B       ; 2.5V          ; 0.26 mA             ; 0.00 mA               ; 0.26 mA              ;
 ; 2        ; 2.5V          ; 0.25 mA             ; 0.00 mA               ; 0.25 mA              ;
 ; 3        ; 3.0V          ; 1.03 mA             ; 0.00 mA               ; 1.03 mA              ;
@@ -263,31 +263,31 @@ agreement for further details.
 (2) Currents reported in column "Minimum Power Supply Current" are sufficient for power-up, configuration, and user operation of the device.
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Confidence Metric Details                                                                                                                         ;
-+----------------------------------------------------------------------------------------+--------------+------------+--------------+---------------+
-; Data Source                                                                            ; Total        ; Pin        ; Registered   ; Combinational ;
-+----------------------------------------------------------------------------------------+--------------+------------+--------------+---------------+
-; Simulation (from file)                                                                 ;              ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate from Simulation                              ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;     -- Number of signals with Static Probability from Simulation                       ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;                                                                                        ;              ;            ;              ;               ;
-; Node, entity or clock assignment                                                       ;              ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate from Node, entity or clock assignment        ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 1 (0.1%)     ; 0 (0.0%)   ; 0 (0.0%)     ; 1 (0.1%)      ;
-;                                                                                        ;              ;            ;              ;               ;
-; Vectorless estimation                                                                  ;              ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 1007 (96.3%) ; 42 (51.9%) ; 271 (100.0%) ; 694 (100.0%)  ;
-;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 43 (4.1%)    ; 15 (18.5%) ; 0 (0.0%)     ; 28 (4.0%)     ;
-;     -- Number of signals with Static Probability from Vectorless estimation            ; 1006 (96.2%) ; 42 (51.9%) ; 271 (100.0%) ; 693 (99.9%)   ;
-;                                                                                        ;              ;            ;              ;               ;
-; Default assignment                                                                     ;              ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate from Default assignment                      ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;     -- Number of signals with Static Probability from Default assignment               ; 39 (3.7%)    ; 39 (48.1%) ; 0 (0.0%)     ; 0 (0.0%)      ;
-;                                                                                        ;              ;            ;              ;               ;
-; Assumed 0                                                                              ;              ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate assumed 0                                    ; 39 (3.7%)    ; 39 (48.1%) ; 0 (0.0%)     ; 0 (0.0%)      ;
-+----------------------------------------------------------------------------------------+--------------+------------+--------------+---------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Confidence Metric Details                                                                                                                        ;
++----------------------------------------------------------------------------------------+-------------+------------+--------------+---------------+
+; Data Source                                                                            ; Total       ; Pin        ; Registered   ; Combinational ;
++----------------------------------------------------------------------------------------+-------------+------------+--------------+---------------+
+; Simulation (from file)                                                                 ;             ;            ;              ;               ;
+;     -- Number of signals with Toggle Rate from Simulation                              ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
+;     -- Number of signals with Static Probability from Simulation                       ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
+;                                                                                        ;             ;            ;              ;               ;
+; Node, entity or clock assignment                                                       ;             ;            ;              ;               ;
+;     -- Number of signals with Toggle Rate from Node, entity or clock assignment        ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
+;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 1 (0.1%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 1 (0.2%)      ;
+;                                                                                        ;             ;            ;              ;               ;
+; Vectorless estimation                                                                  ;             ;            ;              ;               ;
+;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 811 (95.4%) ; 42 (51.9%) ; 229 (100.0%) ; 540 (100.0%)  ;
+;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 49 (5.8%)   ; 18 (22.2%) ; 0 (0.0%)     ; 31 (5.7%)     ;
+;     -- Number of signals with Static Probability from Vectorless estimation            ; 810 (95.3%) ; 42 (51.9%) ; 229 (100.0%) ; 539 (99.8%)   ;
+;                                                                                        ;             ;            ;              ;               ;
+; Default assignment                                                                     ;             ;            ;              ;               ;
+;     -- Number of signals with Toggle Rate from Default assignment                      ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
+;     -- Number of signals with Static Probability from Default assignment               ; 39 (4.6%)   ; 39 (48.1%) ; 0 (0.0%)     ; 0 (0.0%)      ;
+;                                                                                        ;             ;            ;              ;               ;
+; Assumed 0                                                                              ;             ;            ;              ;               ;
+;     -- Number of signals with Toggle Rate assumed 0                                    ; 39 (4.6%)   ; 39 (48.1%) ; 0 (0.0%)     ; 0 (0.0%)      ;
++----------------------------------------------------------------------------------------+-------------+------------+--------------+---------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------+
@@ -304,7 +304,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime PowerPlay Power Analyzer
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Sun Jul 09 00:37:59 2017
+    Info: Processing started: Sun Jul 09 22:49:47 2017
 Info: Command: quartus_pow --read_settings_files=off --write_settings_files=off 10M08 -c 10M08
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (21077): Low junction temperature is 0 degrees C
@@ -323,9 +323,9 @@ Info (334004): Delay annotation completed successfully
 Info (215049): Average toggle rate for this design is 0.000 millions of transitions / sec
 Info (215031): Total thermal power estimate for the design is 120.79 mW
 Info: Quartus Prime PowerPlay Power Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 717 megabytes
-    Info: Processing ended: Sun Jul 09 00:38:01 2017
+    Info: Peak virtual memory: 712 megabytes
+    Info: Processing ended: Sun Jul 09 22:49:49 2017
     Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02
 
 

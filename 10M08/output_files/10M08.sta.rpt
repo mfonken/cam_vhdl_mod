@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for 10M08
-Sun Jul 09 00:38:05 2017
+Sun Jul 09 22:49:52 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -92,14 +92,14 @@ agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.20        ;
+; Average used               ; 1.17        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   6.9%      ;
-;     Processor 3            ;   6.4%      ;
-;     Processor 4            ;   6.4%      ;
+;     Processor 2            ;   6.1%      ;
+;     Processor 3            ;   5.4%      ;
+;     Processor 4            ;   5.4%      ;
 +----------------------------+-------------+
 
 
@@ -117,7 +117,7 @@ agreement for further details.
 +------------+-----------------+------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
 +------------+-----------------+------------+------+
-; 136.26 MHz ; 136.26 MHz      ; clock      ;      ;
+; 133.32 MHz ; 133.32 MHz      ; clock      ;      ;
 +------------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -127,7 +127,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------+--------+--------------------+
 ; Clock ; Slack  ; End Point TNS      ;
 +-------+--------+--------------------+
-; clock ; -6.339 ; -744.542           ;
+; clock ; -6.501 ; -548.271           ;
 +-------+--------+--------------------+
 
 
@@ -136,7 +136,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------+-------+--------------------+
 ; Clock ; Slack ; End Point TNS      ;
 +-------+-------+--------------------+
-; clock ; 0.360 ; 0.000              ;
+; clock ; 0.340 ; 0.000              ;
 +-------+-------+--------------------+
 
 
@@ -157,7 +157,7 @@ No paths to report.
 +-------+--------+----------------------------------+
 ; Clock ; Slack  ; End Point TNS                    ;
 +-------+--------+----------------------------------+
-; clock ; -3.000 ; -405.977                         ;
+; clock ; -3.000 ; -343.523                         ;
 +-------+--------+----------------------------------+
 
 
@@ -172,7 +172,7 @@ No synchronizer chains to report.
 +------------+-----------------+------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
 +------------+-----------------+------------+------+
-; 144.03 MHz ; 144.03 MHz      ; clock      ;      ;
+; 143.49 MHz ; 143.49 MHz      ; clock      ;      ;
 +------------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -182,7 +182,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------+--------+-------------------+
 ; Clock ; Slack  ; End Point TNS     ;
 +-------+--------+-------------------+
-; clock ; -5.943 ; -683.490          ;
+; clock ; -5.969 ; -501.820          ;
 +-------+--------+-------------------+
 
 
@@ -191,7 +191,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------+-------+-------------------+
 ; Clock ; Slack ; End Point TNS     ;
 +-------+-------+-------------------+
-; clock ; 0.322 ; 0.000             ;
+; clock ; 0.304 ; 0.000             ;
 +-------+-------+-------------------+
 
 
@@ -212,7 +212,7 @@ No paths to report.
 +-------+--------+---------------------------------+
 ; Clock ; Slack  ; End Point TNS                   ;
 +-------+--------+---------------------------------+
-; clock ; -3.000 ; -411.270                        ;
+; clock ; -3.000 ; -347.831                        ;
 +-------+--------+---------------------------------+
 
 
@@ -227,7 +227,7 @@ No synchronizer chains to report.
 +-------+--------+-------------------+
 ; Clock ; Slack  ; End Point TNS     ;
 +-------+--------+-------------------+
-; clock ; -1.752 ; -144.331          ;
+; clock ; -1.804 ; -84.535           ;
 +-------+--------+-------------------+
 
 
@@ -236,7 +236,7 @@ No synchronizer chains to report.
 +-------+-------+-------------------+
 ; Clock ; Slack ; End Point TNS     ;
 +-------+-------+-------------------+
-; clock ; 0.136 ; 0.000             ;
+; clock ; 0.143 ; 0.000             ;
 +-------+-------+-------------------+
 
 
@@ -257,7 +257,7 @@ No paths to report.
 +-------+--------+---------------------------------+
 ; Clock ; Slack  ; End Point TNS                   ;
 +-------+--------+---------------------------------+
-; clock ; -3.000 ; -342.417                        ;
+; clock ; -3.000 ; -288.349                        ;
 +-------+--------+---------------------------------+
 
 
@@ -272,10 +272,10 @@ No synchronizer chains to report.
 +------------------+----------+-------+----------+---------+---------------------+
 ; Clock            ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +------------------+----------+-------+----------+---------+---------------------+
-; Worst-case Slack ; -6.339   ; 0.136 ; N/A      ; N/A     ; -3.000              ;
-;  clock           ; -6.339   ; 0.136 ; N/A      ; N/A     ; -3.000              ;
-; Design-wide TNS  ; -744.542 ; 0.0   ; 0.0      ; 0.0     ; -411.27             ;
-;  clock           ; -744.542 ; 0.000 ; N/A      ; N/A     ; -411.270            ;
+; Worst-case Slack ; -6.501   ; 0.143 ; N/A      ; N/A     ; -3.000              ;
+;  clock           ; -6.501   ; 0.143 ; N/A      ; N/A     ; -3.000              ;
+; Design-wide TNS  ; -548.271 ; 0.0   ; 0.0      ; 0.0     ; -347.831            ;
+;  clock           ; -548.271 ; 0.000 ; N/A      ; N/A     ; -347.831            ;
 +------------------+----------+-------+----------+---------+---------------------+
 
 
@@ -387,7 +387,7 @@ No synchronizer chains to report.
 ; LED4         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; LED5         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0932 V           ; 0.135 V                              ; 0.16 V                               ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0932 V          ; 0.135 V                             ; 0.16 V                              ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; pwdn         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
-; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0932 V           ; 0.135 V                              ; 0.16 V                               ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0932 V          ; 0.135 V                             ; 0.16 V                              ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
+; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; t_ram_rst    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
 ; t_ram_cs_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
 ; t_ram_ck_p   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
@@ -436,7 +436,7 @@ No synchronizer chains to report.
 ; LED4         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
 ; LED5         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0521 V           ; 0.17 V                               ; 0.231 V                              ; 4.74e-10 s                  ; 4.79e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0521 V          ; 0.17 V                              ; 0.231 V                             ; 4.74e-10 s                 ; 4.79e-10 s                 ; Yes                       ; Yes                       ;
 ; pwdn         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
-; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0521 V           ; 0.17 V                               ; 0.231 V                              ; 4.74e-10 s                  ; 4.79e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0521 V          ; 0.17 V                              ; 0.231 V                             ; 4.74e-10 s                 ; 4.79e-10 s                 ; Yes                       ; Yes                       ;
+; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
 ; t_ram_rst    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
 ; t_ram_cs_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
 ; t_ram_ck_p   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
@@ -485,7 +485,7 @@ No synchronizer chains to report.
 ; LED4         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; LED5         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; pwdn         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
-; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
+; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; t_ram_rst    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
 ; t_ram_cs_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
 ; t_ram_ck_p   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
@@ -528,7 +528,7 @@ No synchronizer chains to report.
 +------------+----------+----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+----------+----------+----------+----------+
-; clock      ; clock    ; 10003    ; 0        ; 0        ; 0        ;
+; clock      ; clock    ; 6633     ; 0        ; 0        ; 0        ;
 +------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -538,7 +538,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +------------+----------+----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+----------+----------+----------+----------+
-; clock      ; clock    ; 10003    ; 0        ; 0        ; 0        ;
+; clock      ; clock    ; 6633     ; 0        ; 0        ; 0        ;
 +------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -563,9 +563,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
 ; Unconstrained Input Ports       ; 12    ; 12   ;
-; Unconstrained Input Port Paths  ; 238   ; 238  ;
-; Unconstrained Output Ports      ; 35    ; 35   ;
-; Unconstrained Output Port Paths ; 46    ; 46   ;
+; Unconstrained Input Port Paths  ; 199   ; 199  ;
+; Unconstrained Output Ports      ; 32    ; 32   ;
+; Unconstrained Output Port Paths ; 43    ; 43   ;
 +---------------------------------+-------+------+
 
 
@@ -603,12 +603,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +-------------+---------------------------------------------------------------------------------------+
 ; Output Port ; Comment                                                                               ;
 +-------------+---------------------------------------------------------------------------------------+
-; A           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; B           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED3        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED4        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; cam_ena     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; mclk        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_ck_n    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_ck_p    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_cs_n    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -666,12 +663,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +-------------+---------------------------------------------------------------------------------------+
 ; Output Port ; Comment                                                                               ;
 +-------------+---------------------------------------------------------------------------------------+
-; A           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; B           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED3        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED4        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; cam_ena     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; mclk        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_ck_n    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_ck_p    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_cs_n    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -710,7 +704,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Sun Jul 09 00:38:02 2017
+    Info: Processing started: Sun Jul 09 22:49:50 2017
 Info: Command: quartus_sta 10M08 -c 10M08
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -727,63 +721,63 @@ Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -6.339
+Info (332146): Worst-case setup slack is -6.501
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.339            -744.542 clock 
-Info (332146): Worst-case hold slack is 0.360
+    Info (332119):    -6.501            -548.271 clock 
+Info (332146): Worst-case hold slack is 0.340
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.360               0.000 clock 
+    Info (332119):     0.340               0.000 clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -405.977 clock 
+    Info (332119):    -3.000            -343.523 clock 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Warning (334000): Timing characteristics of device 10M08SAE144C8GES are preliminary
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -5.943
+Info (332146): Worst-case setup slack is -5.969
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.943            -683.490 clock 
-Info (332146): Worst-case hold slack is 0.322
+    Info (332119):    -5.969            -501.820 clock 
+Info (332146): Worst-case hold slack is 0.304
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.322               0.000 clock 
+    Info (332119):     0.304               0.000 clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -411.270 clock 
+    Info (332119):    -3.000            -347.831 clock 
 Info: Analyzing Fast 1200mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -1.752
+Info (332146): Worst-case setup slack is -1.804
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.752            -144.331 clock 
-Info (332146): Worst-case hold slack is 0.136
+    Info (332119):    -1.804             -84.535 clock 
+Info (332146): Worst-case hold slack is 0.143
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.136               0.000 clock 
+    Info (332119):     0.143               0.000 clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -342.417 clock 
+    Info (332119):    -3.000            -288.349 clock 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 681 megabytes
-    Info: Processing ended: Sun Jul 09 00:38:05 2017
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Peak virtual memory: 678 megabytes
+    Info: Processing ended: Sun Jul 09 22:49:52 2017
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
 
 

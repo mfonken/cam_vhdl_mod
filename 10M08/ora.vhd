@@ -18,8 +18,8 @@ use work.hyperram_types.all;
 entity ora is
 	generic
 	(
-		g_clk_r		: integer				:= 50_000_000;
-		m_clk_r		: integer				:= 10_000_000;
+		g_clk_r		: integer;
+		m_clk_r		: integer;
 		thresh    	: integer				:= 250;
 		kernel    	: kernel_t				:= ( others => '0' );
 		buffer_c  	: auto_correct_t		:= ( others => '0' )
@@ -92,6 +92,9 @@ architecture gbehaviour of ora is
 	signal prepare_packet : std_logic := '0';
 	signal x_p_l			: integer := 0;
 	signal y_p_l			: integer := 0;
+	
+	type hyperram_test is(counting, waiting, writing, reading, finishing); --needed states
+	signal state         : hyperram_test := counting;
 
 	begin
 	pixel <= unsigned( cpi );
@@ -107,15 +110,17 @@ architecture gbehaviour of ora is
 
 	--/*******RAM TEST START******/
 	hrddr_test : process( gclk )
-	variable state_counter 		: integer := 0;
-	constant write_wait			: integer := 255;
-	constant read_wait			: integer := write_wait + 511;
+	variable state_counter 		: integer range 0 to 1024 := 0;
+	constant write_wait			: integer := 100;
+	constant read_wait			: integer := write_wait + 700;
 	constant finished				: integer := read_wait + 1;
+	
+	
 
 --	constant	test_word			: std_logic_vector( 15 downto 0 ) := x"abcd";--x"8ff3";1000 1111 1111 0011";
 --	variable write_index			: integer	:= 0;
 --	variable write_lower			: integer	:= 7;
---	variable r_busy_prev			: std_logic := '0';
+	variable r_busy_prev			: std_logic := '0';
 --	variable r_strobe_prev		: std_logic := '0';
 	
 
@@ -126,132 +131,181 @@ architecture gbehaviour of ora is
 				r_wr_request 	<= '0';
 				r_rd_request 	<= '0';
 			else
-				if r_busy = '0' then
-					if state_counter < finished then
-						state_counter := state_counter + 1;
-					end if;
-					
-					if state_counter = write_wait then
-						r_wr_request	<= '1';
-					end if;
-					
---					if state_counter = read_wait then
---						r_rd_request 	<= '1';
---					end if;
+				if state_counter = write_wait then
+					r_wr_request <= '1';
+				elsif state_counter = read_wait then
+					r_rd_request <= '1';
+				end if;
+				
+				if state_counter < finished then
+					state_counter := state_counter + 1;
 				end if;
 				
 				if r_request_ack = '1' then
-					r_wr_request 	<= '0';
-					r_rd_request 	<= '0';
+					r_wr_request <= '0';
+					r_rd_request <= '0';
 				end if;
+--				case state is
+--					when counting =>
+--						state_counter := state_counter + 1;
+--						if state_counter = write_wait then
+--							state <= writing;
+--						elsif state_counter = read_wait then
+--							state <= reading;
+--						elsif state_counter = finished then
+--							state <= finishing;
+--						end if;
+--						
+--						if r_request_ack = '1' then
+--							r_wr_request 	<= '0';
+--							r_rd_request 	<= '0';
+--						end if;
+--						
+--					when waiting =>
+--						if r_busy_prev /= r_busy and r_busy = '0' then
+--							state <= counting;
+--						else 
+--							state <= waiting;
+--						end if;
+--					
+--					when writing =>
+--						if r_request_ack = '1' then
+--							r_wr_request <= '0';
+--							r_rd_request <= '0';
+--							state <= waiting;
+--						else
+--							r_wr_request <= '1';
+--							r_rd_request <= '0';
+--							state <= writing;
+--						end if;
+--						
+--					when reading =>
+--						if r_request_ack = '1' then
+--							r_wr_request <= '0';
+--							r_rd_request <= '0';
+--							state <= waiting;
+--						else
+--							r_wr_request <= '0';
+--							r_rd_request <= '1';
+--							state <= reading;
+--						end if;
+--						
+--					when finishing =>
+--						r_wr_request <= '0';
+--						r_rd_request <= '0';
+--						state <= finishing;
+--						state_counter 	:= 0;
+--				end case;
 			end if;
+			
+			r_busy_prev := r_busy;
 		end if;
 	end process hrddr_test;
 	--/*******RAM TEST END******/
 
-	sync_process : process( gclk )
-	-- MCLK divider
-	constant MCLK_DIV      	: integer := g_clk_r / m_clk_r;
-	constant MCLK_DIV_HALF 	: integer := MCLK_DIV / 2;
-	variable x_map 			: x_array;
-	variable y_map 			: y_array;
-	variable x_convolve 		: convolve_result_t;
-	variable y_convolve 		: convolve_result_t;
-	variable x_peaks 			: x_peaks_a;
-	variable y_peaks 			: y_peaks_a;
-	variable x_max				: integer range 0 to MAX_VALUE;
-	variable	y_max				: integer range 0 to MAX_VALUE;
-	variable x_i				: integer range 0 to FRAME_WIDTH;
-	variable	y_i				: integer range 0 to FRAME_HEIGHT;
---	variable t : integer range -(KERNEL_LENGTH-1) to FRAME_WIDTH := -(KERNEL_LENGTH-1);
-	variable peak					: std_logic	:= '1';
-
-	begin
-		if rising_edge( gclk ) then
-			pclk_d <= pclk;
-			href_d <= href;
-			vsync_d <= vsync;
-
-			-- Clock divider & MCLK driver
-			if c = std_logic_vector(to_unsigned(MCLK_DIV_HALF,4)) then
-				mclk <= not mclk;
-				pwdn <= '0';
-				c <= "0000";
-			else
-				c <= std_logic_vector(unsigned(c) + to_unsigned(1,4));
-			end if;
-
-			-- Collect on PCLK
-			if pclk = '1' and pclk_d = '0' then
-				if pixel > PIXEL_THRESH then -- and x < FRAME_WIDTH and y < FRAME_HEIGHT then
-					x_map(x) := x_map(x) + 1;
-					y_map(y) := y_map(y) + 1;
---					A <= '1';
---				else
---					A <= '0';
-				end if;
-
-				if x < FRAME_WIDTH then
-					x <= x + 1;
-				end if;
-			end if;
-
-			-- Increment line on HREF
-			if href = '1' and href_d = '0' then
-				x <= 0;
-				if y < FRAME_HEIGHT then
-					y <= y + 1;
-				end if;
-			end if;
-
-			-- Reset and process on VSYNC
-			if vsync = '1' and vsync_d = '0' then
-				y <= 0;
-				x <= 0;
-
---				x_max := x_map(0);
---				for i in 1 to FRAME_WIDTH - 1 loop
---					if x_max < x_map(i) then
---						x_max := x_map(i);
---						x_i := i;
---					end if;
---				end loop;
+--	sync_process : process( gclk )
+--	-- MCLK divider
+--	constant MCLK_DIV      	: integer := g_clk_r / m_clk_r;
+--	constant MCLK_DIV_HALF 	: integer := MCLK_DIV / 2;
+--	variable x_map 			: x_array;
+--	variable y_map 			: y_array;
+--	variable x_convolve 		: convolve_result_t;
+--	variable y_convolve 		: convolve_result_t;
+--	variable x_peaks 			: x_peaks_a;
+--	variable y_peaks 			: y_peaks_a;
+--	variable x_max				: integer range 0 to MAX_VALUE;
+--	variable	y_max				: integer range 0 to MAX_VALUE;
+--	variable x_i				: integer range 0 to FRAME_WIDTH;
+--	variable	y_i				: integer range 0 to FRAME_HEIGHT;
+----	variable t : integer range -(KERNEL_LENGTH-1) to FRAME_WIDTH := -(KERNEL_LENGTH-1);
+--	variable peak					: std_logic	:= '1';
 --
---				y_max := y_map(0);
---				for i in 1 to FRAME_HEIGHT - 1 loop
---					if y_max < y_map(i) then
---						y_max := y_map(i);
---						y_i := i;
---					end if;
---				end loop;
+--	begin
+--		if rising_edge( gclk ) then
+--			pclk_d <= pclk;
+--			href_d <= href;
+--			vsync_d <= vsync;
 --
---				ora_bytes_to_tx <= 3;
---				ora_packet_buffer(1) <= std_logic_vector(to_unsigned(x_i, 8));
---				ora_packet_buffer(0) <= std_logic_vector(to_unsigned(y_i, 8));
-
---				prepare_packet <= '1';
-			elsif vsync = '0' and vsync_d = '1' then
-				x_map 	:= ( others => 0 );
-				y_map 	:= ( others => 0 );
-				x_peaks	:= ( ( others => 0 ), 0 );
-				y_peaks	:= ( ( others => 0 ), 0 );
-			end if;
-
-			if ora_ack = '1' then
-				prepare_packet <= '0';
-			end if;
-
-
-		end if;
-	end process sync_process;
-----------------------------------------------
--- Packet composition
-----------------------------------------------
-  packet_composer : process( gclk)
-  begin
-	if rising_edge( gclk ) then
-		ora_packet_buffer(2) <= PACKET_HEADER;
-		ora_has_packet <= prepare_packet;
-	end if;
-  end process packet_composer;
+--			-- Clock divider & MCLK driver
+--			if c = std_logic_vector(to_unsigned(MCLK_DIV_HALF,4)) then
+--				mclk <= not mclk;
+--				pwdn <= '0';
+--				c <= "0000";
+--			else
+--				c <= std_logic_vector(unsigned(c) + to_unsigned(1,4));
+--			end if;
+--
+--			-- Collect on PCLK
+--			if pclk = '1' and pclk_d = '0' then
+--				if pixel > PIXEL_THRESH then -- and x < FRAME_WIDTH and y < FRAME_HEIGHT then
+--					x_map(x) := x_map(x) + 1;
+--					y_map(y) := y_map(y) + 1;
+----					A <= '1';
+----				else
+----					A <= '0';
+--				end if;
+--
+--				if x < FRAME_WIDTH then
+--					x <= x + 1;
+--				end if;
+--			end if;
+--
+--			-- Increment line on HREF
+--			if href = '1' and href_d = '0' then
+--				x <= 0;
+--				if y < FRAME_HEIGHT then
+--					y <= y + 1;
+--				end if;
+--			end if;
+--
+--			-- Reset and process on VSYNC
+--			if vsync = '1' and vsync_d = '0' then
+--				y <= 0;
+--				x <= 0;
+--
+----				x_max := x_map(0);
+----				for i in 1 to FRAME_WIDTH - 1 loop
+----					if x_max < x_map(i) then
+----						x_max := x_map(i);
+----						x_i := i;
+----					end if;
+----				end loop;
+----
+----				y_max := y_map(0);
+----				for i in 1 to FRAME_HEIGHT - 1 loop
+----					if y_max < y_map(i) then
+----						y_max := y_map(i);
+----						y_i := i;
+----					end if;
+----				end loop;
+----
+----				ora_bytes_to_tx <= 3;
+----				ora_packet_buffer(1) <= std_logic_vector(to_unsigned(x_i, 8));
+----				ora_packet_buffer(0) <= std_logic_vector(to_unsigned(y_i, 8));
+--
+----				prepare_packet <= '1';
+--			elsif vsync = '0' and vsync_d = '1' then
+--				x_map 	:= ( others => 0 );
+--				y_map 	:= ( others => 0 );
+--				x_peaks	:= ( ( others => 0 ), 0 );
+--				y_peaks	:= ( ( others => 0 ), 0 );
+--			end if;
+--
+--			if ora_ack = '1' then
+--				prepare_packet <= '0';
+--			end if;
+--
+--
+--		end if;
+--	end process sync_process;
+------------------------------------------------
+---- Packet composition
+------------------------------------------------
+--  packet_composer : process( gclk)
+--  begin
+--	if rising_edge( gclk ) then
+--		ora_packet_buffer(2) <= PACKET_HEADER;
+--		ora_has_packet <= prepare_packet;
+--	end if;
+--  end process packet_composer;
 end gbehaviour;

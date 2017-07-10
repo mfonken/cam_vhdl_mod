@@ -117,11 +117,11 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 	variable data_counter    : integer range 0 to MAX_BURST;
 	begin
 	if rising_edge(clock) then
-		A <= busy;
 		if reset_n = '0' then
 			cs_n <= '1';
 			data_ready <= '0';
 			request_ack <= '0';
+			busy <= '1';
 			rwds <= 'Z';
 			
 			dq <= ( others => 'Z' );
@@ -131,8 +131,6 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 		else
 			case state is
 				when idle =>
-					B <= '0';
-					
 					cs_n <= '1';
 					data_ready <= '0';
 					request_ack <= '0';
@@ -155,13 +153,12 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 					end if;
 
 				when command =>
-					B <= '1';
-				
 					cs_n <= '0';
 					data_ready <= '1';
 					request_ack <= '1';
 					busy <= '1';
 					rwds <= 'Z';
+					dq <= ( others => 'Z' );
 
 					if ck_p /= ck_prev then                -- Sync to ck (ddr)
 						if tick_counter < 3 then
@@ -186,13 +183,12 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 					end if;
 
 				when latency_delay =>
-					B <= '0';
-				
 					cs_n <= '0';
 					data_ready <= '1';
 					request_ack <= '1';
 					busy <= '1';
 					rwds <= 'Z';
+					dq <= ( others => 'Z' );
 
 					if ck_p /= ck_prev then                -- Sync to ck (ddr)
 						latency_counter := latency_counter + 1;
@@ -208,13 +204,12 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 					end if;
 
 				when wr =>
-					B <= '1';
-				
 					cs_n <= '0';
 					data_ready <= '1';
 					request_ack <= '1';
 					busy <= '1';
 					rwds <= '0';
+					dq <= ( others => 'Z' );
 
 					if ck_p /= ck_prev then
 						if ck_p = '0' then
@@ -231,13 +226,12 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 					
 
 				when rd =>
-					B <= '1';
-				
 					cs_n <= '0';
 					data_ready <= '1';
 					request_ack <= '1';
 					busy <= '1';
 					rwds <= 'Z';
+					dq <= ( others => 'Z' );
 
 					if ck_p /= ck_prev then
 						if ck_p = '0' then
