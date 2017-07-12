@@ -68,6 +68,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "A",
+					"strict" : false
+				},
+				{
+					"name" : "B",
+					"strict" : false
+				},
+				{
 					"name" : "cam_ena",
 					"strict" : false
 				},

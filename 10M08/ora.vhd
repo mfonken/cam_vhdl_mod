@@ -100,28 +100,25 @@ architecture gbehaviour of ora is
 	pixel <= unsigned( cpi );
 
 	r_burst 			<= '1';
+	
 	r_as    			<= hyperram_command.memory_space;
+	r_wr_length    <= x"01";
+	r_rd_length    <= x"01";
 	r_row          <= "0000000000000";
 	r_col          <= "000000000";
-	
-	r_rd_length    <= x"01";
-	r_wr_data     	<= x"abcd";
-	r_wr_length    <= x"01";
 
 	--/*******RAM TEST START******/
 	hrddr_test : process( gclk )
-	variable state_counter 		: integer range 0 to 1024 := 0;
+	variable state_counter 		: integer range 0 to 5000 := 0;
 	constant write_wait			: integer := 100;
-	constant read_wait			: integer := write_wait + 700;
-	constant finished				: integer := read_wait + 1;
+	constant read_wait			: integer := write_wait + 800;
+	constant finished				: integer := read_wait + 800;
 	
-	
-
 --	constant	test_word			: std_logic_vector( 15 downto 0 ) := x"abcd";--x"8ff3";1000 1111 1111 0011";
 --	variable write_index			: integer	:= 0;
 --	variable write_lower			: integer	:= 7;
 	variable r_busy_prev			: std_logic := '0';
---	variable r_strobe_prev		: std_logic := '0';
+	variable r_strobe_prev		: std_logic := '0';
 	
 
 	begin
@@ -132,12 +129,16 @@ architecture gbehaviour of ora is
 				r_rd_request 	<= '0';
 			else
 				if state_counter = write_wait then
-					r_wr_request <= '1';
+					r_wr_data     	<= x"1234";
+					r_wr_request 	<= '1';
 				elsif state_counter = read_wait then
-					r_rd_request <= '1';
+					r_rd_request 	<= '1';
+				elsif state_counter = finished then
+					r_wr_data    	<= r_rd_data;
+					r_wr_request 	<= '1';
 				end if;
 				
-				if state_counter < finished then
+				if state_counter <= finished then
 					state_counter := state_counter + 1;
 				end if;
 				
@@ -145,6 +146,10 @@ architecture gbehaviour of ora is
 					r_wr_request <= '0';
 					r_rd_request <= '0';
 				end if;
+				
+--				if r_strobe_prev /= r_strobe then
+--					
+--				end if;
 --				case state is
 --					when counting =>
 --						state_counter := state_counter + 1;
@@ -197,7 +202,7 @@ architecture gbehaviour of ora is
 --						state_counter 	:= 0;
 --				end case;
 			end if;
-			
+			r_strobe_prev := r_strobe;
 			r_busy_prev := r_busy;
 		end if;
 	end process hrddr_test;

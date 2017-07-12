@@ -3,39 +3,75 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clock'
-Slack : -6.501
-TNS   : -548.271
+Slack : -6.561
+TNS   : -505.718
+
+Type  : Slow 1200mV 85C Model Setup 'hyperram:hyperram_0|internal_clock'
+Slack : -4.806
+TNS   : -168.998
 
 Type  : Slow 1200mV 85C Model Hold 'clock'
-Slack : 0.340
+Slack : 0.096
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'hyperram:hyperram_0|internal_clock'
+Slack : 0.363
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clock'
 Slack : -3.000
-TNS   : -343.523
+TNS   : -297.426
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'hyperram:hyperram_0|internal_clock'
+Slack : -1.487
+TNS   : -93.681
 
 Type  : Slow 1200mV 0C Model Setup 'clock'
-Slack : -5.969
-TNS   : -501.820
+Slack : -6.021
+TNS   : -463.171
+
+Type  : Slow 1200mV 0C Model Setup 'hyperram:hyperram_0|internal_clock'
+Slack : -4.412
+TNS   : -158.069
 
 Type  : Slow 1200mV 0C Model Hold 'clock'
-Slack : 0.304
+Slack : -0.109
+TNS   : -0.320
+
+Type  : Slow 1200mV 0C Model Hold 'hyperram:hyperram_0|internal_clock'
+Slack : 0.325
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clock'
 Slack : -3.000
-TNS   : -347.831
+TNS   : -301.957
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'hyperram:hyperram_0|internal_clock'
+Slack : -1.487
+TNS   : -93.681
 
 Type  : Fast 1200mV 0C Model Setup 'clock'
-Slack : -1.804
-TNS   : -84.535
+Slack : -1.784
+TNS   : -86.286
+
+Type  : Fast 1200mV 0C Model Setup 'hyperram:hyperram_0|internal_clock'
+Slack : -1.168
+TNS   : -33.624
 
 Type  : Fast 1200mV 0C Model Hold 'clock'
 Slack : 0.143
 TNS   : 0.000
 
+Type  : Fast 1200mV 0C Model Hold 'hyperram:hyperram_0|internal_clock'
+Slack : 0.151
+TNS   : 0.000
+
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clock'
 Slack : -3.000
-TNS   : -288.349
+TNS   : -251.526
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'hyperram:hyperram_0|internal_clock'
+Slack : -1.000
+TNS   : -63.000
 
 ------------------------------------------------------------
