@@ -60,11 +60,11 @@ architecture rtl of hyperram is
 	signal ca      : ca_64MB_t;
 	signal ca_bfr  : std_logic_vector( 47 downto 0 );
 
-	signal internal_data_out  : std_logic_vector( 7 downto 0 );
+	signal internal_data_out  : std_logic_vector( 15 downto 0 );
 	signal tick_counter       : integer;
 
 	--  type hrddr_byte_stream_t is array( MAX_BURST downto 0) of std_logic_vector( 7 downto 0 );
-	signal internal_data_in   : std_logic_vector( 7 downto 0 );
+	signal internal_data_in   : std_logic_vector( 15 downto 0 );
 	signal internal_data_in_l : integer range 0 to MAX_BURST;
 	signal ck_ena             : std_logic := '0';
 
@@ -72,10 +72,11 @@ architecture rtl of hyperram is
 	signal internal_clock_prev		: std_logic := '0';
 
 	signal strobe_prev  : std_logic := '0';
+	signal read_write				: std_logic := '0';
 
 begin
 
-ca.r_wn		<= rd_request;
+ca.r_wn	 <= read_write;
 ca.as     <= as;
 ca.burst  <= burst;
 ca.row    <= row;
@@ -88,7 +89,7 @@ ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 
 cs_n				<= not busy;
 request_ack 	<= busy;
 
-A <= busy;
+A <= read_write;
 ---------------------------------------------------------------------------
 -- OVERSAMPLE_CLOCK_DIVIDER
 -- generate an oversampled tick (baud * 16)
@@ -152,9 +153,12 @@ A <= busy;
 
 					if wr_request = '1' then
 						data_counter := to_integer( unsigned( wr_length ) );
+						read_write <= hyperram_command.write_command;
 						state <= command;
 					elsif rd_request = '1' then
 						data_counter := to_integer( unsigned( rd_length ) );
+						read_write <= hyperram_command.read_command;
+						rd_data <= X"0000";
 						state <= command;
 					else
 						data_counter := 0;
@@ -196,12 +200,10 @@ A <= busy;
 					latency_counter := latency_counter + 1;
 --					dq <= std_logic_vector(to_unsigned(data_counter, 8));
 
-					if latency_counter = latency_config*2*latency then
-						if ca.r_wn = hyperram_command.write_command then
-							state <= wr;
-						else
-							state <= rd;
-						end if;
+					if latency_counter = ( latency_config*2*latency ) and ca.r_wn = hyperram_command.write_command then
+						state <= wr;
+					elsif latency_counter = ( latency_config*2*latency + 2)  then
+						state <= rd;
 					else
 						state <= latency_delay;
 					end if;
@@ -226,17 +228,18 @@ A <= busy;
 					end if;
 
 				when rd =>
-					B <= '1';
-
+					B <= '0';
+					
 					busy <= '1';
 					rwds <= 'Z';
 					tick_counter 		:= 0;
 					latency_counter 	:= 0;
+					dq <= ( others => 'Z' );
 
-					if rwds = '0' then
-						rd_data( 15 downto 8 ) <= dq;
-					else
+					if rwds = '1' then
 						rd_data( 7 downto 0 ) <= dq;
+					else
+						rd_data( 15 downto 8 ) <= dq;
 						strobe <= not strobe_prev;
 						data_counter := data_counter - 1;
 						if data_counter = 0 then

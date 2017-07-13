@@ -91,9 +91,9 @@ architecture gbehaviour of master_bridge is
 constant sys_clk_frq			: integer 			:= 400_000_000;
 constant	i2c_scl_frq			: integer			:= 100_000;
 constant	umd_baud_r			: integer			:= 921_600;
-constant	ora_clk_frq			: integer			:= 20_000_000;
-constant	ram_clk_frq			: integer			:= 20_000_000;
-constant ram_lat_config		: positive			:= 7;
+constant	ora_clk_frq			: integer			:= 25_000_000;
+constant	ram_clk_frq			: integer			:= 25_000_000;
+constant ram_lat_config		: positive			:= 6;
 
 -- Module clocks
 signal  	umd_clock         : std_logic       := '0';
@@ -279,7 +279,7 @@ signal	i2c_ack_err    	: std_logic;
 			ora_bytes_to_tx	: out		integer;
 			ora_packet_buffer	: inout	packet_buffer_t;
 			
-			r_rd_data       	: in   	std_logic_vector(  15 downto 0 );
+			r_rd_data       	: inout   	std_logic_vector(  15 downto 0 );
 			r_rd_request    	: out    std_logic;
 			r_rd_length     	: out   	std_logic_vector(  7 downto 0 );
 

@@ -1,5 +1,5 @@
 PowerPlay Power Analyzer report for 10M08
-Tue Jul 11 23:04:28 2017
+Wed Jul 12 19:55:32 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------------------+
 ; PowerPlay Power Analyzer Summary                                                          ;
 +----------------------------------------+--------------------------------------------------+
-; PowerPlay Power Analyzer Status        ; Successful - Tue Jul 11 23:04:28 2017            ;
+; PowerPlay Power Analyzer Status        ; Successful - Wed Jul 12 19:55:32 2017            ;
 ; Quartus Prime Version                  ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition      ;
 ; Revision Name                          ; 10M08                                            ;
 ; Top-level Entity Name                  ; master_bridge                                    ;
@@ -247,7 +247,7 @@ agreement for further details.
 ; 4        ; 2.5V          ; 0.26 mA             ; 0.00 mA               ; 0.26 mA              ;
 ; 5        ; 2.5V          ; 0.28 mA             ; 0.00 mA               ; 0.28 mA              ;
 ; 6        ; 3.0V          ; 0.94 mA             ; 0.00 mA               ; 0.94 mA              ;
-; 7        ; 2.5V          ; 0.27 mA             ; 0.00 mA               ; 0.27 mA              ;
+; 7        ; 2.5V          ; 0.26 mA             ; 0.00 mA               ; 0.26 mA              ;
 ; 8        ; 2.5V          ; 0.28 mA             ; 0.00 mA               ; 0.28 mA              ;
 +----------+---------------+---------------------+-----------------------+----------------------+
 
@@ -275,12 +275,12 @@ agreement for further details.
 ;                                                                                        ;             ;            ;              ;               ;
 ; Node, entity or clock assignment                                                       ;             ;            ;              ;               ;
 ;     -- Number of signals with Toggle Rate from Node, entity or clock assignment        ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 2 (0.2%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 2 (0.3%)      ;
+;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 2 (0.2%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 2 (0.4%)      ;
 ;                                                                                        ;             ;            ;              ;               ;
 ; Vectorless estimation                                                                  ;             ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 875 (95.7%) ; 42 (51.9%) ; 261 (100.0%) ; 572 (100.0%)  ;
-;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 55 (6.0%)   ; 16 (19.8%) ; 0 (0.0%)     ; 39 (6.8%)     ;
-;     -- Number of signals with Static Probability from Vectorless estimation            ; 873 (95.5%) ; 42 (51.9%) ; 261 (100.0%) ; 570 (99.7%)   ;
+;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 866 (95.7%) ; 42 (51.9%) ; 260 (100.0%) ; 564 (100.0%)  ;
+;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 45 (5.0%)   ; 16 (19.8%) ; 0 (0.0%)     ; 29 (5.1%)     ;
+;     -- Number of signals with Static Probability from Vectorless estimation            ; 864 (95.5%) ; 42 (51.9%) ; 260 (100.0%) ; 562 (99.6%)   ;
 ;                                                                                        ;             ;            ;              ;               ;
 ; Default assignment                                                                     ;             ;            ;              ;               ;
 ;     -- Number of signals with Toggle Rate from Default assignment                      ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
@@ -305,7 +305,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime PowerPlay Power Analyzer
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Tue Jul 11 23:04:26 2017
+    Info: Processing started: Wed Jul 12 19:55:31 2017
 Info: Command: quartus_pow --read_settings_files=off --write_settings_files=off 10M08 -c 10M08
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (21077): Low junction temperature is 0 degrees C
@@ -314,7 +314,7 @@ Critical Warning (332012): Synopsys Design Constraints File file not found: '10M
 Warning (332060): Node: clock was determined to be a clock but was found without an associated clock assignment.
     Info (13166): Register uart:umd|uart_rx_data_out_stb is being clocked by clock
 Warning (332060): Node: hyperram:hyperram_0|internal_clock was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register hyperram:hyperram_0|\hrddr_process:tick_counter[0] is being clocked by hyperram:hyperram_0|internal_clock
+    Info (13166): Register hyperram:hyperram_0|state.wr is being clocked by hyperram:hyperram_0|internal_clock
 Warning (332068): No clocks defined in design.
 Info (223000): Starting Vectorless Power Activity Estimation
 Warning (222013): Relative toggle rates could not be calculated because no clock domain could be identified for some nodes
@@ -327,8 +327,8 @@ Info (215049): Average toggle rate for this design is 0.000 millions of transiti
 Info (215031): Total thermal power estimate for the design is 120.78 mW
 Info: Quartus Prime PowerPlay Power Analyzer was successful. 0 errors, 7 warnings
     Info: Peak virtual memory: 715 megabytes
-    Info: Processing ended: Tue Jul 11 23:04:28 2017
-    Info: Elapsed time: 00:00:02
+    Info: Processing ended: Wed Jul 12 19:55:32 2017
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:02
 
 
