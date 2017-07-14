@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for 10M08
-Wed Jul 12 19:55:36 2017
+Thu Jul 13 22:07:14 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -92,14 +92,14 @@ agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.19        ;
+; Average used               ; 1.18        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   6.7%      ;
-;     Processor 3            ;   6.4%      ;
-;     Processor 4            ;   6.3%      ;
+;     Processor 2            ;   6.3%      ;
+;     Processor 3            ;   5.8%      ;
+;     Processor 4            ;   5.8%      ;
 +----------------------------+-------------+
 
 
@@ -118,8 +118,8 @@ agreement for further details.
 +------------+-----------------+------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                         ; Note ;
 +------------+-----------------+------------------------------------+------+
-; 135.43 MHz ; 135.43 MHz      ; clock                              ;      ;
-; 179.28 MHz ; 179.28 MHz      ; hyperram:hyperram_0|internal_clock ;      ;
+; 141.08 MHz ; 141.08 MHz      ; clock                              ;      ;
+; 153.42 MHz ; 153.42 MHz      ; hyperram:hyperram_0|internal_clock ;      ;
 +------------+-----------------+------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -129,8 +129,8 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------+--------+---------------+
 ; Clock                              ; Slack  ; End Point TNS ;
 +------------------------------------+--------+---------------+
-; clock                              ; -6.384 ; -522.044      ;
-; hyperram:hyperram_0|internal_clock ; -5.304 ; -214.741      ;
+; clock                              ; -6.088 ; -569.275      ;
+; hyperram:hyperram_0|internal_clock ; -5.018 ; -209.022      ;
 +------------------------------------+--------+---------------+
 
 
@@ -139,8 +139,8 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------+-------+---------------+
 ; Clock                              ; Slack ; End Point TNS ;
 +------------------------------------+-------+---------------+
-; clock                              ; 0.152 ; 0.000         ;
-; hyperram:hyperram_0|internal_clock ; 0.343 ; 0.000         ;
+; clock                              ; 0.340 ; 0.000         ;
+; hyperram:hyperram_0|internal_clock ; 0.342 ; 0.000         ;
 +------------------------------------+-------+---------------+
 
 
@@ -161,8 +161,8 @@ No paths to report.
 +------------------------------------+--------+---------------+
 ; Clock                              ; Slack  ; End Point TNS ;
 +------------------------------------+--------+---------------+
-; clock                              ; -3.000 ; -295.939      ;
-; hyperram:hyperram_0|internal_clock ; -1.487 ; -93.681       ;
+; clock                              ; -3.000 ; -336.088      ;
+; hyperram:hyperram_0|internal_clock ; -1.487 ; -98.142       ;
 +------------------------------------+--------+---------------+
 
 
@@ -177,8 +177,8 @@ No synchronizer chains to report.
 +------------+-----------------+------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                         ; Note ;
 +------------+-----------------+------------------------------------+------+
-; 145.88 MHz ; 145.88 MHz      ; clock                              ;      ;
-; 190.88 MHz ; 190.88 MHz      ; hyperram:hyperram_0|internal_clock ;      ;
+; 147.51 MHz ; 147.51 MHz      ; clock                              ;      ;
+; 153.19 MHz ; 153.19 MHz      ; hyperram:hyperram_0|internal_clock ;      ;
 +------------+-----------------+------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -188,19 +188,19 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------+--------+---------------+
 ; Clock                              ; Slack  ; End Point TNS ;
 +------------------------------------+--------+---------------+
-; clock                              ; -5.855 ; -477.848      ;
-; hyperram:hyperram_0|internal_clock ; -5.115 ; -201.911      ;
+; clock                              ; -5.779 ; -521.899      ;
+; hyperram:hyperram_0|internal_clock ; -4.644 ; -196.201      ;
 +------------------------------------+--------+---------------+
 
 
-+-------------------------------------------------------------+
-; Slow 1200mV 0C Model Hold Summary                           ;
-+------------------------------------+--------+---------------+
-; Clock                              ; Slack  ; End Point TNS ;
-+------------------------------------+--------+---------------+
-; clock                              ; -0.046 ; -0.091        ;
-; hyperram:hyperram_0|internal_clock ; 0.307  ; 0.000         ;
-+------------------------------------+--------+---------------+
++------------------------------------------------------------+
+; Slow 1200mV 0C Model Hold Summary                          ;
++------------------------------------+-------+---------------+
+; Clock                              ; Slack ; End Point TNS ;
++------------------------------------+-------+---------------+
+; clock                              ; 0.180 ; 0.000         ;
+; hyperram:hyperram_0|internal_clock ; 0.305 ; 0.000         ;
++------------------------------------+-------+---------------+
 
 
 -----------------------------------------
@@ -220,8 +220,8 @@ No paths to report.
 +------------------------------------+--------+---------------+
 ; Clock                              ; Slack  ; End Point TNS ;
 +------------------------------------+--------+---------------+
-; clock                              ; -3.000 ; -299.407      ;
-; hyperram:hyperram_0|internal_clock ; -1.487 ; -93.681       ;
+; clock                              ; -3.000 ; -341.910      ;
+; hyperram:hyperram_0|internal_clock ; -1.487 ; -99.718       ;
 +------------------------------------+--------+---------------+
 
 
@@ -236,8 +236,8 @@ No synchronizer chains to report.
 +------------------------------------+--------+---------------+
 ; Clock                              ; Slack  ; End Point TNS ;
 +------------------------------------+--------+---------------+
-; clock                              ; -1.778 ; -96.850       ;
-; hyperram:hyperram_0|internal_clock ; -1.591 ; -51.814       ;
+; clock                              ; -1.835 ; -99.065       ;
+; hyperram:hyperram_0|internal_clock ; -1.301 ; -46.248       ;
 +------------------------------------+--------+---------------+
 
 
@@ -246,8 +246,8 @@ No synchronizer chains to report.
 +------------------------------------+-------+---------------+
 ; Clock                              ; Slack ; End Point TNS ;
 +------------------------------------+-------+---------------+
-; clock                              ; 0.025 ; 0.000         ;
 ; hyperram:hyperram_0|internal_clock ; 0.142 ; 0.000         ;
+; clock                              ; 0.143 ; 0.000         ;
 +------------------------------------+-------+---------------+
 
 
@@ -268,8 +268,8 @@ No paths to report.
 +------------------------------------+--------+---------------+
 ; Clock                              ; Slack  ; End Point TNS ;
 +------------------------------------+--------+---------------+
-; clock                              ; -3.000 ; -249.043      ;
-; hyperram:hyperram_0|internal_clock ; -1.000 ; -63.000       ;
+; clock                              ; -3.000 ; -282.916      ;
+; hyperram:hyperram_0|internal_clock ; -1.000 ; -66.000       ;
 +------------------------------------+--------+---------------+
 
 
@@ -279,18 +279,18 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+----------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                                ;
-+-------------------------------------+----------+--------+----------+---------+---------------------+
-; Clock                               ; Setup    ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
-+-------------------------------------+----------+--------+----------+---------+---------------------+
-; Worst-case Slack                    ; -6.384   ; -0.046 ; N/A      ; N/A     ; -3.000              ;
-;  clock                              ; -6.384   ; -0.046 ; N/A      ; N/A     ; -3.000              ;
-;  hyperram:hyperram_0|internal_clock ; -5.304   ; 0.142  ; N/A      ; N/A     ; -1.487              ;
-; Design-wide TNS                     ; -736.785 ; -0.091 ; 0.0      ; 0.0     ; -393.088            ;
-;  clock                              ; -522.044 ; -0.091 ; N/A      ; N/A     ; -299.407            ;
-;  hyperram:hyperram_0|internal_clock ; -214.741 ; 0.000  ; N/A      ; N/A     ; -93.681             ;
-+-------------------------------------+----------+--------+----------+---------+---------------------+
++---------------------------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                                               ;
++-------------------------------------+----------+-------+----------+---------+---------------------+
+; Clock                               ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++-------------------------------------+----------+-------+----------+---------+---------------------+
+; Worst-case Slack                    ; -6.088   ; 0.142 ; N/A      ; N/A     ; -3.000              ;
+;  clock                              ; -6.088   ; 0.143 ; N/A      ; N/A     ; -3.000              ;
+;  hyperram:hyperram_0|internal_clock ; -5.018   ; 0.142 ; N/A      ; N/A     ; -1.487              ;
+; Design-wide TNS                     ; -778.297 ; 0.0   ; 0.0      ; 0.0     ; -441.628            ;
+;  clock                              ; -569.275 ; 0.000 ; N/A      ; N/A     ; -341.910            ;
+;  hyperram:hyperram_0|internal_clock ; -209.022 ; 0.000 ; N/A      ; N/A     ; -99.718             ;
++-------------------------------------+----------+-------+----------+---------+---------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -542,10 +542,10 @@ No synchronizer chains to report.
 +------------------------------------+------------------------------------+----------+----------+----------+----------+
 ; From Clock                         ; To Clock                           ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------------------------------+------------------------------------+----------+----------+----------+----------+
-; clock                              ; clock                              ; 6522     ; 0        ; 0        ; 0        ;
-; hyperram:hyperram_0|internal_clock ; clock                              ; 1        ; 19       ; 0        ; 0        ;
-; clock                              ; hyperram:hyperram_0|internal_clock ; 0        ; 0        ; 56       ; 0        ;
-; hyperram:hyperram_0|internal_clock ; hyperram:hyperram_0|internal_clock ; 2        ; 2        ; 24       ; 654      ;
+; clock                              ; clock                              ; 7296     ; 0        ; 0        ; 0        ;
+; hyperram:hyperram_0|internal_clock ; clock                              ; 1        ; 61       ; 0        ; 0        ;
+; clock                              ; hyperram:hyperram_0|internal_clock ; 0        ; 0        ; 61       ; 0        ;
+; hyperram:hyperram_0|internal_clock ; hyperram:hyperram_0|internal_clock ; 2        ; 2        ; 25       ; 707      ;
 +------------------------------------+------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -555,10 +555,10 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +------------------------------------+------------------------------------+----------+----------+----------+----------+
 ; From Clock                         ; To Clock                           ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------------------------------+------------------------------------+----------+----------+----------+----------+
-; clock                              ; clock                              ; 6522     ; 0        ; 0        ; 0        ;
-; hyperram:hyperram_0|internal_clock ; clock                              ; 1        ; 19       ; 0        ; 0        ;
-; clock                              ; hyperram:hyperram_0|internal_clock ; 0        ; 0        ; 56       ; 0        ;
-; hyperram:hyperram_0|internal_clock ; hyperram:hyperram_0|internal_clock ; 2        ; 2        ; 24       ; 654      ;
+; clock                              ; clock                              ; 7296     ; 0        ; 0        ; 0        ;
+; hyperram:hyperram_0|internal_clock ; clock                              ; 1        ; 61       ; 0        ; 0        ;
+; clock                              ; hyperram:hyperram_0|internal_clock ; 0        ; 0        ; 61       ; 0        ;
+; hyperram:hyperram_0|internal_clock ; hyperram:hyperram_0|internal_clock ; 2        ; 2        ; 25       ; 707      ;
 +------------------------------------+------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -583,7 +583,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
 ; Unconstrained Input Ports       ; 12    ; 12   ;
-; Unconstrained Input Port Paths  ; 257   ; 257  ;
+; Unconstrained Input Port Paths  ; 303   ; 303  ;
 ; Unconstrained Output Ports      ; 34    ; 34   ;
 ; Unconstrained Output Port Paths ; 46    ; 46   ;
 +---------------------------------+-------+------+
@@ -729,7 +729,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Wed Jul 12 19:55:33 2017
+    Info: Processing started: Thu Jul 13 22:07:12 2017
 Info: Command: quartus_sta 10M08 -c 10M08
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -747,72 +747,72 @@ Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -6.384
+Info (332146): Worst-case setup slack is -6.088
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.384            -522.044 clock 
-    Info (332119):    -5.304            -214.741 hyperram:hyperram_0|internal_clock 
-Info (332146): Worst-case hold slack is 0.152
+    Info (332119):    -6.088            -569.275 clock 
+    Info (332119):    -5.018            -209.022 hyperram:hyperram_0|internal_clock 
+Info (332146): Worst-case hold slack is 0.340
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.152               0.000 clock 
-    Info (332119):     0.343               0.000 hyperram:hyperram_0|internal_clock 
+    Info (332119):     0.340               0.000 clock 
+    Info (332119):     0.342               0.000 hyperram:hyperram_0|internal_clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -295.939 clock 
-    Info (332119):    -1.487             -93.681 hyperram:hyperram_0|internal_clock 
+    Info (332119):    -3.000            -336.088 clock 
+    Info (332119):    -1.487             -98.142 hyperram:hyperram_0|internal_clock 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Warning (334000): Timing characteristics of device 10M08SAE144C8GES are preliminary
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -5.855
+Info (332146): Worst-case setup slack is -5.779
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.855            -477.848 clock 
-    Info (332119):    -5.115            -201.911 hyperram:hyperram_0|internal_clock 
-Info (332146): Worst-case hold slack is -0.046
+    Info (332119):    -5.779            -521.899 clock 
+    Info (332119):    -4.644            -196.201 hyperram:hyperram_0|internal_clock 
+Info (332146): Worst-case hold slack is 0.180
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.046              -0.091 clock 
-    Info (332119):     0.307               0.000 hyperram:hyperram_0|internal_clock 
+    Info (332119):     0.180               0.000 clock 
+    Info (332119):     0.305               0.000 hyperram:hyperram_0|internal_clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -299.407 clock 
-    Info (332119):    -1.487             -93.681 hyperram:hyperram_0|internal_clock 
+    Info (332119):    -3.000            -341.910 clock 
+    Info (332119):    -1.487             -99.718 hyperram:hyperram_0|internal_clock 
 Info: Analyzing Fast 1200mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -1.778
+Info (332146): Worst-case setup slack is -1.835
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.778             -96.850 clock 
-    Info (332119):    -1.591             -51.814 hyperram:hyperram_0|internal_clock 
-Info (332146): Worst-case hold slack is 0.025
+    Info (332119):    -1.835             -99.065 clock 
+    Info (332119):    -1.301             -46.248 hyperram:hyperram_0|internal_clock 
+Info (332146): Worst-case hold slack is 0.142
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.025               0.000 clock 
     Info (332119):     0.142               0.000 hyperram:hyperram_0|internal_clock 
+    Info (332119):     0.143               0.000 clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -249.043 clock 
-    Info (332119):    -1.000             -63.000 hyperram:hyperram_0|internal_clock 
+    Info (332119):    -3.000            -282.916 clock 
+    Info (332119):    -1.000             -66.000 hyperram:hyperram_0|internal_clock 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 681 megabytes
-    Info: Processing ended: Wed Jul 12 19:55:36 2017
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Peak virtual memory: 679 megabytes
+    Info: Processing ended: Thu Jul 13 22:07:14 2017
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:03
 
 

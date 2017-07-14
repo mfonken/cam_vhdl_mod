@@ -26,7 +26,7 @@ entity hyperram is
 
 	wr_data           : in    	std_logic_vector(  15 downto 0 );
 	wr_request        : in    	std_logic;
-	wr_length         : in   	std_logic_vector(  7 downto 0 );
+	wr_length         : in   	integer range 0 to 256; --std_logic_vector(  7 downto 0 );
 
 	busy					: inout		std_logic;
 
@@ -134,6 +134,7 @@ architecture rtl of hyperram is
 		begin
 			if falling_edge(internal_clock) then
 				if reset_n = '0' then
+					B <= '1';
 					busy <= '1';
 					rwds <= 'Z';
 					dq <= ( others => 'Z' );
@@ -153,7 +154,7 @@ architecture rtl of hyperram is
 							latency_counter := 0;
 
 							if wr_request = '1' then
-								data_counter := to_integer( unsigned( wr_length ) );
+								data_counter := wr_length;--to_integer( unsigned( wr_length ) );
 								read_write <= hyperram_command.write_command;
 								state <= command;
 							elsif rd_request = '1' then
@@ -166,7 +167,7 @@ architecture rtl of hyperram is
 								state <= idle;
 							end if;
 
-							when command =>
+						when command =>
 							B <= '1';
 
 							busy <= '1';

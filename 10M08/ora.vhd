@@ -53,7 +53,7 @@ entity ora is
 
 		r_wr_data     		: out    std_logic_vector(  15 downto 0 );
 		r_wr_request    	: out    std_logic;
-		r_wr_length     	: inout  std_logic_vector(  7 downto 0 );
+		r_wr_length     	: inout  integer range 0 to 256;--std_logic_vector(  7 downto 0 );
 
 		r_strobe        	: inout 	std_logic;
 		r_request_ack   	: in   	std_logic;
@@ -102,7 +102,6 @@ architecture gbehaviour of ora is
 	r_burst 			<= '1';
 	
 	r_as    			<= hyperram_command.memory_space;
-	r_wr_length    <= x"01";
 	r_rd_length    <= x"01";
 	r_row          <= "0000000000100";
 	r_col          <= "000000000";
@@ -111,11 +110,11 @@ architecture gbehaviour of ora is
 	hrddr_test : process( gclk )
 	variable state_counter 		: integer range 0 to 5000 := 0;
 	constant write_wait			: integer := 100;
-	constant read_wait			: integer := write_wait + 700;
+	constant read_wait			: integer := write_wait + 1000;
 	constant finished				: integer := read_wait + 700;
 	
 --	constant	test_word			: std_logic_vector( 15 downto 0 ) := x"abcd";--x"8ff3";1000 1111 1111 0011";
---	variable write_index			: integer	:= 0;
+	variable write_index			: integer range 0 to 100 := 61;
 --	variable write_lower			: integer	:= 7; 
 	variable r_busy_prev			: std_logic := '0';
 	variable r_strobe_prev		: std_logic := '0';
@@ -123,30 +122,38 @@ architecture gbehaviour of ora is
 
 	begin
 		if rising_edge( gclk ) then
-			if state_counter = write_wait then
-				r_wr_data     	<= x"1234";
-				r_wr_request 	<= '1';
-			end if;
-			if state_counter = read_wait then
-				r_rd_request 	<= '1';
-			end if;
-			if state_counter = finished then
-				r_wr_data    	<= r_rd_data;
-				r_wr_request 	<= '1';
-			end if;
-			if r_request_ack = '1' then
-					r_wr_request <= '0';
-					r_rd_request <= '0';
-				end if;
-		
+			
 			if reset_n = '0' then
 				state_counter 	:= 0;
 				r_wr_request 	<= '0';
 				r_rd_request 	<= '0';
-			else
-				
+			else	
+				if state_counter = write_wait then
+					r_wr_length    <= 10;
+					r_wr_data     	<= x"1234";
+					r_wr_request 	<= '1';
+					r_rd_request 	<= '0';
+				elsif state_counter = read_wait then
+					r_wr_request 	<= '0';
+					r_rd_request 	<= '1';
+				elsif state_counter = finished then
+					r_wr_length    <= 1;
+					r_wr_data    	<= r_rd_data;
+					r_wr_request 	<= '1';
+					r_rd_request 	<= '0';
+				end if;
+				if r_request_ack = '1' then
+					r_wr_request <= '0';
+					r_rd_request <= '0';
+				end if;
 				if state_counter <= finished then
 					state_counter := state_counter + 1;
+				else
+					state_counter := finished + 1;
+				end if;
+				if r_strobe_prev /= r_strobe then
+					r_wr_data   <= std_logic_vector(to_unsigned(write_index, 16));
+					write_index := write_index + 1;
 				end if;
 			end if;
 			r_strobe_prev := r_strobe;

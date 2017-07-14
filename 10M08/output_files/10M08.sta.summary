@@ -3,75 +3,75 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clock'
-Slack : -6.384
-TNS   : -522.044
+Slack : -6.088
+TNS   : -569.275
 
 Type  : Slow 1200mV 85C Model Setup 'hyperram:hyperram_0|internal_clock'
-Slack : -5.304
-TNS   : -214.741
+Slack : -5.018
+TNS   : -209.022
 
 Type  : Slow 1200mV 85C Model Hold 'clock'
-Slack : 0.152
+Slack : 0.340
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'hyperram:hyperram_0|internal_clock'
-Slack : 0.343
+Slack : 0.342
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clock'
 Slack : -3.000
-TNS   : -295.939
+TNS   : -336.088
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'hyperram:hyperram_0|internal_clock'
 Slack : -1.487
-TNS   : -93.681
+TNS   : -98.142
 
 Type  : Slow 1200mV 0C Model Setup 'clock'
-Slack : -5.855
-TNS   : -477.848
+Slack : -5.779
+TNS   : -521.899
 
 Type  : Slow 1200mV 0C Model Setup 'hyperram:hyperram_0|internal_clock'
-Slack : -5.115
-TNS   : -201.911
+Slack : -4.644
+TNS   : -196.201
 
 Type  : Slow 1200mV 0C Model Hold 'clock'
-Slack : -0.046
-TNS   : -0.091
+Slack : 0.180
+TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'hyperram:hyperram_0|internal_clock'
-Slack : 0.307
+Slack : 0.305
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clock'
 Slack : -3.000
-TNS   : -299.407
+TNS   : -341.910
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'hyperram:hyperram_0|internal_clock'
 Slack : -1.487
-TNS   : -93.681
+TNS   : -99.718
 
 Type  : Fast 1200mV 0C Model Setup 'clock'
-Slack : -1.778
-TNS   : -96.850
+Slack : -1.835
+TNS   : -99.065
 
 Type  : Fast 1200mV 0C Model Setup 'hyperram:hyperram_0|internal_clock'
-Slack : -1.591
-TNS   : -51.814
-
-Type  : Fast 1200mV 0C Model Hold 'clock'
-Slack : 0.025
-TNS   : 0.000
+Slack : -1.301
+TNS   : -46.248
 
 Type  : Fast 1200mV 0C Model Hold 'hyperram:hyperram_0|internal_clock'
 Slack : 0.142
 TNS   : 0.000
 
+Type  : Fast 1200mV 0C Model Hold 'clock'
+Slack : 0.143
+TNS   : 0.000
+
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clock'
 Slack : -3.000
-TNS   : -249.043
+TNS   : -282.916
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'hyperram:hyperram_0|internal_clock'
 Slack : -1.000
-TNS   : -63.000
+TNS   : -66.000
 
 ------------------------------------------------------------
