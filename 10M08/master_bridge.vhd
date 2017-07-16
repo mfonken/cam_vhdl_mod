@@ -70,12 +70,12 @@ entity master_bridge is
 --		ram_vcc		: out		std_logic := '0';
 --		ram_vccq		: out		std_logic := '0';
 		
-		t_ram_rst   : out 	std_logic;
-		t_ram_cs_n  : out 	std_logic;
-		t_ram_ck_p  : out 	std_logic;
-		t_ram_ck_n  : out		std_logic;
-		t_ram_rwds  : out 	std_logic;
-		t_ram_dq    : out 	std_logic_vector( 7 downto 0 );
+		t_ram_rst   : inout 	std_logic;
+		t_ram_cs_n  : inout 	std_logic;
+		t_ram_ck_p  : inout 	std_logic;
+		t_ram_ck_n  : inout		std_logic;
+		t_ram_rwds  : inout 	std_logic;
+		t_ram_dq    : inout 	std_logic_vector( 7 downto 0 );
 
 		-- Synchronous reset (active low)
 		reset_n		: inout	std_logic
@@ -168,11 +168,11 @@ signal	i2c_ack_err    	: std_logic;
 		);
 		port
 		(
-			LED1	: out	std_logic := '1';
-			LED2	: out	std_logic := '1';
-			LED3	: out	std_logic := '1';
-			LED4	: out	std_logic := '1';
-			LED5	: out	std_logic := '1';
+--			LED1	: out	std_logic := '1';
+--			LED2	: out	std_logic := '1';
+--			LED3	: out	std_logic := '1';
+--			LED4	: out	std_logic := '1';
+--			LED5	: out	std_logic := '1';
 
 			clock					: in 		std_logic;
 			reset_n				: inout  std_logic;
@@ -367,11 +367,11 @@ begin
 	)
 	port map
 	(
-		LED1	=> LED1,
-		LED2	=> LED2,
-		LED3	=> LED3,
-		LED4	=> LED4,
-		LED5	=> LED5,
+--		LED1	=> LED1,
+--		LED2	=> LED2,
+--		LED3	=> LED3,
+--		LED4	=> LED4,
+--		LED5	=> LED5,
 
 		clock						=>	clock,
 		reset_n					=>	reset_n,

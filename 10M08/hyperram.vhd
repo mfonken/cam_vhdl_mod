@@ -60,13 +60,13 @@ architecture rtl of hyperram is
 	signal ca      					: ca_64MB_t;
 	signal ca_bfr  					: std_logic_vector( 47 downto 0 );
 
-	signal internal_data_out  		: std_logic_vector( 15 downto 0 );
-	signal tick_counter       		: integer;
+	signal internal_data_out  		: std_logic_vector( 7 downto 0 );
+--	signal tick_counter       		: integer;
 
 	signal internal_dq				: std_logic_vector( 7 downto 0 );
 
 	--  type hrddr_byte_stream_t is array( MAX_BURST downto 0) of std_logic_vector( 7 downto 0 );
-	signal internal_data_in  	 	: std_logic_vector( 15 downto 0 );
+	signal internal_data_in  	 	: std_logic_vector( 7 downto 0 );
 	signal internal_data_in_l 		: integer range 0 to MAX_BURST;
 	signal ck_ena             		: std_logic := '0';
 
@@ -86,20 +86,6 @@ architecture rtl of hyperram is
 
 	begin
 
-		ca.r_wn	  <= read_write;
-		ca.as     <= as;
-		ca.burst  <= burst;
-		ca.row    <= row;
-		ca.col_u  <= col( 8 downto 3 );
-		ca.col_l  <= col( 2 downto 0 );
-		ca.rsv1   <= ( others => '0' );
-		ca.rsv2   <= ( others => '0' );
-		ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 & ca.col_l;
-
-		cs_n				<= not busy;
-		request_ack 	<= busy;
-
-		A <= read_write;
 		---------------------------------------------------------------------------
 		-- OVERSAMPLE_CLOCK_DIVIDER
 		-- generate an oversampled tick (baud * 16)
@@ -113,9 +99,9 @@ architecture rtl of hyperram is
 					tick := '0';
 				else
 					if ddr_ck_div_counter < ddr_ck_div_half then
-						tick <= '0';
+						tick := '0';
 					else
-						tick <= '1';
+						tick := '1';
 					end if;
 					if ddr_ck_div_counter = ddr_ck_div then
 						ddr_ck_div_counter <= ( others => '0' );
@@ -146,40 +132,48 @@ architecture rtl of hyperram is
 		data_process : process(clock, reset_n)
 
 		begin
-			if rising_edge (clock) then
-				if internal_clock_prev '1' and internal_clock = '0' then
+			if rising_edge(clock) then
+				if internal_clock_prev = '1' and internal_clock = '0' then
 					if reset_n = '0' then
-						tick_counter 		:= 0;
-						data_counter 		:= 0;
+						B <= '1';
+						busy <= '0';
+						tick_counter 		<= 0;
+						data_counter 		<= 0;
 						latency 				<= 1;
-						rd_data 				<= x"00";
-						state <= idle;
+						rd_data 				<= x"0000";
+						state 				<= idle;
 					else
 						case state is
 							when idle =>
-								tick_counter := 0;
+								B <= '0';
+								busy <= '0';
+								tick_counter <= 0;
 								internal_data_out <= ( others => '0');
 								latency <= 1;
-								rd_data <= x"00";
+								rd_data <= x"0000";
 
 								if wr_request = '1' then
-									data_counter := wr_length;
+									data_counter <= wr_length;
 									read_write <= hyperram_command.write_command;
 									state <= command;
 								elsif rd_request = '1' then
-									data_counter := rd_length;
+									data_counter <= rd_length;
 									read_write <= hyperram_command.read_command;
 									state <= command;
 								else
-									data_counter := 0;
+									data_counter <= 0;
 									read_write <= hyperram_command.read_command;
 									state <= idle;
 								end if;
 
 							when command =>
-								tick_counter := tick_counter + 1;-- - 1;
+								B <= '1';
+								busy <= '1';
+								
+								--std_logic_vector(to_unsigned(tick_counter, 8));--
 								internal_data_out <= ca_bfr( ( ( ( 5 - tick_counter ) * 8 ) + 7 ) downto ( ( 5 - tick_counter ) * 8 ) ); --TX command-address (6 clock events) std_logic_vector(to_unsigned(tick_counter, 8));
-								rd_data <= x"00";
+								tick_counter <= tick_counter + 1;
+								rd_data <= x"0000";
 
 								if tick_counter = 6 then
 									if rwds = '1' then
@@ -195,12 +189,14 @@ architecture rtl of hyperram is
 								end if;
 
 							when latency_delay =>
-								tick_counter := tick_counter + 1;
+								B <= '0';
+								busy <= '1';
+								tick_counter <= tick_counter + 1;
 								internal_data_out <= x"00";
 								latency <= 1;
-								rd_data <= x"00";
+								rd_data <= x"0000";
 
-								if tick_counter = ( latency_config*2*latency ) + 3 then
+								if tick_counter = ( latency_config*2*latency ) + 2 then
 									if read_write = hyperram_command.write_command then
 										state <= wr;
 									else
@@ -209,15 +205,17 @@ architecture rtl of hyperram is
 								end if;
 
 							when wr =>
-								tick_counter := 0;
+								B <= '1';
+								busy <= '1';
+								tick_counter <= 0;
 								latency <= 1;
-								rd_data <= x"00";
+								rd_data <= x"0000";
 
 								if ck_p = '0' then
 									internal_data_out <= wr_data( 15 downto 8 );
 								else
 									internal_data_out <= wr_data( 7 downto 0 );
-									data_counter := data_counter - 1;
+									data_counter <= data_counter - 1;
 									strobe <= not strobe;
 									if data_counter = 0 then
 										state <= idle;
@@ -225,7 +223,9 @@ architecture rtl of hyperram is
 								end if;
 
 							when rd =>
-								tick_counter := 0
+								B <= '1';
+								busy <= '1';
+								tick_counter <= 0;
 								internal_data_out <= x"00";
 								latency <= 1;
 
@@ -234,7 +234,7 @@ architecture rtl of hyperram is
 										rd_data( 7 downto 0 ) <= dq;
 									else
 										rd_data( 15 downto 8 ) <= dq;
-										data_counter := data_counter - 1;
+										data_counter <= data_counter - 1;
 										strobe <= not strobe;
 										if data_counter = 0 then
 											state <= idle;
@@ -248,10 +248,25 @@ architecture rtl of hyperram is
 			strobe_prev <= strobe;
 			rwds_prev <= rwds;
 		end if;
-
-		busy <= '0' when state = idle else '1';
-		rwds <= internal_mask when state = wr else 'Z';
-		dq <= internal_data_out when ( state = command or state = wr ) else ( others => 'Z' );
-
 	end process data_process;
+	
+--	busy <= '0' when state = idle else '1';
+	rwds <= internal_mask when state = wr else 'Z';
+	dq <= internal_data_out when ( state = command or state = wr ) else ( others => 'Z' );
+
+	ca.r_wn	  <= read_write;
+	ca.as     <= as;
+	ca.burst  <= burst;
+	ca.row    <= row;
+	ca.col_u  <= col( 8 downto 3 );
+	ca.col_l  <= col( 2 downto 0 );
+	ca.rsv1   <= ( others => '0' );
+	ca.rsv2   <= ( others => '0' );
+	ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 & ca.col_l;
+
+	cs_n				<= not busy;
+	request_ack 	<= busy;
+
+	A <= wr_request;
+	
 end rtl;

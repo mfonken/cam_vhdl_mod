@@ -3,75 +3,39 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clock'
-Slack : -6.665
-TNS   : -466.199
-
-Type  : Slow 1200mV 85C Model Setup 'hyperram:hyperram_0|internal_clock'
-Slack : -4.538
-TNS   : -106.802
+Slack : -5.775
+TNS   : -406.609
 
 Type  : Slow 1200mV 85C Model Hold 'clock'
-Slack : 0.359
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Hold 'hyperram:hyperram_0|internal_clock'
-Slack : 0.361
+Slack : 0.340
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clock'
 Slack : -3.000
-TNS   : -295.939
-
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'hyperram:hyperram_0|internal_clock'
-Slack : -1.487
-TNS   : -71.376
+TNS   : -236.459
 
 Type  : Slow 1200mV 0C Model Setup 'clock'
-Slack : -6.134
-TNS   : -423.771
-
-Type  : Slow 1200mV 0C Model Setup 'hyperram:hyperram_0|internal_clock'
-Slack : -4.148
-TNS   : -100.449
+Slack : -5.300
+TNS   : -370.463
 
 Type  : Slow 1200mV 0C Model Hold 'clock'
-Slack : 0.253
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Hold 'hyperram:hyperram_0|internal_clock'
-Slack : 0.323
+Slack : 0.303
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clock'
 Slack : -3.000
-TNS   : -301.912
-
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'hyperram:hyperram_0|internal_clock'
-Slack : -1.487
-TNS   : -71.376
+TNS   : -236.627
 
 Type  : Fast 1200mV 0C Model Setup 'clock'
-Slack : -1.936
-TNS   : -71.475
-
-Type  : Fast 1200mV 0C Model Setup 'hyperram:hyperram_0|internal_clock'
-Slack : -1.092
-TNS   : -18.493
+Slack : -1.525
+TNS   : -65.852
 
 Type  : Fast 1200mV 0C Model Hold 'clock'
-Slack : 0.150
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'hyperram:hyperram_0|internal_clock'
-Slack : 0.150
+Slack : 0.142
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clock'
 Slack : -3.000
-TNS   : -248.783
-
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'hyperram:hyperram_0|internal_clock'
-Slack : -1.000
-TNS   : -48.000
+TNS   : -197.273
 
 ------------------------------------------------------------

@@ -102,12 +102,13 @@ architecture gbehaviour of ora is
 	r_burst 			<= '1';
 	
 	r_as    			<= hyperram_command.memory_space;
-	r_row          <= "0000000000100";
+	r_row          <= "0000000000100"; 
 	r_col          <= "000000000";
+							 
 	
 	r_wr_length    <= 1;
 	r_rd_length    <= 1;
-	r_wr_data     	<= x"8ff3";
+	r_wr_data     	<= x"abcd";
 
 	--/*******RAM TEST START******/
 	hrddr_test : process( gclk )

@@ -1,5 +1,5 @@
 PowerPlay Power Analyzer report for 10M08
-Sat Jul 15 22:57:51 2017
+Sun Jul 16 17:05:46 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -53,29 +53,29 @@ agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.16        ;
+; Average used               ; 1.12        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   5.2%      ;
+;     Processors 2-4         ;   4.2%      ;
 +----------------------------+-------------+
 
 
 +-------------------------------------------------------------------------------------------+
 ; PowerPlay Power Analyzer Summary                                                          ;
 +----------------------------------------+--------------------------------------------------+
-; PowerPlay Power Analyzer Status        ; Successful - Sat Jul 15 22:57:51 2017            ;
+; PowerPlay Power Analyzer Status        ; Successful - Sun Jul 16 17:05:46 2017            ;
 ; Quartus Prime Version                  ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition      ;
 ; Revision Name                          ; 10M08                                            ;
 ; Top-level Entity Name                  ; master_bridge                                    ;
 ; Family                                 ; MAX 10                                           ;
 ; Device                                 ; 10M08SAE144C8GES                                 ;
 ; Power Models                           ; Final                                            ;
-; Total Thermal Power Dissipation        ; 120.78 mW                                        ;
+; Total Thermal Power Dissipation        ; 121.11 mW                                        ;
 ; Core Dynamic Thermal Power Dissipation ; 0.00 mW                                          ;
 ; Core Static Thermal Power Dissipation  ; 110.62 mW                                        ;
-; I/O Thermal Power Dissipation          ; 10.16 mW                                         ;
+; I/O Thermal Power Dissipation          ; 10.49 mW                                         ;
 ; Power Estimation Confidence            ; Low: user provided insufficient toggle rate data ;
 +----------------------------------------+--------------------------------------------------+
 
@@ -106,47 +106,59 @@ agreement for further details.
 +----------------------------------------------------------------------------+---------------------------------------+---------------+
 
 
-+--------------------------------------------------------------------------+
-; Indeterminate Toggle Rates                                               ;
-+--------------------------------------------+-----------------------------+
-; Node                                       ; Reason                      ;
-+--------------------------------------------+-----------------------------+
-; vsync                                      ; No valid clock domain found ;
-; href                                       ; No valid clock domain found ;
-; pclk                                       ; No valid clock domain found ;
-; cpi[0]                                     ; No valid clock domain found ;
-; cpi[1]                                     ; No valid clock domain found ;
-; cpi[2]                                     ; No valid clock domain found ;
-; cpi[3]                                     ; No valid clock domain found ;
-; cpi[4]                                     ; No valid clock domain found ;
-; cpi[5]                                     ; No valid clock domain found ;
-; cpi[6]                                     ; No valid clock domain found ;
-; cpi[7]                                     ; No valid clock domain found ;
-; A                                          ; No valid clock domain found ;
-; B                                          ; No valid clock domain found ;
-; cam_ena                                    ; No valid clock domain found ;
-; mclk                                       ; No valid clock domain found ;
-; sda                                        ; No valid clock domain found ;
-; scl                                        ; No valid clock domain found ;
-; ram_rst                                    ; No valid clock domain found ;
-; ram_cs_n                                   ; No valid clock domain found ;
-; ram_ck_p                                   ; No valid clock domain found ;
-; ram_ck_n                                   ; No valid clock domain found ;
-; ram_rwds                                   ; No valid clock domain found ;
-; ram_dq[0]                                  ; No valid clock domain found ;
-; ram_dq[1]                                  ; No valid clock domain found ;
-; ram_dq[2]                                  ; No valid clock domain found ;
-; ram_dq[3]                                  ; No valid clock domain found ;
-; ram_dq[4]                                  ; No valid clock domain found ;
-; ram_dq[5]                                  ; No valid clock domain found ;
-; ram_dq[6]                                  ; No valid clock domain found ;
-; ram_dq[7]                                  ; No valid clock domain found ;
-; reset_n                                    ; No valid clock domain found ;
-; clock                                      ; No valid clock domain found ;
-; umd_rx                                     ; No valid clock domain found ;
-; hyperram:hyperram_0|internal_clock~clkctrl ; No valid clock domain found ;
-; master:master_m|umd_clock~0clkctrl         ; No valid clock domain found ;
-+--------------------------------------------+-----------------------------+
++------------------------------------------------------------------+
+; Indeterminate Toggle Rates                                       ;
++------------------------------------+-----------------------------+
+; Node                               ; Reason                      ;
++------------------------------------+-----------------------------+
+; vsync                              ; No valid clock domain found ;
+; href                               ; No valid clock domain found ;
+; pclk                               ; No valid clock domain found ;
+; cpi[0]                             ; No valid clock domain found ;
+; cpi[1]                             ; No valid clock domain found ;
+; cpi[2]                             ; No valid clock domain found ;
+; cpi[3]                             ; No valid clock domain found ;
+; cpi[4]                             ; No valid clock domain found ;
+; cpi[5]                             ; No valid clock domain found ;
+; cpi[6]                             ; No valid clock domain found ;
+; cpi[7]                             ; No valid clock domain found ;
+; umd_rx                             ; No valid clock domain found ;
+; A                                  ; No valid clock domain found ;
+; B                                  ; No valid clock domain found ;
+; cam_ena                            ; No valid clock domain found ;
+; mclk                               ; No valid clock domain found ;
+; sda                                ; No valid clock domain found ;
+; scl                                ; No valid clock domain found ;
+; ram_rst                            ; No valid clock domain found ;
+; ram_cs_n                           ; No valid clock domain found ;
+; ram_ck_p                           ; No valid clock domain found ;
+; ram_ck_n                           ; No valid clock domain found ;
+; ram_rwds                           ; No valid clock domain found ;
+; ram_dq[0]                          ; No valid clock domain found ;
+; ram_dq[1]                          ; No valid clock domain found ;
+; ram_dq[2]                          ; No valid clock domain found ;
+; ram_dq[3]                          ; No valid clock domain found ;
+; ram_dq[4]                          ; No valid clock domain found ;
+; ram_dq[5]                          ; No valid clock domain found ;
+; ram_dq[6]                          ; No valid clock domain found ;
+; ram_dq[7]                          ; No valid clock domain found ;
+; t_ram_rst                          ; No valid clock domain found ;
+; t_ram_cs_n                         ; No valid clock domain found ;
+; t_ram_ck_p                         ; No valid clock domain found ;
+; t_ram_ck_n                         ; No valid clock domain found ;
+; t_ram_rwds                         ; No valid clock domain found ;
+; t_ram_dq[0]                        ; No valid clock domain found ;
+; t_ram_dq[1]                        ; No valid clock domain found ;
+; t_ram_dq[2]                        ; No valid clock domain found ;
+; t_ram_dq[3]                        ; No valid clock domain found ;
+; t_ram_dq[4]                        ; No valid clock domain found ;
+; t_ram_dq[5]                        ; No valid clock domain found ;
+; t_ram_dq[6]                        ; No valid clock domain found ;
+; t_ram_dq[7]                        ; No valid clock domain found ;
+; reset_n                            ; No valid clock domain found ;
+; clock                              ; No valid clock domain found ;
+; master:master_m|umd_clock~0clkctrl ; No valid clock domain found ;
++------------------------------------+-----------------------------+
 
 
 +--------------------------------------------------------------------------+
@@ -189,7 +201,7 @@ agreement for further details.
 ; Combinational cell  ; 0.00 mW                           ; 0.00 mW                     ; --                             ; 0.00 mW                       ;    0.000                                                  ;
 ; Clock control block ; 0.00 mW                           ; 0.00 mW                     ; --                             ; 0.00 mW                       ;    0.000                                                  ;
 ; Register cell       ; 0.00 mW                           ; 0.00 mW                     ; --                             ; 0.00 mW                       ;    0.000                                                  ;
-; I/O                 ; 1.08 mW                           ; 0.00 mW                     ; 1.08 mW                        ; 0.00 mW                       ;    0.000                                                  ;
+; I/O                 ; 1.42 mW                           ; 0.00 mW                     ; 1.42 mW                        ; 0.00 mW                       ;    0.000                                                  ;
 ; Voltage Regulator   ; 0.00 mW                           ; 0.00 mW                     ; 0.00 mW                        ; --                            ; --                                                        ;
 +---------------------+-----------------------------------+-----------------------------+--------------------------------+-------------------------------+-----------------------------------------------------------+
 (1) The "Block Thermal Static Power" for all block types except Pins and the Voltage Regulator, if one exists, is part of the "Core Static Thermal Power Dissipation" value found on the PowerPlay Power Analyzer-->Summary report panel. The "Core Static Thermal Power Dissipation" also contains the thermal static power dissipated by the routing.
@@ -200,7 +212,7 @@ agreement for further details.
 +-------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+-----------------------------------------------+
 ; Compilation Hierarchy Node          ; Total Thermal Power by Hierarchy (1) ; Block Thermal Dynamic Power (1) ; Block Thermal Static Power (1)(2) ; Routing Thermal Dynamic Power (1) ; Full Hierarchy Name                           ;
 +-------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+-----------------------------------------------+
-; |master_bridge                      ; 1.08 mW (1.08 mW)                    ; 0.00 mW (0.00 mW)               ; 1.08 mW (1.08 mW)                 ; 0.00 mW (0.00 mW)                 ; |master_bridge                                ;
+; |master_bridge                      ; 1.42 mW (1.42 mW)                    ; 0.00 mW (0.00 mW)               ; 1.42 mW (1.42 mW)                 ; 0.00 mW (0.00 mW)                 ; |master_bridge                                ;
 ;     |hard_block:auto_generated_inst ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |master_bridge|hard_block:auto_generated_inst ;
 ;     |hyperram:hyperram_0            ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |master_bridge|hyperram:hyperram_0            ;
 ;     |i2c_master:i2c_master_0        ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |master_bridge|i2c_master:i2c_master_0        ;
@@ -227,7 +239,7 @@ agreement for further details.
 +----------------+-------------------------+---------------------------+--------------------------+----------------------------------+
 ; Voltage Supply ; Total Current Drawn (1) ; Dynamic Current Drawn (1) ; Static Current Drawn (1) ; Minimum Power Supply Current (2) ;
 +----------------+-------------------------+---------------------------+--------------------------+----------------------------------+
-; VCCIO          ; 3.81 mA                 ; 0.00 mA                   ; 3.81 mA                  ; 3.81 mA                          ;
+; VCCIO          ; 3.95 mA                 ; 0.00 mA                   ; 3.95 mA                  ; 3.95 mA                          ;
 ; VCCA           ; 0.00 mA                 ; 0.00 mA                   ; 0.00 mA                  ; 0.00 mA                          ;
 ; VCC_ONE        ; 36.87 mA                ; 0.00 mA                   ; 36.87 mA                 ; 36.87 mA                         ;
 +----------------+-------------------------+---------------------------+--------------------------+----------------------------------+
@@ -243,10 +255,10 @@ agreement for further details.
 ; 1A       ; 2.5V          ; 0.25 mA             ; 0.00 mA               ; 0.25 mA              ;
 ; 1B       ; 2.5V          ; 0.26 mA             ; 0.00 mA               ; 0.26 mA              ;
 ; 2        ; 2.5V          ; 0.25 mA             ; 0.00 mA               ; 0.25 mA              ;
-; 3        ; 3.0V          ; 1.02 mA             ; 0.00 mA               ; 1.02 mA              ;
+; 3        ; 3.0V          ; 1.03 mA             ; 0.00 mA               ; 1.03 mA              ;
 ; 4        ; 2.5V          ; 0.26 mA             ; 0.00 mA               ; 0.26 mA              ;
 ; 5        ; 2.5V          ; 0.28 mA             ; 0.00 mA               ; 0.28 mA              ;
-; 6        ; 3.0V          ; 0.94 mA             ; 0.00 mA               ; 0.94 mA              ;
+; 6        ; 3.0V          ; 1.08 mA             ; 0.00 mA               ; 1.08 mA              ;
 ; 7        ; 2.5V          ; 0.26 mA             ; 0.00 mA               ; 0.26 mA              ;
 ; 8        ; 2.5V          ; 0.28 mA             ; 0.00 mA               ; 0.28 mA              ;
 +----------+---------------+---------------------+-----------------------+----------------------+
@@ -258,7 +270,7 @@ agreement for further details.
 ; VCCIO Voltage ; Total Current Drawn (1) ; Dynamic Current Drawn (1) ; Static Current Drawn (1) ; Minimum Power Supply Current (2) ;
 +---------------+-------------------------+---------------------------+--------------------------+----------------------------------+
 ; 2.5V          ; 1.85 mA                 ; 0.00 mA                   ; 1.85 mA                  ; 1.85 mA                          ;
-; 3.0V          ; 1.96 mA                 ; 0.00 mA                   ; 1.96 mA                  ; 1.96 mA                          ;
+; 3.0V          ; 2.10 mA                 ; 0.00 mA                   ; 2.10 mA                  ; 2.10 mA                          ;
 +---------------+-------------------------+---------------------------+--------------------------+----------------------------------+
 (1) Currents reported in columns "Total Current Drawn", "Dynamic Current Drawn", and "Static Current Drawn" are sufficient for user operation of the device.  
 (2) Currents reported in column "Minimum Power Supply Current" are sufficient for power-up, configuration, and user operation of the device.
@@ -275,19 +287,19 @@ agreement for further details.
 ;                                                                                        ;             ;            ;              ;               ;
 ; Node, entity or clock assignment                                                       ;             ;            ;              ;               ;
 ;     -- Number of signals with Toggle Rate from Node, entity or clock assignment        ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 2 (0.2%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 2 (0.3%)      ;
+;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 1 (0.1%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 1 (0.2%)      ;
 ;                                                                                        ;             ;            ;              ;               ;
 ; Vectorless estimation                                                                  ;             ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 864 (95.7%) ; 42 (51.9%) ; 245 (100.0%) ; 577 (100.0%)  ;
-;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 45 (5.0%)   ; 16 (19.8%) ; 0 (0.0%)     ; 29 (5.0%)     ;
-;     -- Number of signals with Static Probability from Vectorless estimation            ; 862 (95.5%) ; 42 (51.9%) ; 245 (100.0%) ; 575 (99.7%)   ;
+;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 637 (92.5%) ; 42 (44.7%) ; 157 (100.0%) ; 438 (100.0%)  ;
+;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 53 (7.7%)   ; 20 (21.3%) ; 1 (0.6%)     ; 32 (7.3%)     ;
+;     -- Number of signals with Static Probability from Vectorless estimation            ; 636 (92.3%) ; 42 (44.7%) ; 157 (100.0%) ; 437 (99.8%)   ;
 ;                                                                                        ;             ;            ;              ;               ;
 ; Default assignment                                                                     ;             ;            ;              ;               ;
 ;     -- Number of signals with Toggle Rate from Default assignment                      ; 0 (0.0%)    ; 0 (0.0%)   ; 0 (0.0%)     ; 0 (0.0%)      ;
-;     -- Number of signals with Static Probability from Default assignment               ; 39 (4.3%)   ; 39 (48.1%) ; 0 (0.0%)     ; 0 (0.0%)      ;
+;     -- Number of signals with Static Probability from Default assignment               ; 52 (7.5%)   ; 52 (55.3%) ; 0 (0.0%)     ; 0 (0.0%)      ;
 ;                                                                                        ;             ;            ;              ;               ;
 ; Assumed 0                                                                              ;             ;            ;              ;               ;
-;     -- Number of signals with Toggle Rate assumed 0                                    ; 39 (4.3%)   ; 39 (48.1%) ; 0 (0.0%)     ; 0 (0.0%)      ;
+;     -- Number of signals with Toggle Rate assumed 0                                    ; 52 (7.5%)   ; 52 (55.3%) ; 0 (0.0%)     ; 0 (0.0%)      ;
 +----------------------------------------------------------------------------------------+-------------+------------+--------------+---------------+
 
 
@@ -305,16 +317,14 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime PowerPlay Power Analyzer
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Sat Jul 15 22:57:49 2017
+    Info: Processing started: Sun Jul 16 17:05:44 2017
 Info: Command: quartus_pow --read_settings_files=off --write_settings_files=off 10M08 -c 10M08
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
 Critical Warning (332012): Synopsys Design Constraints File file not found: '10M08.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Warning (332060): Node: clock was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register uart:umd|uart_rx_data_out_stb is being clocked by clock
-Warning (332060): Node: hyperram:hyperram_0|internal_clock was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register hyperram:hyperram_0|state.latency_delay is being clocked by hyperram:hyperram_0|internal_clock
+    Info (13166): Register master:master_m|umd_rx_stb~reg0 is being clocked by clock
 Warning (332068): No clocks defined in design.
 Info (223000): Starting Vectorless Power Activity Estimation
 Warning (222013): Relative toggle rates could not be calculated because no clock domain could be identified for some nodes
@@ -324,10 +334,10 @@ Info (334003): Started post-fitting delay annotation
 Warning (334000): Timing characteristics of device 10M08SAE144C8GES are preliminary
 Info (334004): Delay annotation completed successfully
 Info (215049): Average toggle rate for this design is 0.000 millions of transitions / sec
-Info (215031): Total thermal power estimate for the design is 120.78 mW
-Info: Quartus Prime PowerPlay Power Analyzer was successful. 0 errors, 7 warnings
-    Info: Peak virtual memory: 717 megabytes
-    Info: Processing ended: Sat Jul 15 22:57:51 2017
+Info (215031): Total thermal power estimate for the design is 121.11 mW
+Info: Quartus Prime PowerPlay Power Analyzer was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 712 megabytes
+    Info: Processing ended: Sun Jul 16 17:05:46 2017
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

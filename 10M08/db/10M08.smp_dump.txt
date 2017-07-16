@@ -31,24 +31,6 @@ state.slv_ack2 0 0 1 0 0 0 0 0 1
 state.mstr_ack 0 1 0 0 0 0 0 0 1 
 state.stop 1 0 0 0 0 0 0 0 1 
 
-State Machine - |master_bridge|master:master_m|next_state
-Name next_state.shutdown next_state.standby next_state.deactivate next_state.live next_state.activate next_state.startup 
-next_state.startup 0 0 0 0 0 0 
-next_state.activate 0 0 0 0 1 1 
-next_state.live 0 0 0 1 0 1 
-next_state.deactivate 0 0 1 0 0 1 
-next_state.standby 0 1 0 0 0 1 
-next_state.shutdown 1 0 0 0 0 1 
-
-State Machine - |master_bridge|master:master_m|state_lock
-Name state_lock.shutdown state_lock.standby state_lock.deactivate state_lock.live state_lock.activate state_lock.startup 
-state_lock.startup 0 0 0 0 0 0 
-state_lock.activate 0 0 0 0 1 1 
-state_lock.live 0 0 0 1 0 1 
-state_lock.deactivate 0 0 1 0 0 1 
-state_lock.standby 0 1 0 0 0 1 
-state_lock.shutdown 1 0 0 0 0 1 
-
 State Machine - |master_bridge|master:master_m|state
 Name state.shutdown state.standby state.deactivate state.live state.activate state.startup 
 state.startup 0 0 0 0 0 0 

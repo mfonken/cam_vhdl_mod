@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for 10M08
-Sat Jul 15 22:57:54 2017
+Sun Jul 16 17:05:49 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -92,56 +92,52 @@ agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.15        ;
+; Average used               ; 1.12        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   5.4%      ;
-;     Processor 3            ;   5.1%      ;
-;     Processor 4            ;   5.0%      ;
+;     Processor 2            ;   4.4%      ;
+;     Processor 3            ;   4.0%      ;
+;     Processor 4            ;   3.8%      ;
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Clocks                                                                                                                                                                                                                                 ;
-+------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------------------------------------+
-; Clock Name                         ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets                                ;
-+------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------------------------------------+
-; clock                              ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clock }                              ;
-; hyperram:hyperram_0|internal_clock ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { hyperram:hyperram_0|internal_clock } ;
-+------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                            ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets   ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------+
+; clock      ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clock } ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------+
 
 
-+--------------------------------------------------------------------------+
-; Slow 1200mV 85C Model Fmax Summary                                       ;
-+------------+-----------------+------------------------------------+------+
-; Fmax       ; Restricted Fmax ; Clock Name                         ; Note ;
-+------------+-----------------+------------------------------------+------+
-; 130.46 MHz ; 130.46 MHz      ; clock                              ;      ;
-; 180.57 MHz ; 180.57 MHz      ; hyperram:hyperram_0|internal_clock ;      ;
-+------------+-----------------+------------------------------------+------+
++-------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary              ;
++-----------+-----------------+------------+------+
+; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
++-----------+-----------------+------------+------+
+; 147.6 MHz ; 147.6 MHz       ; clock      ;      ;
++-----------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+-------------------------------------------------------------+
-; Slow 1200mV 85C Model Setup Summary                         ;
-+------------------------------------+--------+---------------+
-; Clock                              ; Slack  ; End Point TNS ;
-+------------------------------------+--------+---------------+
-; clock                              ; -6.665 ; -466.199      ;
-; hyperram:hyperram_0|internal_clock ; -4.538 ; -106.802      ;
-+------------------------------------+--------+---------------+
++-------------------------------------+
+; Slow 1200mV 85C Model Setup Summary ;
++-------+--------+--------------------+
+; Clock ; Slack  ; End Point TNS      ;
++-------+--------+--------------------+
+; clock ; -5.775 ; -406.609           ;
++-------+--------+--------------------+
 
 
-+------------------------------------------------------------+
-; Slow 1200mV 85C Model Hold Summary                         ;
-+------------------------------------+-------+---------------+
-; Clock                              ; Slack ; End Point TNS ;
-+------------------------------------+-------+---------------+
-; clock                              ; 0.359 ; 0.000         ;
-; hyperram:hyperram_0|internal_clock ; 0.361 ; 0.000         ;
-+------------------------------------+-------+---------------+
++------------------------------------+
+; Slow 1200mV 85C Model Hold Summary ;
++-------+-------+--------------------+
+; Clock ; Slack ; End Point TNS      ;
++-------+-------+--------------------+
+; clock ; 0.340 ; 0.000              ;
++-------+-------+--------------------+
 
 
 ------------------------------------------
@@ -156,14 +152,13 @@ No paths to report.
 No paths to report.
 
 
-+-------------------------------------------------------------+
-; Slow 1200mV 85C Model Minimum Pulse Width Summary           ;
-+------------------------------------+--------+---------------+
-; Clock                              ; Slack  ; End Point TNS ;
-+------------------------------------+--------+---------------+
-; clock                              ; -3.000 ; -295.939      ;
-; hyperram:hyperram_0|internal_clock ; -1.487 ; -71.376       ;
-+------------------------------------+--------+---------------+
++---------------------------------------------------+
+; Slow 1200mV 85C Model Minimum Pulse Width Summary ;
++-------+--------+----------------------------------+
+; Clock ; Slack  ; End Point TNS                    ;
++-------+--------+----------------------------------+
+; clock ; -3.000 ; -236.459                         ;
++-------+--------+----------------------------------+
 
 
 -----------------------------------------------
@@ -172,35 +167,32 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+--------------------------------------------------------------------------+
-; Slow 1200mV 0C Model Fmax Summary                                        ;
-+------------+-----------------+------------------------------------+------+
-; Fmax       ; Restricted Fmax ; Clock Name                         ; Note ;
-+------------+-----------------+------------------------------------+------+
-; 140.17 MHz ; 140.17 MHz      ; clock                              ;      ;
-; 194.25 MHz ; 194.25 MHz      ; hyperram:hyperram_0|internal_clock ;      ;
-+------------+-----------------+------------------------------------+------+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary                ;
++------------+-----------------+------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
++------------+-----------------+------------+------+
+; 158.73 MHz ; 158.73 MHz      ; clock      ;      ;
++------------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+-------------------------------------------------------------+
-; Slow 1200mV 0C Model Setup Summary                          ;
-+------------------------------------+--------+---------------+
-; Clock                              ; Slack  ; End Point TNS ;
-+------------------------------------+--------+---------------+
-; clock                              ; -6.134 ; -423.771      ;
-; hyperram:hyperram_0|internal_clock ; -4.148 ; -100.449      ;
-+------------------------------------+--------+---------------+
++------------------------------------+
+; Slow 1200mV 0C Model Setup Summary ;
++-------+--------+-------------------+
+; Clock ; Slack  ; End Point TNS     ;
++-------+--------+-------------------+
+; clock ; -5.300 ; -370.463          ;
++-------+--------+-------------------+
 
 
-+------------------------------------------------------------+
-; Slow 1200mV 0C Model Hold Summary                          ;
-+------------------------------------+-------+---------------+
-; Clock                              ; Slack ; End Point TNS ;
-+------------------------------------+-------+---------------+
-; clock                              ; 0.253 ; 0.000         ;
-; hyperram:hyperram_0|internal_clock ; 0.323 ; 0.000         ;
-+------------------------------------+-------+---------------+
++-----------------------------------+
+; Slow 1200mV 0C Model Hold Summary ;
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; clock ; 0.303 ; 0.000             ;
++-------+-------+-------------------+
 
 
 -----------------------------------------
@@ -215,14 +207,13 @@ No paths to report.
 No paths to report.
 
 
-+-------------------------------------------------------------+
-; Slow 1200mV 0C Model Minimum Pulse Width Summary            ;
-+------------------------------------+--------+---------------+
-; Clock                              ; Slack  ; End Point TNS ;
-+------------------------------------+--------+---------------+
-; clock                              ; -3.000 ; -301.912      ;
-; hyperram:hyperram_0|internal_clock ; -1.487 ; -71.376       ;
-+------------------------------------+--------+---------------+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Minimum Pulse Width Summary ;
++-------+--------+---------------------------------+
+; Clock ; Slack  ; End Point TNS                   ;
++-------+--------+---------------------------------+
+; clock ; -3.000 ; -236.627                        ;
++-------+--------+---------------------------------+
 
 
 ----------------------------------------------
@@ -231,24 +222,22 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+-------------------------------------------------------------+
-; Fast 1200mV 0C Model Setup Summary                          ;
-+------------------------------------+--------+---------------+
-; Clock                              ; Slack  ; End Point TNS ;
-+------------------------------------+--------+---------------+
-; clock                              ; -1.936 ; -71.475       ;
-; hyperram:hyperram_0|internal_clock ; -1.092 ; -18.493       ;
-+------------------------------------+--------+---------------+
++------------------------------------+
+; Fast 1200mV 0C Model Setup Summary ;
++-------+--------+-------------------+
+; Clock ; Slack  ; End Point TNS     ;
++-------+--------+-------------------+
+; clock ; -1.525 ; -65.852           ;
++-------+--------+-------------------+
 
 
-+------------------------------------------------------------+
-; Fast 1200mV 0C Model Hold Summary                          ;
-+------------------------------------+-------+---------------+
-; Clock                              ; Slack ; End Point TNS ;
-+------------------------------------+-------+---------------+
-; clock                              ; 0.150 ; 0.000         ;
-; hyperram:hyperram_0|internal_clock ; 0.150 ; 0.000         ;
-+------------------------------------+-------+---------------+
++-----------------------------------+
+; Fast 1200mV 0C Model Hold Summary ;
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; clock ; 0.142 ; 0.000             ;
++-------+-------+-------------------+
 
 
 -----------------------------------------
@@ -263,14 +252,13 @@ No paths to report.
 No paths to report.
 
 
-+-------------------------------------------------------------+
-; Fast 1200mV 0C Model Minimum Pulse Width Summary            ;
-+------------------------------------+--------+---------------+
-; Clock                              ; Slack  ; End Point TNS ;
-+------------------------------------+--------+---------------+
-; clock                              ; -3.000 ; -248.783      ;
-; hyperram:hyperram_0|internal_clock ; -1.000 ; -48.000       ;
-+------------------------------------+--------+---------------+
++--------------------------------------------------+
+; Fast 1200mV 0C Model Minimum Pulse Width Summary ;
++-------+--------+---------------------------------+
+; Clock ; Slack  ; End Point TNS                   ;
++-------+--------+---------------------------------+
+; clock ; -3.000 ; -197.273                        ;
++-------+--------+---------------------------------+
 
 
 ----------------------------------------------
@@ -279,18 +267,16 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+---------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                               ;
-+-------------------------------------+----------+-------+----------+---------+---------------------+
-; Clock                               ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
-+-------------------------------------+----------+-------+----------+---------+---------------------+
-; Worst-case Slack                    ; -6.665   ; 0.150 ; N/A      ; N/A     ; -3.000              ;
-;  clock                              ; -6.665   ; 0.150 ; N/A      ; N/A     ; -3.000              ;
-;  hyperram:hyperram_0|internal_clock ; -4.538   ; 0.150 ; N/A      ; N/A     ; -1.487              ;
-; Design-wide TNS                     ; -573.001 ; 0.0   ; 0.0      ; 0.0     ; -373.288            ;
-;  clock                              ; -466.199 ; 0.000 ; N/A      ; N/A     ; -301.912            ;
-;  hyperram:hyperram_0|internal_clock ; -106.802 ; 0.000 ; N/A      ; N/A     ; -71.376             ;
-+-------------------------------------+----------+-------+----------+---------+---------------------+
++--------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                            ;
++------------------+----------+-------+----------+---------+---------------------+
+; Clock            ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+----------+-------+----------+---------+---------------------+
+; Worst-case Slack ; -5.775   ; 0.142 ; N/A      ; N/A     ; -3.000              ;
+;  clock           ; -5.775   ; 0.142 ; N/A      ; N/A     ; -3.000              ;
+; Design-wide TNS  ; -406.609 ; 0.0   ; 0.0      ; 0.0     ; -236.627            ;
+;  clock           ; -406.609 ; 0.000 ; N/A      ; N/A     ; -236.627            ;
++------------------+----------+-------+----------+---------+---------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -305,19 +291,6 @@ No synchronizer chains to report.
 ; LED5         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; pwdn         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; umd_tx       ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_rst    ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_cs_n   ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_ck_p   ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_ck_n   ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_rwds   ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_dq[0]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_dq[1]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_dq[2]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_dq[3]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_dq[4]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_dq[5]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_dq[6]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; t_ram_dq[7]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; A            ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; B            ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; cam_ena      ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
@@ -337,6 +310,19 @@ No synchronizer chains to report.
 ; ram_dq[5]    ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ram_dq[6]    ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ram_dq[7]    ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_rst    ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_cs_n   ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_ck_p   ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_ck_n   ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_rwds   ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_dq[0]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_dq[1]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_dq[2]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_dq[3]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_dq[4]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_dq[5]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_dq[6]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; t_ram_dq[7]  ; 3.0-V PCI    ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; 10p F ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; reset_n      ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ~ALTERA_TDO~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 +--------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
@@ -358,6 +344,7 @@ No synchronizer chains to report.
 ; cpi[5]              ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; cpi[6]              ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; cpi[7]              ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; umd_rx              ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; A                   ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; B                   ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; cam_ena             ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
@@ -377,9 +364,21 @@ No synchronizer chains to report.
 ; ram_dq[5]           ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
 ; ram_dq[6]           ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
 ; ram_dq[7]           ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_rst           ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_cs_n          ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_ck_p          ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_ck_n          ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_rwds          ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_dq[0]         ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_dq[1]         ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_dq[2]         ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_dq[3]         ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_dq[4]         ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_dq[5]         ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_dq[6]         ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
+; t_ram_dq[7]         ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
 ; reset_n             ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; clock               ; 3.0-V PCI             ; 2400 ps         ; 2400 ps         ;
-; umd_rx              ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TMS~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TCK~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TDI~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
@@ -402,19 +401,6 @@ No synchronizer chains to report.
 ; LED5         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0932 V           ; 0.135 V                              ; 0.16 V                               ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0932 V          ; 0.135 V                             ; 0.16 V                              ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; pwdn         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
-; t_ram_rst    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_cs_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_ck_p   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_ck_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_rwds   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[0]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[1]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[2]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[3]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[4]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[5]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[6]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[7]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
 ; A            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; B            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0905 V           ; 0.135 V                              ; 0.167 V                              ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0905 V          ; 0.135 V                             ; 0.167 V                             ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; cam_ena      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0932 V           ; 0.135 V                              ; 0.16 V                               ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0932 V          ; 0.135 V                             ; 0.16 V                              ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
@@ -434,6 +420,19 @@ No synchronizer chains to report.
 ; ram_dq[5]    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.72e-09 V                   ; 2.89 V              ; -1.01 V             ; 0.045 V                              ; 0.553 V                              ; 3.79e-10 s                  ; 3.31e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.72e-09 V                  ; 2.89 V             ; -1.01 V            ; 0.045 V                             ; 0.553 V                             ; 3.79e-10 s                 ; 3.31e-10 s                 ; Yes                       ; No                        ;
 ; ram_dq[6]    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.89 V              ; -1.01 V             ; 0.045 V                              ; 0.553 V                              ; 3.79e-10 s                  ; 3.31e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.89 V             ; -1.01 V            ; 0.045 V                             ; 0.553 V                             ; 3.79e-10 s                 ; 3.31e-10 s                 ; Yes                       ; No                        ;
 ; ram_dq[7]    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.72e-09 V                   ; 2.89 V              ; -1.01 V             ; 0.045 V                              ; 0.553 V                              ; 3.79e-10 s                  ; 3.31e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.72e-09 V                  ; 2.89 V             ; -1.01 V            ; 0.045 V                             ; 0.553 V                             ; 3.79e-10 s                 ; 3.31e-10 s                 ; Yes                       ; No                        ;
+; t_ram_rst    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_cs_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_ck_p   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_ck_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_rwds   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[0]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[1]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[2]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[3]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[4]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[5]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[6]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.71e-09 V                   ; 2.9 V               ; -1.03 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.71e-09 V                  ; 2.9 V              ; -1.03 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[7]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.7e-09 V                    ; 2.9 V               ; -1.02 V             ; 0.033 V                              ; 0.559 V                              ; 3.77e-10 s                  ; 3.28e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.7e-09 V                   ; 2.9 V              ; -1.02 V            ; 0.033 V                             ; 0.559 V                             ; 3.77e-10 s                 ; 3.28e-10 s                 ; Yes                       ; No                        ;
 ; reset_n      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.47e-09 V                   ; 2.4 V               ; -0.0932 V           ; 0.135 V                              ; 0.16 V                               ; 4.43e-10 s                  ; 4.36e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.47e-09 V                  ; 2.4 V              ; -0.0932 V          ; 0.135 V                             ; 0.16 V                              ; 4.43e-10 s                 ; 4.36e-10 s                 ; No                        ; Yes                       ;
 ; ~ALTERA_TDO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.49e-09 V                   ; 2.38 V              ; -0.0505 V           ; 0.23 V                               ; 0.155 V                              ; 4.84e-10 s                  ; 6.18e-10 s                  ; Yes                        ; No                         ; 2.32 V                      ; 7.49e-09 V                  ; 2.38 V             ; -0.0505 V          ; 0.23 V                              ; 0.155 V                             ; 4.84e-10 s                 ; 6.18e-10 s                 ; Yes                       ; No                        ;
 +--------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
@@ -451,19 +450,6 @@ No synchronizer chains to report.
 ; LED5         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0521 V           ; 0.17 V                               ; 0.231 V                              ; 4.74e-10 s                  ; 4.79e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0521 V          ; 0.17 V                              ; 0.231 V                             ; 4.74e-10 s                 ; 4.79e-10 s                 ; Yes                       ; Yes                       ;
 ; pwdn         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
 ; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
-; t_ram_rst    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_cs_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_ck_p   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_ck_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_rwds   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[0]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[1]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[2]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[3]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[4]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[5]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[6]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[7]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
 ; A            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
 ; B            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0526 V           ; 0.169 V                              ; 0.23 V                               ; 4.75e-10 s                  ; 4.8e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0526 V          ; 0.169 V                             ; 0.23 V                              ; 4.75e-10 s                 ; 4.8e-10 s                  ; Yes                       ; Yes                       ;
 ; cam_ena      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0521 V           ; 0.17 V                               ; 0.231 V                              ; 4.74e-10 s                  ; 4.79e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0521 V          ; 0.17 V                              ; 0.231 V                             ; 4.74e-10 s                 ; 4.79e-10 s                 ; Yes                       ; Yes                       ;
@@ -483,6 +469,19 @@ No synchronizer chains to report.
 ; ram_dq[5]    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.69 V             ; 0.006 V                              ; 0.326 V                              ; 4.95e-10 s                  ; 3.57e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.69 V            ; 0.006 V                             ; 0.326 V                             ; 4.95e-10 s                 ; 3.57e-10 s                 ; Yes                       ; No                        ;
 ; ram_dq[6]    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.17e-07 V                   ; 2.82 V              ; -0.69 V             ; 0.006 V                              ; 0.326 V                              ; 4.95e-10 s                  ; 3.57e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.17e-07 V                  ; 2.82 V             ; -0.69 V            ; 0.006 V                             ; 0.326 V                             ; 4.95e-10 s                 ; 3.57e-10 s                 ; Yes                       ; No                        ;
 ; ram_dq[7]    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.69 V             ; 0.006 V                              ; 0.326 V                              ; 4.95e-10 s                  ; 3.57e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.69 V            ; 0.006 V                             ; 0.326 V                             ; 4.95e-10 s                 ; 3.57e-10 s                 ; Yes                       ; No                        ;
+; t_ram_rst    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_cs_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_ck_p   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_ck_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_rwds   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[0]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[1]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[2]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[3]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[4]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[5]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[6]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.333 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.333 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[7]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 2.8 V                        ; 2.18e-07 V                   ; 2.82 V              ; -0.706 V            ; 0.004 V                              ; 0.332 V                              ; 4.95e-10 s                  ; 3.53e-10 s                  ; Yes                        ; No                         ; 2.8 V                       ; 2.18e-07 V                  ; 2.82 V             ; -0.706 V           ; 0.004 V                             ; 0.332 V                             ; 4.95e-10 s                 ; 3.53e-10 s                 ; Yes                       ; No                        ;
 ; reset_n      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.66e-07 V                   ; 2.37 V              ; -0.0521 V           ; 0.17 V                               ; 0.231 V                              ; 4.74e-10 s                  ; 4.79e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.66e-07 V                  ; 2.37 V             ; -0.0521 V          ; 0.17 V                              ; 0.231 V                             ; 4.74e-10 s                 ; 4.79e-10 s                 ; Yes                       ; Yes                       ;
 ; ~ALTERA_TDO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.88e-07 V                   ; 2.36 V              ; -0.0211 V           ; 0.162 V                              ; 0.122 V                              ; 6.58e-10 s                  ; 7.79e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 7.88e-07 V                  ; 2.36 V             ; -0.0211 V          ; 0.162 V                             ; 0.122 V                             ; 6.58e-10 s                 ; 7.79e-10 s                 ; No                        ; Yes                       ;
 +--------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
@@ -500,19 +499,6 @@ No synchronizer chains to report.
 ; LED5         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; pwdn         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; umd_tx       ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
-; t_ram_rst    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
-; t_ram_cs_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
-; t_ram_ck_p   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
-; t_ram_ck_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
-; t_ram_rwds   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[0]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[1]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[2]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[3]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[4]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[5]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[6]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
-; t_ram_dq[7]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
 ; A            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; B            ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.94e-08 V                   ; 2.78 V              ; -0.0444 V           ; 0.25 V                               ; 0.107 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.94e-08 V                  ; 2.78 V             ; -0.0444 V          ; 0.25 V                              ; 0.107 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; cam_ena      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
@@ -532,34 +518,41 @@ No synchronizer chains to report.
 ; ram_dq[5]    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.71 V              ; -1.53 V             ; 0.206 V                              ; 0.901 V                              ; 3.21e-10 s                  ; 2.74e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.71 V             ; -1.53 V            ; 0.206 V                             ; 0.901 V                             ; 3.21e-10 s                 ; 2.74e-10 s                 ; Yes                       ; No                        ;
 ; ram_dq[6]    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.71 V              ; -1.53 V             ; 0.206 V                              ; 0.902 V                              ; 3.21e-10 s                  ; 2.74e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.71 V             ; -1.53 V            ; 0.206 V                             ; 0.902 V                             ; 3.21e-10 s                 ; 2.74e-10 s                 ; Yes                       ; No                        ;
 ; ram_dq[7]    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.71 V              ; -1.53 V             ; 0.206 V                              ; 0.901 V                              ; 3.21e-10 s                  ; 2.74e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.71 V             ; -1.53 V            ; 0.206 V                             ; 0.901 V                             ; 3.21e-10 s                 ; 2.74e-10 s                 ; Yes                       ; No                        ;
+; t_ram_rst    ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
+; t_ram_cs_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
+; t_ram_ck_p   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
+; t_ram_ck_n   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
+; t_ram_rwds   ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[0]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[1]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[2]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[3]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[4]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[5]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[6]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.72e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.72e-10 s                 ; Yes                       ; No                        ;
+; t_ram_dq[7]  ; 3.0-V PCI    ; 0 s                 ; 0 s                 ; 3.15 V                       ; 6.78e-08 V                   ; 3.72 V              ; -1.54 V             ; 0.205 V                              ; 0.905 V                              ; 3.18e-10 s                  ; 2.71e-10 s                  ; Yes                        ; No                         ; 3.15 V                      ; 6.78e-08 V                  ; 3.72 V             ; -1.54 V            ; 0.205 V                             ; 0.905 V                             ; 3.18e-10 s                 ; 2.71e-10 s                 ; Yes                       ; No                        ;
 ; reset_n      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 9.95e-08 V                   ; 2.78 V              ; -0.0452 V           ; 0.248 V                              ; 0.108 V                              ; 2.67e-10 s                  ; 2.75e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 9.95e-08 V                  ; 2.78 V             ; -0.0452 V          ; 0.248 V                             ; 0.108 V                             ; 2.67e-10 s                 ; 2.75e-10 s                 ; No                        ; Yes                       ;
 ; ~ALTERA_TDO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 1.68e-07 V                   ; 2.73 V              ; -0.0395 V           ; 0.361 V                              ; 0.109 V                              ; 3.1e-10 s                   ; 4.41e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 1.68e-07 V                  ; 2.73 V             ; -0.0395 V          ; 0.361 V                             ; 0.109 V                             ; 3.1e-10 s                  ; 4.41e-10 s                 ; No                        ; Yes                       ;
 +--------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------+
-; Setup Transfers                                                                                                     ;
-+------------------------------------+------------------------------------+----------+----------+----------+----------+
-; From Clock                         ; To Clock                           ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+------------------------------------+------------------------------------+----------+----------+----------+----------+
-; clock                              ; clock                              ; 6450     ; 0        ; 0        ; 0        ;
-; hyperram:hyperram_0|internal_clock ; clock                              ; 1        ; 3        ; 0        ; 0        ;
-; clock                              ; hyperram:hyperram_0|internal_clock ; 0        ; 0        ; 8        ; 0        ;
-; hyperram:hyperram_0|internal_clock ; hyperram:hyperram_0|internal_clock ; 2        ; 2        ; 21       ; 610      ;
-+------------------------------------+------------------------------------+----------+----------+----------+----------+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clock      ; clock    ; 5999     ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
-+---------------------------------------------------------------------------------------------------------------------+
-; Hold Transfers                                                                                                      ;
-+------------------------------------+------------------------------------+----------+----------+----------+----------+
-; From Clock                         ; To Clock                           ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+------------------------------------+------------------------------------+----------+----------+----------+----------+
-; clock                              ; clock                              ; 6450     ; 0        ; 0        ; 0        ;
-; hyperram:hyperram_0|internal_clock ; clock                              ; 1        ; 3        ; 0        ; 0        ;
-; clock                              ; hyperram:hyperram_0|internal_clock ; 0        ; 0        ; 8        ; 0        ;
-; hyperram:hyperram_0|internal_clock ; hyperram:hyperram_0|internal_clock ; 2        ; 2        ; 21       ; 610      ;
-+------------------------------------+------------------------------------+----------+----------+----------+----------+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clock      ; clock    ; 5999     ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
@@ -582,21 +575,20 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 12    ; 12   ;
-; Unconstrained Input Port Paths  ; 227   ; 227  ;
-; Unconstrained Output Ports      ; 34    ; 34   ;
-; Unconstrained Output Port Paths ; 46    ; 46   ;
+; Unconstrained Input Ports       ; 11    ; 11   ;
+; Unconstrained Input Port Paths  ; 183   ; 183  ;
+; Unconstrained Output Ports      ; 30    ; 30   ;
+; Unconstrained Output Port Paths ; 49    ; 49   ;
 +---------------------------------+-------+------+
 
 
-+----------------------------------------------------------------------------------------------+
-; Clock Status Summary                                                                         ;
-+------------------------------------+------------------------------------+------+-------------+
-; Target                             ; Clock                              ; Type ; Status      ;
-+------------------------------------+------------------------------------+------+-------------+
-; clock                              ; clock                              ; Base ; Constrained ;
-; hyperram:hyperram_0|internal_clock ; hyperram:hyperram_0|internal_clock ; Base ; Constrained ;
-+------------------------------------+------------------------------------+------+-------------+
++-------------------------------------+
+; Clock Status Summary                ;
++--------+-------+------+-------------+
+; Target ; Clock ; Type ; Status      ;
++--------+-------+------+-------------+
+; clock  ; clock ; Base ; Constrained ;
++--------+-------+------+-------------+
 
 
 +---------------------------------------------------------------------------------------------------+
@@ -615,7 +607,6 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; ram_rwds   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; reset_n    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; scl        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; umd_rx     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +------------+--------------------------------------------------------------------------------------+
 
 
@@ -626,9 +617,6 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +-------------+---------------------------------------------------------------------------------------+
 ; A           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; B           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; LED3        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; LED4        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; cam_ena     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_ck_n    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_ck_p    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_cs_n    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -641,7 +629,6 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; ram_dq[6]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_dq[7]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_rst     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; ram_rwds    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; scl         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; sda         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; t_ram_ck_n  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -677,7 +664,6 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; ram_rwds   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; reset_n    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; scl        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; umd_rx     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +------------+--------------------------------------------------------------------------------------+
 
 
@@ -688,9 +674,6 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +-------------+---------------------------------------------------------------------------------------+
 ; A           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; B           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; LED3        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; LED4        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; cam_ena     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_ck_n    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_ck_p    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_cs_n    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -703,7 +686,6 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; ram_dq[6]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_dq[7]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ram_rst     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; ram_rwds    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; scl         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; sda         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; t_ram_ck_n  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -729,7 +711,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Sat Jul 15 22:57:52 2017
+    Info: Processing started: Sun Jul 16 17:05:47 2017
 Info: Command: quartus_sta 10M08 -c 10M08
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -740,78 +722,68 @@ Critical Warning (332012): Synopsys Design Constraints File file not found: '10M
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
     Info (332105): create_clock -period 1.000 -name clock clock
-    Info (332105): create_clock -period 1.000 -name hyperram:hyperram_0|internal_clock hyperram:hyperram_0|internal_clock
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -6.665
+Info (332146): Worst-case setup slack is -5.775
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.665            -466.199 clock 
-    Info (332119):    -4.538            -106.802 hyperram:hyperram_0|internal_clock 
-Info (332146): Worst-case hold slack is 0.359
+    Info (332119):    -5.775            -406.609 clock 
+Info (332146): Worst-case hold slack is 0.340
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.359               0.000 clock 
-    Info (332119):     0.361               0.000 hyperram:hyperram_0|internal_clock 
+    Info (332119):     0.340               0.000 clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -295.939 clock 
-    Info (332119):    -1.487             -71.376 hyperram:hyperram_0|internal_clock 
+    Info (332119):    -3.000            -236.459 clock 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Warning (334000): Timing characteristics of device 10M08SAE144C8GES are preliminary
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -6.134
+Info (332146): Worst-case setup slack is -5.300
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.134            -423.771 clock 
-    Info (332119):    -4.148            -100.449 hyperram:hyperram_0|internal_clock 
-Info (332146): Worst-case hold slack is 0.253
+    Info (332119):    -5.300            -370.463 clock 
+Info (332146): Worst-case hold slack is 0.303
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.253               0.000 clock 
-    Info (332119):     0.323               0.000 hyperram:hyperram_0|internal_clock 
+    Info (332119):     0.303               0.000 clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -301.912 clock 
-    Info (332119):    -1.487             -71.376 hyperram:hyperram_0|internal_clock 
+    Info (332119):    -3.000            -236.627 clock 
 Info: Analyzing Fast 1200mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -1.936
+Info (332146): Worst-case setup slack is -1.525
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.936             -71.475 clock 
-    Info (332119):    -1.092             -18.493 hyperram:hyperram_0|internal_clock 
-Info (332146): Worst-case hold slack is 0.150
+    Info (332119):    -1.525             -65.852 clock 
+Info (332146): Worst-case hold slack is 0.142
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.150               0.000 clock 
-    Info (332119):     0.150               0.000 hyperram:hyperram_0|internal_clock 
+    Info (332119):     0.142               0.000 clock 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000            -248.783 clock 
-    Info (332119):    -1.000             -48.000 hyperram:hyperram_0|internal_clock 
+    Info (332119):    -3.000            -197.273 clock 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 680 megabytes
-    Info: Processing ended: Sat Jul 15 22:57:54 2017
+    Info: Peak virtual memory: 679 megabytes
+    Info: Processing ended: Sun Jul 16 17:05:49 2017
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
