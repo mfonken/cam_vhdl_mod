@@ -28,17 +28,17 @@ entity hyperram is
 	wr_request        : in    	std_logic;
 	wr_length         : in   	integer range 0 to 255; --std_logic_vector(  7 downto 0 );
 
-	busy					: inout		std_logic;
+	busy              : inout		std_logic;
 
-	strobe            : inout	std_logic;
+	strobe            : inout		std_logic;
 	request_ack       : out   	std_logic;
 
-	burst             : in   	std_logic;
+	burst             : in   		std_logic;
 	as                : in    	std_logic;
 	row               : in    	std_logic_vector( 12 downto 0 );
 	col               : in    	std_logic_vector(  8 downto 0 );
 
-	cs_n              : inout 	std_logic;
+	cs_n              : out 	std_logic;
 	ck_p              : inout 	std_logic;
 	ck_n              : out   	std_logic;
 	rwds              : inout 	std_logic;
@@ -48,8 +48,8 @@ end hyperram;
 
 architecture rtl of hyperram is
 	constant 	ddr_ck_div 			: integer := sys_ck_frequency / ( ddr_ck_frequency * 2 );
-	constant 	ddr_ck_div_width 	: integer := ddr_ck_div / 2;
-	signal   	ddr_ck_div_counter : unsigned(ddr_ck_div_width - 1 downto 0) := (others => '0');
+	constant 	ddr_ck_div_half 	: integer := ddr_ck_div / 2;
+	signal   	ddr_ck_div_counter : unsigned(integer(ceil(log2(real(ddr_ck_div_half)))) downto 0) := (others => '0');
 	constant 	lv 					: std_logic := '0';
 	constant		MAX_BURST 			: integer := 1024;
 	signal		latency 				: integer range 1 to 2 := 1;
@@ -63,6 +63,8 @@ architecture rtl of hyperram is
 	signal internal_data_out  		: std_logic_vector( 15 downto 0 );
 	signal tick_counter       		: integer;
 
+	signal internal_dq				: std_logic_vector( 7 downto 0 );
+
 	--  type hrddr_byte_stream_t is array( MAX_BURST downto 0) of std_logic_vector( 7 downto 0 );
 	signal internal_data_in  	 	: std_logic_vector( 15 downto 0 );
 	signal internal_data_in_l 		: integer range 0 to MAX_BURST;
@@ -70,14 +72,21 @@ architecture rtl of hyperram is
 
 	signal internal_clock			: std_logic := '0';
 	signal internal_clock_prev		: std_logic := '0';
+	signal internal_ck_p 			: std_logic := '0';
+
+	signal internal_mask			: std_logic := 'Z';
 
 	signal rwds_prev					: std_logic := '0';
 	signal strobe_prev  				: std_logic := '0';
 	signal read_write					: std_logic := '0';
 
+	signal tick_counter    : integer range 0 to 6 + latency_config*4 := 0;
+	-- signal latency_counter : integer range 0 to latency_config*4 := 0;
+	signal data_counter    : integer range 0 to MAX_BURST;
+
 	begin
 
-		ca.r_wn	 <= read_write;
+		ca.r_wn	  <= read_write;
 		ca.as     <= as;
 		ca.burst  <= burst;
 		ca.row    <= row;
@@ -95,167 +104,154 @@ architecture rtl of hyperram is
 		-- OVERSAMPLE_CLOCK_DIVIDER
 		-- generate an oversampled tick (baud * 16)
 		---------------------------------------------------------------------------
-		clock_divider : process (clock)
+		clock_divider : process (clock, reset_n)
+		variable tick : std_logic := '0';
 		begin
 			if rising_edge (clock) then
 				if reset_n = '0' then
 					ddr_ck_div_counter <= (others => '0');
-					internal_clock <= '0';
+					tick := '0';
 				else
-					ddr_ck_div_counter <= ddr_ck_div_counter + 1;
-					if ddr_ck_div_counter < ddr_ck_div_width then
-						internal_clock <= '0';
-					elsif ddr_ck_div_counter < ddr_ck_div then
-						internal_clock <= '1';
+					if ddr_ck_div_counter < ddr_ck_div_half then
+						tick <= '0';
 					else
+						tick <= '1';
+					end if;
+					if ddr_ck_div_counter = ddr_ck_div then
 						ddr_ck_div_counter <= ( others => '0' );
+					else
+						ddr_ck_div_counter <= ddr_ck_div_counter + 1;
 					end if;
 				end if;
 			end if;
+			internal_clock <= tick;
 		end process clock_divider;
 
-		clock_driver : process (internal_clock)
+		clock_driver : process (clock, reset_n)
 		begin
-			if rising_edge (internal_clock) then
-				if busy = '1' then
-					ck_p <= not ck_p;
-					ck_n <= ck_p;
-				else
-					ck_p <= '0';
-					ck_n <= '1';
+			if rising_edge (clock) then
+				if internal_clock_prev = '0' and internal_clock = '1' then
+					if busy = '1' and reset_n = '1' then
+						internal_ck_p <= not internal_ck_p;
+					else
+						internal_ck_p <= '0';
+					end if;
 				end if;
+				internal_clock_prev <= internal_clock;
 			end if;
+			ck_p <= internal_ck_p;
+			ck_n <= not internal_ck_p;
 		end process clock_driver;
 
-		data_process : process(internal_clock)
-		variable tick_counter    : integer range 0 to 6 := 6;
-		variable latency_counter : integer range 0 to latency_config*4 := 0;
-		variable data_counter    : integer range 0 to MAX_BURST;
+		data_process : process(clock, reset_n)
+
 		begin
-			if falling_edge(internal_clock) then
-				if reset_n = '0' then
-					B <= '1';
-					busy <= '1';
-					rwds <= 'Z';
-					dq <= ( others => 'Z' );
-					tick_counter 		:= 0;
-					latency_counter := 0;
-					data_counter 		:= 0;
-					state <= idle;
-				else
-					case state is
-						when idle =>
-							B <= '0';
-
-							busy <= '0';
-							rwds <= 'Z';
-							dq <= ( others => 'Z' );
-							tick_counter := 6;
-							latency_counter := 0;
-
-							if wr_request = '1' then
-								data_counter := wr_length;--to_integer( unsigned( wr_length ) );
-								read_write <= hyperram_command.write_command;
-								state <= command;
-							elsif rd_request = '1' then
-								data_counter := rd_length;
-								read_write <= hyperram_command.read_command;
-								rd_data <= X"0000";
-								state <= command;
-							else
-								data_counter := 0;
-								state <= idle;
-							end if;
-
-						when command =>
-							B <= '1';
-
-							busy <= '1';
-							rwds <= 'Z';
-
-							tick_counter := tick_counter - 1;
-							dq <= ca_bfr( tick_counter*8 + 7 downto tick_counter*8 ); --TX command-address (6 clock events) std_logic_vector(to_unsigned(tick_counter, 8));
-
-							if tick_counter = 0 then
-								if ca.as = hyperram_command.register_space and ca.r_wn = hyperram_command.write_command then -- if writing to register space
-								state <= wr;                     -- write without latency
-							else
-								state <= latency_delay;
-							end if;
-						elsif tick_counter <= 2 then
-							if rwds = '1' then
-								latency <= 2;
-							else
+			if rising_edge (clock) then
+				if internal_clock_prev '1' and internal_clock = '0' then
+					if reset_n = '0' then
+						tick_counter 		:= 0;
+						data_counter 		:= 0;
+						latency 				<= 1;
+						rd_data 				<= x"00";
+						state <= idle;
+					else
+						case state is
+							when idle =>
+								tick_counter := 0;
+								internal_data_out <= ( others => '0');
 								latency <= 1;
-							end if;
-							latency_counter := latency_counter + 1;
-						end if;
+								rd_data <= x"00";
 
-					when latency_delay =>
-						B <= '0';
-
-						busy <= '1';
-						rwds <= 'Z';
-						dq <= ( others => 'Z' );
-						tick_counter := 0;
-
-						latency_counter := latency_counter + 1;
-
-						if latency_counter = ( latency_config*2*latency ) then
-							if ca.r_wn = hyperram_command.write_command then
-								state <= wr;
-							else
-								state <= rd;
-							end if;
-						else
-							state <= latency_delay;
-						end if;
-
-					when wr =>
-						B <= '1';
-
-						busy <= '1';
-						rwds <= '0';
-						tick_counter 		:= 0;
-						latency_counter 	:= 0;
-
-						if ck_p = '0' then
-							dq <= wr_data( 15 downto 8 );
-						else
-							dq <= wr_data( 7 downto 0 );
-							strobe <= not strobe_prev;
-							data_counter := data_counter - 1;
-							if data_counter = 0 then
-								state <= idle;
-							end if;
-						end if;
-
-					when rd =>
-						B <= '0';
-
-						busy <= '1';
-						rwds <= 'Z';
-						tick_counter 		:= 0;
-						latency_counter 	:= 0;
-						dq <= ( others => 'Z' );
-
-						if rwds_prev /= rwds then
-							if rwds = '1' then
-								rd_data( 7 downto 0 ) <= dq;
-							else
-								rd_data( 15 downto 8 ) <= dq;
-								strobe <= not strobe_prev;
-								data_counter := data_counter - 1;
-								if data_counter = 0 then
+								if wr_request = '1' then
+									data_counter := wr_length;
+									read_write <= hyperram_command.write_command;
+									state <= command;
+								elsif rd_request = '1' then
+									data_counter := rd_length;
+									read_write <= hyperram_command.read_command;
+									state <= command;
+								else
+									data_counter := 0;
+									read_write <= hyperram_command.read_command;
 									state <= idle;
 								end if;
-							end if;
-						end if;
 
-				end case;
+							when command =>
+								tick_counter := tick_counter + 1;-- - 1;
+								internal_data_out <= ca_bfr( ( ( ( 5 - tick_counter ) * 8 ) + 7 ) downto ( ( 5 - tick_counter ) * 8 ) ); --TX command-address (6 clock events) std_logic_vector(to_unsigned(tick_counter, 8));
+								rd_data <= x"00";
+
+								if tick_counter = 6 then
+									if rwds = '1' then
+										latency <= 2;
+									else
+										latency <= 1;
+									end if;
+									if ca.as = hyperram_command.register_space and read_write = hyperram_command.write_command then -- if writing to register space
+										state <= wr;                     -- write without latency
+									else
+										state <= latency_delay;
+									end if;
+								end if;
+
+							when latency_delay =>
+								tick_counter := tick_counter + 1;
+								internal_data_out <= x"00";
+								latency <= 1;
+								rd_data <= x"00";
+
+								if tick_counter = ( latency_config*2*latency ) + 3 then
+									if read_write = hyperram_command.write_command then
+										state <= wr;
+									else
+										state <= rd;
+									end if;
+								end if;
+
+							when wr =>
+								tick_counter := 0;
+								latency <= 1;
+								rd_data <= x"00";
+
+								if ck_p = '0' then
+									internal_data_out <= wr_data( 15 downto 8 );
+								else
+									internal_data_out <= wr_data( 7 downto 0 );
+									data_counter := data_counter - 1;
+									strobe <= not strobe;
+									if data_counter = 0 then
+										state <= idle;
+									end if;
+								end if;
+
+							when rd =>
+								tick_counter := 0
+								internal_data_out <= x"00";
+								latency <= 1;
+
+								if rwds_prev /= rwds then
+									if rwds = '1' then
+										rd_data( 7 downto 0 ) <= dq;
+									else
+										rd_data( 15 downto 8 ) <= dq;
+										data_counter := data_counter - 1;
+										strobe <= not strobe;
+										if data_counter = 0 then
+											state <= idle;
+										end if;
+									end if;
+								end if;
+
+					end case;
+				end if;
 			end if;
 			strobe_prev <= strobe;
 			rwds_prev <= rwds;
 		end if;
+
+		busy <= '0' when state = idle else '1';
+		rwds <= internal_mask when state = wr else 'Z';
+		dq <= internal_data_out when ( state = command or state = wr ) else ( others => 'Z' );
+
 	end process data_process;
 end rtl;
