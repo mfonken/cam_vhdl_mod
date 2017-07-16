@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 10M08
-Thu Jul 13 22:06:58 2017
+Sat Jul 15 22:57:39 2017
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -62,15 +62,15 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Jul 13 22:06:58 2017       ;
+; Analysis & Synthesis Status        ; Successful - Sat Jul 15 22:57:39 2017       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; 10M08                                       ;
 ; Top-level Entity Name              ; master_bridge                               ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 488                                         ;
-;     Total combinational functions  ; 465                                         ;
-;     Dedicated logic registers      ; 290                                         ;
-; Total registers                    ; 290                                         ;
+; Total logic elements               ; 417                                         ;
+;     Total combinational functions  ; 401                                         ;
+;     Dedicated logic registers      ; 245                                         ;
+; Total registers                    ; 245                                         ;
 ; Total pins                         ; 53                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -210,20 +210,20 @@ agreement for further details.
 +---------------------------------------------+-----------------------------+
 ; Resource                                    ; Usage                       ;
 +---------------------------------------------+-----------------------------+
-; Estimated Total logic elements              ; 488                         ;
+; Estimated Total logic elements              ; 417                         ;
 ;                                             ;                             ;
-; Total combinational functions               ; 465                         ;
+; Total combinational functions               ; 401                         ;
 ; Logic element usage by number of LUT inputs ;                             ;
-;     -- 4 input functions                    ; 197                         ;
-;     -- 3 input functions                    ; 89                          ;
-;     -- <=2 input functions                  ; 179                         ;
+;     -- 4 input functions                    ; 161                         ;
+;     -- 3 input functions                    ; 80                          ;
+;     -- <=2 input functions                  ; 160                         ;
 ;                                             ;                             ;
 ; Logic elements by mode                      ;                             ;
-;     -- normal mode                          ; 358                         ;
-;     -- arithmetic mode                      ; 107                         ;
+;     -- normal mode                          ; 299                         ;
+;     -- arithmetic mode                      ; 102                         ;
 ;                                             ;                             ;
-; Total registers                             ; 290                         ;
-;     -- Dedicated logic registers            ; 290                         ;
+; Total registers                             ; 245                         ;
+;     -- Dedicated logic registers            ; 245                         ;
 ;     -- I/O registers                        ; 0                           ;
 ;                                             ;                             ;
 ; I/O pins                                    ; 53                          ;
@@ -231,9 +231,9 @@ agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0                           ;
 ;                                             ;                             ;
 ; Maximum fan-out node                        ; master:master_m|umd_clock~0 ;
-; Maximum fan-out                             ; 192                         ;
-; Total fan-out                               ; 2396                        ;
-; Average fan-out                             ; 2.72                        ;
+; Maximum fan-out                             ; 165                         ;
+; Total fan-out                               ; 2057                        ;
+; Average fan-out                             ; 2.66                        ;
 +---------------------------------------------+-----------------------------+
 
 
@@ -242,11 +242,11 @@ agreement for further details.
 +------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                    ; Entity Name   ; Library Name ;
 +------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------+---------------+--------------+
-; |master_bridge               ; 465 (1)             ; 290 (1)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 53   ; 0            ; 0          ; |master_bridge                         ; master_bridge ; work         ;
-;    |hyperram:hyperram_0|     ; 137 (137)           ; 86 (86)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|hyperram:hyperram_0     ; hyperram      ; work         ;
-;    |i2c_master:i2c_master_0| ; 81 (81)             ; 33 (33)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|i2c_master:i2c_master_0 ; i2c_master    ; work         ;
-;    |master:master_m|         ; 97 (97)             ; 69 (69)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|master:master_m         ; master        ; work         ;
-;    |ora:ora_0|               ; 64 (64)             ; 42 (42)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|ora:ora_0               ; ora           ; work         ;
+; |master_bridge               ; 401 (1)             ; 245 (0)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 53   ; 0            ; 0          ; |master_bridge                         ; master_bridge ; work         ;
+;    |hyperram:hyperram_0|     ; 114 (114)           ; 69 (69)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|hyperram:hyperram_0     ; hyperram      ; work         ;
+;    |i2c_master:i2c_master_0| ; 80 (80)             ; 33 (33)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|i2c_master:i2c_master_0 ; i2c_master    ; work         ;
+;    |master:master_m|         ; 95 (95)             ; 69 (69)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|master:master_m         ; master        ; work         ;
+;    |ora:ora_0|               ; 26 (26)             ; 15 (15)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|ora:ora_0               ; ora           ; work         ;
 ;    |uart:umd|                ; 85 (85)             ; 59 (59)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |master_bridge|uart:umd                ; uart          ; work         ;
 +------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -376,18 +376,12 @@ Encoding Type:  One-Hot
 ; hyperram:hyperram_0|latency[1]          ; Merged with hyperram:hyperram_0|latency[0]      ;
 ; master:master_m|state_lock.deactivate   ; Merged with master:master_m|state_lock.activate ;
 ; master:master_m|state_lock.activate     ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|r_wr_length[2]~reg0           ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|r_wr_length[4]~reg0           ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|r_wr_length[5]~reg0           ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|r_wr_length[6]~reg0           ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|r_wr_length[7]~reg0           ; Stuck at GND due to stuck port data_in          ;
-; ora:ora_0|r_wr_length[8]~reg0           ; Stuck at GND due to stuck port data_in          ;
 ; master:master_m|umd_rx_data[4]~reg0     ; Merged with master:master_m|umd_rx_data[2]~reg0 ;
 ; master:master_m|umd_rx_data[5]~reg0     ; Stuck at GND due to stuck port data_in          ;
 ; master:master_m|umd_rx_data[6]~reg0     ; Merged with master:master_m|umd_rx_data[0]~reg0 ;
 ; master:master_m|umd_rx_data[2]~reg0     ; Merged with master:master_m|umd_rx_data[1]~reg0 ;
 ; master:master_m|umd_rx_data[3]~reg0     ; Merged with master:master_m|umd_rx_data[1]~reg0 ;
-; Total Number of Removed Registers = 36  ;                                                 ;
+; Total Number of Removed Registers = 30  ;                                                 ;
 +-----------------------------------------+-------------------------------------------------+
 
 
@@ -406,12 +400,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 290   ;
-; Number of registers using Synchronous Clear  ; 64    ;
+; Total registers                              ; 245   ;
+; Number of registers using Synchronous Clear  ; 57    ;
 ; Number of registers using Synchronous Load   ; 20    ;
 ; Number of registers using Asynchronous Clear ; 62    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 141   ;
+; Number of registers using Clock Enable       ; 102   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -425,7 +419,7 @@ Encoding Type:  One-Hot
 ; master:master_m|LED4                              ; 2       ;
 ; uart:umd|uart_tx_data                             ; 2       ;
 ; uart:umd|uart_rx_bit                              ; 4       ;
-; hyperram:hyperram_0|\data_process:tick_counter[2] ; 8       ;
+; hyperram:hyperram_0|\data_process:tick_counter[2] ; 7       ;
 ; hyperram:hyperram_0|\data_process:tick_counter[1] ; 9       ;
 ; i2c_master:i2c_master_0|sda_int                   ; 2       ;
 ; uart:umd|uart_rx_filter[0]                        ; 3       ;
@@ -435,13 +429,8 @@ Encoding Type:  One-Hot
 ; i2c_master:i2c_master_0|bit_cnt[1]                ; 11      ;
 ; i2c_master:i2c_master_0|bit_cnt[2]                ; 8       ;
 ; uart:umd|uart_rx_data_sr[1]                       ; 2       ;
-; ora:ora_0|\hrddr_test:write_index[0]              ; 3       ;
-; ora:ora_0|\hrddr_test:write_index[2]              ; 2       ;
-; ora:ora_0|\hrddr_test:write_index[3]              ; 2       ;
-; ora:ora_0|\hrddr_test:write_index[4]              ; 2       ;
-; ora:ora_0|\hrddr_test:write_index[5]              ; 2       ;
 ; uart:umd|uart_rx_data_sr[0]                       ; 1       ;
-; Total number of inverted registers = 20           ;         ;
+; Total number of inverted registers = 15           ;         ;
 +---------------------------------------------------+---------+
 
 
@@ -450,28 +439,23 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; Yes        ; |master_bridge|i2c_master:i2c_master_0|data_tx[4]                ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |master_bridge|uart:umd|tx_baud_counter[7]                       ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |master_bridge|uart:umd|rx_baud_counter[0]                       ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_data_vec[7]                      ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_bit_spacing[2]                   ;
-; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |master_bridge|hyperram:hyperram_0|ddr_ck_div_counter[11]        ;
-; 3:1                ; 13 bits   ; 26 LEs        ; 26 LEs               ; 0 LEs                  ; Yes        ; |master_bridge|ora:ora_0|\hrddr_test:state_counter[4]            ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |master_bridge|ora:ora_0|r_wr_data[14]                           ;
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |master_bridge|ora:ora_0|r_wr_data[6]                            ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |master_bridge|ora:ora_0|r_wr_length[1]~reg0                     ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |master_bridge|master:master_m|packet_tx_i[2]                    ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_count[2]                         ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |master_bridge|hyperram:hyperram_0|rd_data[8]                    ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |master_bridge|ora:ora_0|r_rd_request                            ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |master_bridge|hyperram:hyperram_0|rd_data[6]                    ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; Yes        ; |master_bridge|i2c_master:i2c_master_0|data_tx[1]                ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |master_bridge|uart:umd|tx_baud_counter[1]                       ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |master_bridge|uart:umd|rx_baud_counter[2]                       ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_data_vec[0]                      ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_bit_spacing[3]                   ;
+; 3:1                ; 13 bits   ; 26 LEs        ; 26 LEs               ; 0 LEs                  ; Yes        ; |master_bridge|ora:ora_0|\hrddr_test:state_counter[0]            ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |master_bridge|hyperram:hyperram_0|ddr_ck_div_counter[19]        ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |master_bridge|master:master_m|packet_tx_i[0]                    ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_count[0]                         ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |master_bridge|ora:ora_0|r_wr_request                            ;
 ; 6:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |master_bridge|uart:umd|uart_tx_data_vec[0]                      ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |master_bridge|hyperram:hyperram_0|\data_process:data_counter[9] ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_tx_count[1]                         ;
-; 8:1                ; 8 bits    ; 40 LEs        ; 16 LEs               ; 24 LEs                 ; Yes        ; |master_bridge|hyperram:hyperram_0|\data_process:data_counter[1] ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_data_sr[1]                       ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |master_bridge|i2c_master:i2c_master_0|bit_cnt[0]                ;
-; 8:1                ; 7 bits    ; 35 LEs        ; 28 LEs               ; 7 LEs                  ; Yes        ; |master_bridge|hyperram:hyperram_0|dq[2]~reg0                    ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |master_bridge|hyperram:hyperram_0|\data_process:data_counter[9] ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_tx_count[0]                         ;
+; 8:1                ; 7 bits    ; 35 LEs        ; 14 LEs               ; 21 LEs                 ; Yes        ; |master_bridge|hyperram:hyperram_0|\data_process:data_counter[1] ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |master_bridge|uart:umd|uart_rx_data_sr[0]                       ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |master_bridge|i2c_master:i2c_master_0|bit_cnt[2]                ;
+; 7:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |master_bridge|hyperram:hyperram_0|dq[6]~reg0                    ;
 ; 18:1               ; 6 bits    ; 72 LEs        ; 12 LEs               ; 60 LEs                 ; No         ; |master_bridge|master:master_m|next_state                        ;
 ; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |master_bridge|uart:umd|uart_tx_state                            ;
 ; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |master_bridge|uart:umd|uart_rx_state                            ;
@@ -580,29 +564,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 53                          ;
-; cycloneiii_ff         ; 290                         ;
+; cycloneiii_ff         ; 245                         ;
 ;     CLR               ; 15                          ;
-;     ENA               ; 77                          ;
+;     ENA               ; 40                          ;
 ;     ENA CLR           ; 47                          ;
-;     ENA SCLR          ; 11                          ;
+;     ENA SCLR          ; 9                           ;
 ;     ENA SLD           ; 6                           ;
-;     SCLR              ; 53                          ;
+;     SCLR              ; 48                          ;
 ;     SLD               ; 14                          ;
-;     plain             ; 67                          ;
+;     plain             ; 66                          ;
 ; cycloneiii_io_obuf    ; 20                          ;
-; cycloneiii_lcell_comb ; 470                         ;
-;     arith             ; 107                         ;
-;         2 data inputs ; 104                         ;
-;         3 data inputs ; 3                           ;
-;     normal            ; 363                         ;
+; cycloneiii_lcell_comb ; 406                         ;
+;     arith             ; 102                         ;
+;         2 data inputs ; 100                         ;
+;         3 data inputs ; 2                           ;
+;     normal            ; 304                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 20                          ;
-;         2 data inputs ; 58                          ;
-;         3 data inputs ; 86                          ;
-;         4 data inputs ; 197                         ;
+;         1 data inputs ; 14                          ;
+;         2 data inputs ; 49                          ;
+;         3 data inputs ; 78                          ;
+;         4 data inputs ; 161                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 9.30                        ;
-; Average LUT depth     ; 3.37                        ;
+; Max LUT depth         ; 10.70                       ;
+; Average LUT depth     ; 3.65                        ;
 +-----------------------+-----------------------------+
 
 
@@ -621,7 +605,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Thu Jul 13 22:06:50 2017
+    Info: Processing started: Sat Jul 15 22:57:30 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 10M08 -c 10M08
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -671,7 +655,6 @@ Info (12128): Elaborating entity "ora" for hierarchy "ora:ora_0" File: C:/Users/
 Warning (10541): VHDL Signal Declaration warning at ora.vhd(38): used implicit default value for signal "pwdn" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 38
 Warning (10541): VHDL Signal Declaration warning at ora.vhd(47): used implicit default value for signal "ora_bytes_to_tx" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 47
 Warning (10036): Verilog HDL or VHDL warning at ora.vhd(88): object "pixel" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 88
-Warning (10036): Verilog HDL or VHDL warning at ora.vhd(119): object "r_busy_prev" assigned a value but never read File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 119
 Info (12128): Elaborating entity "hyperram" for hierarchy "hyperram:hyperram_0" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 495
 Warning (12161): Node "ora:ora_0|ora_has_packet" is stuck at GND because node is in wire loop and does not have a source File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/ora.vhd Line: 46
 Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
@@ -730,15 +713,15 @@ Warning (21074): Design contains 11 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "cpi[5]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
     Warning (15610): No output dependent on input pin "cpi[6]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
     Warning (15610): No output dependent on input pin "cpi[7]" File: C:/Users/Matthew Fonken/Desktop/cam_vhdl_mod/10M08/master_bridge.vhd Line: 54
-Info (21057): Implemented 591 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 517 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
     Info (21059): Implemented 20 output pins
     Info (21060): Implemented 20 bidirectional pins
-    Info (21061): Implemented 538 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 59 warnings
-    Info: Peak virtual memory: 696 megabytes
-    Info: Processing ended: Thu Jul 13 22:06:58 2017
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:17
+    Info (21061): Implemented 464 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 58 warnings
+    Info: Peak virtual memory: 706 megabytes
+    Info: Processing ended: Sat Jul 15 22:57:39 2017
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:19
 
 

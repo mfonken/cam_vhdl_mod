@@ -105,11 +105,11 @@ signal	ram_clock			: std_logic			:= '0';
 signal	ram_ena				: std_logic			:= '0';
 signal	ram_wr_data       : std_logic_vector(  15 downto 0 );
 signal	ram_wr_request   	: std_logic			:= '0';
-signal	ram_wr_length   	: integer range 0 to 256; --std_logic_vector(  7 downto 0 );
+signal	ram_wr_length   	: integer range 0 to 255; --std_logic_vector(  7 downto 0 );
 	
 signal	ram_rd_data       : std_logic_vector(  15 downto 0 );
 signal	ram_rd_request   	: std_logic 		:= '0';
-signal	ram_rd_length   	: std_logic_vector(  7 downto 0 );
+signal	ram_rd_length   	: integer range 0 to 255;
 signal	ram_strobe      	: std_logic 		:= '0';
 signal	ram_request_ack	: std_logic 		:= '0';
 signal	ram_busy				: std_logic			:= '0';
@@ -281,11 +281,11 @@ signal	i2c_ack_err    	: std_logic;
 			
 			r_rd_data       	: inout   	std_logic_vector(  15 downto 0 );
 			r_rd_request    	: out    std_logic;
-			r_rd_length     	: out   	std_logic_vector(  7 downto 0 );
+			r_rd_length     	: out   	integer range 0 to 255;
 
 			r_wr_data     		: out    std_logic_vector(  15 downto 0 );
 			r_wr_request    	: out    std_logic;
-			r_wr_length     	: inout 	integer range 0 to 256; --std_logic_vector(  7 downto 0 );
+			r_wr_length     	: inout 	integer range 0 to 255; --std_logic_vector(  7 downto 0 );
 
 			r_strobe        	: inout 	std_logic;
 			r_request_ack   	: in   	std_logic;
@@ -314,11 +314,11 @@ signal	i2c_ack_err    	: std_logic;
 
 			rd_data           : out   	std_logic_vector(  15 downto 0 );
 			rd_request        : in		std_logic := '0';
-			rd_length         : in   	std_logic_vector(  7 downto 0 );
+			rd_length         : in   	integer range 0 to 255;
 
 			wr_data           : in    	std_logic_vector(  15 downto 0 );
 			wr_request        : in    	std_logic := '0';
-			wr_length         : in   	integer range 0 to 256; --std_logic_vector(  7 downto 0 );
+			wr_length         : in   	integer range 0 to 255; --std_logic_vector(  7 downto 0 );
 			
 			busy					: inout		std_logic;
 

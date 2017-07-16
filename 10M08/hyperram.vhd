@@ -22,11 +22,11 @@ entity hyperram is
 
 	rd_data           : out   	std_logic_vector(  15 downto 0 );
 	rd_request        : in		std_logic;
-	rd_length         : in   	std_logic_vector(  7 downto 0 );
+	rd_length         : in   	integer range 0 to 255;
 
 	wr_data           : in    	std_logic_vector(  15 downto 0 );
 	wr_request        : in    	std_logic;
-	wr_length         : in   	integer range 0 to 256; --std_logic_vector(  7 downto 0 );
+	wr_length         : in   	integer range 0 to 255; --std_logic_vector(  7 downto 0 );
 
 	busy					: inout		std_logic;
 
@@ -47,33 +47,33 @@ entity hyperram is
 end hyperram;
 
 architecture rtl of hyperram is
-	constant 	ddr_ck_div : integer := sys_ck_frequency / ( ddr_ck_frequency * 2 );
-	constant 	ddr_ck_div_width : integer := ddr_ck_div / 2;
+	constant 	ddr_ck_div 			: integer := sys_ck_frequency / ( ddr_ck_frequency * 2 );
+	constant 	ddr_ck_div_width 	: integer := ddr_ck_div / 2;
 	signal   	ddr_ck_div_counter : unsigned(ddr_ck_div_width - 1 downto 0) := (others => '0');
-	constant 	lv : std_logic := '0';
-	constant		MAX_BURST : integer := 1024;
-	signal		latency : integer range 1 to 2 := 1;
+	constant 	lv 					: std_logic := '0';
+	constant		MAX_BURST 			: integer := 1024;
+	signal		latency 				: integer range 1 to 2 := 1;
 
 	type machine is(idle, command, latency_delay, wr, rd ); --needed states
-	signal state         : machine := idle;
+	signal state         			: machine := idle;
 
-	signal ca      : ca_64MB_t;
-	signal ca_bfr  : std_logic_vector( 47 downto 0 );
+	signal ca      					: ca_64MB_t;
+	signal ca_bfr  					: std_logic_vector( 47 downto 0 );
 
-	signal internal_data_out  : std_logic_vector( 15 downto 0 );
-	signal tick_counter       : integer;
+	signal internal_data_out  		: std_logic_vector( 15 downto 0 );
+	signal tick_counter       		: integer;
 
 	--  type hrddr_byte_stream_t is array( MAX_BURST downto 0) of std_logic_vector( 7 downto 0 );
-	signal internal_data_in   : std_logic_vector( 15 downto 0 );
-	signal internal_data_in_l : integer range 0 to MAX_BURST;
-	signal ck_ena             : std_logic := '0';
+	signal internal_data_in  	 	: std_logic_vector( 15 downto 0 );
+	signal internal_data_in_l 		: integer range 0 to MAX_BURST;
+	signal ck_ena             		: std_logic := '0';
 
 	signal internal_clock			: std_logic := '0';
 	signal internal_clock_prev		: std_logic := '0';
 
 	signal rwds_prev					: std_logic := '0';
-	signal strobe_prev  : std_logic := '0';
-	signal read_write				: std_logic := '0';
+	signal strobe_prev  				: std_logic := '0';
+	signal read_write					: std_logic := '0';
 
 	begin
 
@@ -158,7 +158,7 @@ architecture rtl of hyperram is
 								read_write <= hyperram_command.write_command;
 								state <= command;
 							elsif rd_request = '1' then
-								data_counter := to_integer( unsigned( rd_length ) );
+								data_counter := rd_length;
 								read_write <= hyperram_command.read_command;
 								rd_data <= X"0000";
 								state <= command;
@@ -200,7 +200,6 @@ architecture rtl of hyperram is
 						tick_counter := 0;
 
 						latency_counter := latency_counter + 1;
-						--					dq <= std_logic_vector(to_unsigned(data_counter, 8));
 
 						if latency_counter = ( latency_config*2*latency ) then
 							if ca.r_wn = hyperram_command.write_command then
