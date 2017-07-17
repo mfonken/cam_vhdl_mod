@@ -169,7 +169,7 @@ architecture rtl of hyperram is
 							when command =>
 								B <= '1';
 								busy <= '1';
-								
+
 								--std_logic_vector(to_unsigned(tick_counter, 8));--
 								internal_data_out <= ca_bfr( ( ( ( 5 - tick_counter ) * 8 ) + 7 ) downto ( ( 5 - tick_counter ) * 8 ) ); --TX command-address (6 clock events) std_logic_vector(to_unsigned(tick_counter, 8));
 								tick_counter <= tick_counter + 1;
@@ -249,8 +249,8 @@ architecture rtl of hyperram is
 			rwds_prev <= rwds;
 		end if;
 	end process data_process;
-	
---	busy <= '0' when state = idle else '1';
+
+	busy <= '0' when state = idle else '1';
 	rwds <= internal_mask when state = wr else 'Z';
 	dq <= internal_data_out when ( state = command or state = wr ) else ( others => 'Z' );
 
@@ -268,5 +268,5 @@ architecture rtl of hyperram is
 	request_ack 	<= busy;
 
 	A <= wr_request;
-	
+
 end rtl;
