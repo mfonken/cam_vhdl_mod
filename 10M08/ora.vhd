@@ -35,7 +35,7 @@ entity ora is
 		-- Camera interface
 		reset_n				: inout	std_logic;
 		ena					: inout	std_logic;
-		pwdn					: out		std_logic;
+		pwdn					: out		std_logic := '0';
 		mclk        		: inout 	std_logic;
 		vsync       		: in    	std_logic;
 		href       		 	: in    	std_logic;
@@ -44,7 +44,7 @@ entity ora is
 
 		ora_ack				: in		std_logic;
 		ora_has_packet		: inout	std_logic;
-		ora_bytes_to_tx	: out		integer;
+		ora_bytes_to_tx	: out		integer := 1;
 		ora_packet_buffer	: inout	packet_buffer_t;
 
 		r_rd_data       	: in   	std_logic_vector(  15 downto 0 );
@@ -85,7 +85,7 @@ architecture gbehaviour of ora is
 
 	signal x 				: integer range 0 to FRAME_WIDTH := 0;
 	signal y 				: integer range 0 to FRAME_HEIGHT := 0;
-	signal pixel			: unsigned( 7 downto 0 );
+	signal pixel			: unsigned( 7 downto 0 ) := x"00";
 
 	signal c 				: std_logic_vector( 0 to 3 ) := "0000";
 
@@ -102,23 +102,22 @@ architecture gbehaviour of ora is
 	r_burst 			<= '1';
 	
 	r_as    			<= hyperram_command.memory_space;
-	r_row          <= "0000000000100"; 
+	r_row          <= "0000000000000"; 
 	r_col          <= "000000000";
 							 
 	
-	r_wr_length    <= 1;
+	
 	r_rd_length    <= 1;
-	r_wr_data     	<= x"abcd";
 
 	--/*******RAM TEST START******/
 	hrddr_test : process( gclk )
 	variable state_counter 		: integer range 0 to 5000 := 0;
 	constant write_wait			: integer := 100;
-	constant read_wait			: integer := write_wait + 1000;
-	constant finished				: integer := read_wait + 700;
+	constant read_wait			: integer := write_wait + 1500;
+	constant finished				: integer := read_wait + 1000;
 	
 --	constant	test_word			: std_logic_vector( 15 downto 0 ) := x"abcd";--x"8ff3";1000 1111 1111 0011";
---	variable write_index			: integer range 0 to 100 := 61;
+	variable write_index			: integer range 0 to 100 := 61;
 --	variable write_lower			: integer	:= 7; 
 	variable r_busy_prev			: std_logic := '0';
 	variable r_strobe_prev		: std_logic := '0';
@@ -133,19 +132,22 @@ architecture gbehaviour of ora is
 				r_rd_request 	<= '0';
 			else	
 				if state_counter = write_wait then
+					r_wr_length    <= 10;
+					r_wr_data     	<= x"abcd";
 					r_wr_request 	<= '1';
 					r_rd_request 	<= '0';
 				elsif state_counter = read_wait then
 					r_wr_request 	<= '0';
 					r_rd_request 	<= '1';
-				elsif r_request_ack = '1' then
+				elsif state_counter = finished then
+					r_wr_length    <= 1;
+					r_wr_data    	<= r_rd_data;
+					r_wr_request 	<= '1';
+					r_rd_request 	<= '0';
+				end if;
+				if r_request_ack = '1' then
 					r_wr_request 	<= '0';
 					r_rd_request 	<= '0';
---				elsif state_counter = finished then
---					r_wr_length    <= 1;
---					r_wr_data    	<= r_rd_data;
---					r_wr_request 	<= '1';
---					r_rd_request 	<= '0';
 				end if;
 				
 				if state_counter < finished then
@@ -156,10 +158,10 @@ architecture gbehaviour of ora is
 				
 				
 				
---				if r_strobe_prev /= r_strobe then
---					r_wr_data   <= std_logic_vector(to_unsigned(write_index, 16));
---					write_index := write_index + 1;
---				end if;
+				if r_strobe_prev /= r_strobe then
+					r_wr_data   <= std_logic_vector(to_unsigned(write_index, 16));
+					write_index := write_index + 1;
+				end if;
 			end if;
 --			r_strobe_prev := r_strobe;
 --			r_busy_prev := r_busy;

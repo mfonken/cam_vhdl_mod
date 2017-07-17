@@ -33,11 +33,11 @@ use work.ucp_lib.all;
 ----------------------------------------------
 entity master_bridge is
 	port (
-		LED1	: out	std_logic := '1';
-		LED2	: out	std_logic := '1';
-		LED3	: out	std_logic := '1';
-		LED4	: out	std_logic := '1';
-		LED5	: out	std_logic := '1';
+--		LED1	: out	std_logic := '1';
+--		LED2	: out	std_logic := '1';
+--		LED3	: out	std_logic := '1';
+--		LED4	: out	std_logic := '1';
+--		LED5	: out	std_logic := '1';
 		A	: inout std_logic := '0';
 		B	: inout std_logic := '0';
 
@@ -91,8 +91,8 @@ architecture gbehaviour of master_bridge is
 constant sys_clk_frq			: integer 			:= 400_000_000;
 constant	i2c_scl_frq			: integer			:= 100_000;
 constant	umd_baud_r			: integer			:= 921_600;
-constant	ora_clk_frq			: integer			:= 5_000_000;
-constant	ram_clk_frq			: integer			:= 5_000_000;
+constant	ora_clk_frq			: integer			:= 10_000_000;
+constant	ram_clk_frq			: integer			:= 10_000_000;
 constant ram_lat_config		: positive			:= 6;
 
 -- Module clocks

@@ -76,12 +76,12 @@ architecture mbehaviour of master is
 	signal  	next_state        : system_states_t := activate;
 	signal  	state_lock        : system_states_t := live;
 
-	signal	ora_thresh			: integer;
-	signal	ora_kernel    		: kernel_t			:= ( others => '0' );
-	signal	ora_auto_cor		: auto_correct_t	:= ( others => '0' );
-	signal	ora_thresh_new		: integer;
-	signal	ora_kernel_new		: kernel_t			:= ( others => '0' );
-	signal	ora_auto_cor_new	: auto_correct_t	:= ( others => '0' );
+--	signal	ora_thresh			: integer;
+--	signal	ora_kernel    		: kernel_t			:= ( others => '0' );
+--	signal	ora_auto_cor		: auto_correct_t	:= ( others => '0' );
+--	signal	ora_thresh_new		: integer;
+--	signal	ora_kernel_new		: kernel_t			:= ( others => '0' );
+--	signal	ora_auto_cor_new	: auto_correct_t	:= ( others => '0' );
 --		pbuffer   	: packet_buffer_t := ( others => ( others => '0' ) );
 
 	signal	i2c_bsy_prev		: std_logic			:= '0';
@@ -98,7 +98,7 @@ architecture mbehaviour of master is
 --	signal	hasAck				: std_logic			:= '0';
 --	signal	hasNack				: std_logic 		:= '0';
 
-	signal	packet_tx_i			: integer			range 0 to UART_BUFFER_LENGTH := 0;
+--	signal	packet_tx_i			: integer			range 0 to UART_BUFFER_LENGTH := 0;
 
 	-- Uart signals
 	signal	prev_umd_rx			: std_logic_vector(7 downto 0);
@@ -154,7 +154,7 @@ architecture mbehaviour of master is
 
 					umd_rx_stb <= '1';
 					umd_rx_data <= ucp_hdr.dat & ucp_dat.nack & ucp_ftr.slv;
-					packet_tx_i <= 0;
+--					packet_tx_i <= 0;
 
 --				-- Activate: Transition to live state
 --				when activate =>                             -- ACTIVATE
@@ -224,9 +224,9 @@ architecture mbehaviour of master is
 --					packet_tx_i <= 0;
 				when others =>
 			end case;
-			ora_thresh 		<= ora_thresh_new;
-			ora_kernel 		<= ora_kernel_new;
-			ora_auto_cor 	<= ora_auto_cor_new;
+--			ora_thresh 		<= ora_thresh_new;
+--			ora_kernel 		<= ora_kernel_new;
+--			ora_auto_cor 	<= ora_auto_cor_new;
 		end if;
 	end process system_process;
 	--------------------------------------------------------------------------------

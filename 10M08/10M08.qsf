@@ -93,33 +93,33 @@ set_location_assignment PIN_121 -to reset_n
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top -tag platform
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top -tag platform
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_L20N_CLK1N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_L20P_CLK1P -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_L27N_PLL_CLKOUTN -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_L27P_PLL_CLKOUTP -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_B1N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO8 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO9 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO10 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO11 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO12 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to Arduino_IO13 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T4N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T6P -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to DIFFIO_T10N -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH1 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH2 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH3 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH4 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to SWITCH5 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LED1 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LED2 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LED3 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LED4 -tag platform
-set_instance_assignment -name IO_STANDARD "2.5 V" -to LED5 -tag platform
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIFFIO_L20N_CLK1N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIFFIO_L20P_CLK1P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIFFIO_L27N_PLL_CLKOUTN
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIFFIO_L27P_PLL_CLKOUTP
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIFFIO_B1N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Arduino_IO8
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Arduino_IO9
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Arduino_IO10
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Arduino_IO11
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Arduino_IO12
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Arduino_IO13
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIFFIO_T4N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIFFIO_T6P
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIFFIO_T10N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SWITCH1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SWITCH2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SWITCH3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SWITCH4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SWITCH5
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED5
 set_location_assignment PIN_86 -to scl
 set_location_assignment PIN_84 -to sda
-set_instance_assignment -name IO_STANDARD "2.5 V" -to A -tag platform
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to A
 set_location_assignment PIN_118 -to A
 set_location_assignment PIN_110 -to B
 set_location_assignment PIN_43 -to ram_ck_n
@@ -135,23 +135,19 @@ set_location_assignment PIN_57 -to ram_dq[1]
 set_location_assignment PIN_58 -to ram_dq[0]
 set_location_assignment PIN_56 -to ram_rst
 set_location_assignment PIN_55 -to ram_rwds
-set_location_assignment PIN_59 -to ram_vcc
-set_location_assignment PIN_60 -to ram_vccq
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_vcc
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_vccq
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_rwds
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_rst
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[0]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[2]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[3]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[5]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[7]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_ck_p
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_ck_n
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_cs_n
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[4]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[6]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to ram_dq[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_rwds
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_rst
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_dq[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_dq[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_dq[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_dq[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_dq[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_ck_p
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_ck_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_cs_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_dq[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_dq[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ram_dq[1]
 set_location_assignment PIN_106 -to t_ram_dq[7]
 set_location_assignment PIN_105 -to t_ram_dq[6]
 set_location_assignment PIN_101 -to t_ram_dq[5]
@@ -165,20 +161,20 @@ set_location_assignment PIN_100 -to t_ram_ck_p
 set_location_assignment PIN_98 -to t_ram_cs_n
 set_location_assignment PIN_96 -to t_ram_rwds
 set_location_assignment PIN_91 -to t_ram_rst
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_ck_n
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_ck_p
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_cs_n
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[7]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[6]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[5]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[4]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[3]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[2]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[1]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_dq[0]
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_rst
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to t_ram_rwds
-set_instance_assignment -name IO_STANDARD "3.0-V PCI" -to clock
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_ck_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_ck_p
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_cs_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_dq[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_dq[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_dq[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_dq[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_dq[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_dq[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_dq[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_dq[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_rst
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to t_ram_rwds
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clock
 set_global_assignment -name VHDL_FILE hyperram_types.vhd
 set_global_assignment -name VHDL_FILE hyperram.vhd
 set_global_assignment -name VHDL_FILE ora.vhd
@@ -193,4 +189,24 @@ set_global_assignment -name VHDL_FILE master.vhd
 set_global_assignment -name VHDL_FILE master_bridge.vhd
 set_global_assignment -name CDF_FILE output_files/Chain1.cdf
 set_global_assignment -name CDF_FILE Chain1.cdf
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to umd_tx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpi[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpi[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to umd_rx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpi[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpi[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpi[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpi[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpi[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpi[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to mclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to pclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to href
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vsync
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to pwdn
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cam_ena
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sda
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to scl
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to B
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to reset_n
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

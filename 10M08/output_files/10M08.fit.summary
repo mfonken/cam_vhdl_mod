@@ -1,15 +1,15 @@
-Fitter Status : Successful - Sun Jul 16 17:05:41 2017
+Fitter Status : Successful - Sun Jul 16 22:02:03 2017
 Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 Revision Name : 10M08
 Top-level Entity Name : master_bridge
 Family : MAX 10
 Device : 10M08SAE144C8GES
 Timing Models : Preliminary
-Total logic elements : 306 / 8,064 ( 4 % )
-    Total combinational functions : 297 / 8,064 ( 4 % )
-    Dedicated logic registers : 157 / 8,064 ( 2 % )
-Total registers : 157
-Total pins : 53 / 101 ( 52 % )
+Total logic elements : 371 / 8,064 ( 5 % )
+    Total combinational functions : 349 / 8,064 ( 4 % )
+    Dedicated logic registers : 198 / 8,064 ( 2 % )
+Total registers : 198
+Total pins : 48 / 101 ( 48 % )
 Total virtual pins : 0
 Total memory bits : 0 / 387,072 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 48 ( 0 % )
