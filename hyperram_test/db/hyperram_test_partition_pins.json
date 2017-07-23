@@ -4,27 +4,23 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "A",
-					"strict" : false
-				},
-				{
-					"name" : "B",
-					"strict" : false
-				},
-				{
-					"name" : "ram_rst",
-					"strict" : false
-				},
-				{
 					"name" : "ram_cs_n",
 					"strict" : false
 				},
 				{
-					"name" : "ram_ck_p",
+					"name" : "ram_ck_n",
 					"strict" : false
 				},
 				{
-					"name" : "ram_ck_n",
+					"name" : "t_ram_cs_n",
+					"strict" : false
+				},
+				{
+					"name" : "t_ram_ck_n",
+					"strict" : false
+				},
+				{
+					"name" : "ram_ck_p",
 					"strict" : false
 				},
 				{
@@ -64,19 +60,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "t_ram_rst",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_cs_n",
-					"strict" : false
-				},
-				{
 					"name" : "t_ram_ck_p",
-					"strict" : false
-				},
-				{
-					"name" : "t_ram_ck_n",
 					"strict" : false
 				},
 				{

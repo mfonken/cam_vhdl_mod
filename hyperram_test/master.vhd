@@ -14,39 +14,27 @@ use work.hyperram_types.all;
 entity master is
 	port
     (
---		LED1	: out	std_logic := '1';
---		LED2	: out	std_logic := '1';
---		LED3	: out	std_logic := '1';
---		LED4	: out	std_logic := '1';
---		LED5	: out	std_logic := '1';
-
 		A	: inout std_logic;
 		B	: inout std_logic;
---		C	: inout std_logic;
---		D	: inout std_logic;
 
 		clock			: in 		std_logic;
-    reset_n		: in  	std_logic;
+		reset_n		: in  	std_logic;
 
 		-- HyperRAM interface
 		ram_rst     : out 	std_logic := '1';
 		ram_cs_n    : out		std_logic := '1';
-		ram_ck_p    : out 	std_logic := '0';
+		ram_ck_p    : inout 	std_logic := '0';
 		ram_ck_n    : out 	std_logic := '1';
 		ram_rwds    : inout	std_logic := 'Z';
 		ram_dq      : inout	std_logic_vector( 7 downto 0 );
-
---		ram_vcc		: out		std_logic := '0';
---		ram_vccq		: out		std_logic := '0';
-
+		
 		t_ram_rst   : out		std_logic;
 		t_ram_cs_n  : out		std_logic;
-		t_ram_ck_p  : out		std_logic;
+		t_ram_ck_p  : inout		std_logic;
 		t_ram_ck_n  : out		std_logic;
-		t_ram_rwds  : out 	std_logic;
-		t_ram_dq    : out		std_logic_vector( 7 downto 0 )
+		t_ram_rwds  : inout 	std_logic;
+		t_ram_dq    : inout		std_logic_vector( 7 downto 0 )
     );
-
 end master;
 
 architecture mbehaviour of master is
@@ -94,33 +82,33 @@ architecture mbehaviour of master is
 		reset_n           : in    	std_logic;
 
 		rd_data           : out   	std_logic_vector(  15 downto 0 );
-		rd_request        : in			std_logic;
-		rd_length         : in   		integer range 0 to 255;
+		rd_request        : in		std_logic;
+		rd_length         : in   	integer range 0 to 255;
 
 		wr_data           : in    	std_logic_vector(  15 downto 0 );
 		wr_request        : in    	std_logic;
-		wr_length         : in   		integer range 0 to 255; --std_logic_vector(  7 downto 0 );
+		wr_length         : in   	integer range 0 to 255;
 
-		busy              : out			std_logic;
-		strobe            : out			std_logic;
+		busy              : inout	std_logic;
+		strobe            : inout	std_logic;
 		request_ack       : out   	std_logic;
 
-		burst             : in   		std_logic;
+		burst             : in   	std_logic;
 		as                : in    	std_logic;
 		row               : in    	std_logic_vector( 12 downto 0 );
 		col               : in    	std_logic_vector(  8 downto 0 );
 
-		cs_n              : out 		std_logic;
-		ck_p              : out 		std_logic;
+		cs_n              : out 	std_logic;
+		ck_p              : inout 	std_logic;
 		ck_n              : out   	std_logic;
 		rwds              : inout 	std_logic;
 		dq                : inout 	std_logic_vector(  7 downto 0 );
 
-		t_cs_n              : out 	std_logic;
-		t_ck_p              : out 	std_logic;
-		t_ck_n              : out   std_logic;
-		t_rwds              : out 	std_logic;
-		t_dq                : out 	std_logic_vector(  7 downto 0 )
+		t_cs_n            : out 	std_logic;
+		t_ck_p            : out 	std_logic;
+		t_ck_n            : out   	std_logic;
+		t_rwds            : out 	std_logic;
+		t_dq              : out 	std_logic_vector(  7 downto 0 )
 		);
 	end component hyperram;
 
@@ -164,19 +152,20 @@ begin
 		rwds                	=>	ram_rwds,
 		dq                  	=>	ram_dq,
 
-		cs_n                	=>	t_ram_cs_n,
-		ck_p                	=>	t_ram_ck_p,
-		ck_n                	=>	t_ram_ck_n,
-		rwds                	=>	t_ram_rwds,
-		dq                  	=>	t_ram_dq
+		t_cs_n              	=>	t_ram_cs_n,
+		t_ck_p               =>	t_ram_ck_p,
+		t_ck_n               =>	t_ram_ck_n,
+		t_rwds               =>	t_ram_rwds,
+		t_dq                 =>	t_ram_dq
 	);
 
 	ram_burst 			<= '1';
-	ram_as    			<= hyperram_command.register_space;
+	ram_as    			<= hyperram_command.memory_space;
 	ram_row          <= "0000000000100";
 	ram_col          <= "000000000";
 
 	ram_rd_length    <= 1;
+	ram_wr_length    <= 1;
 
 	--/*******RAM TEST START******/
 	hrddram_test : process( clock )
@@ -200,32 +189,32 @@ begin
 				ram_rd_request 	<= '0';
 			else
 				if state_counter = write_wait then
-					ram_wr_length    <= 1;
-					ram_wr_data     	<= test_word;
+					ram_wr_data     	<= x"abcd";
 					ram_wr_request 	<= '1';
 					ram_rd_request 	<= '0';
-				elsif state_counter = read_wait then
-					ram_wr_request 	<= '0';
-					ram_rd_request 	<= '1';
-				elsif state_counter = finished then
-					ram_wr_length    <= 1;
-					ram_wr_data    	<= ram_rd_data;
-					ram_wr_request 	<= '1';
-					ram_rd_request 	<= '0';
-				end if;
-				if ram_request_ack = '1' then
+--				elsif state_counter = read_wait then
+--					ram_wr_request 	<= '0';
+--					ram_rd_request 	<= '1';
+--				elsif state_counter = finished then
+--					ram_wr_data    	<= ram_rd_data;
+--					ram_wr_request 	<= '1';
+--					ram_rd_request 	<= '0';
+--				end if;
+				elsif ram_request_ack = '1' then
 					ram_wr_request 	<= '0';
 					ram_rd_request 	<= '0';
 				end if;
 
-				if state_counter <= finished then
+				if state_counter < finished then
 					state_counter := state_counter + 1;
+				else
+					state_counter := finished + 1;
 				end if;
 
-				if ram_strobe_prev /= ram_strobe then
-					ram_wr_data   <= std_logic_vector(to_unsigned(write_index, 16));
-					write_index := write_index + 1;
-				end if;
+--				if ram_strobe_prev /= ram_strobe then
+--					ram_wr_data   <= std_logic_vector(to_unsigned(write_index, 16));
+--					write_index := write_index + 1;
+--				end if;
 			end if;
 --			ram_strobe_prev := ram_strobe;
 --			ram_busy_prev := ram_busy;

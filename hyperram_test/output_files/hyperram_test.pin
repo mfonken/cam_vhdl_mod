@@ -107,27 +107,27 @@ VCCA2                        : 34        : power  :                   : 3.0V/3.3
 VCCA1                        : 35        : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 36        : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 37        : power  :                   : 3.0V/3.3V :           :                
-ram_dq[7]                    : 38        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
-ram_dq[6]                    : 39        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
+ram_dq[7]                    : 38        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+ram_dq[6]                    : 39        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 VCCIO3                       : 40        : power  :                   : 3.3V    : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 41        :        :                   :         : 3         :                
 GND                          : 42        : gnd    :                   :         :           :                
-ram_ck_n                     : 43        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
-ram_dq[5]                    : 44        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
-ram_dq[4]                    : 45        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
-ram_ck_p                     : 46        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
-ram_cs_n                     : 47        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
+ram_ck_n                     : 43        : output : 3.3-V LVTTL       :         : 3         : Y              
+ram_dq[5]                    : 44        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+ram_dq[4]                    : 45        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+ram_ck_p                     : 46        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+ram_cs_n                     : 47        : output : 3.3-V LVTTL       :         : 3         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 48        :        :                   :         : 3         :                
 VCCIO3                       : 49        : power  :                   : 3.3V    : 3         :                
-ram_dq[3]                    : 50        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
+ram_dq[3]                    : 50        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 VCC_ONE                      : 51        : power  :                   : 3.0V/3.3V :           :                
-ram_dq[2]                    : 52        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
+ram_dq[2]                    : 52        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 GND                          : 53        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 54        :        :                   :         : 3         :                
-ram_rwds                     : 55        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
-ram_rst                      : 56        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
-ram_dq[1]                    : 57        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
-ram_dq[0]                    : 58        : bidir  : 3.3-V LVCMOS      :         : 3         : Y              
+ram_rwds                     : 55        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+ram_rst                      : 56        : output : 3.3-V LVTTL       :         : 3         : Y              
+ram_dq[1]                    : 57        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
+ram_dq[0]                    : 58        : bidir  : 3.3-V LVTTL       :         : 3         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 59        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 60        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 61        :        :                   :         : 4         :                
@@ -157,29 +157,29 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 84        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : 85        :        :                   :         : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 86        :        :                   :         : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 87        :        :                   :         : 5         :                
-t_ram_dq[0]                  : 88        : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
-t_ram_dq[1]                  : 89        : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
+t_ram_dq[0]                  : 88        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+t_ram_dq[1]                  : 89        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 90        :        :                   :         : 6         :                
-t_ram_rst                    : 91        : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
-t_ram_dq[2]                  : 92        : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
-t_ram_dq[3]                  : 93        : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
+t_ram_rst                    : 91        : output : 3.3-V LVTTL       :         : 6         : Y              
+t_ram_dq[2]                  : 92        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+t_ram_dq[3]                  : 93        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
 VCCIO6                       : 94        : power  :                   : 3.3V    : 6         :                
 GND                          : 95        : gnd    :                   :         :           :                
-t_ram_rwds                   : 96        : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
-clock                        : 97        : input  : 3.3-V LVCMOS      :         : 6         : Y              
-t_ram_cs_n                   : 98        : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
-t_ram_dq[4]                  : 99        : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
-t_ram_ck_p                   : 100       : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
-t_ram_dq[5]                  : 101       : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
-t_ram_ck_n                   : 102       : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
+t_ram_rwds                   : 96        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+clock                        : 97        : input  : 3.3-V LVTTL       :         : 6         : Y              
+t_ram_cs_n                   : 98        : output : 3.3-V LVTTL       :         : 6         : Y              
+t_ram_dq[4]                  : 99        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+t_ram_ck_p                   : 100       : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+t_ram_dq[5]                  : 101       : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+t_ram_ck_n                   : 102       : output : 3.3-V LVTTL       :         : 6         : Y              
 VCCIO6                       : 103       : power  :                   : 3.3V    : 6         :                
 GND                          : 104       : gnd    :                   :         :           :                
-t_ram_dq[6]                  : 105       : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
-t_ram_dq[7]                  : 106       : bidir  : 3.3-V LVCMOS      :         : 6         : Y              
+t_ram_dq[6]                  : 105       : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+t_ram_dq[7]                  : 106       : bidir  : 3.3-V LVTTL       :         : 6         : Y              
 VCCA3                        : 107       : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 108       : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 109       : power  :                   : 3.0V/3.3V :           :                
-B                            : 110       : bidir  : 3.3-V LVCMOS      :         : 7         : Y              
+B                            : 110       : bidir  : 3.3-V LVTTL       :         : 7         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 111       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 112       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 113       :        :                   :         : 7         :                
@@ -187,10 +187,10 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 114       :        :                   :      
 VCC_ONE                      : 115       : power  :                   : 3.0V/3.3V :           :                
 GND                          : 116       : gnd    :                   :         :           :                
 VCCIO7                       : 117       : power  :                   : 3.3V    : 7         :                
-A                            : 118       : bidir  : 3.3-V LVCMOS      :         : 7         : Y              
+A                            : 118       : bidir  : 3.3-V LVTTL       :         : 7         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 119       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 120       :        :                   :         : 8         :                
-reset_n                      : 121       : input  : 3.3-V LVCMOS      :         : 8         : Y              
+reset_n                      : 121       : input  : 3.3-V LVTTL       :         : 8         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 122       :        :                   :         : 8         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 123       :        :                   :         : 8         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 124       :        :                   :         : 8         :                
