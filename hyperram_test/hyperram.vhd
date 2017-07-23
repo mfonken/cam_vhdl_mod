@@ -21,16 +21,15 @@ entity hyperram is
 	reset_n           : in    	std_logic;
 
 	rd_data           : out   	std_logic_vector(  15 downto 0 );
-	rd_request        : in		std_logic;
-	rd_length         : in   	integer range 0 to 255;
+	rd_request        : in			std_logic;
+	rd_length         : in   		integer range 0 to 255;
 
 	wr_data           : in    	std_logic_vector(  15 downto 0 );
 	wr_request        : in    	std_logic;
-	wr_length         : in   	integer range 0 to 255; --std_logic_vector(  7 downto 0 );
+	wr_length         : in   		integer range 0 to 255; --std_logic_vector(  7 downto 0 );
 
-	busy              : inout		std_logic;
-
-	strobe            : inout		std_logic;
+	busy              : out			std_logic;
+	strobe            : out			std_logic;
 	request_ack       : out   	std_logic;
 
 	burst             : in   		std_logic;
@@ -38,11 +37,17 @@ entity hyperram is
 	row               : in    	std_logic_vector( 12 downto 0 );
 	col               : in    	std_logic_vector(  8 downto 0 );
 
-	cs_n              : out 	std_logic;
-	ck_p              : inout 	std_logic;
+	cs_n              : out 		std_logic;
+	ck_p              : out 		std_logic;
 	ck_n              : out   	std_logic;
 	rwds              : inout 	std_logic;
-	dq                : inout 	std_logic_vector(  7 downto 0 )
+	dq                : inout 	std_logic_vector(  7 downto 0 );
+
+	t_cs_n              : out 	std_logic;
+	t_ck_p              : out 	std_logic;
+	t_ck_n              : out   std_logic;
+	t_rwds              : out 	std_logic;
+	t_dq                : out 	std_logic_vector(  7 downto 0 )
 	);
 end hyperram;
 
@@ -61,7 +66,7 @@ architecture rtl of hyperram is
 	signal ca_bfr  					: std_logic_vector( 47 downto 0 );
 
 	signal internal_data_out  		: std_logic_vector( 7 downto 0 );
---	signal tick_counter       		: integer;
+--	signal command_counter       		: integer;
 
 	signal internal_dq				: std_logic_vector( 7 downto 0 );
 
@@ -81,7 +86,7 @@ architecture rtl of hyperram is
 	signal strobe_prev  				: std_logic := '0';
 	signal read_write					: std_logic := '0';
 
-	signal tick_counter    : integer range 0 to 6 + latency_config*4 := 0;
+	signal command_counter    : integer range 0 to 6 + latency_config*4 := 0;
 	-- signal latency_counter : integer range 0 to latency_config*4 := 0;
 	signal data_counter    : integer range 0 to MAX_BURST;
 
@@ -91,17 +96,16 @@ architecture rtl of hyperram is
 		-- generate an oversampled tick (baud * 16)
 		---------------------------------------------------------------------------
 		clock_divider : process (clock, reset_n)
-		variable tick : std_logic := '0';
 		begin
 			if rising_edge (clock) then
 				if reset_n = '0' or busy = '0' then
 					ddr_ck_div_counter <= (others => '0');
-					tick := '0';
+					internal_clock <= '0';
 				else
 					if ddr_ck_div_counter < ddr_ck_div_half then
-						tick := '0';
+						internal_clock <= '0';
 					else
-						tick := '1';
+						internal_clock <= '1';
 					end if;
 					if ddr_ck_div_counter = ddr_ck_div then
 						ddr_ck_div_counter <= ( others => '0' );
@@ -110,7 +114,6 @@ architecture rtl of hyperram is
 					end if;
 				end if;
 			end if;
-			internal_clock <= tick;
 		end process clock_divider;
 
 		clock_driver : process (clock, reset_n)
@@ -118,7 +121,7 @@ architecture rtl of hyperram is
 			if rising_edge(clock) then
 				if internal_clock_prev = '0' and internal_clock = '1' then
 					if reset_n = '1' then
-						internal_ck_p <= not ck_p;
+						internal_ck_p <= not internal_ck_p;
 					else
 						internal_ck_p <= '0';
 					end if;
@@ -129,19 +132,18 @@ architecture rtl of hyperram is
 		end process clock_driver;
 
 		data_process : process(clock, reset_n)
-
 		begin
 			if rising_edge(clock) then
 				if reset_n = '0' then
 					B <= '1';
-					tick_counter 		<= 0;
+					command_counter 		<= 0;
 					data_counter 		<= 0;
 					state 				<= idle;
 				else
 					case state is
 						when idle =>
 							B <= '0';
-							tick_counter <= 0;
+							command_counter <= 0;
 
 							if wr_request = '1' then
 								data_counter <= wr_length;
@@ -159,21 +161,20 @@ architecture rtl of hyperram is
 
 						when command =>
 							B <= '1';
-							internal_data_out <= ca_bfr( ( ( ( 5 - tick_counter ) * 8 ) + 7 ) downto ( ( 5 - tick_counter ) * 8 ) );
-							
+							internal_data_out <= ca_bfr( ( ( ( 5 - command_counter ) * 8 ) + 7 ) downto ( ( 5 - command_counter ) * 8 ) );
+
 							if internal_clock_prev = '1' and internal_clock = '0' then
-							--std_logic_vector(to_unsigned(tick_counter, 8));--
-								tick_counter <= tick_counter + 1;
-								 --TX command-address (6 clock events) std_logic_vector(to_unsigned(tick_counter, 8));
+								command_counter <= command_counter + 1;
+								 --std_logic_vector(to_unsigned(command_counter, 8));
 							end if;
 
-							if tick_counter = 3 then
+							if command_counter = 3 then
 								if rwds = '1' then
 									latency <= 2;
 								else
 									latency <= 1;
 								end if;
-							elsif tick_counter = 6 then
+							elsif command_counter = 6 then
 								if ca.as = hyperram_command.register_space and read_write = hyperram_command.write_command then -- if writing to register space
 									state <= wr;                     -- write without latency
 								else
@@ -184,12 +185,12 @@ architecture rtl of hyperram is
 						when latency_delay =>
 							B <= '0';
 							internal_data_out <= x"00";
-							
+
 							if internal_clock_prev = '1' and internal_clock = '0' then
-								tick_counter <= tick_counter + 1;
+								command_counter <= command_counter + 1;
 							end if;
 
-							if tick_counter = ( latency_config*2*latency ) + 3 then
+							if command_counter = ( latency_config*2*latency ) + 3 then
 								if read_write = hyperram_command.write_command then
 									state <= wr;
 								else
@@ -199,7 +200,7 @@ architecture rtl of hyperram is
 
 						when wr =>
 							B <= '1';
-							tick_counter <= 0;
+							command_counter <= 0;
 
 							if internal_clock_prev = '1' and internal_clock = '0' then
 								if ck_p = '0' then
@@ -216,13 +217,13 @@ architecture rtl of hyperram is
 
 						when rd =>
 							B <= '1';
-							tick_counter <= 0;
+							command_counter <= 0;
 
 --							if rwds_prev /= rwds then
 --								if rwds = '1' then
 							if internal_clock_prev = '1' and internal_clock = '0' then
 								if internal_ck_p = '1' then
-								
+
 									rd_data( 15 downto 8 ) <= dq;
 								else
 									rd_data( 7 downto 0 ) <= dq;
@@ -241,14 +242,10 @@ architecture rtl of hyperram is
 		end if;
 	end process data_process;
 
+	-- Module signals --
+	request_ack 	<= busy;
 	busy <= '0' when state = idle else '1';
-	rwds <= internal_mask when state = wr else 'Z';
-	dq <= internal_data_out when ( state = command or state = wr ) else 
-			( others => 'Z' ) when ( state = rd ) else ( others => '0' );
 
-	ck_p <= internal_ck_p;
-	ck_n <= not internal_ck_p;
-	
 	ca.r_wn	  <= read_write;
 	ca.as     <= as;
 	ca.burst  <= burst;
@@ -259,8 +256,20 @@ architecture rtl of hyperram is
 	ca.rsv2   <= ( others => '0' );
 	ca_bfr    <= ca.r_wn & ca.as & ca.burst & ca.rsv1 & ca.row & ca.col_u & ca.rsv2 & ca.col_l;
 
-	cs_n				<= not busy;
-	request_ack 	<= busy;
+
+	-- Physical signals --
+	cs_n			<= not busy;
+	ck_p 			<= internal_ck_p;
+	ck_n 			<= not internal_ck_p;
+	rwds 			<= internal_mask when state = wr else 'Z';
+	dq 				<= internal_data_out when ( state = command or state = wr ) else ( others => 'Z' ) when ( state = rd ) else ( others => '0' );
+
+	-- Test signals --
+	t_cs_n		<= not busy;
+	t_ck_p 		<= internal_ck_p;
+	t_ck_n 		<= not internal_ck_p;
+	t_rwds 		<= rwds;
+	t_dq 			<= dq;
 
 	A <= internal_clock;
 
