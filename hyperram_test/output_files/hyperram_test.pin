@@ -157,25 +157,25 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 84        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : 85        :        :                   :         : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 86        :        :                   :         : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 87        :        :                   :         : 5         :                
-t_ram_dq[0]                  : 88        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
-t_ram_dq[1]                  : 89        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 88        :        :                   :         : 6         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 89        :        :                   :         : 6         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 90        :        :                   :         : 6         :                
-t_ram_rst                    : 91        : output : 3.3-V LVTTL       :         : 6         : Y              
-t_ram_dq[2]                  : 92        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
-t_ram_dq[3]                  : 93        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 91        :        :                   :         : 6         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 92        :        :                   :         : 6         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 93        :        :                   :         : 6         :                
 VCCIO6                       : 94        : power  :                   : 3.3V    : 6         :                
 GND                          : 95        : gnd    :                   :         :           :                
-t_ram_rwds                   : 96        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 96        :        :                   :         : 6         :                
 clock                        : 97        : input  : 3.3-V LVTTL       :         : 6         : Y              
-t_ram_cs_n                   : 98        : output : 3.3-V LVTTL       :         : 6         : Y              
-t_ram_dq[4]                  : 99        : bidir  : 3.3-V LVTTL       :         : 6         : Y              
-t_ram_ck_p                   : 100       : bidir  : 3.3-V LVTTL       :         : 6         : Y              
-t_ram_dq[5]                  : 101       : bidir  : 3.3-V LVTTL       :         : 6         : Y              
-t_ram_ck_n                   : 102       : output : 3.3-V LVTTL       :         : 6         : Y              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 98        :        :                   :         : 6         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 99        :        :                   :         : 6         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 100       :        :                   :         : 6         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 101       :        :                   :         : 6         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 102       :        :                   :         : 6         :                
 VCCIO6                       : 103       : power  :                   : 3.3V    : 6         :                
 GND                          : 104       : gnd    :                   :         :           :                
-t_ram_dq[6]                  : 105       : bidir  : 3.3-V LVTTL       :         : 6         : Y              
-t_ram_dq[7]                  : 106       : bidir  : 3.3-V LVTTL       :         : 6         : Y              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 105       :        :                   :         : 6         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 106       :        :                   :         : 6         :                
 VCCA3                        : 107       : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 108       : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 109       : power  :                   : 3.0V/3.3V :           :                

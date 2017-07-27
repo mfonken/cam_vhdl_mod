@@ -1,12 +1,12 @@
-PowerPlay Power Analyzer Status : Successful - Sat Jul 22 22:03:20 2017
+PowerPlay Power Analyzer Status : Successful - Wed Jul 26 22:48:20 2017
 Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 Revision Name : hyperram_test
 Top-level Entity Name : master
 Family : MAX 10
 Device : 10M08SAE144C8GES
 Power Models : Final
-Total Thermal Power Dissipation : 137.29 mW
+Total Thermal Power Dissipation : 136.36 mW
 Core Dynamic Thermal Power Dissipation : 0.00 mW
-Core Static Thermal Power Dissipation : 110.67 mW
-I/O Thermal Power Dissipation : 26.63 mW
+Core Static Thermal Power Dissipation : 110.66 mW
+I/O Thermal Power Dissipation : 25.70 mW
 Power Estimation Confidence : Low: user provided insufficient toggle rate data

@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Sat Jul 22 22:03:11 2017
+Analysis & Synthesis Status : Successful - Wed Jul 26 22:48:11 2017
 Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 Revision Name : hyperram_test
 Top-level Entity Name : master
 Family : MAX 10
-Total logic elements : 101
-    Total combinational functions : 98
-    Dedicated logic registers : 50
-Total registers : 50
-Total pins : 30
+Total logic elements : 44
+    Total combinational functions : 44
+    Dedicated logic registers : 20
+Total registers : 20
+Total pins : 17
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0

@@ -26,14 +26,14 @@ entity master is
 		ram_ck_p    : inout 	std_logic := '0';
 		ram_ck_n    : out 	std_logic := '1';
 		ram_rwds    : inout	std_logic := 'Z';
-		ram_dq      : inout	std_logic_vector( 7 downto 0 );
+		ram_dq      : inout	std_logic_vector( 7 downto 0 )
 		
-		t_ram_rst   : out		std_logic;
-		t_ram_cs_n  : out		std_logic;
-		t_ram_ck_p  : inout		std_logic;
-		t_ram_ck_n  : out		std_logic;
-		t_ram_rwds  : inout 	std_logic;
-		t_ram_dq    : inout		std_logic_vector( 7 downto 0 )
+--		t_ram_rst   : out		std_logic;
+--		t_ram_cs_n  : out		std_logic;
+--		t_ram_ck_p  : inout	std_logic;
+--		t_ram_ck_n  : out		std_logic;
+--		t_ram_rwds  : inout 	std_logic;
+--		t_ram_dq    : inout	std_logic_vector( 7 downto 0 )
     );
 end master;
 
@@ -71,44 +71,44 @@ architecture mbehaviour of master is
 
 	component hyperram is
 		generic (
-		sys_ck_frequency  : positive;
-		ddr_ck_frequency  : positive;
-		latency_config		: positive
+			sys_ck_frequency  : positive;
+			ddr_ck_frequency  : positive;
+			latency_config		: positive
 		);
 		port (
-		A	: inout std_logic := '0';
-		B	: inout std_logic := '0';
-		clock            	: in    	std_logic;
-		reset_n           : in    	std_logic;
+			A	: inout std_logic := '0';
+			B	: inout std_logic := '0';
+			clock            	: in    	std_logic;
+			reset_n           : in    	std_logic;
 
-		rd_data           : out   	std_logic_vector(  15 downto 0 );
-		rd_request        : in		std_logic;
-		rd_length         : in   	integer range 0 to 255;
+			rd_data           : out   	std_logic_vector(  15 downto 0 );
+			rd_request        : in		std_logic;
+			rd_length         : in   	integer range 0 to 255;
 
-		wr_data           : in    	std_logic_vector(  15 downto 0 );
-		wr_request        : in    	std_logic;
-		wr_length         : in   	integer range 0 to 255;
+			wr_data           : in    	std_logic_vector(  15 downto 0 );
+			wr_request        : in    	std_logic;
+			wr_length         : in   	integer range 0 to 255;
 
-		busy              : inout	std_logic;
-		strobe            : inout	std_logic;
-		request_ack       : out   	std_logic;
+			busy              : inout	std_logic;
+			strobe            : inout	std_logic;
+			request_ack       : out   	std_logic;
 
-		burst             : in   	std_logic;
-		as                : in    	std_logic;
-		row               : in    	std_logic_vector( 12 downto 0 );
-		col               : in    	std_logic_vector(  8 downto 0 );
+			burst             : in   	std_logic;
+			as                : in    	std_logic;
+			row               : in    	std_logic_vector( 12 downto 0 );
+			col               : in    	std_logic_vector(  8 downto 0 );
 
-		cs_n              : out 	std_logic;
-		ck_p              : inout 	std_logic;
-		ck_n              : out   	std_logic;
-		rwds              : inout 	std_logic;
-		dq                : inout 	std_logic_vector(  7 downto 0 );
+			cs_n              : out 	std_logic;
+			ck_p              : out 	std_logic;
+			ck_n              : out   	std_logic;
+			rwds              : inout 	std_logic;
+			dq                : inout 	std_logic_vector(  7 downto 0 )
 
-		t_cs_n            : out 	std_logic;
-		t_ck_p            : out 	std_logic;
-		t_ck_n            : out   	std_logic;
-		t_rwds            : out 	std_logic;
-		t_dq              : out 	std_logic_vector(  7 downto 0 )
+--			t_cs_n            : out 	std_logic;
+--			t_ck_p            : out 	std_logic;
+--			t_ck_n            : out   	std_logic;
+--			t_rwds            : out 	std_logic;
+--			t_dq              : out 	std_logic_vector(  7 downto 0 )
 		);
 	end component hyperram;
 
@@ -150,13 +150,13 @@ begin
 		ck_p                	=>	ram_ck_p,
 		ck_n                	=>	ram_ck_n,
 		rwds                	=>	ram_rwds,
-		dq                  	=>	ram_dq,
+		dq                  	=>	ram_dq
 
-		t_cs_n              	=>	t_ram_cs_n,
-		t_ck_p               =>	t_ram_ck_p,
-		t_ck_n               =>	t_ram_ck_n,
-		t_rwds               =>	t_ram_rwds,
-		t_dq                 =>	t_ram_dq
+--		t_cs_n              	=>	t_ram_cs_n,
+--		t_ck_p               =>	t_ram_ck_p,
+--		t_ck_n               =>	t_ram_ck_n,
+--		t_rwds               =>	t_ram_rwds,
+--		t_dq                 =>	t_ram_dq
 	);
 
 	ram_burst 			<= '1';
