@@ -154,6 +154,7 @@ architecture rtl of hyperram is
 								read_write 				<= hyperram_command.read_command;
 								next_control_state 	<= command;
 							end if;
+							next_control_state 	<= idle;
 
 						when command =>
 							command_counter <= command_counter + 1;
@@ -166,7 +167,9 @@ architecture rtl of hyperram is
 							elsif command_counter = 6 then
 								if ca.as = hyperram_command.register_space and read_write = hyperram_command.write_command then
 									next_data_state 		<= wr;
+									next_control_state 	<= idle;
 								else
+									next_data_state 		<= waiting;
 									next_control_state 	<= latency_delay;
 								end if;
 							end if;
@@ -177,8 +180,9 @@ architecture rtl of hyperram is
 								if read_write = hyperram_command.write_command then
 									next_data_state	 	<= wr;
 								else
-									next_data_state 		<= rd;
+									next_data_state 	<= rd;
 								end if;
+								next_control_state 	<= idle;
 							end if;
 					end case;
 
